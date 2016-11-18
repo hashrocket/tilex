@@ -1,0 +1,172 @@
+{
+  "web/models":{ "type": "model" },
+  "web/models/*.ex":{
+    "type": "model",
+    "alternate":"test/models/{}_test.exs",
+    "template":[
+      "defmodule {project|camelcase|basename}.{camelcase|dot} do",
+      "  use {project|camelcase|basename}.Web, :model",
+      "",
+      "end",
+    ]
+  },
+  "test/models":{ "type": "tmodel" },
+  "test/models/*_test.exs":{
+    "type": "tmodel",
+    "alternate":"web/models/{}.ex",
+    "template":[
+      "defmodule {project|camelcase|basename}.{camelcase|dot}Test do",
+      "  use {project|camelcase|basename}.ModelCase#, async: true",
+      "",
+      "end",
+    ]
+  },
+
+  "web/controllers":{ "type": "controller" },
+  "web/controllers/*_controller.ex":{
+    "type": "controller",
+    "alternate": "test/controllers/{}_controller_test.exs",
+    "template":[
+      "defmodule {project|camelcase|basename}.{camelcase|dot}Controller do",
+      "  use {project|camelcase|basename}.Web, :controller" ,
+      "",
+      "end",
+    ]
+  },
+  "test/controllers":{ "type": "tcontroller" },
+  "test/controllers/*_controller_test.exs":{
+    "type": "tcontroller",
+    "alternate": "web/controllers/{}_controller.ex",
+    "template":[
+      "defmodule {project|camelcase|basename}.{camelcase|dot}ControllerTest do",
+      "  use {project|camelcase|basename}.ConnCase#, async: true",
+      "",
+      "end",
+    ]
+  },
+
+  "web/views":{ "type": "view" },
+  "web/views/*_view.ex":{
+    "type": "view",
+    "alternate": "test/views/{}_view_test.exs",
+    "template":[
+      "defmodule {project|camelcase|basename}.{camelcase|dot}View do",
+      "  use {project|camelcase|basename}.Web, :view" ,
+      "",
+      "end",
+    ]
+  },
+  "test/views":{ "type": "tview" },
+  "test/views/*_view_test.exs":{
+    "type": "tview",
+    "alternate": "web/views/{}_view.ex",
+    "template":[
+      "defmodule {project|camelcase|basename}.{camelcase|dot}ViewTest do",
+      "  use {project|camelcase|basename}.ConnCase#, async: true",
+      "",
+      "end",
+    ]
+  },
+
+  "web/channels/*_channel.ex":{
+    "type": "channel",
+    "template":[
+      "defmodule {project|camelcase|basename}.{camelcase|dot}Channel do",
+      "  use Phoenix.Channel",
+      "",
+      "end"
+    ]
+  },
+
+  "web/templates/*.html.eex":{
+    "type": "template",
+  },
+
+  "lib":{ "type": "lib" },
+  "lib/*.ex":{
+    "type": "lib",
+    "alternate": "test/lib/{}_test.exs",
+    "template":[
+      "defmodule {camelcase|dot} do",
+      "",
+      "end",
+    ]
+  },
+  "test/lib/*.exs":{
+    "alternate": "lib/{}.ex",
+    "template":[
+      "defmodule {camelcase|dot} do",
+      "  use ExUnit.Case",
+      "",
+      "end",
+    ]
+  },
+
+  "test":{ "type":"test" },
+  "test/*_test.exs":{
+    "type": "test",
+    "alternate": "{}.ex",
+    "template":[
+      "defmodule {camelcase|dot}Test do",
+      "  use ExUnit.Case#, async:true",
+      "",
+      "end",
+    ]
+  },
+
+  "test/test_helper.exs":{
+    "type":"helper",
+  },
+
+  "test/support":{
+    "type":"support",
+  },
+  "test/support/*.ex":{
+    "type":"support",
+    "template":[
+      "defmodule {project|camelcase|basename}.{camelcase|dot} do",
+      "",
+      "  use ExUnit.CaseTemplate",
+      "",
+      "  using do",
+      "    quote do",
+      "",
+      "    end",
+      "  end",
+      "",
+      "  setup tags do",
+      "",
+      "    :ok",
+      "  end",
+      "",
+      "end",
+    ]
+  },
+
+  "config/config.exs":{ "type": "config", },
+  "config/*.exs":{
+    "type": "config",
+    "template":[
+      "use Mix.Config",
+    ]
+  },
+  "config/*.secret.exs":{
+    "type": "secret",
+    "template":[
+      "use Mix.Config",
+      "",
+      "import_config \"{}.secret.exs\""
+    ]
+  },
+
+  "mix.exs":{ "type": "x", },
+  "web/router.ex":{ "type": "router", },
+  "web/web.ex":{ "type": "web", },
+  "test/fixtures":{ "type":"fixture", },
+  "test/fixtures/*":{ "type":"fixture", },
+  "priv/repo/migrations":{ "type": "migration", },
+
+  "*.exs": { "console": "iex -S mix", },
+  "*.ex": { "console": "iex -S mix", },
+
+}
