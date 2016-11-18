@@ -1,0 +1,14 @@
+<section id="home">
+  <%= for post <- @posts do %>
+    <article class="post">
+      <section>
+        <div class="post__content copy">
+          <h1>
+            <%= link(post.title, to: "#") %>
+          </h1>
+          <%= post.body %>
+        </div>
+      </section>
+    </article>
+  <% end %>
+</section>

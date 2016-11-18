@@ -25,6 +25,10 @@
       </div>
     </header>
 
+    <main>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

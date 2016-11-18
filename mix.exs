@@ -32,6 +32,7 @@ defmodule TodayILearned.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0"},
+      {:ecto_factory, "~> 0.0.5", only: [:dev, :test]},
       {:gettext, "~> 0.11"},
       {:hound, "~> 1.0", only: :test},
       {:phoenix, "~> 1.2.1"},
