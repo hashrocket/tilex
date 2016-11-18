@@ -25,7 +25,9 @@ Next, follow these setup steps:
 $ git clone https://github.com/hashrocket/today_i_learned
 $ cd today_i_learned
 $ mix deps.get
-$ mix ecto.create && mix ecto.migrate
+$ mix ecto.create
+$ mkdir priv/repo/migrations
+$ mix ecto.migrate
 $ npm install
 $ mix phoenix.server
 ```
