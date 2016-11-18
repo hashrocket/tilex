@@ -36,8 +36,6 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :today_i_learned, TodayILearned.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "today_i_learned_dev",
   hostname: "localhost",
   pool_size: 10
