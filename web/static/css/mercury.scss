@@ -1,0 +1,146 @@
+// Mercury.scss
+// version 0.1.2
+// github.com/hashrocket/mercury
+
+// Options
+
+$site-width-max: 1400px !default;
+$site-width-mid: 800px !default;
+$site-width-narrow: 480px !default;
+
+$svg-rendering: 'geometricPrecision' !default;
+
+// Responsive mixins
+
+@mixin min-width($width) {
+  @media screen and (min-width: #{$width}) {
+    @content;
+  }
+}
+
+@mixin max-width($width) {
+  @media screen and (max-width: #{$width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @include max-width($site-width-mid) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @include max-width($site-width-narrow) {
+    @content;
+  }
+}
+
+@mixin max {
+  @include min-width($site-width-max) {
+    @content;
+  }
+}
+
+@mixin responsive($attr, $full, $mid:false, $narrow:false) {
+  #{$attr}: #{$full};
+  @if $mid {
+    @include max-width($site-width-mid) {
+      #{$attr}: #{$mid};
+    }
+  }
+  @if $narrow {
+    @include max-width($site-width-narrow) {
+      #{$attr}: #{$narrow};
+    }
+  }
+}
+
+// Simple mixins for hiding/showing print-only styles
+
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+
+@mixin hide-print {
+  @media print {
+    display: none !important;
+  }
+}
+
+// SVG background support
+// (string encoding functions via http://codepen.io/jakob-e/pen/doMoML)
+
+$svg-images: () !global;
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+    str-replace(str-slice($string, $index +
+    str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@function svg-encode($svg){
+  $encoded:'';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg)/$slice);
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: str-replace($chunk,'"','\'');
+    $chunk: str-replace($chunk,'<','%3C');
+    $chunk: str-replace($chunk,'>','%3E');
+    $chunk: str-replace($chunk,'&','%26');
+    $chunk: str-replace($chunk,'#','%23');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+}
+
+@function svg-url($name, $fill: '', $rendering: $svg-rendering, $preserveaspectratio: 'defer') {
+  $icon: map-get($svg-images, $name);
+  $width: map-get($icon, width);
+  $height: map-get($icon, height);
+
+  $path: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 #{$width} #{$height}' width='#{$width}px' height='#{$height}px' preserveAspectRatio='#{$preserveaspectratio}' shape-rendering='#{$rendering}'><g fill='#{$fill}'>#{map-get($icon, path)}</g></svg>";
+
+  @return svg-encode($path);
+}
+
+@mixin register-svg($name, $width, $height, $path) {
+  $new-icon: (
+    $name: (
+      width: $width,
+      height: $height,
+      path: $path
+    )
+  );
+  $svg-images: map-merge($svg-images, ($new-icon)) !global;
+}
+
+// Clearfix
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
+// Hide Text
+
+@mixin hide-text {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}

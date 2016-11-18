@@ -1,0 +1,340 @@
+a
+  text-decoration: none
+  color: $red
+
+.sticker
+  color: #f31aae
+  font-size: 2.3rem
+  font-family: $news-typeface
+  text-align: center
+  padding: 2.5em 1em 1em 3.5em
+  box-sizing: border-box
+  position: absolute
+  top: .5em
+  left: -3em
+  width: 7em
+  height: 7em
+  background: #fff
+  border-radius: 50%
+  opacity: .7
+  z-index: 500
+  span
+    text-align: center
+    display: block
+    font-size: .7em
+    text-transform: uppercase
+  +max-width(600px)
+    top: -1em
+
+nav.pagination
+  max-width: 40rem
+  margin: 4rem auto
+  text-align: center
+  a
+    +box-outline
+    display: inline-block
+    padding: .8rem 2rem
+    margin: 0 .5rem
+    font-family: $secondary-typeface
+    text-transform: uppercase
+    font-weight: bold
+    font-size: .8em
+    transition: opacity .2s, color .2s
+    color: $blue
+    &:hover
+      background: #fff
+
+.post
+  +clearfix
+  display: flex
+  align-items: flex-start
+  margin-bottom: 3vw
+  justify-content: center
+  +mobile
+    display: block
+    padding: 0 1rem
+  &.draft
+    opacity: .8
+  section
+    flex: 0 1 auto
+    box-sizing: border-box
+    min-width: 35rem
+    max-width: 60%
+    +box-outline
+    +mobile
+      max-width: none
+      min-width: 0
+  .post__content
+    overflow: auto
+    padding: 4vw
+    h1:first-of-type
+      a
+        color: inherit
+        display: block
+        transition: color .1s
+        &:hover
+          color: $red
+  footer
+    font-style: italic
+    text-align: right
+    margin-top: 2em
+    +clearfix
+    p
+      float: right
+      margin: 0
+      line-height: 1
+      &.post__social
+        float: left
+    a
+      color: inherit
+      &.post__permalink
+        font-size: .8em
+      &:hover
+        text-decoration: underline
+  aside
+    ul
+      display: flex
+      width: 100%
+      white-space: nowrap
+      flex-wrap: wrap
+      li
+        flex: 1 1 auto
+        padding: 0 .2rem
+      a
+        display: block
+        padding: 1rem 2rem
+        text-transform: uppercase
+        font-weight: 700
+        font-size: 1.3rem
+        font-family: $secondary-typeface
+        transition: padding-left .1s
+        border-top: .2rem solid $med
+        text-align: center
+        line-height: 2rem
+        background: transparent
+        transition: background .1s
+        &:hover
+          background-color: #fff
+        &.post__raw-link
+          border-color: $cyan
+          color: $cyan
+        &.post__tag-link
+          border-color: $green
+          color: $green
+        &.post__permalink
+          border-color: $blue
+          color: $blue
+        &.post__edit-link
+          border-color: #aaa
+          color: #aaa
+        &.post__like-link
+          border-color: $pink
+          color: $pink
+          &:before
+            content: ''
+            display: inline-block
+            vertical-align: middle
+            height: 1.5rem
+            width: 1.5rem
+            margin-right: 1rem
+            background: svg-url(heart, darken($light, 10%)) center no-repeat
+            background-size: contain
+          span.post__like-label
+            display: none
+          &.liked
+            color: $red
+            border-color: $red
+            &:before
+              background-image: svg-url(heart, $red)
+
+ul.post_list
+  li
+    padding: .2rem
+    margin: .2rem 0
+    +box-outline
+    a
+      display: flex
+      position: relative
+      align-items: center
+      padding: .5rem
+      color: $dark
+      font-weight: bold
+      z-index: 1
+      justify-content: space-between
+      b
+        flex: 1
+      small
+        flex: 0 0 auto
+        font-style: italic
+        float: right
+        text-align: right
+        white-space: nowrap
+        padding-left: 1rem
+        color: $blue
+        span
+          opacity: .5
+          margin: 0 .3rem
+      &:before
+        position: absolute
+        content: ''
+        top: 0
+        left: 0
+        bottom: 0
+        right: 100%
+        background: #fff
+        transition: right .1s
+        z-index: -1
+      &:hover:before
+        right: 0
+
+form
+  .field_with_errors
+    display: inline
+  .formError
+    display: inline
+    color: $error
+    font-size: .85em
+  label
+    font-weight: bold
+    &.checkbox
+      display: block
+      margin-bottom: 1.5em
+      input[type='checkbox']
+        margin-right: 1rem
+  dl
+    dt
+      +clearfix
+      margin-bottom: .5rem
+      small
+        float: right
+        font-weight: bold
+        font-size: .85em
+        color: $accent
+        &.negative
+          color: $error
+    dd
+      margin-bottom: 1.5em
+  fieldset.actions
+    padding-top: 2rem
+  input[type='text'],
+  input[type='search'],
+  textarea
+    display: inline-block
+    vertical-align: middle
+    width: 100%
+    padding: .5rem
+    border: 1px solid $light
+    font-family: $primary-typeface
+    box-sizing: border-box
+    border-radius: 0
+    height: 4rem
+    line-height: 3rem
+    &:focus
+      border-color: $blue
+      outline: none
+  #editor
+    height: 300px
+    width: 100%
+    display: none
+  textarea.autosize
+    resize: none
+  input[type='submit'],
+  button[type='submit']
+    color: #fff
+    display: inline-block
+    vertical-align: middle
+    box-sizing: border-box
+    +responsive(padding, 1rem 2rem, 1rem)
+    border: none
+    border-radius: 0
+    background: $accent
+    height: 4rem
+    font-weight: 700
+    font-family: $secondary-typeface
+    letter-spacing: .1em
+    text-transform: uppercase
+    transform: background .1s
+    margin-right: 2rem
+    &:active,
+    &:focus,
+    &:hover
+      background: $red
+      outline: none
+
+.copy
+  +mobile
+    font-size: .85em
+  h1, h2, h3, p, ul, ol
+    margin: 0 0 1.2em 0
+    +mobile
+      margin-bottom: .7em
+  h1
+    font-size: 1.6em
+  h2, h3
+    font-size: 1.2em
+  p, ul, ol
+    line-height: 1.6
+  ul, ol
+    padding: 0 6vw
+  ul
+    list-style-type: disc
+  ol
+    list-style-type: decimal
+  li + li
+    margin-top: .2em
+  code
+    background: $light
+    padding: 0 .4em
+    margin: 0 .2em
+  pre
+    margin-bottom: 1em
+    overflow: auto
+    code
+      color: #fff
+      display: block
+      padding: 1em
+      margin: 0
+      width: 100%
+      box-sizing: border-box
+      line-height: 1.6
+      overflow: auto
+      background: $base
+      +mobile
+        padding: .5em
+        font-size: .9em
+    &.highlight
+      &:before
+        display: block
+        content: attr(data-language)
+        color: #fff
+        background-color: #333
+        font-weight: bold
+        font-size: .7em
+        text-transform: uppercase
+        padding: .2rem .5rem
+        text-align: right
+        color: #aaa
+        font-family: $secondary-typeface
+
+  code
+    font-size: 95%
+  img
+    display: block
+    max-width: 100%
+    height: auto
+  blockquote
+    +responsive(margin-bottom, 1.4em, 1.1em)
+    border-left: .4rem solid $light
+    padding: 1em 0 .1em 3vw
+    font-size: .9em
+
+.more-info
+  margin: 3vw auto
+  text-align: center
+  padding: 3vw
+  max-width: 60rem
+  font-style: italic
+  line-height: 1.4
+  font-size: .9em
+  a
+    color: $red
