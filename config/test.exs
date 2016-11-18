@@ -12,8 +12,6 @@ config :logger, level: :warn
 # Configure your database
 config :today_i_learned, TodayILearned.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "today_i_learned_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
