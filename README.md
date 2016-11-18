@@ -36,6 +36,13 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ### Testing
 
+Install and start Chromedriver:
+
+```
+$ brew install chromedriver
+$ chromedriver
+```
+
 Run the tests with:
 
 ```

@@ -4,10 +4,12 @@ use Mix.Config
 # you can enable the server option below.
 config :today_i_learned, TodayILearned.Endpoint,
   http: [port: 4001],
-  server: false
+  server: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :hound, driver: "chrome_driver", port: 9515, app_port: 4001
 
 # Configure your database
 config :today_i_learned, TodayILearned.Repo,
