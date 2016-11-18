@@ -10,6 +10,7 @@
       "end",
     ]
   },
+
   "test/models":{ "type": "tmodel" },
   "test/models/*_test.exs":{
     "type": "tmodel",
@@ -20,6 +21,10 @@
       "",
       "end",
     ]
+  },
+
+  "test/features/*.exs":{
+    "type": "feature",
   },
 
   "web/controllers":{ "type": "controller" },
@@ -33,6 +38,7 @@
       "end",
     ]
   },
+
   "test/controllers":{ "type": "tcontroller" },
   "test/controllers/*_controller_test.exs":{
     "type": "tcontroller",
@@ -56,6 +62,7 @@
       "end",
     ]
   },
+
   "test/views":{ "type": "tview" },
   "test/views/*_view_test.exs":{
     "type": "tview",
@@ -92,6 +99,7 @@
       "end",
     ]
   },
+
   "test/lib/*.exs":{
     "alternate": "lib/{}.ex",
     "template":[
@@ -121,6 +129,7 @@
   "test/support":{
     "type":"support",
   },
+
   "test/support/*.ex":{
     "type":"support",
     "template":[
@@ -150,6 +159,7 @@
       "use Mix.Config",
     ]
   },
+
   "config/*.secret.exs":{
     "type": "secret",
     "template":[
@@ -168,5 +178,4 @@
 
   "*.exs": { "console": "iex -S mix", },
   "*.ex": { "console": "iex -S mix", },
-
 }
