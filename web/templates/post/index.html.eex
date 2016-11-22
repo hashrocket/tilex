@@ -10,9 +10,7 @@
           <footer>
             <p>
               <br/>
-              <a class="post__permalink">
-                <%= link(display_date(post), to: "#") %>
-              </a>
+              <%= link(display_date(post), to: "#", class: "post__permalink") %>
             </p>
           </footer>
         </div>
