@@ -7,6 +7,14 @@
             <%= link(post.title, to: "#") %>
           </h1>
           <%= post.body %>
+          <footer>
+            <p>
+              <br/>
+              <a class="post__permalink">
+                <%= link(Timex.format!(post.inserted_at, "%B %-e, %Y", :strftime), to: "#") %>
+              </a>
+            </p>
+          </footer>
         </div>
       </section>
     </article>

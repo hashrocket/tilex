@@ -8,7 +8,7 @@ defmodule VisitorVisitsHomepageTest do
   end
 
   test "the page has a list of posts" do
-    EctoFactory.insert(:post,
+    post = EctoFactory.insert(:post,
       title: "A post about porting Rails applications to Phoenix",
       body: "It starts with Rails and ends with Elixir"
     )
@@ -17,5 +17,6 @@ defmodule VisitorVisitsHomepageTest do
 
     assert visible_in_page?(~r/A post about porting Rails applications to Phoenix/)
     assert visible_in_page?(~r/It starts with Rails and ends with Elixir/)
+    assert visible_in_page?(~r/#{Timex.format!(post.inserted_at, "%B %-e, %Y", :strftime)}/)
   end
 end
