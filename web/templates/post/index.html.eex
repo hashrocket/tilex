@@ -11,7 +11,7 @@
             <p>
               <br/>
               <a class="post__permalink">
-                <%= link(Timex.format!(post.inserted_at, "%B %-e, %Y", :strftime), to: "#") %>
+                <%= link(display_date(post), to: "#") %>
               </a>
             </p>
           </footer>
