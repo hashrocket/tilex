@@ -1,20 +1,5 @@
 <section id="home">
   <%= for post <- @posts do %>
-    <article class="post">
-      <section>
-        <div class="post__content copy">
-          <h1>
-            <%= link(post.title, to: "#") %>
-          </h1>
-          <%= post.body %>
-          <footer>
-            <p>
-              <br/>
-              <%= link(display_date(post), to: "#", class: "post__permalink") %>
-            </p>
-          </footer>
-        </div>
-      </section>
-    </article>
+    <%= render "post.html", post: post %>
   <% end %>
 </section>
