@@ -1,5 +1,5 @@
 <section id="home">
   <%= for post <- @posts do %>
-    <%= render "post.html", post: post %>
+    <%= render TodayILearned.SharedView, "post.html", conn: @conn, post: post %>
   <% end %>
 </section>
