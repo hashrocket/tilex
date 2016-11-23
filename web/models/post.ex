@@ -15,5 +15,6 @@ defmodule TodayILearned.Post do
     struct
     |> cast(params, [:title, :body])
     |> validate_required([:title, :body])
+    |> validate_length(:title, max: 50)
   end
 end
