@@ -1,0 +1,19 @@
+<%= form_for @changeset, post_path(@conn, :create), fn f -> %>
+  <dl>
+    <dt>
+      <label>Title</label>
+    </dt>
+    <dd>
+      <%= text_input f, :title %>
+    </dd>
+  </dl>
+  <dl>
+    <dt>
+      <label>Body</label>
+    </dt>
+    <dd>
+      <%= text_input f, :body %>
+    </dd>
+  </dl>
+  <%= submit "Submit" %>
+<% end %>
