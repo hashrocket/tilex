@@ -1,5 +1,5 @@
 defmodule VisitorVisitsHomepageTest do
-  use Tilex.IntegrationCase
+  use Tilex.IntegrationCase, async: true
 
   test "the page has the appropriate branding" do
     navigate_to("/")

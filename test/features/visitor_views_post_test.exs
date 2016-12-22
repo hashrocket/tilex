@@ -1,5 +1,5 @@
 defmodule VisitorViewsPostTest do
-  use Tilex.IntegrationCase
+  use Tilex.IntegrationCase, async: true
 
   test "the page shows a post" do
 
