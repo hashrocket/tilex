@@ -1,5 +1,6 @@
 defmodule AdminCreatesPostTest do
-  use TodayILearned.IntegrationCase
+  use TodayILearned.IntegrationCase, async: true
+
   alias TodayILearned.Post
 
   test "fills out form and submits" do
