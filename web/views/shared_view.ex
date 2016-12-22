@@ -1,5 +1,5 @@
-defmodule TodayILearned.SharedView do
-  use TodayILearned.Web, :view
+defmodule Tilex.SharedView do
+  use Tilex.Web, :view
 
   def display_date(post) do
     Timex.format!(post.inserted_at, "%B %-e, %Y", :strftime)

@@ -1,3 +1,3 @@
-defmodule TodayILearned.PostView do
-  use TodayILearned.Web, :view
+defmodule Tilex.PostView do
+  use Tilex.Web, :view
 end

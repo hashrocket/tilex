@@ -1,4 +1,4 @@
-defmodule TodayILearned.ConnCase do
+defmodule Tilex.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,23 +20,23 @@ defmodule TodayILearned.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias TodayILearned.Repo
+      alias Tilex.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
-      import TodayILearned.Router.Helpers
+      import Tilex.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint TodayILearned.Endpoint
+      @endpoint Tilex.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(TodayILearned.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tilex.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(TodayILearned.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tilex.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

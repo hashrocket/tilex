@@ -1,4 +1,4 @@
-defmodule TodayILearned.ErrorHelpers do
+defmodule Tilex.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule TodayILearned.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(TodayILearned.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(Tilex.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(TodayILearned.Gettext, "errors", msg, opts)
+      Gettext.dgettext(Tilex.Gettext, "errors", msg, opts)
     end
   end
 end

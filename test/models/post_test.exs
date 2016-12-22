@@ -1,7 +1,7 @@
-defmodule TodayILearned.PostTest do
-  use TodayILearned.ModelCase
+defmodule Tilex.PostTest do
+  use Tilex.ModelCase
 
-  alias TodayILearned.Post
+  alias Tilex.Post
 
   @valid_attrs %{body: "some content", title: "some content"}
   @invalid_attrs %{}

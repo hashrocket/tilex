@@ -1,4 +1,4 @@
-defmodule TodayILearned.ModelCase do
+defmodule Tilex.ModelCase do
   @moduledoc """
   This module defines the test case to be used by
   model tests.
@@ -16,20 +16,20 @@ defmodule TodayILearned.ModelCase do
 
   using do
     quote do
-      alias TodayILearned.Repo
+      alias Tilex.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import TodayILearned.ModelCase
+      import Tilex.ModelCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(TodayILearned.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tilex.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(TodayILearned.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tilex.Repo, {:shared, self()})
     end
 
     :ok
@@ -59,7 +59,7 @@ defmodule TodayILearned.ModelCase do
   """
   def errors_on(struct, data) do
     struct.__struct__.changeset(struct, data)
-    |> Ecto.Changeset.traverse_errors(&TodayILearned.ErrorHelpers.translate_error/1)
+    |> Ecto.Changeset.traverse_errors(&Tilex.ErrorHelpers.translate_error/1)
     |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
   end
 end

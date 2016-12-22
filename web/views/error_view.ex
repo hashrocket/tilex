@@ -1,5 +1,5 @@
-defmodule TodayILearned.ErrorView do
-  use TodayILearned.Web, :view
+defmodule Tilex.ErrorView do
+  use Tilex.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

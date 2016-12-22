@@ -1,6 +1,6 @@
-# Today I Learned
+# tilex - Today I Learned in Elixir
 
-> TIL is an open-source project by the team at
+> tilex is an open-source project by the team at
 > [Hashrocket](https://hashrocket.com/) that catalogues the sharing &
 > accumulation of knowledge as it happens day-to-day. Posts have a 200-word
 > limit, and posting is open to any Rocketeer as well as select friends of the
@@ -9,6 +9,9 @@
 This site was open-sourced as a window into our development process, as well as
 to allow people to experiment with the site on their own and contribute to the
 project.
+
+We originally implemented _tilex_ as
+[_hr-til_](https://github.com/hashrocket/hr-til), a Ruby on Rails app.
 
 ### Installation
 
@@ -22,8 +25,8 @@ PostgreSQL.
 Next, follow these setup steps:
 
 ```
-$ git clone https://github.com/hashrocket/today_i_learned
-$ cd today_i_learned
+$ git clone https://github.com/hashrocket/tilex
+$ cd tilex
 $ mix deps.get
 $ mix ecto.create
 $ mix ecto.migrate
@@ -57,7 +60,7 @@ $ mix text
 5. Create new Pull Request
 
 Bug reports and pull requests are welcome on GitHub at
-https://github.com/hashrocket/today_i_learned. This project is intended to be a safe,
+https://github.com/hashrocket/tilex. This project is intended to be a safe,
 welcoming space for collaboration, and contributors are expected to adhere to
 the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 

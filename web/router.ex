@@ -1,5 +1,5 @@
-defmodule TodayILearned.Router do
-  use TodayILearned.Web, :router
+defmodule Tilex.Router do
+  use Tilex.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,7 +13,7 @@ defmodule TodayILearned.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", TodayILearned do
+  scope "/", Tilex do
     pipe_through :browser # Use the default browser stack
 
     get "/", PostController, :index
@@ -21,7 +21,7 @@ defmodule TodayILearned.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", TodayILearned do
+  # scope "/api", Tilex do
   #   pipe_through :api
   # end
 end

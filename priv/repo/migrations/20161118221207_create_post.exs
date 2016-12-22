@@ -1,4 +1,4 @@
-defmodule TodayILearned.Repo.Migrations.CreatePost do
+defmodule Tilex.Repo.Migrations.CreatePost do
   use Ecto.Migration
 
   def change do

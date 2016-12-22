@@ -1,3 +1,3 @@
-defmodule TodayILearned.LayoutViewTest do
-  use TodayILearned.ConnCase, async: true
+defmodule Tilex.LayoutViewTest do
+  use Tilex.ConnCase, async: true
 end

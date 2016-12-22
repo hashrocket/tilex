@@ -1,7 +1,7 @@
-defmodule TodayILearned.PostController do
-  use TodayILearned.Web, :controller
+defmodule Tilex.PostController do
+  use Tilex.Web, :controller
 
-  alias TodayILearned.Post
+  alias Tilex.Post
 
   def index(conn, _params) do
     posts = Repo.all(Post)

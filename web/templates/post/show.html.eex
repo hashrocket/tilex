@@ -1,1 +1,1 @@
-<%= render TodayILearned.SharedView, "post.html", conn: @conn, post: @post %>
+<%= render Tilex.SharedView, "post.html", conn: @conn, post: @post %>
