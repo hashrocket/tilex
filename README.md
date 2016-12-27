@@ -69,7 +69,7 @@ the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ### License
 
-Today I Learned is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT).
 
 ---
 
@@ -77,7 +77,7 @@ Today I Learned is released under the [MIT License](http://www.opensource.org/li
 
 [![Hashrocket logo](https://hashrocket.com/hashrocket_logo.svg)](https://hashrocket.com)
 
-Today I Learned is supported by the team at [Hashrocket, a
-multidisciplinary design and development consultancy](https://hashrocket.com). If you'd like to [work with
+tilex is supported by the team at [Hashrocket, a multidisciplinary design and
+development consultancy](https://hashrocket.com). If you'd like to [work with
 us](https://hashrocket.com/contact-us/hire-us) or [join our
 team](https://hashrocket.com/contact-us/jobs), don't hesitate to get in touch.
