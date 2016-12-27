@@ -1,5 +1,7 @@
 # tilex - Today I Learned in Elixir
 
+[![Build Status](https://travis-ci.org/hashrocket/tilex.svg)](https://travis-ci.org/hashrocket/tilex)
+
 > tilex is an open-source project by the team at
 > [Hashrocket](https://hashrocket.com/) that catalogues the sharing &
 > accumulation of knowledge as it happens day-to-day. Posts have a 200-word
