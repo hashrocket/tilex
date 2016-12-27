@@ -1,7 +1,7 @@
 defmodule AdminCreatesPostTest do
-  use TodayILearned.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: true
 
-  alias TodayILearned.Post
+  alias Tilex.Post
 
   test "fills out form and submits" do
     navigate_to("/posts/new")
@@ -16,7 +16,7 @@ defmodule AdminCreatesPostTest do
     fill_field(body, "Example Body")
     click(button)
 
-    post = Enum.reverse(TodayILearned.Repo.all(Post)) |> hd
+    post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
     assert post.body == "Example Body"
     assert post.title == "Example Title"
 

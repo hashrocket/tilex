@@ -2,5 +2,5 @@
   <header>
     <h1>Create Post</h1>
   </header>
-  <%= render TodayILearned.PostView, "form.html", conn: @conn, changeset: @changeset %>
+  <%= render Tilex.PostView, "form.html", conn: @conn, changeset: @changeset %>
 </section>
