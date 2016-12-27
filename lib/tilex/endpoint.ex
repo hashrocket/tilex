@@ -1,14 +1,14 @@
-defmodule TodayILearned.Endpoint do
-  use Phoenix.Endpoint, otp_app: :today_i_learned
+defmodule Tilex.Endpoint do
+  use Phoenix.Endpoint, otp_app: :tilex
 
-  socket "/socket", TodayILearned.UserSocket
+  socket "/socket", Tilex.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :today_i_learned, gzip: false,
+    at: "/", from: :tilex, gzip: false,
     only: ~w(css fonts images js favicon.png favicon.ico hashrocket-log.png robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -35,8 +35,8 @@ defmodule TodayILearned.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_today_i_learned_key",
+    key: "_tilex_key",
     signing_salt: "PSNTTaPr"
 
-  plug TodayILearned.Router
+  plug Tilex.Router
 end

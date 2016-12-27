@@ -1,8 +1,8 @@
-defmodule TodayILearned.Mixfile do
+defmodule Tilex.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :today_i_learned,
+    [app: :tilex,
      version: "0.0.1",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -17,7 +17,7 @@ defmodule TodayILearned.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {TodayILearned, []},
+    [mod: {Tilex, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :timex]]
   end

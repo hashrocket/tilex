@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :today_i_learned,
-  ecto_repos: [TodayILearned.Repo]
+config :tilex,
+  ecto_repos: [Tilex.Repo]
 
 # Configures the endpoint
-config :today_i_learned, TodayILearned.Endpoint,
+config :tilex, Tilex.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "mdTtrt4Y4JrtiTv63NepUe4fs1iSt23VfzKpnXm6mawKl6wN8jEfLfIf2HbyMeKe",
-  render_errors: [view: TodayILearned.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: TodayILearned.PubSub,
+  render_errors: [view: Tilex.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Tilex.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
@@ -26,11 +26,11 @@ config :logger, :console,
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
 
-config :ecto_factory, repo: TodayILearned.Repo
+config :ecto_factory, repo: Tilex.Repo
 config :ecto_factory, factories: [
-  post: TodayILearned.Post,
+  post: Tilex.Post,
 
-  post_with_defaults: { TodayILearned.Post, [
+  post_with_defaults: { Tilex.Post, [
     title: "How To Program",
     body: "Ask lots of questions and think outside of the box!"
   ] }

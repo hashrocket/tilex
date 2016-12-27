@@ -1,4 +1,4 @@
-defmodule TodayILearned.IntegrationCase do
+defmodule Tilex.IntegrationCase do
 
   use ExUnit.CaseTemplate
   use Hound.Helpers
@@ -10,13 +10,13 @@ defmodule TodayILearned.IntegrationCase do
       import Ecto, only: [build_assoc: 2]
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
-      import TodayILearned.Router.Helpers
-      import TodayILearned.IntegrationCase
+      import Tilex.Router.Helpers
+      import Tilex.IntegrationCase
 
-      alias TodayILearned.Repo
+      alias Tilex.Repo
 
       # The default endpoint for testing
-      @endpoint TodayILearned.Endpoint
+      @endpoint Tilex.Endpoint
 
       hound_session
     end

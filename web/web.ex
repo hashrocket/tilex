@@ -1,12 +1,12 @@
-defmodule TodayILearned.Web do
+defmodule Tilex.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use TodayILearned.Web, :controller
-      use TodayILearned.Web, :view
+      use Tilex.Web, :controller
+      use Tilex.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -30,12 +30,12 @@ defmodule TodayILearned.Web do
     quote do
       use Phoenix.Controller
 
-      alias TodayILearned.Repo
+      alias Tilex.Repo
       import Ecto
       import Ecto.Query
 
-      import TodayILearned.Router.Helpers
-      import TodayILearned.Gettext
+      import Tilex.Router.Helpers
+      import Tilex.Gettext
     end
   end
 
@@ -49,9 +49,9 @@ defmodule TodayILearned.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import TodayILearned.Router.Helpers
-      import TodayILearned.ErrorHelpers
-      import TodayILearned.Gettext
+      import Tilex.Router.Helpers
+      import Tilex.ErrorHelpers
+      import Tilex.Gettext
     end
   end
 
@@ -65,10 +65,10 @@ defmodule TodayILearned.Web do
     quote do
       use Phoenix.Channel
 
-      alias TodayILearned.Repo
+      alias Tilex.Repo
       import Ecto
       import Ecto.Query
-      import TodayILearned.Gettext
+      import Tilex.Gettext
     end
   end
 

@@ -1,3 +1,3 @@
-defmodule TodayILearned.PageViewTest do
-  use TodayILearned.ConnCase, async: true
+defmodule Tilex.PageViewTest do
+  use Tilex.ConnCase, async: true
 end

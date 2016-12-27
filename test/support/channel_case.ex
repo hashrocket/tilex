@@ -1,4 +1,4 @@
-defmodule TodayILearned.ChannelCase do
+defmodule Tilex.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -20,22 +20,22 @@ defmodule TodayILearned.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias TodayILearned.Repo
+      alias Tilex.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
 
       # The default endpoint for testing
-      @endpoint TodayILearned.Endpoint
+      @endpoint Tilex.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(TodayILearned.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tilex.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(TodayILearned.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tilex.Repo, {:shared, self()})
     end
 
     :ok

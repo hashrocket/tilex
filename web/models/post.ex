@@ -1,5 +1,5 @@
-defmodule TodayILearned.Post do
-  use TodayILearned.Web, :model
+defmodule Tilex.Post do
+  use Tilex.Web, :model
 
   schema "posts" do
     field :title, :string

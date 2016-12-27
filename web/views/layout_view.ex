@@ -1,3 +1,3 @@
-defmodule TodayILearned.LayoutView do
-  use TodayILearned.Web, :view
+defmodule Tilex.LayoutView do
+  use Tilex.Web, :view
 end
