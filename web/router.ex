@@ -17,7 +17,7 @@ defmodule Tilex.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PostController, :index
-    resources "/posts", PostController, only: [:index, :show]
+    resources "/posts", PostController, only: [:index, :show, :new, :create]
   end
 
   # Other scopes may use custom stacks.
