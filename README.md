@@ -38,11 +38,10 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ### Testing
 
-Install and start Chromedriver:
+Wallaby relies on PhantomJS, install it:
 
 ```
-$ brew install chromedriver
-$ chromedriver
+$ npm install -g phantomjs
 ```
 
 Run the tests with:

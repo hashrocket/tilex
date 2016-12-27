@@ -6,10 +6,10 @@ config :tilex, Tilex.Endpoint,
   http: [port: 4001],
   server: true
 
+config :tilex, :sql_sandbox, true
+
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-config :hound, driver: "chrome_driver", port: 9515, app_port: 4001
 
 # Configure your database
 config :tilex, Tilex.Repo,
@@ -17,3 +17,5 @@ config :tilex, Tilex.Repo,
   database: "tilex_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :wallaby, screenshot_on_failure: true

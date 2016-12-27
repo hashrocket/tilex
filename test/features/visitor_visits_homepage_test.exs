@@ -1,22 +1,32 @@
 defmodule VisitorVisitsHomepageTest do
   use Tilex.IntegrationCase, async: true
 
-  test "the page has the appropriate branding" do
-    navigate_to("/")
+  test "the page has the appropriate branding", %{session: session} do
+    visit(session, "/")
+    header = session
+              |> find("h1 > a") 
+              |> text
 
-    assert visible_in_element?({:tag, "h1"}, ~r/Today I Learned/i)
+    assert header =~ ~r/Today I Learned/i
   end
 
-  test "the page has a list of posts" do
-    post = EctoFactory.insert(:post,
+  test "the page has a list of posts", %{session: session} do
+    EctoFactory.insert(:post,
       title: "A post about porting Rails applications to Phoenix",
       body: "It starts with Rails and ends with Elixir"
     )
 
-    navigate_to("/")
+    visit(session, "/")
 
-    assert visible_in_page?(~r/A post about porting Rails applications to Phoenix/)
-    assert visible_in_page?(~r/It starts with Rails and ends with Elixir/)
-    assert visible_in_page?(~r/#{Timex.format!(post.inserted_at, "%B %-e, %Y", :strftime)}/)
+    post_header = session
+                  |> find("article h1")
+                  |> text
+
+    post = session
+            |> find("article")
+            |> text
+
+    assert post_header == "A post about porting Rails applications to Phoenix"
+    assert post =~ ~r/It starts with Rails and ends with Elixir/
   end
 end

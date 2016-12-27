@@ -1,6 +1,10 @@
 defmodule Tilex.Endpoint do
   use Phoenix.Endpoint, otp_app: :tilex
 
+  if Application.get_env(:tilex, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   socket "/socket", Tilex.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.

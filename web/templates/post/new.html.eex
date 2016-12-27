@@ -1,5 +1,5 @@
 <section id="post_edit">
-  <header>
+  <header class='page_head'>
     <h1>Create Post</h1>
   </header>
   <%= render Tilex.PostView, "form.html", conn: @conn, changeset: @changeset %>
