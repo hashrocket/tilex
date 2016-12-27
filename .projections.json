@@ -85,6 +85,9 @@
     ]
   },
 
+  "web/static/css/*.sass":{ "type": "stylesheet", },
+  "web/static/css/*.scss":{ "type": "stylesheet", },
+
   "web/templates/*.html.eex":{
     "type": "template",
   },
