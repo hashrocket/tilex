@@ -1,5 +1,5 @@
 defmodule VisitorViewsPostTest do
-  use TodayILearned.IntegrationCase
+  use TodayILearned.IntegrationCase, async: true
 
   test "the page shows a post" do
 
