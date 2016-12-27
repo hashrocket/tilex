@@ -3,27 +3,24 @@ defmodule AdminCreatesPostTest do
 
   alias Tilex.Post
 
-  test "fills out form and submits" do
-    navigate_to("/posts/new")
-    h1_heading = find_element(:css, "main header h1")
-    assert inner_text(h1_heading) =~ "Create Post"
+  test "fills out form and submits", %{session: session} do
+    visit(session, "/posts/new")
+    h1_heading = session |> find("main header h1") |> text
+    assert h1_heading == "Create Post"
 
-    title = find_element(:name, "post[title]")
-    body = find_element(:name, "post[body]")
-    button = find_element(:tag, "button")
-
-    fill_field(title, "Example Title")
-    fill_field(body, "Example Body")
-    click(button)
+    fill_in(session, "post_title", with: "Example Title")
+    fill_in(session, "post_body", with: "Example Body")
+    click_on(session, 'Submit')
 
     post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
     assert post.body == "Example Body"
     assert post.title == "Example Title"
 
-    index_h1_heading = find_element(:css, "header.site_head div h1")
+    index_h1_heading = session |> find("header.site_head div h1") |> text
+    page_body = session |> find("body") |> text
 
-    assert inner_text(index_h1_heading) =~ ~r/Today I Learned/i
-    assert visible_in_page?(~r/Example Title/)
-    assert visible_in_page?(~r/Example Body/)
+    assert index_h1_heading =~ ~r/Today I Learned/i
+    assert page_body =~ ~r/Example Title/
+    assert page_body =~ ~r/Example Body/
   end
 end

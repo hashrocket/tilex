@@ -1,24 +1,29 @@
 defmodule Tilex.IntegrationCase do
 
   use ExUnit.CaseTemplate
-  use Hound.Helpers
 
   using do
     quote do
-      use Hound.Helpers
-
-      import Ecto, only: [build_assoc: 2]
-      import Ecto.Model
-      import Ecto.Query, only: [from: 2]
-      import Tilex.Router.Helpers
-      import Tilex.IntegrationCase
+      use Wallaby.DSL
 
       alias Tilex.Repo
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query
 
-      # The default endpoint for testing
-      @endpoint Tilex.Endpoint
-
-      hound_session
+      import Tilex.Router.Helpers
     end
+  end
+
+  setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tilex.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(Tilex.Repo, {:shared, self()})
+    end
+
+    metadata = Phoenix.Ecto.SQL.Sandbox.metadata_for(Tilex.Repo, self())
+    {:ok, session} = Wallaby.start_session(metadata: metadata)
+    {:ok, session: session}
   end
 end

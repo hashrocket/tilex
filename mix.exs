@@ -34,7 +34,6 @@ defmodule Tilex.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ecto_factory, "~> 0.0.5", only: [:dev, :test]},
       {:gettext, "~> 0.11"},
-      {:hound, "~> 1.0", only: :test},
       {:phoenix, "~> 1.2.1"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
@@ -42,6 +41,7 @@ defmodule Tilex.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.0"},
+      {:wallaby, "~> 0.11.1"},
     ]
   end
 

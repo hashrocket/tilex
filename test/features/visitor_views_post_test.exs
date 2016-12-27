@@ -1,14 +1,18 @@
 defmodule VisitorViewsPostTest do
   use Tilex.IntegrationCase, async: true
 
-  test "the page shows a post" do
+  test "the page shows a post", %{session: session} do
 
     special = EctoFactory.insert(:post, title: "A special post")
     EctoFactory.insert(:post, title: "A random post")
 
-    navigate_to("/posts/#{special.id}")
+    visit(session, "/posts/#{special.id}")
 
-    assert visible_in_page?(~r/A special post/)
-    refute visible_in_page?(~r/A random post/)
+    body = session
+                  |> find("body")
+                  |> text
+
+    assert body =~ ~r/A special post/
+    refute body =~ ~r/A random post/
   end
 end
