@@ -36,6 +36,12 @@ $ npm install
 $ mix phoenix.server
 ```
 
+Optionally, seed the database with:
+
+```
+$ mix run priv/repo/seeds.exs
+```
+
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ### Testing
