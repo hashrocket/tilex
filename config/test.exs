@@ -17,3 +17,5 @@ config :tilex, Tilex.Repo,
   database: "tilex_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :wallaby, screenshot_on_failure: true
