@@ -1,13 +1,14 @@
 defmodule Tilex.PostController do
   use Tilex.Web, :controller
 
-  plug :load_channels when action in [:new]
+  plug :load_channels when action in [:new, :create]
 
   alias Tilex.Post
   alias Tilex.Channel
 
   def index(conn, _params) do
     posts = Repo.all from p in Post,
+      order_by: [desc: p.inserted_at],
       join: c in assoc(p, :channel),
       preload: [channel: c]
     render(conn, "index.html", posts: posts)
