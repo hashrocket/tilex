@@ -11,8 +11,8 @@ defmodule DeveloperCreatesPostTest do
     h1_heading = get_text(session, "main header h1")
     assert h1_heading == "Create Post"
 
-    fill_in(session, "post_title", with: "Example Title")
-    fill_in(session, "post_body", with: "Example Body")
+    fill_in(session, "Title", with: "Example Title")
+    fill_in(session, "Body", with: "Example Body")
     Wallaby.DSL.Actions.select(session, "Channel", option: "phoenix")
     click_on(session, 'Submit')
 
