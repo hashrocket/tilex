@@ -16,6 +16,8 @@ defmodule Tilex.Router do
   scope "/", Tilex do
     pipe_through :browser # Use the default browser stack
 
+    get "/:name", ChannelController, :show
+
     get "/", PostController, :index
     resources "/posts", PostController, only: [:index, :show, :new, :create]
   end

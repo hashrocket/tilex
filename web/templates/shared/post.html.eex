@@ -15,7 +15,7 @@
     <aside>
       <ul>
         <li>
-          <%= link("##{@post.channel.name}", to: "#", class: "post__tag-link") %>
+          <%= link("##{@post.channel.name}", to: channel_path(@conn, :show, @post.channel.name), class: "post__tag-link") %>
         </li>
       </ul>
     </aside>
