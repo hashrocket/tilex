@@ -17,22 +17,24 @@ alias Tilex.Repo
 Repo.delete_all(Post)
 Repo.delete_all(Channel)
 
-channel = Repo.insert!(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})
+phoenix_channel = Repo.insert!(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})
+elixir_channel = Repo.insert!(%Channel{name: "elixir", twitter_hashtag: "myelixirstatus"})
+erlang_channel = Repo.insert!(%Channel{name: "erlang", twitter_hashtag: "erlang"})
 
 Repo.insert!(%Post{
   title: "Observing Change",
   body: "A Gold Master Test in Practice",
-  channel_id: channel.id,
+  channel_id: phoenix_channel.id,
 })
 
 Repo.insert!(%Post{
   title: "Controlling Your Test Environment",
   body: "Slow browser integration tests are a hard problem",
-  channel_id: channel.id,
+  channel_id: elixir_channel.id,
 })
 
 Repo.insert!(%Post{
   title: "Testing Elixir",
   body: "A Rubyist's Journey",
-  channel_id: channel.id,
+  channel_id: erlang_channel.id,
 })
