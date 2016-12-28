@@ -29,4 +29,13 @@ defmodule DeveloperCreatesPostTest do
     assert page_body        =~ ~r/Example Body/
     assert post_footer      =~ ~r/#phoenix/i
   end
+
+  test "cancels submission", %{session: session} do
+
+    visit(session, "/posts/new")
+    click_link(session, "cancel")
+    path = get_current_path(session)
+
+    assert path == "/"
+  end
 end

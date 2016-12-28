@@ -22,4 +22,5 @@
     </dd>
   </dl>
   <%= submit "Submit" %>
+  <%= link("cancel", to: "/") %>
 <% end %>
