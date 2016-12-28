@@ -13,7 +13,7 @@ defmodule Tilex.PostController do
     render(conn, "show.html", post: post)
   end
 
-  def new(conn, params) do
+  def new(conn, _params) do
     changeset = Post.changeset(%Post{})
     render conn, "new.html", changeset: changeset
   end
