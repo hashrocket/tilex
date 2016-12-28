@@ -50,4 +50,15 @@ defmodule DeveloperCreatesPostTest do
     assert body =~ ~r/Body can't be blank/
     assert body =~ ~r/Channel can't be blank/
   end
+
+  test "enters a title that is too long", %{session: session} do
+
+    visit(session, "/posts/new")
+    fill_in(session, "Title", with: String.duplicate("I can codez ", 10))
+    click_on(session, 'Submit')
+
+    body = get_text(session, "body")
+
+    assert body =~ ~r/Title should be at most 50 character/
+  end
 end
