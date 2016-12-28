@@ -5,6 +5,8 @@ defmodule Tilex.Post do
     field :title, :string
     field :body, :string
 
+    belongs_to :channel, Tilex.Channel
+
     timestamps()
   end
 
@@ -13,8 +15,8 @@ defmodule Tilex.Post do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :body])
-    |> validate_required([:title, :body])
+    |> cast(params, [:title, :body, :channel_id])
+    |> validate_required([:title, :body, :channel_id])
     |> validate_length(:title, max: 50)
   end
 end

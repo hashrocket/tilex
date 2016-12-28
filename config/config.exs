@@ -29,9 +29,5 @@ import_config "#{Mix.env}.exs"
 config :ecto_factory, repo: Tilex.Repo
 config :ecto_factory, factories: [
   post: Tilex.Post,
-
-  post_with_defaults: { Tilex.Post, [
-    title: "How To Program",
-    body: "Ask lots of questions and think outside of the box!"
-  ] }
+  channel: Tilex.Channel
 ]

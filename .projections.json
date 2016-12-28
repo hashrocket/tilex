@@ -177,7 +177,8 @@
   "web/web.ex":{ "type": "web", },
   "test/fixtures":{ "type":"fixture", },
   "test/fixtures/*":{ "type":"fixture", },
-  "priv/repo/migrations":{ "type": "migration", },
+  "priv/repo/migrations/*.exs":{ "type": "migration" },
+  "priv/repo/seeds.exs":{ "type": "seeds" },
 
   "*.exs": { "console": "iex -S mix", },
   "*.ex": { "console": "iex -S mix", },

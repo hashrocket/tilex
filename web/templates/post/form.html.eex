@@ -1,7 +1,7 @@
 <%= form_for @changeset, post_path(@conn, :create), fn f -> %>
   <dl>
     <dt>
-      <label>Title</label>
+      <%= label f, :title %>
     </dt>
     <dd>
       <%= text_input f, :title %>
@@ -9,10 +9,16 @@
   </dl>
   <dl>
     <dt>
-      <label>Body</label>
+      <%= label f, :body %>
     </dt>
     <dd>
       <%= text_input f, :body %>
+    </dd>
+    <dt>
+      <%= label f, :channel_id, "Channel" %>
+    </dt>
+    <dd>
+      <%= select f, :channel_id, @channels %>
     </dd>
   </dl>
   <%= submit "Submit" %>
