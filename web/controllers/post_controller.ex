@@ -40,6 +40,7 @@ defmodule Tilex.PostController do
   defp load_channels(conn, _) do
     query = Channel
     |> Channel.names_and_ids
+    |> Channel.alphabetized
 
     channels = Repo.all(query)
     assign(conn, :channels, channels)

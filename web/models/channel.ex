@@ -22,4 +22,8 @@ defmodule Tilex.Channel do
   def names_and_ids(query) do
     from c in query, select: {c.name, c.id}
   end
+
+  def alphabetized(query) do
+    from c in query, order_by: c.name
+  end
 end
