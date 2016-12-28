@@ -12,6 +12,7 @@ defmodule Tilex.IntegrationCase do
       import Ecto.Query
 
       import Tilex.Router.Helpers
+      import Tilex.TestHelpers
     end
   end
 
