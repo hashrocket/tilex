@@ -24,22 +24,15 @@ Then install the [Phoenix
 Dependencies](http://www.phoenixframework.org/docs/installation) as well as
 PostgreSQL.
 
-Next, follow these setup steps:
+Next, follow these setup steps (includes database seeds):
 
 ```
 $ git clone https://github.com/hashrocket/tilex
 $ cd tilex
 $ mix deps.get
-$ mix ecto.create
-$ mix ecto.migrate
+$ mix ecto.setup
 $ npm install
 $ mix phoenix.server
-```
-
-Optionally, seed the database with:
-
-```
-$ mix run priv/repo/seeds.exs
 ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
