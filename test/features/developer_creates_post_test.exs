@@ -38,4 +38,16 @@ defmodule DeveloperCreatesPostTest do
 
     assert path == "/"
   end
+
+  test "fails to enter things", %{session: session} do
+
+    visit(session, "/posts/new")
+    click_on(session, 'Submit')
+
+    body = get_text(session, "body")
+
+    assert body =~ ~r/Title can't be blank/
+    assert body =~ ~r/Body can't be blank/
+    assert body =~ ~r/Channel can't be blank/
+  end
 end

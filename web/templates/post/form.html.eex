@@ -2,6 +2,7 @@
   <dl>
     <dt>
       <%= label f, :title %>
+      <%= error_tag f, :title %>
     </dt>
     <dd>
       <%= text_input f, :title, placeholder: "Enter title..." %>
@@ -10,15 +11,17 @@
   <dl>
     <dt>
       <%= label f, :body %>
+      <%= error_tag f, :body %>
     </dt>
     <dd>
       <%= text_input f, :body, placeholder: "Enter body..." %>
     </dd>
     <dt>
       <%= label f, :channel_id, "Channel" %>
+      <%= error_tag f, :channel_id %>
     </dt>
     <dd>
-      <%= select f, :channel_id, @channels %>
+      <%= select f, :channel_id, @channels, prompt: "" %>
     </dd>
   </dl>
   <%= submit "Submit" %>
