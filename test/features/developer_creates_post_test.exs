@@ -59,6 +59,17 @@ defmodule DeveloperCreatesPostTest do
 
     body = get_text(session, "body")
 
-    assert body =~ ~r/Title should be at most 50 character/
+    assert body =~ ~r/Title should be at most 50 character\(s\)/
+  end
+
+  test "enters a body that is too long", %{session: session} do
+
+    visit(session, "/posts/new")
+    fill_in(session, "Body", with: String.duplicate("wordy ", 201))
+    click_on(session, 'Submit')
+
+    body = get_text(session, "body")
+
+    assert body =~ ~r/Body should be at most 200 word\(s\)/
   end
 end

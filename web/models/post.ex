@@ -18,5 +18,21 @@ defmodule Tilex.Post do
     |> cast(params, [:title, :body, :channel_id])
     |> validate_required([:title, :body, :channel_id])
     |> validate_length(:title, max: 50)
+    |> validate_length_of_body
+  end
+
+  defp validate_length_of_body(changeset) do
+    body = get_field(changeset, :body)
+    validate_length_of_body(changeset, body)
+  end
+
+  defp validate_length_of_body(changeset, nil), do: changeset
+
+  defp validate_length_of_body(changeset, body) do
+    if length(String.split(body, ~r/\s+/)) > 200 do
+      add_error(changeset, :body, "should be at most 200 word(s)")
+    else
+      changeset
+    end
   end
 end
