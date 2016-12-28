@@ -1,15 +1,21 @@
 defmodule Tilex.PostController do
   use Tilex.Web, :controller
 
+  plug :load_channels when action in [:new]
+
   alias Tilex.Post
+  alias Tilex.Channel
 
   def index(conn, _params) do
-    posts = Repo.all(Post)
+    posts = Repo.all from p in Post,
+      join: c in assoc(p, :channel),
+      preload: [channel: c]
     render(conn, "index.html", posts: posts)
   end
 
   def show(conn, %{"id" => id}) do
     post = Repo.get!(Post, id)
+           |> Repo.preload([:channel])
     render(conn, "show.html", post: post)
   end
 
@@ -29,5 +35,13 @@ defmodule Tilex.PostController do
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
+  end
+
+  defp load_channels(conn, _) do
+    query = Channel
+    |> Channel.names_and_ids
+
+    channels = Repo.all(query)
+    assign(conn, :channels, channels)
   end
 end

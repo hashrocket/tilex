@@ -12,5 +12,12 @@
         </p>
       </footer>
     </div>
+    <aside>
+      <ul>
+        <li>
+          <%= link("##{@post.channel.name}", to: "#", class: "post__tag-link") %>
+        </li>
+      </ul>
+    </aside>
   </section>
 </article>

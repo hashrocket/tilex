@@ -2,5 +2,5 @@
   <header class='page_head'>
     <h1>Create Post</h1>
   </header>
-  <%= render Tilex.PostView, "form.html", conn: @conn, changeset: @changeset %>
+  <%= render Tilex.PostView, "form.html", channels: @channels, conn: @conn, changeset: @changeset %>
 </section>

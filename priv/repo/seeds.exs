@@ -10,11 +10,29 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+alias Tilex.Channel
 alias Tilex.Post
 alias Tilex.Repo
 
 Repo.delete_all(Post)
+Repo.delete_all(Channel)
 
-Repo.insert!(%Post{title: "Observing Change", body: "A Gold Master Test in Practice"})
-Repo.insert!(%Post{title: "Controlling Your Test Environment", body: "Slow browser integration tests are a hard problem"})
-Repo.insert!(%Post{title: "Testing Elixir", body: "A Rubyist's Journey"})
+channel = Repo.insert!(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})
+
+Repo.insert!(%Post{
+  title: "Observing Change",
+  body: "A Gold Master Test in Practice",
+  channel_id: channel.id,
+})
+
+Repo.insert!(%Post{
+  title: "Controlling Your Test Environment",
+  body: "Slow browser integration tests are a hard problem",
+  channel_id: channel.id,
+})
+
+Repo.insert!(%Post{
+  title: "Testing Elixir",
+  body: "A Rubyist's Journey",
+  channel_id: channel.id,
+})

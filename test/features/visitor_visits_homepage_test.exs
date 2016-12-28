@@ -9,9 +9,16 @@ defmodule VisitorVisitsHomepageTest do
   end
 
   test "the page has a list of posts", %{session: session} do
+
+    channel = EctoFactory.insert(:channel,
+      name: "phoenix",
+      twitter_hashtag: "phoenix"
+    )
+
     EctoFactory.insert(:post,
       title: "A post about porting Rails applications to Phoenix",
-      body: "It starts with Rails and ends with Elixir"
+      body: "It starts with Rails and ends with Elixir",
+      channel_id: channel.id
     )
 
     visit(session, "/")
@@ -22,5 +29,6 @@ defmodule VisitorVisitsHomepageTest do
 
     assert post_header == "A post about porting Rails applications to Phoenix"
     assert post_body   =~ ~r/It starts with Rails and ends with Elixir/
+    assert post_footer =~ ~r/#phoenix/i
   end
 end
