@@ -14,7 +14,11 @@
       <%= error_tag f, :body %>
     </dt>
     <dd>
-      <%= text_input f, :body, placeholder: "Enter body..." %>
+      <%= textarea f, :body,
+        placeholder: "Enter body...",
+        class: "autosize",
+        style: "overflow: hidden; word-wrap: break-word; height: 72px;"
+      %>
     </dd>
     <dt>
       <%= label f, :channel_id, "Channel" %>
