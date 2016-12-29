@@ -32,8 +32,10 @@ defmodule Tilex.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0"},
+      {:earmark, "~> 1.0.3"},
       {:ecto_factory, "~> 0.0.5", only: [:dev, :test]},
       {:gettext, "~> 0.11"},
+      {:html_sanitize_ex, "~> 1.0.0"},
       {:phoenix, "~> 1.2.1"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
