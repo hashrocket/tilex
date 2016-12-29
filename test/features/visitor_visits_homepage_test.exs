@@ -10,10 +10,7 @@ defmodule VisitorVisitsHomepageTest do
 
   test "the page has a list of posts", %{session: session} do
 
-    channel = EctoFactory.insert(:channel,
-      name: "phoenix",
-      twitter_hashtag: "phoenix"
-    )
+    channel = EctoFactory.insert(:channel, name: "phoenix")
 
     EctoFactory.insert(:post,
       title: "A post about porting Rails applications to Phoenix",

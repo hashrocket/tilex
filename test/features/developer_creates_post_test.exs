@@ -5,7 +5,7 @@ defmodule DeveloperCreatesPostTest do
 
   test "fills out form and submits", %{session: session} do
 
-    EctoFactory.insert(:channel, name: "phoenix", twitter_hashtag: "phoenix")
+    EctoFactory.insert(:channel, name: "phoenix")
 
     visit(session, "/posts/new")
     h1_heading = get_text(session, "main header h1")
