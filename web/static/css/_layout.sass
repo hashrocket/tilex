@@ -31,17 +31,28 @@ header.site_head
     line-height: 1
   h2
     position: absolute
-    right: 0
     top: 90%
+    right: 0
+    margin-right: 1vw
     a
       text-align: right
-      color: $red
       font-size: 1.4rem
       font-weight: 700
-      margin-right: 1vw
-      background: left 55% no-repeat url("/images/hashrocket-logo.png")
-      background-size: 1.8rem auto
+      display: inline-block
       padding: 1rem 0 1rem 2.5rem
+      +mobile
+        padding-top: .5rem
+        padding-bottom: .5rem
+        margin-top: 1.2rem
+      &.hr
+        color: $red
+        background: left 55% no-repeat url("/images/hashrocket-logo.png")
+        background-size: 1.8rem auto
+      &.twitter
+        color: $twitter-color
+        background: svg-url(twitter, $twitter-color) center left no-repeat
+        background-size: 1.7rem auto
+        margin: 0 0 0 1rem
   +mobile
     z-index: 100
     background: #fff
@@ -183,6 +194,10 @@ header.site_head
     +mobile
       top: auto
       bottom: 100%
+
+.site_nav__twitter
+  .site_nav__link
+    background-image: svg-url(twitter, $accent)
 
 .admin_panel
   position: fixed

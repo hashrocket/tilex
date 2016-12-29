@@ -21,7 +21,12 @@
     <header class="site_head">
       <div>
         <h1><a href="/">Today I Learned</a></h1>
-        <h2><a href="https://hashrocket.com">A Hashrocket project</a></h2>
+        <h2>
+          <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
+          <span>
+            <a href="https://twitter.com/hashrockettil" class="twitter">Follow on Twitter</a>
+          </span>
+        </h2>
       </div>
     </header>
 
