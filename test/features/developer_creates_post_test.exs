@@ -11,10 +11,11 @@ defmodule DeveloperCreatesPostTest do
     h1_heading = get_text(session, "main header h1")
     assert h1_heading == "Create Post"
 
-    fill_in(session, "Title", with: "Example Title")
-    fill_in(session, "Body", with: "Example Body")
-    Wallaby.DSL.Actions.select(session, "Channel", option: "phoenix")
-    click_on(session, 'Submit')
+    session
+    |> fill_in("Title", with: "Example Title")
+    |> fill_in("Body", with: "Example Body")
+    |> Wallaby.DSL.Actions.select("Channel", option: "phoenix")
+    |> click_on('Submit')
 
     post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
     assert post.body == "Example Body"
@@ -32,8 +33,10 @@ defmodule DeveloperCreatesPostTest do
 
   test "cancels submission", %{session: session} do
 
-    visit(session, "/posts/new")
-    click_link(session, "cancel")
+    session
+    |> visit("/posts/new")
+    |> click_link("cancel")
+
     path = get_current_path(session)
 
     assert path == "/"
@@ -41,8 +44,9 @@ defmodule DeveloperCreatesPostTest do
 
   test "fails to enter things", %{session: session} do
 
-    visit(session, "/posts/new")
-    click_on(session, 'Submit')
+    session
+    |> visit("/posts/new")
+    |> click_on("Submit")
 
     body = get_text(session, "body")
 
@@ -53,9 +57,10 @@ defmodule DeveloperCreatesPostTest do
 
   test "enters a title that is too long", %{session: session} do
 
-    visit(session, "/posts/new")
-    fill_in(session, "Title", with: String.duplicate("I can codez ", 10))
-    click_on(session, 'Submit')
+    session
+    |> visit("/posts/new")
+    |> fill_in("Title", with: String.duplicate("I can codez ", 10))
+    |> click_on("Submit")
 
     body = get_text(session, "body")
 
@@ -64,9 +69,10 @@ defmodule DeveloperCreatesPostTest do
 
   test "enters a body that is too long", %{session: session} do
 
-    visit(session, "/posts/new")
-    fill_in(session, "Body", with: String.duplicate("wordy ", 201))
-    click_on(session, 'Submit')
+    session
+    |> visit("/posts/new")
+    |> fill_in("Body", with: String.duplicate("wordy ", 201))
+    |> click_on("Submit")
 
     body = get_text(session, "body")
 
