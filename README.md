@@ -48,7 +48,7 @@ $ npm install -g phantomjs
 Run the tests with:
 
 ```
-$ mix text
+$ mix test
 ```
 
 ### Contributing
