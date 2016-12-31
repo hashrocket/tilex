@@ -4,7 +4,7 @@
       <h1>
         <%= link(@post.title, to: post_path(@conn, :show, @post)) %>
       </h1>
-      <%= @post.body %>
+      <%= raw Tilex.Markdown.to_html(@post.body) %>
       <footer>
         <p>
           <br/>

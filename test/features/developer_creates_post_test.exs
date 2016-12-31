@@ -78,4 +78,18 @@ defmodule DeveloperCreatesPostTest do
 
     assert body =~ ~r/Body should be at most 200 word\(s\)/
   end
+
+  test "enters markdown code into the body", %{session: session} do
+
+    EctoFactory.insert(:channel, name: "phoenix")
+
+    session
+    |> visit("/posts/new")
+    |> fill_in("Title", with: "Example Title")
+    |> fill_in("Body", with: "`code`")
+    |> Wallaby.DSL.Actions.select("Channel", option: "phoenix")
+    |> click_on('Submit')
+
+    assert find(session, "code", text: "code")
+  end
 end

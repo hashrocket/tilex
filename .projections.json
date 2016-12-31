@@ -119,7 +119,7 @@
     "alternate": "{}.ex",
     "template":[
       "defmodule {camelcase|dot}Test do",
-      "  use ExUnit.Case#, async:true",
+      "  use ExUnit.Case#, async: true",
       "",
       "end",
     ]
