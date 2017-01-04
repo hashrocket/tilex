@@ -2,6 +2,7 @@ defmodule DeveloperCreatesPostTest do
   use Tilex.IntegrationCase, async: true
 
   alias Tilex.Post
+  alias Wallaby.DSL.Actions
 
   test "fills out form and submits", %{session: session} do
 
@@ -14,7 +15,7 @@ defmodule DeveloperCreatesPostTest do
     session
     |> fill_in("Title", with: "Example Title")
     |> fill_in("Body", with: "Example Body")
-    |> Wallaby.DSL.Actions.select("Channel", option: "phoenix")
+    |> Actions.select("Channel", option: "phoenix")
     |> click_on('Submit')
 
     post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
