@@ -31,6 +31,7 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:basic_auth, "~> 2.0.0"},
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 1.0.3"},
       {:ecto_factory, "~> 0.0.5", only: [:dev, :test]},
