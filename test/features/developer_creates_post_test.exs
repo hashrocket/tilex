@@ -23,12 +23,13 @@ defmodule DeveloperCreatesPostTest do
     assert post.title == "Example Title"
 
     index_h1_heading = get_text(session, "header.site_head div h1")
-    page_body        = get_text(session, "body")
+    post_title       = get_text(session, ".post h1")
+    post_body        = get_text(session, ".post .copy")
     post_footer      = get_text(session, ".post aside")
 
     assert index_h1_heading =~ ~r/Today I Learned/i
-    assert page_body        =~ ~r/Example Title/
-    assert page_body        =~ ~r/Example Body/
+    assert post_title       =~ ~r/Example Title/
+    assert post_body        =~ ~r/Example Body/
     assert post_footer      =~ ~r/#phoenix/i
   end
 
