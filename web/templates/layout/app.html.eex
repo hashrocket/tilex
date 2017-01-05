@@ -41,6 +41,14 @@
       <%= render @view_module, @view_template, assigns %>
     </main>
 
+    <nav class="site_nav">
+      <ul>
+        <li class="site_nav__twitter">
+            <%= link("Twitter", to: "https://twitter.com/hashrockettil", class: "site_nav__link") %>
+        </li>
+      </ul>
+    </nav>
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
