@@ -51,6 +51,12 @@ Run the tests with:
 $ mix test
 ```
 
+### Deployment
+
+The tilex staging server is here:
+
+https://tilex.herokuapp.com
+
 ### Contributing
 
 1. [Fork](https://help.github.com/articles/fork-a-repo/) it
