@@ -37,6 +37,14 @@
       </div>
     </header>
 
+    <div id="flash">
+      <%= if message = get_flash(@conn, :info) do %>
+        <p class="alert alert-info" role="alert">
+          <%= message %>
+        </p>
+      <% end %>
+    </div>
+
     <main>
       <%= render @view_module, @view_template, assigns %>
     </main>

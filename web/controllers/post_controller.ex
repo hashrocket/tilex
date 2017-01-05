@@ -31,7 +31,7 @@ defmodule Tilex.PostController do
     case Repo.insert(changeset) do
       {:ok, _user} ->
         conn
-        |> put_flash(:info, "Post created successfully.")
+        |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
