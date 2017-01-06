@@ -4,8 +4,17 @@ defmodule VisitorViewsPostTest do
   test "the page shows a post", %{session: session} do
 
     channel = EctoFactory.insert(:channel)
-    special = EctoFactory.insert(:post, title: "A special post", channel_id: channel.id)
-    EctoFactory.insert(:post, title: "A random post", channel_id: channel.id)
+    special = EctoFactory.insert(:post,
+      title: "A special post",
+      channel_id: channel.id,
+      slug: Tilex.Post.generate_slug(),
+    )
+
+    EctoFactory.insert(:post,
+      title: "A random post",
+      channel_id: channel.id,
+      slug: Tilex.Post.generate_slug(),
+    )
 
     visit(session, "/posts/#{special.id}")
 

@@ -37,4 +37,9 @@ defmodule Tilex.PostTest do
     changeset = Post.changeset(%Post{}, @invalid_attrs_body)
     refute changeset.valid?
   end
+
+  test "changeset generates slug" do
+    changeset = Post.changeset(%Post{}, @valid_attrs)
+    assert String.length(Ecto.Changeset.get_change(changeset, :slug)) == 10
+  end
 end

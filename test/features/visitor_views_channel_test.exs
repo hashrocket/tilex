@@ -6,9 +6,18 @@ defmodule Features.VisitorViewsChannelTest do
     target_channel = EctoFactory.insert(:channel, name: "phoenix")
     other_channel  = EctoFactory.insert(:channel, name: "other")
 
-    EctoFactory.insert(:post, title: "functional programming rocks", channel_id: target_channel.id)
+    EctoFactory.insert(:post,
+      title: "functional programming rocks",
+      channel_id: target_channel.id,
+      slug: Tilex.Post.generate_slug(),
+    )
+
     Enum.each(["i'm fine", "all these people out here", "what?"], fn(title) ->
-      EctoFactory.insert(:post, title: title, channel_id: other_channel.id)
+      EctoFactory.insert(:post,
+        title: title,
+        channel_id: other_channel.id,
+        slug: Tilex.Post.generate_slug(),
+      )
     end)
 
     visit(session, "/")
