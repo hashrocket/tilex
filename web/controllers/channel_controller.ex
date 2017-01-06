@@ -1,8 +1,7 @@
 defmodule Tilex.ChannelController do
   use Tilex.Web, :controller
 
-  alias Tilex.Post
-  alias Tilex.Channel
+  alias Tilex.{Post, Channel}
 
   def show(conn, %{"name" => name}) do
     channel = Repo.get_by!(Channel, name: name)
