@@ -10,9 +10,7 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Tilex.Channel
-alias Tilex.Post
-alias Tilex.Repo
+alias Tilex.{Channel, Post, Repo}
 
 Repo.delete_all(Post)
 Repo.delete_all(Channel)

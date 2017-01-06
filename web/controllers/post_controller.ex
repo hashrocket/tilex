@@ -3,8 +3,7 @@ defmodule Tilex.PostController do
 
   plug :load_channels when action in [:new, :create]
 
-  alias Tilex.Post
-  alias Tilex.Channel
+  alias Tilex.{Post, Channel}
 
   def index(conn, _params) do
     posts = Repo.all from p in Post,
