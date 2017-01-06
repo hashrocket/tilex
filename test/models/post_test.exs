@@ -42,4 +42,10 @@ defmodule Tilex.PostTest do
     changeset = Post.changeset(%Post{}, @valid_attrs)
     assert String.length(Ecto.Changeset.get_change(changeset, :slug)) == 10
   end
+
+  test "changeset does not replace slug" do
+    slug = "my_existing_slug"
+    changeset = Post.changeset(%Post{slug: slug}, @valid_attrs)
+    assert Ecto.Changeset.get_field(changeset, :slug) == slug
+  end
 end
