@@ -23,16 +23,19 @@ Repo.insert!(%Post{
   title: "Observing Change",
   body: "A Gold Master Test in Practice",
   channel_id: phoenix_channel.id,
+  slug: Post.generate_slug(),
 })
 
 Repo.insert!(%Post{
   title: "Controlling Your Test Environment",
   body: "Slow browser integration tests are a hard problem",
   channel_id: elixir_channel.id,
+  slug: Post.generate_slug(),
 })
 
 Repo.insert!(%Post{
   title: "Testing Elixir",
   body: "A Rubyist's Journey",
   channel_id: erlang_channel.id,
+  slug: Post.generate_slug(),
 })

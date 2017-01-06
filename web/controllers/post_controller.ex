@@ -13,8 +13,8 @@ defmodule Tilex.PostController do
     render(conn, "index.html", posts: posts)
   end
 
-  def show(conn, %{"id" => id}) do
-    post = Repo.get!(Post, id)
+  def show(conn, %{"slug" => slug}) do
+    post = Repo.get_by!(Post, slug: slug)
            |> Repo.preload([:channel])
     render(conn, "show.html", post: post)
   end

@@ -16,7 +16,7 @@ defmodule VisitorViewsPostTest do
       slug: Tilex.Post.generate_slug(),
     )
 
-    visit(session, "/posts/#{special.id}")
+    visit(session, "/posts/#{special.slug}")
 
     body = get_text(session, "body")
 
