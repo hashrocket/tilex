@@ -31,4 +31,11 @@ defmodule Tilex.ChannelTest do
 
     assert names == ["ada", "jekyll", "zsh"]
   end
+
+  test "changeset with non-unique channel name" do
+    Tilex.Repo.insert(Channel.changeset(%Channel{}, @valid_attrs))
+    {:error, changeset} = Tilex.Repo.insert(Channel.changeset(%Channel{}, @valid_attrs))
+
+    refute changeset.valid?
+  end
 end

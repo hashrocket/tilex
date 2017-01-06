@@ -16,6 +16,7 @@ defmodule Tilex.Channel do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :twitter_hashtag])
+    |> unique_constraint(:name)
     |> validate_required([:name, :twitter_hashtag])
   end
 
