@@ -40,6 +40,7 @@ defmodule Tilex.Post do
 
   def generate_slug do
     :base64.encode(:crypto.strong_rand_bytes(16))
+    |> String.replace(~r/[^A-Za-z0-9]/, "")
     |> String.slice(0, 10)
     |> String.downcase
   end
