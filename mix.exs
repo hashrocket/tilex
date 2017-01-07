@@ -33,7 +33,7 @@ defmodule Tilex.Mixfile do
     [
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 1.0.3"},
-      {:ecto_factory, "~> 0.0.5", only: [:dev, :test]},
+      {:ecto_factory, "~> 0.0.5", only: [:test]},
       {:gettext, "~> 0.11"},
       {:html_sanitize_ex, "~> 1.0.0"},
       {:phoenix, "~> 1.2.1"},

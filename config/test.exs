@@ -19,3 +19,9 @@ config :tilex, Tilex.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :wallaby, screenshot_on_failure: true
+
+config :ecto_factory, repo: Tilex.Repo
+config :ecto_factory, factories: [
+  post: Tilex.Post,
+  channel: Tilex.Channel
+]
