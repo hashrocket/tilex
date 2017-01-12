@@ -1,8 +1,6 @@
 defmodule Features.VisitorViewsChannelTest do
   use Tilex.IntegrationCase, async: true
 
-  alias Tilex.{Channel, Post, Repo}
-
   test "sees associated posts", %{session: session} do
 
     {:ok, target_channel} = Repo.insert(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})

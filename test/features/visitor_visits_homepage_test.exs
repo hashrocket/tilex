@@ -1,8 +1,6 @@
 defmodule VisitorVisitsHomepageTest do
   use Tilex.IntegrationCase, async: true
 
-  alias Tilex.{Channel, Post, Repo}
-
   test "the page has the appropriate branding", %{session: session} do
     visit(session, "/")
     header = get_text(session, "h1 > a")

@@ -1,8 +1,6 @@
 defmodule VisitorViewsPostTest do
   use Tilex.IntegrationCase, async: true
 
-  alias Tilex.{Channel, Post, Repo}
-
   test "the page shows a post", %{session: session} do
 
     {:ok, channel} = Repo.insert(%Channel{name: "elixir", twitter_hashtag: "myelixirstatus"})
