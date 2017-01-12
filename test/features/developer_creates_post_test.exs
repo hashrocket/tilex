@@ -91,7 +91,7 @@ defmodule DeveloperCreatesPostTest do
     |> visit("/posts/new")
     |> fill_in("Title", with: "Example Title")
     |> fill_in("Body", with: "`code`")
-    |> Wallaby.DSL.Actions.select("Channel", option: "phoenix")
+    |> Actions.select("Channel", option: "phoenix")
     |> click_on('Submit')
 
     assert find(session, "code", text: "code")
