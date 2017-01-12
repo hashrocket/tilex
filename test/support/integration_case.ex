@@ -6,7 +6,7 @@ defmodule Tilex.IntegrationCase do
     quote do
       use Wallaby.DSL
 
-      alias Tilex.{Channel, Post, Repo}
+      alias Tilex.{Channel, Factory, Post, Repo}
       import Ecto
       import Ecto.Changeset
       import Ecto.Query

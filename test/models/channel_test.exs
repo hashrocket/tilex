@@ -1,7 +1,7 @@
 defmodule Tilex.ChannelTest do
   use Tilex.ModelCase
 
-  alias Tilex.Channel
+  alias Tilex.{Channel, Factory}
 
   @valid_attrs %{name: "phoenix", twitter_hashtag: "phoenix"}
   @invalid_attrs %{}
@@ -18,7 +18,7 @@ defmodule Tilex.ChannelTest do
 
   test "it can return an alphabetized list of all records" do
     Enum.each(["zsh", "jekyll", "ada"], fn(name) ->
-      Repo.insert(%Channel{name: name, twitter_hashtag: name})
+      Factory.insert!(:channel, name: name)
     end)
 
     query = Channel

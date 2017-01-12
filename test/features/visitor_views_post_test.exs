@@ -3,7 +3,8 @@ defmodule VisitorViewsPostTest do
 
   test "the page shows a post", %{session: session} do
 
-    {:ok, channel} = Repo.insert(%Channel{name: "elixir", twitter_hashtag: "myelixirstatus"})
+    channel = Factory.insert!(:channel)
+
     {:ok, special} = Repo.insert(%Post{
       title: "A special post",
       body: "irrelevant",

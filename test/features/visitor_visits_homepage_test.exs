@@ -10,7 +10,7 @@ defmodule VisitorVisitsHomepageTest do
 
   test "the page has a list of posts", %{session: session} do
 
-    {:ok, channel} = Repo.insert(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})
+    channel = Factory.insert!(:channel, name: "smalltalk")
 
     Repo.insert(%Post{
       title: "A post about porting Rails applications to Phoenix",
@@ -27,6 +27,6 @@ defmodule VisitorVisitsHomepageTest do
 
     assert post_header == "A post about porting Rails applications to Phoenix"
     assert post_body   =~ ~r/It starts with Rails and ends with Elixir/
-    assert post_footer =~ ~r/#phoenix/i
+    assert post_footer =~ ~r/#smalltalk/i
   end
 end

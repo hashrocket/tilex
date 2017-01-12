@@ -3,8 +3,8 @@ defmodule Features.VisitorViewsChannelTest do
 
   test "sees associated posts", %{session: session} do
 
-    {:ok, target_channel} = Repo.insert(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})
-    {:ok, other_channel}  = Repo.insert(%Channel{name: "other", twitter_hashtag: "phoenix"})
+    target_channel = Factory.insert!(:channel, name: "phoenix")
+    other_channel = Factory.insert!(:channel, name: "other")
 
     Repo.insert(%Post{
       title: "functional programming rocks",
