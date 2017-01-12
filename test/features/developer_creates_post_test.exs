@@ -1,12 +1,12 @@
 defmodule DeveloperCreatesPostTest do
   use Tilex.IntegrationCase, async: true
 
-  alias Tilex.Post
+  alias Tilex.{Channel, Post, Repo}
   alias Wallaby.DSL.Actions
 
   test "fills out form and submits", %{session: session} do
 
-    EctoFactory.insert(:channel, name: "phoenix")
+    Repo.insert(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})
 
     visit(session, "/posts/new")
     h1_heading = get_text(session, "main header h1")
@@ -85,7 +85,7 @@ defmodule DeveloperCreatesPostTest do
 
   test "enters markdown code into the body", %{session: session} do
 
-    EctoFactory.insert(:channel, name: "phoenix")
+    Repo.insert(%Channel{name: "phoenix", twitter_hashtag: "phoenix" })
 
     session
     |> visit("/posts/new")

@@ -1,20 +1,24 @@
 defmodule VisitorViewsPostTest do
   use Tilex.IntegrationCase, async: true
 
+  alias Tilex.{Channel, Post, Repo}
+
   test "the page shows a post", %{session: session} do
 
-    channel = EctoFactory.insert(:channel)
-    special = EctoFactory.insert(:post,
+    {:ok, channel} = Repo.insert(%Channel{name: "elixir", twitter_hashtag: "myelixirstatus"})
+    {:ok, special} = Repo.insert(%Post{
       title: "A special post",
+      body: "irrelevant",
       channel_id: channel.id,
-      slug: Tilex.Post.generate_slug(),
-    )
+      slug: Post.generate_slug(),
+    })
 
-    EctoFactory.insert(:post,
+    Repo.insert(%Post{
       title: "A random post",
+      body: "irrelevant",
       channel_id: channel.id,
-      slug: Tilex.Post.generate_slug(),
-    )
+      slug: Post.generate_slug(),
+    })
 
     visit(session, "/posts/#{special.slug}")
 

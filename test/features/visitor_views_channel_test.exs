@@ -1,23 +1,27 @@
 defmodule Features.VisitorViewsChannelTest do
   use Tilex.IntegrationCase, async: true
 
+  alias Tilex.{Channel, Post, Repo}
+
   test "sees associated posts", %{session: session} do
 
-    target_channel = EctoFactory.insert(:channel, name: "phoenix")
-    other_channel  = EctoFactory.insert(:channel, name: "other")
+    {:ok, target_channel} = Repo.insert(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})
+    {:ok, other_channel}  = Repo.insert(%Channel{name: "other", twitter_hashtag: "phoenix"})
 
-    EctoFactory.insert(:post,
+    Repo.insert(%Post{
       title: "functional programming rocks",
+      body: "irrelevant",
       channel_id: target_channel.id,
-      slug: Tilex.Post.generate_slug(),
-    )
+      slug: Post.generate_slug(),
+    })
 
     Enum.each(["i'm fine", "all these people out here", "what?"], fn(title) ->
-      EctoFactory.insert(:post,
+      Repo.insert(%Post{
         title: title,
+        body: "irrelevant",
         channel_id: other_channel.id,
-        slug: Tilex.Post.generate_slug(),
-      )
+        slug: Post.generate_slug(),
+      })
     end)
 
     visit(session, "/")

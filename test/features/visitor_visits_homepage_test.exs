@@ -1,6 +1,8 @@
 defmodule VisitorVisitsHomepageTest do
   use Tilex.IntegrationCase, async: true
 
+  alias Tilex.{Channel, Post, Repo}
+
   test "the page has the appropriate branding", %{session: session} do
     visit(session, "/")
     header = get_text(session, "h1 > a")
@@ -10,13 +12,14 @@ defmodule VisitorVisitsHomepageTest do
 
   test "the page has a list of posts", %{session: session} do
 
-    channel = EctoFactory.insert(:channel, name: "phoenix")
+    {:ok, channel} = Repo.insert(%Channel{name: "phoenix", twitter_hashtag: "phoenix"})
 
-    EctoFactory.insert(:post,
+    Repo.insert(%Post{
       title: "A post about porting Rails applications to Phoenix",
       body: "It starts with Rails and ends with Elixir",
-      channel_id: channel.id
-    )
+      channel_id: channel.id,
+      slug: Post.generate_slug()
+    })
 
     visit(session, "/")
 

@@ -18,7 +18,7 @@ defmodule Tilex.ChannelTest do
 
   test "it can return an alphabetized list of all records" do
     Enum.each(["zsh", "jekyll", "ada"], fn(name) ->
-      EctoFactory.insert(:channel, name: name)
+      Repo.insert(%Channel{name: name, twitter_hashtag: name})
     end)
 
     query = Channel
