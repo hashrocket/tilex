@@ -7,10 +7,7 @@ defmodule Tilex.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-
-    if Application.get_env(:tilex, :basic_auth) do
-      plug BasicAuth, use_config: {:tilex, :basic_auth}
-    end
+    plug Tilex.Plug.BasicAuth
   end
 
   pipeline :api do
