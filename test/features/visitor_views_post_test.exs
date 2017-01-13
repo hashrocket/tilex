@@ -3,21 +3,8 @@ defmodule VisitorViewsPostTest do
 
   test "the page shows a post", %{session: session} do
 
-    channel = Factory.insert!(:channel)
-
-    {:ok, special} = Repo.insert(%Post{
-      title: "A special post",
-      body: "irrelevant",
-      channel_id: channel.id,
-      slug: Post.generate_slug(),
-    })
-
-    Repo.insert(%Post{
-      title: "A random post",
-      body: "irrelevant",
-      channel_id: channel.id,
-      slug: Post.generate_slug(),
-    })
+    special = Factory.insert!(:post, title: "A special post")
+    Factory.insert!(:post, title: "A random post")
 
     visit(session, "/posts/#{special.slug}")
 

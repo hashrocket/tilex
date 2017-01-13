@@ -6,20 +6,10 @@ defmodule Features.VisitorViewsChannelTest do
     target_channel = Factory.insert!(:channel, name: "phoenix")
     other_channel = Factory.insert!(:channel, name: "other")
 
-    Repo.insert(%Post{
-      title: "functional programming rocks",
-      body: "irrelevant",
-      channel_id: target_channel.id,
-      slug: Post.generate_slug(),
-    })
+    Factory.insert!(:post, title: "functional programming rocks", channel: target_channel)
 
     Enum.each(["i'm fine", "all these people out here", "what?"], fn(title) ->
-      Repo.insert(%Post{
-        title: title,
-        body: "irrelevant",
-        channel_id: other_channel.id,
-        slug: Post.generate_slug(),
-      })
+      Factory.insert!(:post, title: title, channel: other_channel)
     end)
 
     visit(session, "/")

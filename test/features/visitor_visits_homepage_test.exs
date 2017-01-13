@@ -12,12 +12,11 @@ defmodule VisitorVisitsHomepageTest do
 
     channel = Factory.insert!(:channel, name: "smalltalk")
 
-    Repo.insert(%Post{
+    Factory.insert!(:post,
       title: "A post about porting Rails applications to Phoenix",
       body: "It starts with Rails and ends with Elixir",
-      channel_id: channel.id,
-      slug: Post.generate_slug()
-    })
+      channel: channel
+    )
 
     visit(session, "/")
 
