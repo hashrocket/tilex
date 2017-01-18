@@ -1,3 +1,5 @@
+import PostSearch from "./post_search"
+
 $(function(){
 
   $(document.body).on("click", "#flash p", function(e) {
@@ -11,4 +13,10 @@ $(function(){
       .toggleClass('site_nav--open')
       .find(":input:visible").eq(0).focus();
   });
+
+  new PostSearch({
+    searchForm:      $(".site_nav__search form"),
+    searchLink:      $(".site_nav__search"),
+    replaceableHtml: $("main")
+  }).init()
 });

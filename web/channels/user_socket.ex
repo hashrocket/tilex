@@ -2,7 +2,7 @@ defmodule Tilex.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Tilex.RoomChannel
+  channel "post:search", Tilex.PostChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
