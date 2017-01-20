@@ -17,7 +17,7 @@ defmodule Tilex.Post do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :body, :channel_id])
+    |> cast(params, [:title, :body, :channel_id, :likes])
     |> validate_required([:title, :body, :channel_id, :likes])
     |> validate_length(:title, max: 50)
     |> validate_length_of_body

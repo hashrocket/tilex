@@ -3,15 +3,13 @@ defmodule VisitorViewsPostTest do
 
   test "the page shows a post", %{session: session} do
 
-    special = Factory.insert!(:post, title: "A special post")
-    Factory.insert!(:post, title: "A random post")
+    Factory.insert!(:post, title: "A special post")
 
-    visit(session, "/posts/#{special.slug}")
-
-    body = get_text(session, "body")
+    body = visit(session, "/")
+      |> click_link("permalink")
+      |> get_text("body")
 
     assert body =~ ~r/A special post/
-    refute body =~ ~r/A random post/
   end
 
   test "and sees marketing copy, if it exists", %{session: session} do

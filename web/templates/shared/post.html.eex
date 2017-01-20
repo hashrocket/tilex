@@ -19,10 +19,12 @@
             <%= link("##{@post.channel.name}", to: channel_path(@conn, :show, @post.channel.name), class: "post__tag-link") %>
           </li>
           <li>
+            <%= link("permalink", to: post_path(@conn, :show, @post.slug), class: "post__permalink") %>
+          </li>
+          <li>
             <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>
               <span class="post__like-count"><%= @post.likes %></span>
               <span class="post__like-label">likes</span>
-
             <% end %>
           </li>
         </ul>
