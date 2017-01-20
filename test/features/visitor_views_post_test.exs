@@ -14,13 +14,13 @@ defmodule VisitorViewsPostTest do
 
   test "and sees marketing copy, if it exists", %{session: session} do
 
-    marketing_focus_channel = Factory.insert!(:channel, name: "elixir")
-    marketing_focus_post = Factory.insert!(:post, channel: marketing_focus_channel)
-    assert File.exists?("web/templates/shared/_elixir.html.eex")
+    marketing_channel = Factory.insert!(:channel, name: "elixir")
+    post_in_marketing_channel = Factory.insert!(:post, channel: marketing_channel)
 
-    copy = visit(session, "/posts/#{marketing_focus_post.slug}")
+    copy = visit(session, post_path(Endpoint, :show, post_in_marketing_channel.slug))
       |> get_text(".more-info")
 
-    assert copy =~ "Looking for help?"
+    {:ok, marketing_content} = File.read("web/templates/shared/_elixir.html.eex")
+    assert copy =~ String.slice(marketing_content, 0, 10)
   end
 end
