@@ -26,12 +26,14 @@ defmodule DeveloperCreatesPostTest do
     post_title       = get_text(session, ".post h1")
     post_body        = get_text(session, ".post .copy")
     post_footer      = get_text(session, ".post aside")
+    likes_count      = get_text(session, ".js-like-action")
 
     assert index_h1_heading =~ ~r/Today I Learned/i
     assert info_flash       == "Post created"
     assert post_title       =~ ~r/Example Title/
     assert post_body        =~ ~r/Example Body/
     assert post_footer      =~ ~r/#phoenix/i
+    assert likes_count      =~ ~r/1/
   end
 
   test "cancels submission", %{session: session} do

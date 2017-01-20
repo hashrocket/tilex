@@ -5,6 +5,7 @@ defmodule Tilex.Post do
     field :title, :string
     field :body, :string
     field :slug, :string
+    field :likes, :integer, default: 1
 
     belongs_to :channel, Tilex.Channel
 
@@ -17,9 +18,10 @@ defmodule Tilex.Post do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :body, :channel_id])
-    |> validate_required([:title, :body, :channel_id])
+    |> validate_required([:title, :body, :channel_id, :likes])
     |> validate_length(:title, max: 50)
     |> validate_length_of_body
+    |> validate_number(:likes, greater_than: 0)
     |> add_slug
   end
 
