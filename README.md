@@ -37,6 +37,18 @@ $ mix phoenix.server
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+To set environmental variables, copy the example file:
+
+```
+$ cp .env{.example,}
+```
+
+Then, set your variables and source them:
+
+```
+$ source .env
+```
+
 ### Testing
 
 Wallaby relies on PhantomJS, install it:
