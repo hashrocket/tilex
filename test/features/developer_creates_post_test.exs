@@ -14,8 +14,8 @@ defmodule DeveloperCreatesPostTest do
     session
     |> fill_in("Title", with: "Example Title")
     |> fill_in("Body", with: "Example Body")
-    |> Actions.select("Channel", option: "phoenix")
-    |> click_on('Submit')
+    |> Wallaby.Browser.select("Channel", option: "phoenix")
+    |> click_on("Submit")
 
     post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
     assert post.body == "Example Body"
@@ -42,7 +42,7 @@ defmodule DeveloperCreatesPostTest do
     |> visit("/posts/new")
     |> click_link("cancel")
 
-    path = get_current_path(session)
+    path = current_path(session)
 
     assert path == "/"
   end
@@ -92,9 +92,9 @@ defmodule DeveloperCreatesPostTest do
     |> visit("/posts/new")
     |> fill_in("Title", with: "Example Title")
     |> fill_in("Body", with: "`code`")
-    |> Actions.select("Channel", option: "phoenix")
-    |> click_on('Submit')
+    |> Wallaby.Browser.select("Channel", option: "phoenix")
+    |> click_on("Submit")
 
-    assert find(session, "code", text: "code")
+    assert find(session, css("code", text: "code"))
   end
 end
