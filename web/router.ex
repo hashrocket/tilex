@@ -22,6 +22,8 @@ defmodule Tilex.Router do
     post "/auth/:provider/callback", AuthController, :callback
     delete "/auth/logout", AuthController, :delete
 
+    get "/statistics", StatsController, :index
+
     get "/:name", ChannelController, :show
 
     get "/", PostController, :index

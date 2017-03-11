@@ -1,0 +1,114 @@
+<section id="statistics">
+  <header class="page_head">
+    <h1>Statistics</h1>
+  </header>
+  <div class="wrapper">
+    <article>
+      <header>
+        <h1>Last 30 days</h1>
+      </header>
+      <ul class="activity_chart" id="activity">
+        <li class="" data-amount="1" data-date="Mon, Mar 12">
+          <div class="activity_chart_bar" style="height: 40.0%"></div>
+        </li>
+        <li class="" data-amount="2" data-date="Tue, Mar 13">
+          <div class="activity_chart_bar" style="height: 40.0%"></div>
+        </li>
+        <li class="" data-amount="3" data-date="Wed, Mar 14">
+          <div class="activity_chart_bar" style="height: 40.0%"></div>
+        </li>
+      </ul>
+    </article>
+    <article>
+      <header>
+        <h1>Hottest TILs</h1>
+      </header>
+      <ul class="post_list">
+        <li>
+          <a href="/posts/d93dd75574-turn-off-folds-in-my-vim-buffer"><b>
+              Turn off folds in my vim buffer!
+            </b>
+            <small>
+              #vim
+              <span>•</span>
+              2 likes
+            </small>
+          </a>
+        </li>
+      </ul>
+    </article>
+    <article class="most_liked_posts">
+      <header>
+        <h1>Most liked TILs</h1>
+      </header>
+      <ul class="post_list">
+        <li>
+          <a href="/posts/e04ffe1d76-because-javascript"><b>
+              Fast Tests
+            </b>
+            <small>
+              #Elixir
+              <span>•</span>
+              3 likes
+            </small>
+          </a>
+        </li>
+        <li>
+          <a href="/posts/e04ffe1d76-because-javascript"><b>
+              Slow Tests
+            </b>
+            <small>
+              #Rails
+              <span>•</span>
+              2 likes
+            </small>
+          </a>
+        </li>
+        <li>
+          <a href="/posts/e04ffe1d76-because-javascript"><b>
+              Insert mode
+            </b>
+            <small>
+              #vim
+              <span>•</span>
+              1 likes
+            </small>
+          </a>
+        </li>
+      </ul>
+    </article>
+    <div class="stats_column">
+      <article>
+        <header>
+          <h1>5 posts in 2 channels</h1>
+        </header>
+        <ul class="post_list" id="channels">
+          <li>
+            <a href="/phoenix"><b>#phoenix</b>
+              <small>4 posts</small>
+            </a>
+          </li>
+          <li>
+            <a href="/other"><b>#other</b>
+              <small>1 posts</small>
+            </a>
+          </li>
+        </ul>
+      </article>
+    </div>
+    <div class="stats_column right">
+      <article>
+        <header>
+          <h1>28 authors</h1>
+        </header>
+        <ul class="post_list" id="authors">
+          <li>
+            <a href="/authors/joshbranchaud"><b>joshbranchaud</b>
+              <small>342 posts</small>
+            </a>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
