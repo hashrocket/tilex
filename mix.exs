@@ -19,7 +19,7 @@ defmodule Tilex.Mixfile do
   def application do
     [mod: {Tilex, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :timex]]
+                    :phoenix_ecto, :postgrex, :timex, :ueberauth_google]]
   end
 
   # Specifies which paths to compile per environment.
@@ -43,6 +43,7 @@ defmodule Tilex.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.0"},
+      {:ueberauth_google, "~> 0.5"},
       {:wallaby, "~> 0.11.1"},
     ]
   end
