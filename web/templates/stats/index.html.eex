@@ -42,39 +42,19 @@
         <h1>Most liked TILs</h1>
       </header>
       <ul class="post_list">
-        <li>
-          <a href="/posts/e04ffe1d76-because-javascript"><b>
-              Fast Tests
-            </b>
-            <small>
-              #Elixir
-              <span>•</span>
-              3 likes
-            </small>
-          </a>
-        </li>
-        <li>
-          <a href="/posts/e04ffe1d76-because-javascript"><b>
-              Slow Tests
-            </b>
-            <small>
-              #Rails
-              <span>•</span>
-              2 likes
-            </small>
-          </a>
-        </li>
-        <li>
-          <a href="/posts/e04ffe1d76-because-javascript"><b>
-              Insert mode
-            </b>
-            <small>
-              #vim
-              <span>•</span>
-              1 likes
-            </small>
-          </a>
-        </li>
+        <%= for {post_title, post_likes, post_slug, channel_name} <- @most_liked_posts do %>
+          <li>
+            <a href="/posts/<%= post_slug %>"><b>
+                <%= post_title %>
+              </b>
+              <small>
+                #<%= channel_name %>
+                <span>•</span>
+                <%= post_likes %> likes
+              </small>
+            </a>
+          </li>
+        <% end %>
       </ul>
     </article>
     <div class="stats_column">

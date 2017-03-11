@@ -13,8 +13,15 @@ defmodule Tilex.StatsController do
                                    select: {count(p.id), c.name}
                                   )
 
+      most_liked_posts = from([p, c] in posts_and_channels,
+                              order_by: [desc: p.likes],
+                              limit: 10,
+                              select: {p.title, p.likes, p.slug, c.name})
+
+
     data = [
       channels: Repo.all(posts_by_channels_count),
+      most_liked_posts: Repo.all(most_liked_posts)
     ]
 
     render(conn, "index.html", data)

@@ -29,14 +29,16 @@ defmodule Features.VisitorViewsStatsTest do
 
   test "sees most liked tils", %{session: session} do
     posts = [
-      {"Insert mode", "vim"},
-      {"Slow Tests", "Rails"},
-      {"Fast Tests", "Elixir"}
+      "Controllers",
+      "Views",
+      "Templates",
     ]
+
+    channel = Factory.insert!(:channel, name: "phoenix")
 
     posts
     |> Enum.with_index
-    |> Enum.each(fn({{title, channel}, likes}) ->
+    |> Enum.each(fn({title, likes}) ->
       Factory.insert!(:post, title: title, likes: likes + 1)
     end)
 
@@ -49,15 +51,12 @@ defmodule Features.VisitorViewsStatsTest do
 
     [ fast_tests, slow_tests, insert_mode ] = all(most_liked_posts, "li")
 
-    assert Wallaby.Browser.text(fast_tests) =~ "Fast Tests\n#Elixir • 3 likes"
-    assert Wallaby.Browser.text(slow_tests) =~ "Slow Tests\n#Rails • 2 likes"
-    assert Wallaby.Browser.text(insert_mode) =~ "Insert mode\n#vim • 1 like"
+    assert Wallaby.Browser.text(fast_tests) =~ "Templates\n#phoenix • 3 likes"
+    assert Wallaby.Browser.text(slow_tests) =~ "Views\n#phoenix • 2 likes"
+    assert Wallaby.Browser.text(insert_mode) =~ "Controllers\n#phoenix • 1 like"
   end
 
   test "sees til activity", %{session: session} do
-    # create tils for specific days in the last 30 days
-    #
-
     dt = fn ({y, m, d} = date) ->
       Ecto.DateTime.from_date(Ecto.Date.cast!({2016, 3, 12}))
     end
