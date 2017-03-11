@@ -83,16 +83,14 @@
           <h1>5 posts in 2 channels</h1>
         </header>
         <ul class="post_list" id="channels">
-          <li>
-            <a href="/phoenix"><b>#phoenix</b>
-              <small>4 posts</small>
-            </a>
-          </li>
-          <li>
-            <a href="/other"><b>#other</b>
-              <small>1 posts</small>
-            </a>
-          </li>
+
+          <%= for {count, channel} <- @channels do %>
+            <li>
+              <a href="/<%= channel %>"><b>#<%= channel %></b>
+                <small><%= count %> posts</small>
+              </a>
+            </li>
+          <% end %>
         </ul>
       </article>
     </div>

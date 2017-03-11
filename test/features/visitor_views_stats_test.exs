@@ -21,10 +21,10 @@ defmodule Features.VisitorViewsStatsTest do
     channels_header = find(session, query)
     assert(channels_header)
 
-    [ phoenix_channel, other_channel ] = all(channels, "li")
+    [ other_channel, phoenix_channel ] = all(channels, "li")
 
-    assert Wallaby.Browser.text(phoenix_channel) =~ "#phoenix\n4 posts"
-    assert Wallaby.Browser.text(other_channel) =~ "#other\n1 post"
+    assert Wallaby.Browser.text(other_channel) =~ "#other\n3 posts"
+    assert Wallaby.Browser.text(phoenix_channel) =~ "#phoenix\n1 post"
   end
 
   test "sees most liked tils", %{session: session} do
