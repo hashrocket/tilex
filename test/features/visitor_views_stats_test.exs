@@ -61,17 +61,33 @@ defmodule Features.VisitorViewsStatsTest do
       Ecto.DateTime.from_date(Ecto.Date.cast!({2016, 3, 12}))
     end
 
-    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.({2016, 3, 12}))
-    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.({2016, 3, 13}))
-    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.({2016, 3, 13}))
-    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.({2016, 3, 14}))
-    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.({2016, 3, 14}))
-    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.({2016, 3, 14}))
+    today = Timex.today
+    day_of_the_week = :calendar.day_of_the_week(Date.to_erl(Timex.today))
+
+    duration = Timex.Duration.from_days((day_of_the_week - 1) + 7)
+    previous_monday = Timex.subtract(today, duration)
+
+    previous_tuesday = Timex.add(previous_monday, Timex.Duration.from_days(1))
+    previous_wednesday = Timex.add(previous_monday, Timex.Duration.from_days(2))
+
+    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.(Date.to_erl(previous_monday)))
+    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.(Date.to_erl(previous_tuesday)))
+    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.(Date.to_erl(previous_tuesday)))
+    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.(Date.to_erl(previous_wednesday)))
+    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.(Date.to_erl(previous_wednesday)))
+    Factory.insert!(:post, title: "Vim rules", inserted_at: dt.(Date.to_erl(previous_wednesday)))
 
     visit(session, "/statistics")
     activity_tag = find(session, "ul#activity")
-    thing = find(activity_tag, css("li[data-amount='1'][data-date='Mon, Mar 12']"))
-    thing = find(activity_tag, css("li[data-amount='2'][data-date='Tue, Mar 13']"))
-    thing = find(activity_tag, css("li[data-amount='3'][data-date='Wed, Mar 14']"))
+
+    thing = find(activity_tag,
+                 css("li[data-amount='1'][data-date='Mon, #{Timex.format!(previous_monday, "%b %e", :strftime)}']")
+               )
+    thing = find(activity_tag,
+                 css("li[data-amount='2'][data-date='Tue, #{Timex.format!(previous_tuesday, "%b %e", :strftime)}']")
+               )
+    thing = find(activity_tag,
+                 css("li[data-amount='3'][data-date='Wed, #{Timex.format!(previous_wednesday, "%b %-e", :strftime)}']")
+                )
   end
 end

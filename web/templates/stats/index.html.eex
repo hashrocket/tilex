@@ -8,13 +8,13 @@
         <h1>Last 30 days</h1>
       </header>
       <ul class="activity_chart" id="activity">
-        <li class="" data-amount="1" data-date="Mon, Mar 12">
+        <li class="" data-amount="1" data-date="Mon, Feb 27">
           <div class="activity_chart_bar" style="height: 40.0%"></div>
         </li>
-        <li class="" data-amount="2" data-date="Tue, Mar 13">
+        <li class="" data-amount="2" data-date="Tue, Feb 28">
           <div class="activity_chart_bar" style="height: 40.0%"></div>
         </li>
-        <li class="" data-amount="3" data-date="Wed, Mar 14">
+        <li class="" data-amount="3" data-date="Wed, Mar 1">
           <div class="activity_chart_bar" style="height: 40.0%"></div>
         </li>
       </ul>
