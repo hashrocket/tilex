@@ -1,6 +1,10 @@
 defmodule Features.VisitorViewsStatsTest do
   use Tilex.IntegrationCase, async: true
 
+  def text_without_newlines(element) do
+    String.replace(Wallaby.Element.text(element), "\n", " ")
+  end
+
   test "sees total number of posts by channel", %{session: session} do
 
     target_channel = Factory.insert!(:channel, name: "phoenix")
@@ -21,8 +25,8 @@ defmodule Features.VisitorViewsStatsTest do
 
     [ other_channel, phoenix_channel ] = all(channels, Query.css("li"))
 
-    assert Wallaby.Element.text(other_channel) =~ "#other\n3 posts"
-    assert Wallaby.Element.text(phoenix_channel) =~ "#phoenix\n1 post"
+    assert text_without_newlines(other_channel) =~ "#other 3 posts"
+    assert text_without_newlines(phoenix_channel) =~ "#phoenix 1 post"
   end
 
   test "sees most liked tils", %{session: session} do
@@ -49,9 +53,9 @@ defmodule Features.VisitorViewsStatsTest do
 
     [ fast_tests, slow_tests, insert_mode ] = all(most_liked_posts, Query.css("li"))
 
-    assert Wallaby.Element.text(fast_tests) =~ "Templates\n#phoenix • 3 likes"
-    assert Wallaby.Element.text(slow_tests) =~ "Views\n#phoenix • 2 likes"
-    assert Wallaby.Element.text(insert_mode) =~ "Controllers\n#phoenix • 1 like"
+    assert text_without_newlines(fast_tests) =~ "Templates #phoenix • 3 likes"
+    assert text_without_newlines(slow_tests) =~ "Views #phoenix • 2 likes"
+    assert text_without_newlines(insert_mode) =~ "Controllers #phoenix • 1 like"
   end
 
   test "sees til activity", %{session: session} do
