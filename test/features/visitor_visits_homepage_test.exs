@@ -2,10 +2,11 @@ defmodule VisitorVisitsHomepageTest do
   use Tilex.IntegrationCase, async: true
 
   test "the page has the appropriate branding", %{session: session} do
-    visit(session, "/")
-    header = get_text(session, "h1 > a")
+    header_text = visit(session, "/")
+                  |> find(Query.css("h1 > a"))
+                  |> Element.text
 
-    assert header =~ ~r/Today I Learned/i
+    assert header_text =~ ~r/Today I Learned/i
   end
 
   test "the page has a list of posts", %{session: session} do
@@ -20,9 +21,13 @@ defmodule VisitorVisitsHomepageTest do
 
     visit(session, "/")
 
-    post_header = get_text(session, "article h1")
-    post_body   = get_text(session, "article")
-    post_footer = get_text(session, ".post aside")
+    element_text = fn (session, selector) ->
+      Element.text(find(session, Query.css(selector)))
+    end
+
+    post_header = element_text.(session, "article h1")
+    post_body   = element_text.(session, "article")
+    post_footer = element_text.(session, ".post aside")
 
     assert post_header == "A post about porting Rails applications to Phoenix"
     assert post_body   =~ ~r/It starts with Rails and ends with Elixir/

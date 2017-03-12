@@ -1,32 +1,38 @@
 defmodule DeveloperCreatesPostTest do
   use Tilex.IntegrationCase, async: true
 
-  alias Wallaby.DSL.Actions
-
   test "fills out form and submits", %{session: session} do
 
     Factory.insert!(:channel, name: "phoenix")
 
     visit(session, "/posts/new")
-    h1_heading = get_text(session, "main header h1")
+    h1_heading = Element.text(find(session, Query.css("main header h1")))
     assert h1_heading == "Create Post"
 
     session
-    |> fill_in("Title", with: "Example Title")
-    |> fill_in("Body", with: "Example Body")
-    |> Wallaby.Browser.select("Channel", option: "phoenix")
-    |> click_on("Submit")
+    |> fill_in(Query.text_field("Title"), with: "Example Title")
+    |> fill_in(Query.text_field("Body"), with: "Example Body")
+    |> (fn(session) ->
+        select = find(session, Query.select("Channel"))
+        click(select, Query.option("phoenix"))
+        session
+      end).()
+    |> click(Query.button("Submit"))
 
     post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
     assert post.body == "Example Body"
     assert post.title == "Example Title"
 
-    index_h1_heading = get_text(session, "header.site_head div h1")
-    info_flash       = get_text(session, ".alert-info")
-    post_title       = get_text(session, ".post h1")
-    post_body        = get_text(session, ".post .copy")
-    post_footer      = get_text(session, ".post aside")
-    likes_count      = get_text(session, ".js-like-action")
+    element_text = fn (session, selector) ->
+      Element.text(find(session, Query.css(selector)))
+    end
+
+    index_h1_heading = element_text.(session, "header.site_head div h1")
+    info_flash       = element_text.(session, ".alert-info")
+    post_title       = element_text.(session, ".post h1")
+    post_body        = element_text.(session, ".post .copy")
+    post_footer      = element_text.(session, ".post aside")
+    likes_count      = element_text.(session, ".js-like-action")
 
     assert index_h1_heading =~ ~r/Today I Learned/i
     assert info_flash       == "Post created"
@@ -40,7 +46,7 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> visit("/posts/new")
-    |> click_link("cancel")
+    |> click(Query.link('cancel'))
 
     path = current_path(session)
 
@@ -51,9 +57,9 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> visit("/posts/new")
-    |> click_on("Submit")
+    |> click(Query.button("Submit"))
 
-    body = get_text(session, "body")
+    body = Element.text(find(session, Query.css("body")))
 
     assert body =~ ~r/Title can't be blank/
     assert body =~ ~r/Body can't be blank/
@@ -64,10 +70,10 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> visit("/posts/new")
-    |> fill_in("Title", with: String.duplicate("I can codez ", 10))
-    |> click_on("Submit")
+    |> fill_in(Query.text_field("Title"), with: String.duplicate("I can codez ", 10))
+    |> click(Query.button("Submit"))
 
-    body = get_text(session, "body")
+    body = Element.text(find(session, Query.css("body")))
 
     assert body =~ ~r/Title should be at most 50 character\(s\)/
   end
@@ -76,10 +82,10 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> visit("/posts/new")
-    |> fill_in("Body", with: String.duplicate("wordy ", 201))
-    |> click_on("Submit")
+    |> fill_in(Query.text_field("Body"), with: String.duplicate("wordy ", 201))
+    |> click(Query.button("Submit"))
 
-    body = get_text(session, "body")
+    body = Element.text(find(session, Query.css("body")))
 
     assert body =~ ~r/Body should be at most 200 word\(s\)/
   end
@@ -90,11 +96,15 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> visit("/posts/new")
-    |> fill_in("Title", with: "Example Title")
-    |> fill_in("Body", with: "`code`")
-    |> Wallaby.Browser.select("Channel", option: "phoenix")
-    |> click_on("Submit")
+    |> fill_in(Query.text_field("Title"), with: "Example Title")
+    |> fill_in(Query.text_field("Body"), with: "`code`")
+    |> (fn(session) ->
+        select = find(session, Query.select("Channel"))
+        click(select, Query.option("phoenix"))
+        session
+      end).()
+    |> click(Query.button("Submit"))
 
-    assert find(session, css("code", text: "code"))
+    assert find(session, Query.css("code", text: "code"))
   end
 end

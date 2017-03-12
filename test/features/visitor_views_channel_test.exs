@@ -13,12 +13,12 @@ defmodule Features.VisitorViewsChannelTest do
     end)
 
     visit(session, "/")
-    assert find(session, "article.post", count: 4)
-    click_link(session, "#phoenix")
+    assert find(session, Query.css("article.post", count: 4))
+    click(session, Query.link("#phoenix"))
 
-    page_header = get_text(session, ".page_head")
+    page_header = Element.text(find(session, Query.css(".page_head")))
 
     assert page_header =~ ~r/1 post about #phoenix/
-    assert find(session, "article.post", count: 1)
+    assert find(session, Query.css("article.post"))
   end
 end
