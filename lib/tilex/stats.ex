@@ -1,6 +1,5 @@
 defmodule Tilex.Stats do
   import Ecto.Query
-  import Tilex.Repo
 
   alias Tilex.Repo
 
