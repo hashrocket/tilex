@@ -1,5 +1,3 @@
-import Ecto.DateTime
-
 defmodule Features.VisitorViewsStatsTest do
   use Tilex.IntegrationCase, async: true
 
@@ -15,16 +13,16 @@ defmodule Features.VisitorViewsStatsTest do
     end)
 
     visit(session, "/statistics")
-    channels = find(session, ".stats_column ul#channels")
+    channels = find(session, css(".stats_column ul#channels"))
 
-    query = Wallaby.Query.css(".stats_column header", text: "5 posts in 2 channels")
+    query = css(".stats_column header", text: "5 posts in 2 channels")
     channels_header = find(session, query)
     assert(channels_header)
 
-    [ other_channel, phoenix_channel ] = all(channels, "li")
+    [ other_channel, phoenix_channel ] = all(channels, css("li"))
 
-    assert Wallaby.Browser.text(other_channel) =~ "#other\n3 posts"
-    assert Wallaby.Browser.text(phoenix_channel) =~ "#phoenix\n1 post"
+    assert Wallaby.Element.text(other_channel) =~ "#other\n3 posts"
+    assert Wallaby.Element.text(phoenix_channel) =~ "#phoenix\n1 post"
   end
 
   test "sees most liked tils", %{session: session} do
@@ -34,7 +32,7 @@ defmodule Features.VisitorViewsStatsTest do
       "Templates",
     ]
 
-    channel = Factory.insert!(:channel, name: "phoenix")
+    Factory.insert!(:channel, name: "phoenix")
 
     posts
     |> Enum.with_index
@@ -44,20 +42,20 @@ defmodule Features.VisitorViewsStatsTest do
 
     visit(session, "/statistics")
 
-    most_liked_posts = find(session, "article.most_liked_posts")
-    channels_header = find(most_liked_posts, "header")
+    most_liked_posts = find(session, css("article.most_liked_posts"))
+    channels_header = find(most_liked_posts, css("header"))
 
-    assert Wallaby.Browser.text(channels_header) =~ "Most liked TILs"
+    assert Wallaby.Element.text(channels_header) =~ "Most liked TILs"
 
-    [ fast_tests, slow_tests, insert_mode ] = all(most_liked_posts, "li")
+    [ fast_tests, slow_tests, insert_mode ] = all(most_liked_posts, css("li"))
 
-    assert Wallaby.Browser.text(fast_tests) =~ "Templates\n#phoenix • 3 likes"
-    assert Wallaby.Browser.text(slow_tests) =~ "Views\n#phoenix • 2 likes"
-    assert Wallaby.Browser.text(insert_mode) =~ "Controllers\n#phoenix • 1 like"
+    assert Wallaby.Element.text(fast_tests) =~ "Templates\n#phoenix • 3 likes"
+    assert Wallaby.Element.text(slow_tests) =~ "Views\n#phoenix • 2 likes"
+    assert Wallaby.Element.text(insert_mode) =~ "Controllers\n#phoenix • 1 like"
   end
 
   test "sees til activity", %{session: session} do
-    dt = fn ({y, m, d} = date) ->
+    dt = fn ({_y, _m, _d} = date) ->
       Ecto.DateTime.cast!({date, {12, 0, 0}})
     end
 
@@ -78,16 +76,16 @@ defmodule Features.VisitorViewsStatsTest do
     Factory.insert!(:post, title: "Vim rules", inserted_at: dt.(Date.to_erl(previous_wednesday)))
 
     visit(session, "/statistics")
-    activity_tag = find(session, "ul#activity")
+    activity_tag = find(session, css("ul#activity"))
 
-    thing = find(activity_tag,
-                 css("li[data-amount='1'][data-date='Mon, #{Timex.format!(previous_monday, "%b %e", :strftime)}']")
-               )
-    thing = find(activity_tag,
-                 css("li[data-amount='2'][data-date='Tue, #{Timex.format!(previous_tuesday, "%b %e", :strftime)}']")
-               )
-    thing = find(activity_tag,
-                 css("li[data-amount='3'][data-date='Wed, #{Timex.format!(previous_wednesday, "%b %-e", :strftime)}']")
-                )
+    find(activity_tag,
+         css("li[data-amount='1'][data-date='Mon, #{Timex.format!(previous_monday, "%b %e", :strftime)}']")
+       )
+    find(activity_tag,
+         css("li[data-amount='2'][data-date='Tue, #{Timex.format!(previous_tuesday, "%b %e", :strftime)}']")
+       )
+    find(activity_tag,
+         css("li[data-amount='3'][data-date='Wed, #{Timex.format!(previous_wednesday, "%b %-e", :strftime)}']")
+        )
   end
 end
