@@ -13,10 +13,11 @@ defmodule DeveloperCreatesPostTest do
     |> fill_in(Query.text_field("Title"), with: "Example Title")
     |> fill_in(Query.text_field("Body"), with: "Example Body")
     |> (fn(session) ->
-        select = find(session, Query.select("Channel"))
-        click(select, Query.option("phoenix"))
-        session
-      end).()
+      find(session, Query.select("Channel"), fn (element) ->
+        click(element, Query.option("phoenix"))
+      end)
+      session
+    end).()
     |> click(Query.button("Submit"))
 
     post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
@@ -99,10 +100,11 @@ defmodule DeveloperCreatesPostTest do
     |> fill_in(Query.text_field("Title"), with: "Example Title")
     |> fill_in(Query.text_field("Body"), with: "`code`")
     |> (fn(session) ->
-        select = find(session, Query.select("Channel"))
-        click(select, Query.option("phoenix"))
-        session
-      end).()
+      find(session, Query.select("Channel"), fn (element) ->
+        click(element, Query.option("phoenix"))
+      end)
+      session
+    end).()
     |> click(Query.button("Submit"))
 
     assert find(session, Query.css("code", text: "code"))
