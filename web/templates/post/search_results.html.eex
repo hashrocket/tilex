@@ -1,7 +1,7 @@
 <section id="search">
   <header class="page_head">
     <h1>
-      <%= post_pluralization(length(@posts)) %>
+      <%= Tilex.SharedView.pluralize(length(@posts), "post") %>
       about
       <%= @query %>
     </h1>

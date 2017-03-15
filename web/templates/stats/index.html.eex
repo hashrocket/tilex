@@ -56,7 +56,10 @@
     <div class="stats_column">
       <article>
         <header>
-          <h1>5 posts in 2 channels</h1>
+          <h1>
+            <%= Tilex.SharedView.pluralize(@posts_count, "post") %> in
+            <%= Tilex.SharedView.pluralize(@channels_count, "channel") %>
+          </h1>
         </header>
         <ul class="post_list" id="channels">
 

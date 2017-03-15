@@ -19,7 +19,7 @@ defmodule Features.VisitorViewsStatsTest do
     visit(session, "/statistics")
     channels = find(session, Query.css(".stats_column ul#channels"))
 
-    query = Query.css(".stats_column header", text: "5 posts in 2 channels")
+    query = Query.css(".stats_column header", text: "4 posts in 2 channels")
     channels_header = find(session, query)
     assert(channels_header)
 

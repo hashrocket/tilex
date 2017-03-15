@@ -37,10 +37,15 @@ defmodule Tilex.Stats do
                             limit: 10,
                             select: {p.title, p.likes, p.slug, c.name})
 
+    posts_count = Tilex.Repo.one(from p in "posts", select: fragment("count(*)"))
+    channels_count = Tilex.Repo.one(from c in "channels", select: fragment("count(*)"))
+
     data = [
       channels: Repo.all(posts_by_channels_count),
       most_liked_posts: Repo.all(most_liked_posts),
-      posts_for_days: posts_for_days
+      posts_for_days: posts_for_days,
+      posts_count: posts_count,
+      channels_count: channels_count
     ]
 
     data
