@@ -7,4 +7,8 @@ defmodule Tilex.AuthController do
     |> put_flash(:info, "Signed in")
     |> redirect(to: "/")
   end
+
+  def index(conn, _params) do
+    redirect conn, to: "/auth/google"
+  end
 end

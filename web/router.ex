@@ -17,6 +17,7 @@ defmodule Tilex.Router do
   scope "/", Tilex do
     pipe_through :browser # Use the default browser stack
 
+    get "/admin", AuthController, :index
     get "/auth/:provider", AuthController, :request
     get "/auth/:provider/callback", AuthController, :callback
     post "/auth/:provider/callback", AuthController, :callback
