@@ -18,7 +18,17 @@ defmodule Tilex.AuthControllerTest do
     conn = get conn, auth_path(conn, :callback, "google")
 
     assert redirected_to(conn) == "/"
-    assert Map.get(conn, :private) |> Map.get(:phoenix_flash) == %{"info" => "Signed in with developer@hashrocket.com"}
+
+    flash_info =
+      conn
+      |> Map.get(:private)
+      |> Map.get(:phoenix_flash)
+      |> Map.get("info")
+    assert flash_info = "Signed in with developer@hashrocket.com"
+
+    new_developer =
+      Tilex.Repo.get_by!(Tilex.Developer, google_id: "186823978541230597895")
+    assert new_developer.email == "developer@hashrocket.com"
   end
 
   test "GET /auth/google/callback with other email domain", %{conn: conn} do

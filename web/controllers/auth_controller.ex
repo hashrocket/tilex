@@ -4,11 +4,11 @@ defmodule Tilex.AuthController do
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     case authenticate(auth) do
-      {:ok, email, _name, _uid} ->
+      {:ok, developer} ->
         conn
-        |> put_flash(:info, "Signed in with #{email}")
+        |> put_flash(:info, "Signed in with #{developer.email}")
         |> redirect(to: "/")
-      {:error, email} ->
+      {:error, email} when is_binary(email) ->
         conn
         |> put_flash(:info, "#{email} is not a valid email address")
         |> redirect(to: "/")
@@ -25,7 +25,15 @@ defmodule Tilex.AuthController do
 
     case String.match?(email, ~r/@hashrocket.com$/) do
       true ->
-        {:ok, email, name, uid}
+        attrs = %{
+          email: email,
+          username: name,
+          google_id: uid
+        }
+
+        attrs
+        |> Tilex.Developer.create_developer()
+        |> Tilex.Repo.insert()
       _ ->
         {:error, email}
     end
