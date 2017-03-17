@@ -4,15 +4,11 @@ defmodule Tilex.AuthControllerTest do
   alias Tilex.Factory
 
   test "GET /auth/google/callback with hashrocket email", %{conn: conn} do
-    ueberauth_auth = %Ueberauth.Auth{
-      info: %Ueberauth.Auth.Info{
-        email: "developer@hashrocket.com",
-        first_name: "Ricky",
-        last_name: "Rocketeer",
-        name: "Ricky Rocketeer"
-      },
-      uid: "186823978541230597895"
-    }
+    ueberauth_auth =
+      ueberauth_struct("developer@hashrocket.com",
+                       "Ricky Rocketeer",
+                       "186823978541230597895")
+
     conn =
       conn
       |> assign(:ueberauth_auth, ueberauth_auth)
@@ -43,15 +39,11 @@ defmodule Tilex.AuthControllerTest do
       Tilex.Repo.get_by!(Tilex.Developer, google_id: "126456978541230597123")
     assert existing_developer.email == "rebecca@hashrocket.com"
 
-    ueberauth_auth = %Ueberauth.Auth{
-      info: %Ueberauth.Auth.Info{
-        email: "rebecca@hashrocket.com",
-        first_name: "Rebecca",
-        last_name: "Rocketeer",
-        name: "Rebecca Rocketeer"
-      },
-      uid: "126456978541230597123"
-    }
+    ueberauth_auth =
+      ueberauth_struct("rebecca@hashrocket.com",
+                       "Rebecca Rocketeer",
+                       "126456978541230597123")
+
     conn =
       conn
       |> assign(:ueberauth_auth, ueberauth_auth)
@@ -69,15 +61,11 @@ defmodule Tilex.AuthControllerTest do
   end
 
   test "GET /auth/google/callback with other email domain", %{conn: conn} do
-    ueberauth_auth = %Ueberauth.Auth{
-      info: %Ueberauth.Auth.Info{
-        email: "developer@gmail.com",
-        first_name: "Rando",
-        last_name: "Programmer",
-        name: "Rando Programmer"
-      },
-      uid: "186823978541230597895"
-    }
+    ueberauth_auth =
+      ueberauth_struct("developer@gmail.com",
+                       "Rando Programmer",
+                       "186823978541230597895")
+
     conn =
       conn
       |> assign(:ueberauth_auth, ueberauth_auth)
@@ -85,6 +73,22 @@ defmodule Tilex.AuthControllerTest do
     conn = get conn, auth_path(conn, :callback, "google")
 
     assert redirected_to(conn) == "/"
-    assert Map.get(conn, :private) |> Map.get(:phoenix_flash) == %{"info" => "developer@gmail.com is not a valid email address"}
+
+    flash_info =
+      conn
+      |> Map.get(:private)
+      |> Map.get(:phoenix_flash)
+      |> Map.get("info")
+    assert flash_info == "developer@gmail.com is not a valid email address"
+  end
+
+  defp ueberauth_struct(email, name, uid) do
+    %Ueberauth.Auth{
+      info: %Ueberauth.Auth.Info{
+        email: email,
+        name: name
+      },
+      uid: uid
+    }
   end
 end
