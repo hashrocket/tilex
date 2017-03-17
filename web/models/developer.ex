@@ -15,7 +15,15 @@ defmodule Tilex.Developer do
     |> validate_required([:email, :username, :google_id])
   end
 
-  def create_developer(attrs) do
-    changeset(%Tilex.Developer{}, attrs)
+  def find_or_create(repo, attrs) do
+    google_id = Map.get(attrs, :google_id)
+
+    case repo.get_by(Tilex.Developer, google_id: google_id) do
+      %Tilex.Developer{} = developer ->
+        {:ok, developer}
+      _ ->
+        changeset(%Tilex.Developer{}, attrs)
+        |> repo.insert()
+    end
   end
 end

@@ -1,6 +1,8 @@
 defmodule Tilex.AuthControllerTest do
   use Tilex.ConnCase#, async: true
 
+  alias Tilex.Factory
+
   test "GET /auth/google/callback with hashrocket email", %{conn: conn} do
     ueberauth_auth = %Ueberauth.Auth{
       info: %Ueberauth.Auth.Info{
@@ -29,6 +31,41 @@ defmodule Tilex.AuthControllerTest do
     new_developer =
       Tilex.Repo.get_by!(Tilex.Developer, google_id: "186823978541230597895")
     assert new_developer.email == "developer@hashrocket.com"
+  end
+
+  test "GET /auth/google/callback with existing hashrocket email", %{conn: conn} do
+    Factory.insert!(:developer,
+                    email: "rebecca@hashrocket.com",
+                    name: "Rebecca Rocketeer",
+                    google_id: "126456978541230597123"
+                  )
+    existing_developer =
+      Tilex.Repo.get_by!(Tilex.Developer, google_id: "126456978541230597123")
+    assert existing_developer.email == "rebecca@hashrocket.com"
+
+    ueberauth_auth = %Ueberauth.Auth{
+      info: %Ueberauth.Auth.Info{
+        email: "rebecca@hashrocket.com",
+        first_name: "Rebecca",
+        last_name: "Rocketeer",
+        name: "Rebecca Rocketeer"
+      },
+      uid: "126456978541230597123"
+    }
+    conn =
+      conn
+      |> assign(:ueberauth_auth, ueberauth_auth)
+
+    conn = get conn, auth_path(conn, :callback, "google")
+
+    assert redirected_to(conn) == "/"
+
+    flash_info =
+      conn
+      |> Map.get(:private)
+      |> Map.get(:phoenix_flash)
+      |> Map.get("info")
+    assert flash_info = "Signed in with rebecca@hashrocket.com"
   end
 
   test "GET /auth/google/callback with other email domain", %{conn: conn} do

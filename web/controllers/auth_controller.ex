@@ -31,9 +31,7 @@ defmodule Tilex.AuthController do
           google_id: uid
         }
 
-        attrs
-        |> Tilex.Developer.create_developer()
-        |> Tilex.Repo.insert()
+        Tilex.Developer.find_or_create(Tilex.Repo, attrs)
       _ ->
         {:error, email}
     end
