@@ -28,7 +28,7 @@ defmodule Tilex.Router do
     get "/:name", ChannelController, :show
 
     get "/", PostController, :index
-    resources "/posts", PostController, only: [:index, :show, :new, :create], param: "slug"
+    resources "/posts", PostController, only: [:index, :show, :new, :create], param: "titled_slug"
   end
 
   # Other scopes may use custom stacks.

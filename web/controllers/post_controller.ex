@@ -13,7 +13,8 @@ defmodule Tilex.PostController do
     render(conn, "index.html", posts: posts)
   end
 
-  def show(conn, %{"slug" => slug}) do
+  def show(conn, %{"titled_slug" => titled_slug}) do
+    [slug|_] = titled_slug |> String.split("-")
     post = Repo.get_by!(Post, slug: slug)
            |> Repo.preload([:channel])
     render(conn, "show.html", post: post)

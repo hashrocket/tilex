@@ -12,6 +12,13 @@ defmodule Tilex.Post do
     timestamps()
   end
 
+  def slugified_title(title) do
+    title
+      |> String.downcase
+      |> String.replace(~r/[^A-Za-z0-9\s-]/, "")
+      |> String.replace(~r/(\s|-)+/, "-")
+  end
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
@@ -53,6 +60,12 @@ defmodule Tilex.Post do
       |> (&put_change(changeset, :slug, &1)).()
     else
       changeset
+    end
+  end
+
+  defimpl Phoenix.Param, for: Tilex.Post do
+    def to_param(%{slug: slug, title: title}) do
+      "#{slug}-#{Tilex.Post.slugified_title(title)}"
     end
   end
 end
