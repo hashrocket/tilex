@@ -9,9 +9,7 @@ defmodule Tilex.AuthControllerTest do
                        "Ricky Rocketeer",
                        "186823978541230597895")
 
-    conn =
-      conn
-      |> assign(:ueberauth_auth, ueberauth_auth)
+    conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
     conn = get conn, auth_path(conn, :callback, "google")
 
@@ -44,9 +42,7 @@ defmodule Tilex.AuthControllerTest do
                        "Rebecca Rocketeer",
                        "126456978541230597123")
 
-    conn =
-      conn
-      |> assign(:ueberauth_auth, ueberauth_auth)
+    conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
     conn = get conn, auth_path(conn, :callback, "google")
 
@@ -66,9 +62,7 @@ defmodule Tilex.AuthControllerTest do
                        "Rando Programmer",
                        "186823978541230597895")
 
-    conn =
-      conn
-      |> assign(:ueberauth_auth, ueberauth_auth)
+    conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
     conn = get conn, auth_path(conn, :callback, "google")
 
