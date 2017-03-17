@@ -2,13 +2,32 @@ defmodule Tilex.AuthController do
   use Tilex.Web, :controller
   plug Ueberauth
 
-  def callback(%{assigns: %{ueberauth_auth: _auth}} = conn, _params) do
-    conn
-    |> put_flash(:info, "Signed in")
-    |> redirect(to: "/")
+  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+    case authenticate(auth) do
+      {:ok, email, _name, _uid} ->
+        conn
+        |> put_flash(:info, "Signed in with #{email}")
+        |> redirect(to: "/")
+      {:error, email} ->
+        conn
+        |> put_flash(:info, "#{email} is not a valid email address")
+        |> redirect(to: "/")
+    end
   end
 
   def index(conn, _params) do
     redirect conn, to: "/auth/google"
+  end
+
+  defp authenticate(%{info: info, uid: uid}) do
+    email = Map.get(info, :email)
+    name  = Map.get(info, :name)
+
+    case String.match?(email, ~r/@hashrocket.com$/) do
+      true ->
+        {:ok, email, name, uid}
+      _ ->
+        {:error, email}
+    end
   end
 end
