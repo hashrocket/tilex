@@ -14,13 +14,7 @@ defmodule Tilex.AuthControllerTest do
     conn = get conn, auth_path(conn, :callback, "google")
 
     assert redirected_to(conn) == "/"
-
-    flash_info =
-      conn
-      |> Map.get(:private)
-      |> Map.get(:phoenix_flash)
-      |> Map.get("info")
-    assert flash_info == "Signed in with developer@hashrocket.com"
+    assert flash_info(conn) == "Signed in with developer@hashrocket.com"
 
     new_developer =
       Tilex.Repo.get_by!(Tilex.Developer, google_id: "186823978541230597895")
@@ -47,13 +41,7 @@ defmodule Tilex.AuthControllerTest do
     conn = get conn, auth_path(conn, :callback, "google")
 
     assert redirected_to(conn) == "/"
-
-    flash_info =
-      conn
-      |> Map.get(:private)
-      |> Map.get(:phoenix_flash)
-      |> Map.get("info")
-    assert flash_info == "Signed in with rebecca@hashrocket.com"
+    assert flash_info(conn) == "Signed in with rebecca@hashrocket.com"
   end
 
   test "GET /auth/google/callback with other email domain", %{conn: conn} do
@@ -67,13 +55,14 @@ defmodule Tilex.AuthControllerTest do
     conn = get conn, auth_path(conn, :callback, "google")
 
     assert redirected_to(conn) == "/"
+    assert flash_info(conn) == "developer@gmail.com is not a valid email address"
+  end
 
-    flash_info =
-      conn
-      |> Map.get(:private)
-      |> Map.get(:phoenix_flash)
-      |> Map.get("info")
-    assert flash_info == "developer@gmail.com is not a valid email address"
+  defp flash_info(conn) do
+    conn
+    |> Map.get(:private)
+    |> Map.get(:phoenix_flash)
+    |> Map.get("info")
   end
 
   defp ueberauth_struct(email, name, uid) do
