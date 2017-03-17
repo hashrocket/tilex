@@ -6,8 +6,9 @@ defmodule VisitorViewsPostTest do
     Factory.insert!(:post, title: "A special post")
 
     body = visit(session, "/")
-      |> click_link("permalink")
-      |> get_text("body")
+      |> click(Query.link("permalink"))
+      |> find(Query.css("body"))
+      |> Element.text
 
     assert body =~ ~r/A special post/
   end
@@ -18,7 +19,8 @@ defmodule VisitorViewsPostTest do
     post_in_marketing_channel = Factory.insert!(:post, channel: marketing_channel)
 
     copy = visit(session, post_path(Endpoint, :show, post_in_marketing_channel.slug))
-      |> get_text(".more-info")
+           |> find(Query.css(".more-info"))
+           |> Element.text
 
     {:ok, marketing_content} = File.read("web/templates/shared/_elixir.html.eex")
     assert copy =~ String.slice(marketing_content, 0, 10)

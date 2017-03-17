@@ -1,0 +1,91 @@
+<section id="statistics">
+  <header class="page_head">
+    <h1>Statistics</h1>
+  </header>
+  <div class="wrapper">
+    <article>
+      <header>
+        <h1>Last 30 days</h1>
+      </header>
+      <ul class="activity_chart" id="activity">
+        <%= for [date, count] <- @posts_for_days do %>
+          <li data-amount="<%= count %>" data-date="<%= Timex.format!(date, "%a, %b %-e", :strftime)%>">
+            <div class="activity_chart_bar" style="height: <%= (count * 100) / @max_count %>%;"></div>
+          </li>
+        <% end %>
+      </ul>
+    </article>
+    <article>
+      <header>
+        <h1>Hottest TILs</h1>
+      </header>
+      <ul class="post_list">
+        <li>
+          <a href="/posts/d93dd75574-turn-off-folds-in-my-vim-buffer"><b>
+              Turn off folds in my vim buffer!
+            </b>
+            <small>
+              #vim
+              <span>•</span>
+              2 likes
+            </small>
+          </a>
+        </li>
+      </ul>
+    </article>
+    <article class="most_liked_posts">
+      <header>
+        <h1>Most liked TILs</h1>
+      </header>
+      <ul class="post_list">
+        <%= for {post_title, post_likes, post_slug, channel_name} <- @most_liked_posts do %>
+          <li>
+            <a href="/posts/<%= post_slug %>"><b>
+                <%= post_title %>
+              </b>
+              <small>
+                #<%= channel_name %>
+                <span>•</span>
+                <%= post_likes %> likes
+              </small>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </article>
+    <div class="stats_column">
+      <article>
+        <header>
+          <h1>
+            <%= Tilex.SharedView.pluralize(@posts_count, "post") %> in
+            <%= Tilex.SharedView.pluralize(@channels_count, "channel") %>
+          </h1>
+        </header>
+        <ul class="post_list" id="channels">
+
+          <%= for {count, channel} <- @channels do %>
+            <li>
+              <a href="/<%= channel %>"><b>#<%= channel %></b>
+                <small><%= count %> posts</small>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </article>
+    </div>
+    <div class="stats_column right">
+      <article>
+        <header>
+          <h1>28 authors</h1>
+        </header>
+        <ul class="post_list" id="authors">
+          <li>
+            <a href="/authors/joshbranchaud"><b>joshbranchaud</b>
+              <small>342 posts</small>
+            </a>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
