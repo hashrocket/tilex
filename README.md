@@ -87,6 +87,13 @@ https://tilex.herokuapp.com
 7. Push to the branch (`git push origin my-new-feature`)
 8. Create new Pull Request
 
+All migrations should be able to be run and roll back. Verify this with
+our built-in command:
+
+```
+$ mix ecto.twiki
+```
+
 Bug reports and pull requests are welcome on GitHub at
 https://github.com/hashrocket/tilex. This project is intended to be a safe,
 welcoming space for collaboration, and contributors are expected to adhere to
