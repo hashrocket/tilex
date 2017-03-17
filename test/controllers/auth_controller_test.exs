@@ -26,7 +26,7 @@ defmodule Tilex.AuthControllerTest do
       |> Map.get(:private)
       |> Map.get(:phoenix_flash)
       |> Map.get("info")
-    assert flash_info = "Signed in with developer@hashrocket.com"
+    assert flash_info == "Signed in with developer@hashrocket.com"
 
     new_developer =
       Tilex.Repo.get_by!(Tilex.Developer, google_id: "186823978541230597895")
@@ -65,7 +65,7 @@ defmodule Tilex.AuthControllerTest do
       |> Map.get(:private)
       |> Map.get(:phoenix_flash)
       |> Map.get("info")
-    assert flash_info = "Signed in with rebecca@hashrocket.com"
+    assert flash_info == "Signed in with rebecca@hashrocket.com"
   end
 
   test "GET /auth/google/callback with other email domain", %{conn: conn} do
