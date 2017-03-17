@@ -4,8 +4,8 @@
     "type": "model",
     "alternate":"test/models/{}_test.exs",
     "template":[
-      "defmodule {project|camelcase|basename}.{camelcase|dot} do",
-      "  use {project|camelcase|basename}.Web, :model",
+      "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot} do",
+      "  use {project|camelcase|capitalize|basename}.Web, :model",
       "",
       "end",
     ]
@@ -16,8 +16,8 @@
     "type": "tmodel",
     "alternate":"web/models/{}.ex",
     "template":[
-      "defmodule {project|camelcase|basename}.{camelcase|dot}Test do",
-      "  use {project|camelcase|basename}.ModelCase#, async: true",
+      "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Test do",
+      "  use {project|camelcase|capitalize|basename}.ModelCase#, async: true",
       "",
       "end",
     ]
@@ -32,8 +32,8 @@
     "type": "controller",
     "alternate": "test/controllers/{}_controller_test.exs",
     "template":[
-      "defmodule {project|camelcase|basename}.{camelcase|dot}Controller do",
-      "  use {project|camelcase|basename}.Web, :controller" ,
+      "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Controller do",
+      "  use {project|camelcase|capitalize|basename}.Web, :controller" ,
       "",
       "end",
     ]
@@ -44,8 +44,8 @@
     "type": "tcontroller",
     "alternate": "web/controllers/{}_controller.ex",
     "template":[
-      "defmodule {project|camelcase|basename}.{camelcase|dot}ControllerTest do",
-      "  use {project|camelcase|basename}.ConnCase#, async: true",
+      "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}ControllerTest do",
+      "  use {project|camelcase|capitalize|basename}.ConnCase#, async: true",
       "",
       "end",
     ]
@@ -56,8 +56,8 @@
     "type": "view",
     "alternate": "test/views/{}_view_test.exs",
     "template":[
-      "defmodule {project|camelcase|basename}.{camelcase|dot}View do",
-      "  use {project|camelcase|basename}.Web, :view" ,
+      "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}View do",
+      "  use {project|camelcase|capitalize|basename}.Web, :view" ,
       "",
       "end",
     ]
@@ -68,8 +68,8 @@
     "type": "tview",
     "alternate": "web/views/{}_view.ex",
     "template":[
-      "defmodule {project|camelcase|basename}.{camelcase|dot}ViewTest do",
-      "  use {project|camelcase|basename}.ConnCase#, async: true",
+      "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}ViewTest do",
+      "  use {project|camelcase|capitalize|basename}.ConnCase#, async: true",
       "",
       "end",
     ]
@@ -78,7 +78,7 @@
   "web/channels/*_channel.ex":{
     "type": "channel",
     "template":[
-      "defmodule {project|camelcase|basename}.{camelcase|dot}Channel do",
+      "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Channel do",
       "  use Phoenix.Channel",
       "",
       "end"
@@ -97,7 +97,7 @@
     "type": "lib",
     "alternate": "test/lib/{}_test.exs",
     "template":[
-      "defmodule {camelcase|dot} do",
+      "defmodule {camelcase|capitalize|dot} do",
       "",
       "end",
     ]
@@ -106,7 +106,7 @@
   "test/lib/*.exs":{
     "alternate": "lib/{}.ex",
     "template":[
-      "defmodule {camelcase|dot} do",
+      "defmodule {camelcase|capitalize|dot} do",
       "  use ExUnit.Case",
       "",
       "end",
@@ -118,7 +118,7 @@
     "type": "test",
     "alternate": "{}.ex",
     "template":[
-      "defmodule {camelcase|dot}Test do",
+      "defmodule {camelcase|capitalize|dot}Test do",
       "  use ExUnit.Case#, async: true",
       "",
       "end",
@@ -136,7 +136,7 @@
   "test/support/*.ex":{
     "type":"support",
     "template":[
-      "defmodule {project|camelcase|basename}.{camelcase|dot} do",
+      "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot} do",
       "",
       "  use ExUnit.CaseTemplate",
       "",
