@@ -20,6 +20,10 @@ psql tilex_dev -a -f migrate.sql
 
 pg_dump -a -Fc tilex_dev -n public --encoding=utf-8 > tilex.dump
 
+
+# Make sure no data exists
+heroku pg:psql -c "truncate channels cascade; truncate schema_migrations;" -a tilex
+
 # get the postgres connection string
 heroku config -a tilex | grep DATABASE_URL
 
