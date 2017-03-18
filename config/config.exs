@@ -24,7 +24,12 @@ config :logger, :console,
 
 config :ueberauth, Ueberauth,
   providers: [
-    google: {Ueberauth.Strategy.Google, [approval_prompt: "force", access_type: "offline"]}
+    google: {Ueberauth.Strategy.Google, [
+        approval_prompt: "force",
+        access_type: "offline",
+        default_scope: "email profile",
+        hd: "hashrocket.com"
+      ]}
   ]
 
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,

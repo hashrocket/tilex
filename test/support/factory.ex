@@ -1,6 +1,6 @@
 defmodule Tilex.Factory do
 
-  alias Tilex.{Channel, Post, Repo}
+  alias Tilex.{Channel, Developer, Post, Repo}
   import Ecto.Query
 
   def build(:channel) do
@@ -16,6 +16,14 @@ defmodule Tilex.Factory do
       body: "A body",
       channel: find_first_or_build(:channel),
       slug: Post.generate_slug(),
+    }
+  end
+
+  def build(:developer) do
+    %Developer{
+      email: "developer@hashrocket.com",
+      username: "Ricky Rocketeer",
+      google_id: "186823978541230597895"
     }
   end
 
