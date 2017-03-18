@@ -48,4 +48,10 @@ defmodule Tilex.PostTest do
     changeset = Post.changeset(%Post{slug: slug}, @valid_attrs)
     assert Ecto.Changeset.get_field(changeset, :slug) == slug
   end
+
+  test "can slugify its own title" do
+    title = "Hacking Your Shower!!!"
+    result = "hacking-your-shower"
+    assert Post.slugified_title(title) == result
+  end
 end

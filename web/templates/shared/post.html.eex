@@ -3,13 +3,13 @@
     <section>
       <div class="post__content copy">
         <h1>
-          <%= link(@post.title, to: post_path(@conn, :show, @post.slug)) %>
+          <%= link(@post.title, to: post_path(@conn, :show, @post)) %>
         </h1>
         <%= raw Tilex.Markdown.to_html(@post.body) %>
         <footer>
           <p>
             <br/>
-            <%= link(display_date(@post), to: post_path(@conn, :show, @post.slug), class: "post__permalink") %>
+            <%= link(display_date(@post), to: post_path(@conn, :show, @post), class: "post__permalink") %>
           </p>
         </footer>
       </div>
@@ -19,7 +19,7 @@
             <%= link("##{@post.channel.name}", to: channel_path(@conn, :show, @post.channel.name), class: "post__tag-link") %>
           </li>
           <li>
-            <%= link("permalink", to: post_path(@conn, :show, @post.slug), class: "post__permalink") %>
+            <%= link("permalink", to: post_path(@conn, :show, @post), class: "post__permalink") %>
           </li>
           <li>
             <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>

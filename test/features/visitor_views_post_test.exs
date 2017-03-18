@@ -25,4 +25,21 @@ defmodule VisitorViewsPostTest do
     {:ok, marketing_content} = File.read("web/templates/shared/_elixir.html.eex")
     assert copy =~ String.slice(marketing_content, 0, 10)
   end
+
+  test "and sees a special slug", %{session: session} do
+
+    post = Factory.insert!(:post, title: "Super Sluggable Title")
+    url = visit(session, post_path(Endpoint, :show, post))
+      |> current_url
+
+    assert url =~ "#{post.slug}-super-sluggable-title"
+
+    changeset = Post.changeset(post, %{title: "Alternate Also Cool Title"})
+    Repo.update!(changeset)
+    post = Repo.get(Post, post.id)
+    url = visit(session, post_path(Endpoint, :show, post))
+      |> current_url
+
+    assert url =~ "#{post.slug}-alternate-also-cool-title"
+  end
 end
