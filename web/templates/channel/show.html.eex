@@ -4,7 +4,7 @@
       <%= channel_header(@posts, @channel) %>
     </h1>
   </header>
-  <%= for post <- @posts do %>
-    <%= render Tilex.SharedView, "post.html", conn: @conn, post: post %>
-  <% end %>
+  <%= render Tilex.SharedView, "_posts_list.html", conn: @conn, posts: @posts %>
 </section>
+
+<%= render Tilex.SharedView, "_pagination.html", conn: @conn, page: @page, posts: @posts %>

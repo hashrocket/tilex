@@ -33,4 +33,28 @@ defmodule VisitorVisitsHomepageTest do
     assert post_body   =~ ~r/It starts with Rails and ends with Elixir/
     assert post_footer =~ ~r/#smalltalk/i
   end
+
+  test "the page has a list of paginated posts", %{session: session} do
+
+    channel = Factory.insert!(:channel, name: "smalltalk")
+
+    Factory.insert_list!(:post, 51,
+      title: "A post about porting Rails applications to Phoenix",
+      body: "It starts with Rails and ends with Elixir",
+      channel: channel
+    )
+
+    visit(session, "/")
+
+    assert find(session, Query.css("article.post", count: 50))
+
+    assert find(session, Query.css("nav.pagination", visible: true))
+    click(session, Query.link("older TILs"))
+
+    assert find(session, Query.css("article.post", count: 1))
+
+    click(session, Query.link("newer TILs"))
+
+    assert find(session, Query.css("article.post", count: 50))
+  end
 end
