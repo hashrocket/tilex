@@ -1,7 +1,7 @@
 defmodule Tilex.Posts do
   import Ecto.Query
 
-  alias Tilex.Repo
+  alias Tilex.{Channel, Post, Repo}
 
   def all(page) do
     posts(page)
@@ -9,14 +9,15 @@ defmodule Tilex.Posts do
   end
 
   def by_channel(channel_name, page) do
-    channel = Repo.get_by!(Tilex.Channel, name: channel_name)
+    channel = Repo.get_by!(Channel, name: channel_name)
 
     offset = (page - 1) * 50
 
-    query = from p in Tilex.Post,
+    query = from p in Post,
       order_by: [desc: p.inserted_at],
       join: c in assoc(p, :channel),
-      preload: [channel: c],
+      join: d in assoc(p, :developer),
+      preload: [channel: c, developer: d],
       limit: 51,
       offset: ^offset,
       where: p.channel_id == ^channel.id
@@ -27,10 +28,11 @@ defmodule Tilex.Posts do
   defp posts(page) do
     offset = (page - 1) * 50
 
-    from p in Tilex.Post,
+    from p in Post,
       order_by: [desc: p.inserted_at],
       join: c in assoc(p, :channel),
-      preload: [channel: c],
+      join: d in assoc(p, :developer),
+      preload: [channel: c, developer: d],
       limit: 51,
       offset: ^offset
   end

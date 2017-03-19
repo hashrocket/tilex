@@ -15,6 +15,7 @@ defmodule Tilex.PostController do
     [slug|_] = titled_slug |> String.split("-")
     post = Repo.get_by!(Post, slug: slug)
            |> Repo.preload([:channel])
+           |> Repo.preload([:developer])
     render(conn, "show.html", post: post)
   end
 

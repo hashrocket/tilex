@@ -3,7 +3,13 @@ defmodule Tilex.PostTest do
 
   alias Tilex.Post
 
-  @valid_attrs %{body: "some content", title: "some content", channel_id: 1}
+  @valid_attrs %{
+    body: "some content",
+    title: "some content",
+    channel_id: 1,
+    developer_id: 1
+  }
+
   @invalid_attrs %{}
 
   @invalid_attrs_title %{

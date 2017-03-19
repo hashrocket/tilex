@@ -8,6 +8,7 @@
         <%= raw Tilex.Markdown.to_html(@post.body) %>
         <footer>
           <p>
+            <%= link(@post.developer.username, to: "#") %>
             <br/>
             <%= link(display_date(@post), to: post_path(@conn, :show, @post), class: "post__permalink") %>
           </p>
