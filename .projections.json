@@ -179,6 +179,7 @@
   "test/fixtures/*":{ "type":"fixture", },
   "priv/repo/migrations/*.exs":{ "type": "migration" },
   "priv/repo/seeds.exs":{ "type": "seeds" },
+  "test/support/factory.ex":{ "type": "factory" },
 
   "*.exs": { "console": "iex -S mix", },
   "*.ex": { "console": "iex -S mix", },
