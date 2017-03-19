@@ -35,6 +35,13 @@ defmodule Tilex.Factory do
     Repo.insert! build(factory_name, attributes)
   end
 
+  def insert_list!(factory_name, count, attributes \\ []) do
+    1..count
+    |> Enum.each(fn(i) ->
+      Repo.insert! build(factory_name, attributes)
+    end)
+  end
+
   defp find_first_or_build(:channel) do
     Repo.one(from(Channel, limit: 1)) || build(:channel)
   end

@@ -5,12 +5,10 @@ defmodule Tilex.PostController do
 
   alias Tilex.{Post, Channel}
 
-  def index(conn, _params) do
-    posts = Repo.all from p in Post,
-      order_by: [desc: p.inserted_at],
-      join: c in assoc(p, :channel),
-      preload: [channel: c]
-    render(conn, "index.html", posts: posts)
+  def index(conn, params) do
+    page = Map.get(params, "page", "1") |> String.to_integer
+    posts = Tilex.Posts.all(page)
+    render(conn, "index.html", posts: posts, page: page)
   end
 
   def show(conn, %{"titled_slug" => titled_slug}) do

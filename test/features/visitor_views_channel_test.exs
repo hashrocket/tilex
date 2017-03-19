@@ -21,4 +21,28 @@ defmodule Features.VisitorViewsChannelTest do
     assert page_header =~ ~r/1 post about #phoenix/
     assert find(session, Query.css("article.post"))
   end
+
+  test "the page has a list of paginated posts", %{session: session} do
+
+    channel = Factory.insert!(:channel, name: "smalltalk")
+
+    Factory.insert_list!(:post, 51,
+      title: "A post about porting Rails applications to Phoenix",
+      body: "It starts with Rails and ends with Elixir",
+      channel: channel
+    )
+
+    visit(session, "/smalltalk")
+
+    assert find(session, Query.css("article.post", count: 50))
+
+    assert find(session, Query.css("nav.pagination", visible: true))
+    click(session, Query.link("older TILs"))
+
+    assert find(session, Query.css("article.post", count: 1))
+
+    click(session, Query.link("newer TILs"))
+
+    assert find(session, Query.css("article.post", count: 50))
+  end
 end
