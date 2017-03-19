@@ -8,6 +8,7 @@ defmodule Tilex.Post do
     field :likes, :integer, default: 1
 
     belongs_to :channel, Tilex.Channel
+    belongs_to :developer, Tilex.Developer
 
     timestamps()
   end
@@ -24,8 +25,8 @@ defmodule Tilex.Post do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :body, :channel_id, :likes])
-    |> validate_required([:title, :body, :channel_id, :likes])
+    |> cast(params, [:title, :body, :developer_id, :channel_id, :likes])
+    |> validate_required([:title, :body, :developer_id, :channel_id, :likes])
     |> validate_length(:title, max: 50)
     |> validate_length_of_body
     |> validate_number(:likes, greater_than: 0)

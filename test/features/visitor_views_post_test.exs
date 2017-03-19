@@ -3,14 +3,15 @@ defmodule VisitorViewsPostTest do
 
   test "the page shows a post", %{session: session} do
 
-    Factory.insert!(:post, title: "A special post")
+    developer = Factory.insert!(:developer, username: "makinpancakes")
+    post = Factory.insert!(:post, title: "A special post", developer: developer)
 
-    body = visit(session, "/")
-      |> click(Query.link("permalink"))
+    body = visit(session, post_path(Endpoint, :show, post))
       |> find(Query.css("body"))
       |> Element.text
 
     assert body =~ ~r/A special post/
+    assert body =~ ~r/makinpancakes/
   end
 
   test "and sees marketing copy, if it exists", %{session: session} do
@@ -18,7 +19,7 @@ defmodule VisitorViewsPostTest do
     marketing_channel = Factory.insert!(:channel, name: "elixir")
     post_in_marketing_channel = Factory.insert!(:post, channel: marketing_channel)
 
-    copy = visit(session, post_path(Endpoint, :show, post_in_marketing_channel.slug))
+    copy = visit(session, post_path(Endpoint, :show, post_in_marketing_channel))
            |> find(Query.css(".more-info"))
            |> Element.text
 

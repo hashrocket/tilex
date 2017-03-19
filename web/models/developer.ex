@@ -6,6 +6,8 @@ defmodule Tilex.Developer do
     field :username, :string
     field :google_id, :string
 
+    has_many :posts, Tilex.Post
+
     timestamps()
   end
 
