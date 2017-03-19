@@ -21,7 +21,7 @@ elixir_channel = Repo.insert!(%Channel{name: "elixir", twitter_hashtag: "myelixi
 erlang_channel = Repo.insert!(%Channel{name: "erlang", twitter_hashtag: "erlang"})
 
 developer= Repo.insert!(%Developer{email: "developer@hashrocket.com",
-  username: "Ricky Rocketeer",
+  username: "rickyrocketeer",
   google_id: "186823978541230597895"
 })
 
