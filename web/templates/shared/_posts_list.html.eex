@@ -1,4 +1,3 @@
-
-  <%= for post <- Enum.take(@posts, 50) do %>
-    <%= render Tilex.SharedView, "post.html", conn: @conn, post: post %>
-  <% end %>
+<%= for post <- Enum.take(@posts, 50) do %>
+  <%= render Tilex.SharedView, "post.html", conn: @conn, post: post %>
+<% end %>

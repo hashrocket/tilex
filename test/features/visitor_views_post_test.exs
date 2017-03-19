@@ -20,7 +20,7 @@ defmodule VisitorViewsPostTest do
     marketing_channel = Factory.insert!(:channel, name: "elixir")
     post_in_marketing_channel = Factory.insert!(:post, channel: marketing_channel)
 
-    copy = visit(session, post_path(Endpoint, :show, post_in_marketing_channel.slug))
+    copy = visit(session, post_path(Endpoint, :show, post_in_marketing_channel))
            |> find(Query.css(".more-info"))
            |> Element.text
 
