@@ -3,14 +3,16 @@ defmodule VisitorViewsPostTest do
 
   test "the page shows a post", %{session: session} do
 
-    Factory.insert!(:post, title: "A special post")
+    developer = Factory.insert!(:developer, username: "makinpancakes")
+    post = Factory.insert!(:post, title: "A special post", developer: developer)
 
-    body = visit(session, "/")
+    body = visit(session, post_path(Endpoint, :show, post))
       |> click(Query.link("permalink"))
       |> find(Query.css("body"))
       |> Element.text
 
     assert body =~ ~r/A special post/
+    assert body =~ ~r/makinpancakes/
   end
 
   test "and sees marketing copy, if it exists", %{session: session} do

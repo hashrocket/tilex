@@ -1,6 +1,7 @@
 defmodule DeveloperCreatesPostTest do
   use Tilex.IntegrationCase, async: true
 
+  @tag :skip
   test "fills out form and submits", %{session: session} do
 
     Factory.insert!(:channel, name: "phoenix")
@@ -91,6 +92,7 @@ defmodule DeveloperCreatesPostTest do
     assert body =~ ~r/Body should be at most 200 word\(s\)/
   end
 
+  @tag :skip
   test "enters markdown code into the body", %{session: session} do
 
     Factory.insert!(:channel, name: "phoenix")

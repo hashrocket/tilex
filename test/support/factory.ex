@@ -15,6 +15,7 @@ defmodule Tilex.Factory do
       title: "A post",
       body: "A body",
       channel: find_first_or_build(:channel),
+      developer: build(:developer),
       slug: Post.generate_slug(),
     }
   end
@@ -37,7 +38,7 @@ defmodule Tilex.Factory do
 
   def insert_list!(factory_name, count, attributes \\ []) do
     1..count
-    |> Enum.each(fn(i) ->
+    |> Enum.each(fn(_i) ->
       Repo.insert! build(factory_name, attributes)
     end)
   end
