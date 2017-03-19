@@ -28,4 +28,10 @@ defmodule Tilex.Developer do
         |> repo.insert()
     end
   end
+
+  defimpl Phoenix.Param, for: Tilex.Developer do
+    def to_param(%{username: username}) do
+      username
+    end
+  end
 end

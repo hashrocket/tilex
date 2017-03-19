@@ -15,7 +15,7 @@ defmodule Tilex.Router do
   end
 
   scope "/", Tilex do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/admin", AuthController, :index
     get "/auth/:provider", AuthController, :request
@@ -26,13 +26,9 @@ defmodule Tilex.Router do
     get "/statistics", StatsController, :index
 
     get "/:name", ChannelController, :show
+    get "/authors/:name", DeveloperController, :show
 
     get "/", PostController, :index
     resources "/posts", PostController, only: [:index, :show, :new, :create], param: "titled_slug"
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Tilex do
-  #   pipe_through :api
-  # end
 end
