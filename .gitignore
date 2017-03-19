@@ -26,3 +26,5 @@ erl_crash.dump
 /screenshots
 
 .env
+
+/tmp
