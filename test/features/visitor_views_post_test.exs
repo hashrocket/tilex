@@ -7,7 +7,6 @@ defmodule VisitorViewsPostTest do
     post = Factory.insert!(:post, title: "A special post", developer: developer)
 
     body = visit(session, post_path(Endpoint, :show, post))
-      |> click(Query.link("permalink"))
       |> find(Query.css("body"))
       |> Element.text
 
