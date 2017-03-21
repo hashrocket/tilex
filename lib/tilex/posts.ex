@@ -22,7 +22,12 @@ defmodule Tilex.Posts do
       offset: ^offset,
       where: p.channel_id == ^channel.id
 
-    {Repo.all(query), channel}
+    posts_count = Repo.one(from p in "posts",
+      where: p.channel_id == ^channel.id,
+      select: fragment("count(*)")
+    )
+
+    {Repo.all(query), posts_count, channel}
   end
 
   def by_developer(username, page) do
@@ -39,7 +44,12 @@ defmodule Tilex.Posts do
       offset: ^offset,
       where: p.developer_id == ^developer.id
 
-    {Repo.all(query), developer}
+    posts_count = Repo.one(from p in "posts",
+      where: p.developer_id == ^developer.id,
+      select: fragment("count(*)")
+    )
+
+    {Repo.all(query), posts_count, developer}
   end
 
   defp posts(page) do

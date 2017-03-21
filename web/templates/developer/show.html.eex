@@ -1,7 +1,7 @@
 <section id="tag">
   <header class="page_head">
     <h1>
-      <%= developer_header(@posts, @developer) %>
+      <%= developer_header(@posts_count, @developer) %>
     </h1>
   </header>
   <%= render Tilex.SharedView, "_posts_list.html", conn: @conn, posts: @posts %>

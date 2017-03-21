@@ -3,8 +3,7 @@ defmodule Tilex.DeveloperView do
 
   alias Tilex.SharedView
 
-  def developer_header(posts, developer) do
-    count = Enum.count(posts)
-    "#{SharedView.pluralize(count, "post")} by #{developer.username}"
+  def developer_header(posts_count, developer) do
+    "#{SharedView.pluralize(posts_count, "post")} by #{developer.username}"
   end
 end
