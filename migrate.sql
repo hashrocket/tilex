@@ -1,4 +1,5 @@
 truncate channels cascade;
+truncate developers cascade;
 
 insert into channels (
   id,
@@ -16,6 +17,24 @@ from legacy.channels as lc;
 
 select setval('channels_id_seq', (select max(id) from legacy.channels));
 
+insert into developers (
+ id,
+email,
+username,
+google_id,
+inserted_at,
+updated_at
+) select
+  ld.id,
+  ld.email,
+  ld.username,
+  ld.username,
+  ld.created_at,
+  ld.updated_at
+from legacy.developers ld;
+
+select setval('developers_id_seq', (select max(id) from legacy.developers));
+
 insert into posts (
   id,
   title,
@@ -27,7 +46,8 @@ insert into posts (
   likes,
   max_likes,
   published_at,
-  tweeted
+  tweeted,
+  developer_id
 ) select
   lp.id,
   lp.title,
@@ -39,7 +59,8 @@ insert into posts (
   lp.likes,
   lp.max_likes,
   lp.published_at,
-  lp.tweeted
+  lp.tweeted,
+  lp.developer_id
 from legacy.posts as lp
 where lp.published_at is not null;
 
