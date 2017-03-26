@@ -36,19 +36,19 @@ defmodule VisitorVisitsHomepageTest do
 
   test "the page has a list of paginated posts", %{session: session} do
 
-    Factory.insert_list!(:post, 55)
+    Factory.insert_list!(:post, 5 + 1)
 
     visit(session, "/")
 
-    assert find(session, Query.css("article.post", count: 50))
+    assert find(session, Query.css("article.post", count: 5))
     assert find(session, Query.css("nav.pagination", visible: true))
 
     click(session, Query.link("older TILs"))
 
-    assert find(session, Query.css("article.post", count: 5))
+    assert find(session, Query.css("article.post", count: 1))
 
     click(session, Query.link("newer TILs"))
 
-    assert find(session, Query.css("article.post", count: 50))
+    assert find(session, Query.css("article.post", count: 5))
   end
 end

@@ -71,3 +71,5 @@ config :tilex, :basic_auth, [
   username: System.get_env("BASIC_AUTH_USERNAME"),
   password: System.get_env("BASIC_AUTH_PASSWORD"),
 ]
+
+config :tilex, :page_size, 50

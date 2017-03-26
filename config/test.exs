@@ -19,3 +19,4 @@ config :tilex, Tilex.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :wallaby, screenshot_on_failure: true
+config :tilex, :page_size, 5
