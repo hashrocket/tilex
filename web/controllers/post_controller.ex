@@ -25,7 +25,14 @@ defmodule Tilex.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
-    changeset = Post.changeset(%Post{}, post_params)
+    developer = Guardian.Plug.current_resource(conn)
+    post = %Post{}
+
+    if developer do
+      post = Map.put(post, :developer_id, developer.id)
+    end
+
+    changeset = Post.changeset(post, post_params)
 
     case Repo.insert(changeset) do
       {:ok, _user} ->

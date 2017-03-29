@@ -10,12 +10,17 @@ defmodule Tilex.Router do
     plug Tilex.Plug.BasicAuth
   end
 
+  pipeline :browser_auth do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", Tilex do
-    pipe_through :browser
+    pipe_through [:browser, :browser_auth]
 
     get "/admin", AuthController, :index
     get "/auth/:provider", AuthController, :request
