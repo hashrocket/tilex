@@ -35,6 +35,7 @@ defmodule Tilex.Mixfile do
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 1.0.3"},
       {:gettext, "~> 0.11"},
+      {:guardian, "~> 0.14"},
       {:html_sanitize_ex, "~> 1.0.0"},
       {:phoenix, "~> 1.2.1"},
       {:phoenix_ecto, "~> 3.0"},

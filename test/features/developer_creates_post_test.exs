@@ -1,10 +1,12 @@
 defmodule DeveloperCreatesPostTest do
   use Tilex.IntegrationCase, async: true
 
-  @tag :skip
   test "fills out form and submits", %{session: session} do
 
     Factory.insert!(:channel, name: "phoenix")
+    developer = Factory.insert!(:developer)
+
+    visit(session, "/admin?id=#{developer.id}")
 
     visit(session, "/posts/new")
     h1_heading = Element.text(find(session, Query.css("main header h1")))
@@ -32,6 +34,7 @@ defmodule DeveloperCreatesPostTest do
     index_h1_heading = element_text.(session, "header.site_head div h1")
     info_flash       = element_text.(session, ".alert-info")
     post_title       = element_text.(session, ".post h1")
+    session |> take_screenshot()
     post_body        = element_text.(session, ".post .copy")
     post_footer      = element_text.(session, ".post aside")
     likes_count      = element_text.(session, ".js-like-action")
@@ -46,7 +49,10 @@ defmodule DeveloperCreatesPostTest do
 
   test "cancels submission", %{session: session} do
 
+    developer = Factory.insert!(:developer)
+
     session
+    |> visit("/admin?id=#{developer.id}")
     |> visit("/posts/new")
     |> click(Query.link('cancel'))
 
@@ -57,7 +63,10 @@ defmodule DeveloperCreatesPostTest do
 
   test "fails to enter things", %{session: session} do
 
+    developer = Factory.insert!(:developer)
+
     session
+    |> visit("/admin?id=#{developer.id}")
     |> visit("/posts/new")
     |> click(Query.button("Submit"))
 
@@ -70,7 +79,10 @@ defmodule DeveloperCreatesPostTest do
 
   test "enters a title that is too long", %{session: session} do
 
+    developer = Factory.insert!(:developer)
+
     session
+    |> visit("/admin?id=#{developer.id}")
     |> visit("/posts/new")
     |> fill_in(Query.text_field("Title"), with: String.duplicate("I can codez ", 10))
     |> click(Query.button("Submit"))
@@ -81,8 +93,10 @@ defmodule DeveloperCreatesPostTest do
   end
 
   test "enters a body that is too long", %{session: session} do
+    developer = Factory.insert!(:developer)
 
     session
+    |> visit("/admin?id=#{developer.id}")
     |> visit("/posts/new")
     |> fill_in(Query.text_field("Body"), with: String.duplicate("wordy ", 201))
     |> click(Query.button("Submit"))

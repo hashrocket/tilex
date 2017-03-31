@@ -47,7 +47,9 @@ config :tilex, Tilex.Repo,
 #
 #     config :tilex, Tilex.Endpoint,
 #       force_ssl: [hsts: true]
-#
+#​
+78
+
 # Check `Plug.SSL` for all available options in `force_ssl`.
 
 # ## Using releases
@@ -73,3 +75,4 @@ config :tilex, :basic_auth, [
 ]
 
 config :tilex, :page_size, 50
+config :tilex, :auth_controller, AuthController
