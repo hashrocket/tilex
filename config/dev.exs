@@ -40,4 +40,5 @@ config :tilex, Tilex.Repo,
   hostname: "localhost",
   pool_size: 10
 
+config :tilex, :page_size, 50
 config :tilex, :auth_controller, AuthController

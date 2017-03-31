@@ -26,7 +26,7 @@ defmodule Features.VisitorViewsChannelTest do
 
     channel = Factory.insert!(:channel, name: "smalltalk")
 
-    Factory.insert_list!(:post, 51,
+    Factory.insert_list!(:post, 5 + 1,
       title: "A post about porting Rails applications to Phoenix",
       body: "It starts with Rails and ends with Elixir",
       channel: channel
@@ -34,7 +34,7 @@ defmodule Features.VisitorViewsChannelTest do
 
     visit(session, "/smalltalk")
 
-    assert find(session, Query.css("article.post", count: 50))
+    assert find(session, Query.css("article.post", count: 5))
 
     assert find(session, Query.css("nav.pagination", visible: true))
     click(session, Query.link("older TILs"))
@@ -43,6 +43,6 @@ defmodule Features.VisitorViewsChannelTest do
 
     click(session, Query.link("newer TILs"))
 
-    assert find(session, Query.css("article.post", count: 50))
+    assert find(session, Query.css("article.post", count: 5))
   end
 end

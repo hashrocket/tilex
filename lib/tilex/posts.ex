@@ -11,14 +11,15 @@ defmodule Tilex.Posts do
   def by_channel(channel_name, page) do
     channel = Repo.get_by!(Channel, name: channel_name)
 
-    offset = (page - 1) * 50
+    offset = (page - 1) * Application.get_env(:tilex, :page_size)
+    limit = Application.get_env(:tilex, :page_size) + 1
 
     query = from p in Post,
       order_by: [desc: p.inserted_at],
       join: c in assoc(p, :channel),
       join: d in assoc(p, :developer),
       preload: [channel: c, developer: d],
-      limit: 51,
+      limit: ^limit,
       offset: ^offset,
       where: p.channel_id == ^channel.id
 
@@ -33,14 +34,15 @@ defmodule Tilex.Posts do
   def by_developer(username, page) do
     developer = Repo.get_by!(Developer, username: username)
 
-    offset = (page - 1) * 50
+    offset = (page - 1) * Application.get_env(:tilex, :page_size)
+    limit = Application.get_env(:tilex, :page_size) + 1
 
     query = from p in Post,
       order_by: [desc: p.inserted_at],
       join: c in assoc(p, :channel),
       join: d in assoc(p, :developer),
       preload: [channel: c, developer: d],
-      limit: 51,
+      limit: ^limit,
       offset: ^offset,
       where: p.developer_id == ^developer.id
 
@@ -53,14 +55,15 @@ defmodule Tilex.Posts do
   end
 
   defp posts(page) do
-    offset = (page - 1) * 50
+    offset = (page - 1) * Application.get_env(:tilex, :page_size)
+    limit = Application.get_env(:tilex, :page_size) + 1
 
     from p in Post,
       order_by: [desc: p.inserted_at],
       join: c in assoc(p, :channel),
       join: d in assoc(p, :developer),
       preload: [channel: c, developer: d],
-      limit: 51,
+      limit: ^limit,
       offset: ^offset
   end
 end
