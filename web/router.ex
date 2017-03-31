@@ -1,6 +1,8 @@
 defmodule Tilex.Router do
   use Tilex.Web, :router
 
+  @auth_controller Application.get_env(:tilex, :auth_controller)
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -22,7 +24,7 @@ defmodule Tilex.Router do
   scope "/", Tilex do
     pipe_through [:browser, :browser_auth]
 
-    get "/admin", AuthController, :index
+    get "/admin", @auth_controller, :index
     get "/auth/:provider", AuthController, :request
     get "/auth/:provider/callback", AuthController, :callback
     post "/auth/:provider/callback", AuthController, :callback

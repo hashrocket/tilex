@@ -6,7 +6,9 @@ defmodule Tilex.AuthController do
     case authenticate(auth) do
       {:ok, developer} ->
         conn
-        |> Guardian.Plug.sign_in(developer)
+        conn = Guardian.Plug.sign_in(conn, developer)
+
+        conn
         |> put_flash(:info, "Signed in with #{developer.email}")
         |> redirect(to: "/")
       {:error, email} when is_binary(email) ->

@@ -39,3 +39,5 @@ config :tilex, Tilex.Repo,
   database: "tilex_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :tilex, :auth_controller, AuthController

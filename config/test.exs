@@ -19,3 +19,5 @@ config :tilex, Tilex.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :wallaby, screenshot_on_failure: true
+
+config :tilex, :auth_controller, Test.AuthController
