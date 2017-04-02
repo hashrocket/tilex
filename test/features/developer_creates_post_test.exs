@@ -8,7 +8,9 @@ defmodule DeveloperCreatesPostTest do
 
     sign_in(session, developer)
 
-    visit(session, "/posts/new")
+    visit(session, "/")
+    click(session, Query.link("Create Post"))
+
     h1_heading = Element.text(find(session, Query.css("main header h1")))
     assert h1_heading == "Create Post"
 
