@@ -3,6 +3,15 @@ defmodule Tilex.PostController do
 
   plug :load_channels when action in [:new, :create]
 
+  plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when action in [:new, :create]
+
+  def unauthenticated(conn, _) do
+    conn
+    |> put_status(302)
+    |> put_flash(:info, "Authentication required")
+    |> redirect(to: "/")
+  end
+
   alias Tilex.{Post, Channel}
 
   def index(conn, params) do
