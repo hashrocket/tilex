@@ -25,10 +25,10 @@ defmodule Tilex.Router do
     pipe_through [:browser, :browser_auth]
 
     get "/admin", @auth_controller, :index
+    delete "/auth/logout", AuthController, :delete
     get "/auth/:provider", AuthController, :request
     get "/auth/:provider/callback", AuthController, :callback
     post "/auth/:provider/callback", AuthController, :callback
-    delete "/auth/logout", AuthController, :delete
 
     get "/statistics", StatsController, :index
 
