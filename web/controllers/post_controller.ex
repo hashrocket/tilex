@@ -42,10 +42,12 @@ defmodule Tilex.PostController do
       |> Post.changeset(post_params)
 
     case Repo.insert(changeset) do
-      {:ok, _} ->
+      {:ok, post} ->
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
+
+        Tilex.Slack.post_notification(conn, post)
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
