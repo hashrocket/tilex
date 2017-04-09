@@ -18,9 +18,9 @@ defmodule Tilex.Developer do
   end
 
   def find_or_create(repo, attrs) do
-    google_id = Map.get(attrs, :google_id)
+    email = Map.get(attrs, :email)
 
-    case repo.get_by(Tilex.Developer, google_id: google_id) do
+    case repo.get_by(Tilex.Developer, email: email) do
       %Tilex.Developer{} = developer ->
         {:ok, developer}
       _ ->
