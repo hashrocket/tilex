@@ -22,3 +22,4 @@ config :wallaby, screenshot_on_failure: true
 
 config :tilex, :page_size, 5
 config :tilex, :auth_controller, Test.AuthController
+config :tilex, :post_notifier, Test.Slack
