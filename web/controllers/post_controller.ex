@@ -1,7 +1,18 @@
 defmodule Tilex.PostController do
   use Tilex.Web, :controller
 
+  @post_notifier Application.get_env(:tilex, :post_notifier)
+
   plug :load_channels when action in [:new, :create]
+
+  plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when action in [:new, :create]
+
+  def unauthenticated(conn, _) do
+    conn
+    |> put_status(302)
+    |> put_flash(:info, "Authentication required")
+    |> redirect(to: "/")
+  end
 
   alias Tilex.{Post, Channel}
 
@@ -33,10 +44,12 @@ defmodule Tilex.PostController do
       |> Post.changeset(post_params)
 
     case Repo.insert(changeset) do
-      {:ok, _} ->
+      {:ok, post} ->
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
+        |> @post_notifier.post_notification(post)
+
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

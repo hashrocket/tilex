@@ -6,9 +6,11 @@ defmodule DeveloperCreatesPostTest do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
-    visit(session, "/admin?id=#{developer.id}")
+    sign_in(session, developer)
 
-    visit(session, "/posts/new")
+    visit(session, "/")
+    click(session, Query.link("Create Post"))
+
     h1_heading = Element.text(find(session, Query.css("main header h1")))
     assert h1_heading == "Create Post"
 
@@ -52,7 +54,7 @@ defmodule DeveloperCreatesPostTest do
     developer = Factory.insert!(:developer)
 
     session
-    |> visit("/admin?id=#{developer.id}")
+    |> sign_in(developer)
     |> visit("/posts/new")
     |> click(Query.link('cancel'))
 
@@ -66,7 +68,7 @@ defmodule DeveloperCreatesPostTest do
     developer = Factory.insert!(:developer)
 
     session
-    |> visit("/admin?id=#{developer.id}")
+    |> sign_in(developer)
     |> visit("/posts/new")
     |> click(Query.button("Submit"))
 
@@ -82,7 +84,7 @@ defmodule DeveloperCreatesPostTest do
     developer = Factory.insert!(:developer)
 
     session
-    |> visit("/admin?id=#{developer.id}")
+    |> sign_in(developer)
     |> visit("/posts/new")
     |> fill_in(Query.text_field("Title"), with: String.duplicate("I can codez ", 10))
     |> click(Query.button("Submit"))
@@ -96,7 +98,7 @@ defmodule DeveloperCreatesPostTest do
     developer = Factory.insert!(:developer)
 
     session
-    |> visit("/admin?id=#{developer.id}")
+    |> sign_in(developer)
     |> visit("/posts/new")
     |> fill_in(Query.text_field("Body"), with: String.duplicate("wordy ", 201))
     |> click(Query.button("Submit"))

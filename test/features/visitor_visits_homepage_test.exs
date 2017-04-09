@@ -1,6 +1,12 @@
 defmodule VisitorVisitsHomepageTest do
   use Tilex.IntegrationCase, async: true
 
+  test "the page does not have a Create Post link", %{session: session} do
+    visit(session, "/")
+
+    refute has?(session, Query.link("Create Post"))
+  end
+
   test "the page has the appropriate branding", %{session: session} do
     header_text = visit(session, "/")
                   |> find(Query.css("h1 > a"))

@@ -24,6 +24,15 @@
   </head>
 
   <body>
+    <%= if Guardian.Plug.current_resource(@conn) do %>
+      <nav class="admin_panel">
+        <ul>
+          <li> <%= link("Sign Out", to: auth_path(@conn, :delete), method: :delete) %> </li>
+          <li> <%= link("Create Post", to: post_path(@conn, :new)) %> </li>
+        </ul>
+      </nav>
+    <% end %>
+
     <header class="site_head">
       <div>
         <h1><a href="/">Today I Learned</a></h1>

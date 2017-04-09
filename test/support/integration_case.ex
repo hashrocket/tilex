@@ -15,6 +15,10 @@ defmodule Tilex.IntegrationCase do
 
       import Tilex.Router.Helpers
       import Tilex.TestHelpers
+
+      def sign_in(session, developer) do
+        visit(session, "/admin?id=#{developer.id}")
+      end
     end
   end
 

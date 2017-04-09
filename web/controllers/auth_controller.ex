@@ -22,6 +22,12 @@ defmodule Tilex.AuthController do
     redirect conn, to: "/auth/google"
   end
 
+  def delete(conn, _params) do
+    Guardian.Plug.sign_out(conn)
+    |> put_flash(:info, "Logged out successfully.")
+    |> redirect(to: "/")
+  end
+
   defp authenticate(%{info: info, uid: uid}) do
     email = Map.get(info, :email)
     name  = Map.get(info, :name)
