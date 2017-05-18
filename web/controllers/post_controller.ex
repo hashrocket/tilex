@@ -1,7 +1,8 @@
 defmodule Tilex.PostController do
   use Tilex.Web, :controller
 
-  @post_notifier Application.get_env(:tilex, :post_notifier)
+  @slack_notifier Application.get_env(:tilex, :slack_notifier)
+  @twitter_notifier Application.get_env(:tilex, :twitter_notifier)
 
   plug :load_channels when action in [:new, :create]
 
@@ -23,10 +24,12 @@ defmodule Tilex.PostController do
   end
 
   def show(conn, %{"titled_slug" => titled_slug}) do
-    [slug|_] = titled_slug |> String.split("-")
+    [slug | _] = titled_slug |> String.split("-")
+
     post = Repo.get_by!(Post, slug: slug)
            |> Repo.preload([:channel])
            |> Repo.preload([:developer])
+
     render(conn, "show.html", post: post)
   end
 
@@ -48,7 +51,7 @@ defmodule Tilex.PostController do
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
-        |> @post_notifier.post_notification(post)
+        |> Tilex.Integrations.post_notifications(post)
 
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)

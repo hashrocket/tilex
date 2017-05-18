@@ -28,6 +28,7 @@ defmodule DeveloperCreatesPostTest do
     post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
     assert post.body == "Example Body"
     assert post.title == "Example Title"
+    refute is_nil(post.tweeted_at)
 
     element_text = fn (session, selector) ->
       Element.text(find(session, Query.css(selector)))

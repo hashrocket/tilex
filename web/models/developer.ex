@@ -5,6 +5,7 @@ defmodule Tilex.Developer do
     field :email, :string
     field :username, :string
     field :google_id, :string
+    field :twitter_handle, :string
 
     has_many :posts, Tilex.Post
 

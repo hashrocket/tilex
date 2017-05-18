@@ -1,9 +1,6 @@
 defmodule Tilex.Slack do
-  def post_notification(conn, post) do
+  def notify(post, developer, _, url) do
     endpoint = System.get_env("slack_post_endpoint")
-
-    developer = Tilex.Repo.one(Ecto.assoc(post, :developer))
-    url = Tilex.Router.Helpers.post_url(conn, :show, post)
     text = "#{developer.username} created a new post <#{url}|#{post.title}>"
 
     spawn(
