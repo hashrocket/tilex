@@ -6,6 +6,7 @@ defmodule Tilex.Post do
     field :body, :string
     field :slug, :string
     field :likes, :integer, default: 1
+    field :max_likes, :integer, default: 1
     field :tweeted_at, :utc_datetime
 
     belongs_to :channel, Tilex.Channel
@@ -26,8 +27,8 @@ defmodule Tilex.Post do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :body, :developer_id, :channel_id, :likes])
-    |> validate_required([:title, :body, :developer_id, :channel_id, :likes])
+    |> cast(params, [:title, :body, :developer_id, :channel_id, :likes, :max_likes])
+    |> validate_required([:title, :body, :developer_id, :channel_id, :likes, :max_likes])
     |> validate_length(:title, max: 50)
     |> validate_length_of_body
     |> validate_number(:likes, greater_than: 0)

@@ -45,6 +45,14 @@ defmodule Tilex.PostController do
     render conn, "new.html", changeset: changeset
   end
 
+  def like(conn, params = %{"id" => slug}) do
+    likes = Tilex.Liking.like(slug)
+
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp 200, Poison.encode!(%{likes: likes})
+  end
+
   def create(conn, %{"post" => post_params}) do
     developer = Guardian.Plug.current_resource(conn)
 

@@ -43,4 +43,21 @@ defmodule VisitorViewsPostTest do
 
     assert url =~ "#{post.slug}-alternate-also-cool-title"
   end
+
+  test "and clicks 'like' for that post", %{session: session} do
+
+    developer = Factory.insert!(:developer, username: "makinpancakes")
+    post = Factory.insert!(:post, title: "A special post", developer: developer, likes: 1)
+
+    link = visit(session, post_path(Endpoint, :show, post))
+      |> find(Query.css(".post .js-like-action"))
+
+    click(link)
+
+    find(session, Query.css(".post .js-like-action.liked"))
+
+    post = Repo.get(Post, post.id)
+    assert post.likes == 2
+    assert post.max_likes == 2
+  end
 end

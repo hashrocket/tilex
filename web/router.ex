@@ -37,5 +37,6 @@ defmodule Tilex.Router do
 
     get "/", PostController, :index
     resources "/posts", PostController, param: "titled_slug"
+    post "/posts/:id/like.json", PostController, :like
   end
 end
