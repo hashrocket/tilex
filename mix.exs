@@ -18,8 +18,19 @@ defmodule Tilex.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Tilex, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :timex, :ueberauth_google]]
+     applications: [
+       :phoenix,
+       :phoenix_pubsub,
+       :phoenix_html,
+       :cowboy,
+       :logger,
+       :gettext,
+       :phoenix_ecto,
+       :postgrex,
+       :timex,
+       :ueberauth_google,
+       :extwitter
+     ]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,7 +49,7 @@ defmodule Tilex.Mixfile do
       {:guardian, "~> 0.14"},
       {:html_sanitize_ex, "~> 1.0.0"},
       {:phoenix, "~> 1.2.1"},
-      {:phoenix_ecto, "~> 3.0"},
+      {:phoenix_ecto, "~> 3.1"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
@@ -46,6 +57,7 @@ defmodule Tilex.Mixfile do
       {:timex, "~> 3.0"},
       {:ueberauth_google, "~> 0.5"},
       {:wallaby, "~> 0.16.1"},
+      {:extwitter, "~> 0.8"},
     ]
   end
 

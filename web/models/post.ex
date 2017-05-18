@@ -6,6 +6,7 @@ defmodule Tilex.Post do
     field :body, :string
     field :slug, :string
     field :likes, :integer, default: 1
+    field :tweeted_at, :utc_datetime
 
     belongs_to :channel, Tilex.Channel
     belongs_to :developer, Tilex.Developer

@@ -76,4 +76,5 @@ config :tilex, :basic_auth, [
 
 config :tilex, :page_size, 50
 config :tilex, :auth_controller, AuthController
-config :tilex, :post_notifier, Tilex.Slack
+config :tilex, :slack_notifier, Tilex.Slack
+config :tilex, :twitter_notifier, Tilex.Twitter
