@@ -45,19 +45,28 @@ defmodule VisitorViewsPostTest do
   end
 
   test "and clicks 'like' for that post", %{session: session} do
-
     developer = Factory.insert!(:developer, username: "makinpancakes")
     post = Factory.insert!(:post, title: "A special post", developer: developer, likes: 1)
 
-    link = visit(session, post_path(Endpoint, :show, post))
-      |> find(Query.css(".post .js-like-action"))
+    visit(session, post_path(Endpoint, :show, post))
+      |> find(Query.css("header[data-likes-loaded=true]"))
 
-    click(link)
+    link = find(session, Query.css(".post .js-like-action"))
+
+    Element.click(link)
 
     find(session, Query.css(".post .js-like-action.liked"))
 
     post = Repo.get(Post, post.id)
     assert post.likes == 2
+    assert post.max_likes == 2
+
+    Element.click(link)
+
+    find(session, Query.css(".post .js-like-action:not(.liked)"))
+
+    post = Repo.get(Post, post.id)
+    assert post.likes == 1
     assert post.max_likes == 2
   end
 end

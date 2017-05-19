@@ -45,8 +45,16 @@ defmodule Tilex.PostController do
     render conn, "new.html", changeset: changeset
   end
 
-  def like(conn, params = %{"id" => slug}) do
+  def like(conn, params = %{"slug" => slug}) do
     likes = Tilex.Liking.like(slug)
+
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp 200, Poison.encode!(%{likes: likes})
+  end
+
+  def unlike(conn, params = %{"slug" => slug}) do
+    likes = Tilex.Liking.unlike(slug)
 
     conn
     |> put_resp_content_type("application/json")

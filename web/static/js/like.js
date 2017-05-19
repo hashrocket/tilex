@@ -31,20 +31,22 @@ $(function(){
         "X-CSRF-TOKEN": csrf
       }
     });
-
-    $.post("/posts/" + lb.id + "/like.json", function(result){
-      $.cookie(lb.likeSlug(), 'liked', { path: '/', expires: 3600 });
-      lb.updateText(result);
-      lb.updateClass();
-    });
   };
 
   LikeButton.prototype.unlike = function() {
     var lb = this;
-    $.post("/posts/" + lb.id + "/unlike.json", function(result){
+    $.ajax({
+      type: "POST",
+      url: "/posts/" + lb.id + "/unlike.json",
+      data: {},
+      success: function(result){
       $.removeCookie(lb.likeSlug(), { path: '/', expires: 3600 });
       lb.updateText(result);
       lb.updateClass();
+      },
+      headers: {
+        "X-CSRF-TOKEN": csrf
+      }
     });
   };
 
@@ -68,4 +70,5 @@ $(function(){
     new LikeButton(this);
   });
 
+  $('header').attr('data-likes-loaded', 'true')
 });
