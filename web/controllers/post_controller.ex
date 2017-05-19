@@ -1,9 +1,6 @@
 defmodule Tilex.PostController do
   use Tilex.Web, :controller
 
-  @slack_notifier Application.get_env(:tilex, :slack_notifier)
-  @twitter_notifier Application.get_env(:tilex, :twitter_notifier)
-
   plug :load_channels when action in [:new, :create]
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when action in [:new, :create]
@@ -51,7 +48,7 @@ defmodule Tilex.PostController do
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
-        |> Tilex.Integrations.post_notifications(post)
+        |> Tilex.Integrations.notify(post)
 
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
