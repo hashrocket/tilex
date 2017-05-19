@@ -48,7 +48,7 @@ defmodule Tilex.PostController do
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
-        |> Tilex.Integrations.post_notifications(post)
+        |> Tilex.Integrations.notify(post)
 
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
