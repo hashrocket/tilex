@@ -1,9 +1,8 @@
 defmodule Tilex.PostChannel do
   use Phoenix.Channel
-  alias Tilex.Repo
   import Ecto.Query
-  alias Tilex.Channel
-  alias Tilex.Post
+
+  alias Tilex.{Repo, Post, PostView, Endpoint}
 
   def join("post:search", _message, socket) do
     {:ok, socket}
@@ -26,9 +25,9 @@ defmodule Tilex.PostChannel do
       where: ilike(p.title, ^"%#{query}%")
 
       html = Phoenix.View.render_to_string(
-               Tilex.PostView,
+               PostView,
                "search_results.html",
-               %{posts: posts, conn: Tilex.Endpoint, query: query}
+               %{posts: posts, conn: Endpoint, query: query}
              )
 
     push socket, "search", %{html: html}
