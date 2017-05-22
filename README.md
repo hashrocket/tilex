@@ -76,6 +76,13 @@ The tilex staging server is here:
 
 https://tilex.herokuapp.com
 
+Database migrations require telling Heroku how many pools to use. Here's an
+example:
+
+```
+$ heroku run "POOL_SIZE=2 mix ecto.migrate"
+```
+
 ### Contributing
 
 1. [Fork](https://help.github.com/articles/fork-a-repo/) it
