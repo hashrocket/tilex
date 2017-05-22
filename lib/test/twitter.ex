@@ -1,5 +1,5 @@
 defmodule Test.Twitter do
-  def notify(post, developer, channel, url) do
+  def notify(_post, _developer, _channel, _url) do
     :ok
   end
 end
