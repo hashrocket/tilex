@@ -13,12 +13,6 @@ defmodule Tilex.PostChannel do
   end
 
   def handle_in("search", %{"query" => query}, socket) do
-    channel_query = Channel
-    |> Channel.names_and_ids
-    |> Channel.alphabetized
-
-    channels = Repo.all(channel_query)
-
     posts = Repo.all from p in Post,
       join: c in assoc(p, :channel),
       preload: [channel: c],

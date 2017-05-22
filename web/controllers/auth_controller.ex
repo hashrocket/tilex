@@ -5,7 +5,6 @@ defmodule Tilex.AuthController do
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     case authenticate(auth) do
       {:ok, developer} ->
-        conn
         conn = Guardian.Plug.sign_in(conn, developer)
 
         conn
