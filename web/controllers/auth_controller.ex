@@ -23,7 +23,7 @@ defmodule Tilex.AuthController do
 
   def delete(conn, _params) do
     Guardian.Plug.sign_out(conn)
-    |> put_flash(:info, "Logged out successfully.")
+    |> put_flash(:info, "Signed out")
     |> redirect(to: "/")
   end
 
