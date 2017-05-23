@@ -22,6 +22,11 @@
           <li>
             <%= link("permalink", to: post_path(@conn, :show, @post), class: "post__permalink") %>
           </li>
+          <%= if @post.developer == Guardian.Plug.current_resource(@conn) do %>
+            <li>
+              <%= link("edit", to: post_path(@conn, :edit, @post), class: "post__permalink") %>
+            </li>
+          <% end %>
           <li>
             <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>
               <span class="post__like-count"><%= @post.likes %></span>

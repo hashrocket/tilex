@@ -36,6 +36,6 @@ defmodule Tilex.Router do
     get "/authors/:name", DeveloperController, :show
 
     get "/", PostController, :index
-    resources "/posts", PostController, only: [:index, :show, :new, :create], param: "titled_slug"
+    resources "/posts", PostController, param: "titled_slug"
   end
 end
