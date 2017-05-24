@@ -50,17 +50,16 @@ defmodule DeveloperCreatesPostTest do
   end
 
   test "cancels submission", %{session: session} do
-
     developer = Factory.insert!(:developer)
+    sign_in(session, developer)
 
     session
-    |> sign_in(developer)
-    |> visit("/posts/new")
-    |> click(Query.link('cancel'))
+    |> CreatePostPage.visit()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.click_cancel()
 
-    path = current_path(session)
-
-    assert path == "/"
+    session
+    |> IndexPage.ensure_page_loaded()
   end
 
   test "fails to enter things", %{session: session} do

@@ -1,6 +1,10 @@
 defmodule Tilex.Integration.Pages.CreatePostPage do
   use Wallaby.DSL
 
+  def visit(session) do
+    visit(session, "/posts/new")
+  end
+
   def ensure_page_loaded(session) do
     session
     |> Browser.find(Query.css("main header h1", text: "Create Post"))
@@ -23,5 +27,10 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
   def submit_form(session) do
     session
     |> click(Query.button("Submit"))
+  end
+
+  def click_cancel(session) do
+    session
+    |> click(Query.link('cancel'))
   end
 end
