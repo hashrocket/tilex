@@ -10,4 +10,9 @@ defmodule Tilex.PostControllerTest do
     conn = get conn, post_path(conn, :new)
     assert html_response(conn, 302)
   end
+
+  test "throws 404 with slug less than 10 characters", %{conn: conn} do
+    conn = get conn, post_path(conn, :edit, "123456789")
+    assert html_response(conn, 404)
+  end
 end

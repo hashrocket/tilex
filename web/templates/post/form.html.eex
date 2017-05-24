@@ -1,4 +1,4 @@
-<%= form_for @changeset, post_path(@conn, :create), fn f -> %>
+<%= form_for @changeset, @action, fn f -> %>
   <dl>
     <dt>
       <%= label f, :title %>

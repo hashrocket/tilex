@@ -1,7 +1,8 @@
 defmodule Tilex.PostController do
   use Tilex.Web, :controller
 
-  plug :load_channels when action in [:new, :create]
+  plug :load_channels when action in [:new, :create, :edit, :update]
+  plug :extract_slug when action in [:show, :edit, :update]
 
   plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when action in [:new, :create]
 
@@ -20,10 +21,8 @@ defmodule Tilex.PostController do
     render(conn, "index.html", posts: posts, page: page)
   end
 
-  def show(conn, %{"titled_slug" => titled_slug}) do
-    [slug | _] = titled_slug |> String.split("-")
-
-    post = Repo.get_by!(Post, slug: slug)
+  def show(conn, _) do
+    post = Repo.get_by!(Post, slug: conn.assigns.slug)
            |> Repo.preload([:channel])
            |> Repo.preload([:developer])
 
@@ -55,6 +54,34 @@ defmodule Tilex.PostController do
     end
   end
 
+  def edit(conn, _params) do
+    post = Guardian.Plug.current_resource(conn)
+           |> assoc(:posts)
+           |> Repo.get_by!(slug: conn.assigns.slug)
+
+    changeset = Post.changeset(post)
+
+    render(conn, "edit.html", post: post, changeset: changeset)
+  end
+
+  def update(conn, %{"post" => post_params}) do
+    post = Guardian.Plug.current_resource(conn)
+           |> assoc(:posts)
+           |> Repo.get_by!(slug: conn.assigns.slug)
+
+    changeset = Post.changeset(post, post_params)
+
+    case Repo.update(changeset) do
+      {:ok, post} ->
+        conn
+        |> put_flash(:info, "Post Updated")
+        |> redirect(to: post_path(conn, :show, post))
+      {:error, changeset} ->
+        render(conn, "edit.html", post: post, changeset: changeset)
+    end
+  end
+
+
   defp load_channels(conn, _) do
     query = Channel
     |> Channel.names_and_ids
@@ -63,4 +90,19 @@ defmodule Tilex.PostController do
     channels = Repo.all(query)
     assign(conn, :channels, channels)
   end
+
+  defp extract_slug(conn, _) do
+    case extracted_slug(conn.params["titled_slug"]) do
+      {:ok, slug} ->
+        assign(conn, :slug, slug)
+      :error ->
+        conn
+        |> put_status(404)
+        |> render(Tilex.ErrorView, "404.html")
+        |> halt()
+    end
+  end
+
+  defp extracted_slug(<<slug::size(10)-binary, _rest::binary>>), do: {:ok, slug}
+  defp extracted_slug(_), do: :error
 end
