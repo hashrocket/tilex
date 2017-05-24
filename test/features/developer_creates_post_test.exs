@@ -1,53 +1,52 @@
 defmodule DeveloperCreatesPostTest do
   use Tilex.IntegrationCase, async: true
 
-  test "fills out form and submits", %{session: session} do
+  alias Tilex.Integration.Pages.{
+    Navigation,
+    IndexPage,
+    CreatePostPage,
+    PostShowPage
+  }
 
+  test "fills out form and submits", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
     sign_in(session, developer)
 
-    visit(session, "/")
-    click(session, Query.link("Create Post"))
-
-    h1_heading = Element.text(find(session, Query.css("main header h1")))
-    assert h1_heading == "Create Post"
+    session
+    |> IndexPage.visit()
+    |> IndexPage.ensure_page_loaded()
 
     session
-    |> fill_in(Query.text_field("Title"), with: "Example Title")
-    |> fill_in(Query.text_field("Body"), with: "Example Body")
-    |> (fn(session) ->
-      find(session, Query.select("Channel"), fn (element) ->
-        click(element, Query.option("phoenix"))
-      end)
-      session
-    end).()
-    |> click(Query.button("Submit"))
+    |> Navigation.click_create_post()
+
+    session
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title:  "Example Title",
+      body: "Example Body",
+      channel: "phoenix"
+    })
+    |> CreatePostPage.submit_form()
 
     post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
     assert post.body == "Example Body"
     assert post.title == "Example Title"
     refute is_nil(post.tweeted_at)
 
-    element_text = fn (session, selector) ->
-      Element.text(find(session, Query.css(selector)))
-    end
+    session
+    |> PostShowPage.ensure_page_loaded(post)
+    |> PostShowPage.ensure_info_flash("Post created")
+    |> PostShowPage.expect_post_attributes(%{
+      title: "Example Title",
+      body: "Example Body",
+      channel: "phoenix",
+      likes_count: 1
+    })
 
-    index_h1_heading = element_text.(session, "header.site_head div h1")
-    info_flash       = element_text.(session, ".alert-info")
-    post_title       = element_text.(session, ".post h1")
-    session |> take_screenshot()
-    post_body        = element_text.(session, ".post .copy")
-    post_footer      = element_text.(session, ".post aside")
-    likes_count      = element_text.(session, ".js-like-action")
-
-    assert index_h1_heading =~ ~r/Today I Learned/i
-    assert info_flash       == "Post created"
-    assert post_title       =~ ~r/Example Title/
-    assert post_body        =~ ~r/Example Body/
-    assert post_footer      =~ ~r/#phoenix/i
-    assert likes_count      =~ ~r/1/
+    session
+    |> Navigation.ensure_heading("TODAY I LEARNED")
   end
 
   test "cancels submission", %{session: session} do
