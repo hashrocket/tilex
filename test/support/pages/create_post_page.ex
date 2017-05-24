@@ -33,4 +33,11 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
     session
     |> click(Query.link('cancel'))
   end
+
+  def expect_form_has_error(session, error_text) do
+    session
+    |> Browser.find(Query.css("form", text: error_text))
+
+    session
+  end
 end

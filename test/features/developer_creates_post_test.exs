@@ -68,14 +68,15 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> sign_in(developer)
-    |> visit("/posts/new")
-    |> click(Query.button("Submit"))
+    |> CreatePostPage.visit()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.submit_form()
 
-    body = Element.text(find(session, Query.css("body")))
-
-    assert body =~ ~r/Title can't be blank/
-    assert body =~ ~r/Body can't be blank/
-    assert body =~ ~r/Channel can't be blank/
+    session
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.expect_form_has_error("Title can't be blank")
+    |> CreatePostPage.expect_form_has_error("Body can't be blank")
+    |> CreatePostPage.expect_form_has_error("Channel can't be blank")
   end
 
   test "enters a title that is too long", %{session: session} do
