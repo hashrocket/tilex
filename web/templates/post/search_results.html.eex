@@ -8,4 +8,6 @@
   </header>
 </section>
 
-<%= render Tilex.PostView, "index.html", conn: @conn, posts: @posts %>
+<section id="home">
+  <%= render Tilex.SharedView, "_posts_list.html", conn: @conn, posts: @posts %>
+</section>

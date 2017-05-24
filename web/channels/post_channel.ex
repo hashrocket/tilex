@@ -16,6 +16,8 @@ defmodule Tilex.PostChannel do
     posts = Repo.all from p in Post,
       join: c in assoc(p, :channel),
       preload: [channel: c],
+      join: d in assoc(p, :developer),
+      preload: [developer: d],
       where: ilike(p.title, ^"%#{query}%")
 
       html = Phoenix.View.render_to_string(
