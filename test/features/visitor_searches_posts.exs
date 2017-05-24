@@ -3,12 +3,12 @@ defmodule VisiorSearchesPosts do
 
   def fill_in_search(session, query) do
     visit(session, "/")
-    |> find(".site_nav__search .site_nav__link")
-    |> click()
+    |> find(Query.css(".site_nav__search .site_nav__link"))
+    |> Element.click()
 
-    fill_in(session, "query", with: query)
+    fill_in(session, Query.text_field("query"), with: query)
     |> take_screenshot
-    |> click_on("Search")
+    |> click(Query.button("Search"))
   end
 
   test "with no found posts", %{session: session} do
@@ -31,7 +31,7 @@ defmodule VisiorSearchesPosts do
     body = get_text(session, "body")
 
     assert search_result_header == "2 posts about rules"
-    assert find(session, "article.post", count: 2)
+    assert find(session, Query.css("article.post", [count: 2]))
     assert body =~ ~r/Elixir Rules/
     assert body =~ ~r/Hashrocket Rules/
     refute body =~ ~r/Because JavaScript/
