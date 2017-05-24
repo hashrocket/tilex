@@ -81,31 +81,43 @@ defmodule DeveloperCreatesPostTest do
 
   test "enters a title that is too long", %{session: session} do
 
+    Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
     session
     |> sign_in(developer)
-    |> visit("/posts/new")
-    |> fill_in(Query.text_field("Title"), with: String.duplicate("I can codez ", 10))
-    |> click(Query.button("Submit"))
+    |> CreatePostPage.visit()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title:  String.duplicate("I can codez ", 10),
+      body: "Example Body",
+      channel: "phoenix"
+    })
+    |> CreatePostPage.submit_form()
 
-    body = Element.text(find(session, Query.css("body")))
-
-    assert body =~ ~r/Title should be at most 50 character\(s\)/
+    session
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.expect_form_has_error("Title should be at most 50 character(s)")
   end
 
   test "enters a body that is too long", %{session: session} do
+    Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
     session
     |> sign_in(developer)
-    |> visit("/posts/new")
-    |> fill_in(Query.text_field("Body"), with: String.duplicate("wordy ", 201))
-    |> click(Query.button("Submit"))
+    |> CreatePostPage.visit()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title:  "Example Title",
+      body: String.duplicate("wordy ", 201),
+      channel: "phoenix"
+    })
+    |> CreatePostPage.submit_form()
 
-    body = Element.text(find(session, Query.css("body")))
-
-    assert body =~ ~r/Body should be at most 200 word\(s\)/
+    session
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.expect_form_has_error("Body should be at most 200 word(s)")
   end
 
   @tag :skip
