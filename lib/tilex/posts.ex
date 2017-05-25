@@ -36,6 +36,18 @@ defmodule Tilex.Posts do
     {Repo.all(query), posts_count, developer}
   end
 
+  def by_search(search_query, page) do
+    query = posts(page)
+            |> where([p], ilike(p.title, ^"%#{search_query}%"))
+
+    posts_count = Repo.one(from p in "posts",
+      where: ilike(p.title, ^"%#{search_query}%"),
+      select: fragment("count(*)")
+    )
+
+    {Repo.all(query), posts_count}
+  end
+
   defp posts(page) do
     offset = (page - 1) * Application.get_env(:tilex, :page_size)
     limit = Application.get_env(:tilex, :page_size) + 1
