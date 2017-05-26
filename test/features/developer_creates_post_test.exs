@@ -5,7 +5,8 @@ defmodule DeveloperCreatesPostTest do
     Navigation,
     IndexPage,
     CreatePostPage,
-    PostShowPage
+    PostShowPage,
+    PostForm
   }
 
   test "fills out form and submits", %{session: session} do
@@ -155,11 +156,11 @@ defmodule DeveloperCreatesPostTest do
     })
 
     session
-    |> CreatePostPage.expect_preview_content("h1","yay")
-    |> CreatePostPage.expect_preview_content("em", "cool")
-    |> CreatePostPage.expect_word_count(3)
-    |> CreatePostPage.expect_words_left("197 words available")
-    |> CreatePostPage.expect_title_characters_left("37 characters available")
-    |> CreatePostPage.expect_title_preview("Example Title")
+    |> PostForm.expect_preview_content("h1","yay")
+    |> PostForm.expect_preview_content("em", "cool")
+    |> PostForm.expect_word_count(3)
+    |> PostForm.expect_words_left("197 words available")
+    |> PostForm.expect_title_characters_left("37 characters available")
+    |> PostForm.expect_title_preview("Example Title")
   end
 end

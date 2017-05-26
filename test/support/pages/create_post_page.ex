@@ -40,39 +40,4 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
 
     session
   end
-
-  def expect_preview_content(session, tag, text) do
-    session
-    |> Browser.find(Query.css(".content_preview " <> tag, text: text))
-
-    session
-  end
-
-  def expect_word_count(session, word_count) do
-    session
-    |> Browser.find(Query.css(".word_count", text: word_count |> to_string))
-
-    session
-  end
-
-  def expect_words_left(session, text) do
-    session
-    |> Browser.find(Query.css(".word_limit", text: text))
-
-    session
-  end
-
-  def expect_title_characters_left(session, text) do
-    session
-    |> Browser.find(Query.css(".character_limit", text: text))
-
-    session
-  end
-
-  def expect_title_preview(session, title_text) do
-    session
-    |> Browser.find(Query.css(".title_preview", text: title_text))
-
-    session
-  end
 end
