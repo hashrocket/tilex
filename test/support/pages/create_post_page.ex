@@ -47,4 +47,11 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
 
     session
   end
+
+  def expect_word_count(session, word_count) do
+    session
+    |> Browser.find(Query.css(".word_count", text: word_count |> to_string))
+
+    session
+  end
 end

@@ -37,6 +37,9 @@
     <div class="post__content copy">
       <div class="content_preview">
       </div>
+      <footer>
+        <p>word count: <span class="word_count">0</span></p>
+      </footer>
     </div>
   </section>
 </article>

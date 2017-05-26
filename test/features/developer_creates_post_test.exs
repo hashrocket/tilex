@@ -157,5 +157,6 @@ defmodule DeveloperCreatesPostTest do
     session
     |> CreatePostPage.expect_preview_content("h1","yay")
     |> CreatePostPage.expect_preview_content("em", "cool")
+    |> CreatePostPage.expect_word_count(3)
   end
 end

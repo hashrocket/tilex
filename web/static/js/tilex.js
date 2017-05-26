@@ -16,6 +16,7 @@ $(function(){
 
   new PostForm({
     postBodyInput: $("textarea#post_body"),
-    postBodyPreview: $(".content_preview")
+    postBodyPreview: $(".content_preview"),
+    wordCountContainer: $(".word_count")
   }).init()
 });
