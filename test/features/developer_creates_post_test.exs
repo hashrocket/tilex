@@ -139,4 +139,23 @@ defmodule DeveloperCreatesPostTest do
 
     assert find(session, Query.css("code", text: "code"))
   end
+
+  test "views parsed markdown preview", %{session: session} do
+    Factory.insert!(:channel, name: "phoenix")
+    developer = Factory.insert!(:developer)
+
+    session
+    |> sign_in(developer)
+    |> CreatePostPage.visit()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title:  "Example Title",
+      body: "# yay \n *cool*",
+      channel: "phoenix"
+    })
+
+    session
+    |> CreatePostPage.expect_preview_content("h1","yay")
+    |> CreatePostPage.expect_preview_content("em", "cool")
+  end
 end

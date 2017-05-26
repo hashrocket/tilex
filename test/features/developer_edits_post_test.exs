@@ -8,7 +8,7 @@ defmodule DeveloperEditsPostTest do
       :post,
       title: "Awesome Post!",
       developer: developer,
-      body: "This is how to be awesome!"
+      body: "This is how to be *awesome*!"
     )
 
     sign_in(session, developer)
@@ -19,6 +19,7 @@ defmodule DeveloperEditsPostTest do
 
     h1_heading = Element.text(find(session, Query.css("main header h1")))
     assert h1_heading == "Edit Post"
+    assert Browser.find(session, Query.css(".content_preview em", text: "awesome"))
 
     session
     |> fill_in(Query.text_field("Title"), with: "Even Awesomer Post!")

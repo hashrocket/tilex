@@ -31,3 +31,12 @@
   <%= submit "Submit" %>
   <%= link("cancel", to: "/") %>
 <% end %>
+
+<article class="post">
+  <section>
+    <div class="post__content copy">
+      <div class="content_preview">
+      </div>
+    </div>
+  </section>
+</article>

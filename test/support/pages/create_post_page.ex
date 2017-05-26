@@ -40,4 +40,11 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
 
     session
   end
+
+  def expect_preview_content(session, tag, text) do
+    session
+    |> Browser.find(Query.css(".content_preview " <> tag, text: text))
+
+    session
+  end
 end

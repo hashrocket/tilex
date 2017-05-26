@@ -1,3 +1,5 @@
+import PostForm from "./post_form"
+
 $(function(){
 
   $(document.body).on("click", "#flash p", function(e) {
@@ -11,4 +13,9 @@ $(function(){
       .toggleClass('site_nav--open')
       .find(":input:visible").eq(0).focus();
   });
+
+  new PostForm({
+    postBodyInput: $("textarea#post_body"),
+    postBodyPreview: $(".content_preview")
+  }).init()
 });
