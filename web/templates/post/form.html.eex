@@ -12,6 +12,7 @@
     <dt>
       <%= label f, :body %>
       <%= error_tag f, :body %>
+      <small class="word_limit" data-limit="200"></small>
     </dt>
     <dd>
       <%= textarea f, :body,

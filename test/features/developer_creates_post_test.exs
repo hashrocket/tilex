@@ -158,5 +158,6 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.expect_preview_content("h1","yay")
     |> CreatePostPage.expect_preview_content("em", "cool")
     |> CreatePostPage.expect_word_count(3)
+    |> CreatePostPage.expect_words_left("197 words available")
   end
 end

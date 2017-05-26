@@ -54,4 +54,11 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
 
     session
   end
+
+  def expect_words_left(session, text) do
+    session
+    |> Browser.find(Query.css(".word_limit", text: text))
+
+    session
+  end
 end

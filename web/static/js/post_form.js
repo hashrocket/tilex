@@ -5,6 +5,8 @@ export default class PostForm {
     this.postBodyInput = properties.postBodyInput
     this.postBodyPreview = properties.postBodyPreview
     this.wordCountContainer = properties.wordCountContainer
+    this.bodyWordLimitContainer = properties.bodyWordLimitContainer
+    this.bodyWordLimit = properties.bodyWordLimit
     this.handlePostBodyPreview = this.handlePostBodyPreview.bind(this);
     this.textConversion = this.textConversion()
   }
@@ -19,11 +21,30 @@ export default class PostForm {
   setInitialPreview() {
     this.textConversion.convert(this.postBodyInput.text(), "markdown");
     this.updateWordCount()
+    this.updateWordLimit()
+  }
+
+  wordCount() {
+    return this.postBodyInput.val().split(/\s+|\n/).filter(Boolean).length;
   }
 
   updateWordCount() {
-    let word_count = this.postBodyInput.val().split(/\s+|\n/).filter(Boolean).length;
-    this.wordCountContainer.html(word_count);
+    this.wordCountContainer.html(this.wordCount());
+  }
+
+  updateWordLimit() {
+    this.renderCountMessage(
+      this.bodyWordLimitContainer,
+      this.bodyWordLimit - this.wordCount(),
+      'word'
+    );
+  }
+
+  renderCountMessage($el, amount, noun) {
+    var plural = amount === 1 ? '' : 's';
+    $el
+      .toggleClass('negative', amount < 0)
+      .text(amount + ' ' + noun + plural + ' available');
   }
 
   handlePostBodyPreview(html) {
@@ -32,7 +53,8 @@ export default class PostForm {
 
   observePostBodyInputChange() {
     this.postBodyInput.on("input", e => {
-      this.updateWordCount()
+      this.updateWordCount();
+      this.updateWordLimit();
       this.textConversion.convert(e.target.value, "markdown");
     })
   }
