@@ -1,9 +1,9 @@
 <nav class="pagination">
   <%= if @page > 1 do %>
-    <a rel="previous" class="pagination_newer" href="<%= @conn.request_path %>?page=<%= @page - 1 %>">newer TILs</a>
+    <a rel="previous" class="pagination_newer" href="<%= pagination_href(@conn, @page - 1) %>">newer TILs</a>
   <% end %>
 
   <%= if Enum.count(@posts) > Application.get_env(:tilex, :page_size) do %>
-    <a rel="next" class="pagination_older" href="<%= @conn.request_path %>?page=<%= @page + 1 %>">older TILs</a>
+    <a rel="next" class="pagination_older" href="<%= pagination_href(@conn, @page + 1)%>">older TILs</a>
   <% end %>
 </nav>

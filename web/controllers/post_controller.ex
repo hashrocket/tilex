@@ -13,11 +13,22 @@ defmodule Tilex.PostController do
     |> redirect(to: "/")
   end
 
-  alias Tilex.{Post, Channel}
+  alias Tilex.{Post, Channel, Posts}
+
+  def index(conn, %{"q" => search_query} = params) do
+    page = Map.get(params, "page", "1") |> String.to_integer
+    {posts, posts_count} = Posts.by_search(search_query, page)
+    render(conn, "search_results.html",
+      posts: posts,
+      posts_count: posts_count,
+      page: page,
+      query: search_query
+    )
+  end
 
   def index(conn, params) do
     page = Map.get(params, "page", "1") |> String.to_integer
-    posts = Tilex.Posts.all(page)
+    posts = Posts.all(page)
     render(conn, "index.html", posts: posts, page: page)
   end
 
