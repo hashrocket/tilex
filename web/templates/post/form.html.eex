@@ -37,6 +37,7 @@
 <article class="post">
   <section>
     <div class="post__content copy">
+      <h1 class="title_preview"></h1>
       <div class="content_preview">
       </div>
       <footer>

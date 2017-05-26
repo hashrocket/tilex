@@ -68,4 +68,11 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
 
     session
   end
+
+  def expect_title_preview(session, title_text) do
+    session
+    |> Browser.find(Query.css(".title_preview", text: title_text))
+
+    session
+  end
 end

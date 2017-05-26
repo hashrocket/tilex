@@ -10,6 +10,7 @@ export default class PostForm {
     this.$titleInput = properties.titleInput
     this.$titleCharacterLimitContainer = properties.titleCharacterLimitContainer
     this.titleCharacterLimit = properties.titleCharacterLimit
+    this.$previewTitleContainer = properties.previewTitleContainer
     this.handlePostBodyPreview = this.handlePostBodyPreview.bind(this);
     this.textConversion = this.textConversion()
   }
@@ -27,6 +28,7 @@ export default class PostForm {
     this.updateWordCount()
     this.updateWordLimit()
     this.updateTitleLimit()
+    this.updatePreviewTitle()
   }
 
   wordCount() {
@@ -53,6 +55,10 @@ export default class PostForm {
     );
   }
 
+  updatePreviewTitle() {
+    this.$previewTitleContainer.html(this.$titleInput.val());
+  }
+
   renderCountMessage($el, amount, noun) {
     var plural = amount === 1 ? '' : 's';
     $el
@@ -75,6 +81,7 @@ export default class PostForm {
   observeTitleInputChange() {
     this.$titleInput.on("input", e => {
       this.updateTitleLimit();
+      this.updatePreviewTitle();
     })
   }
 

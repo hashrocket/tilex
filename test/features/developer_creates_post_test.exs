@@ -160,5 +160,6 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.expect_word_count(3)
     |> CreatePostPage.expect_words_left("197 words available")
     |> CreatePostPage.expect_title_characters_left("37 characters available")
+    |> CreatePostPage.expect_title_preview("Example Title")
   end
 end

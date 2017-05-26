@@ -22,6 +22,7 @@ $(function(){
     bodyWordLimit: $(".word_limit").data("limit"),
     titleInput: $("input#post_title"),
     titleCharacterLimitContainer: $(".character_limit"),
-    titleCharacterLimit: $(".character_limit").data("limit")
+    titleCharacterLimit: $(".character_limit").data("limit"),
+    previewTitleContainer: $(".title_preview")
   }).init()
 });
