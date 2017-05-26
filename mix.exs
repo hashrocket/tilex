@@ -44,7 +44,7 @@ defmodule Tilex.Mixfile do
     [
       {:basic_auth, "~> 2.1"},
       {:cowboy, "~> 1.0"},
-      {:earmark, "~> 1.0.3"},
+      {:earmark, "~> 1.2"},
       {:gettext, "~> 0.11"},
       {:guardian, "~> 0.14"},
       {:html_sanitize_ex, "~> 1.0.0"},
