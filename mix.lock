@@ -1,5 +1,5 @@
 %{"base64url": {:hex, :base64url, "0.0.1", "36a90125f5948e3afd7be97662a1504b934dd5dac78451ca6e9abf85a10286be", [:rebar], []},
-  "basic_auth": {:hex, :basic_auth, "2.0.0", "13a79d699c8530a15d7de84d2d58dc178f1c940f9f52306669797508adbe52cd", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, optional: false]}, {:plug, "~> 0.14 or ~> 1.0", [hex: :plug, optional: false]}]},
+  "basic_auth": {:hex, :basic_auth, "2.1.3", "eec193f247d2a0af8eef93a13bb39dd21f80a216a087a2e4331807b509785b1b", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, optional: false]}, {:plug, "~> 0.14 or ~> 1.0", [hex: :plug, optional: false]}]},
   "certifi": {:hex, :certifi, "1.2.1", "c3904f192bd5284e5b13f20db3ceac9626e14eeacfbb492e19583cf0e37b22be", [:rebar3], []},
   "combine": {:hex, :combine, "0.9.6", "8d1034a127d4cbf6924c8a5010d3534d958085575fa4d9b878f200d79ac78335", [:mix], []},
   "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [:mix], []},
