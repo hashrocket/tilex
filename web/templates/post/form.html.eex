@@ -3,6 +3,7 @@
     <dt>
       <%= label f, :title %>
       <%= error_tag f, :title %>
+      <small class="character_limit" data-limit="50"></small>
     </dt>
     <dd>
       <%= text_input f, :title, placeholder: "Enter title..." %>

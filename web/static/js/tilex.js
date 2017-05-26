@@ -19,6 +19,9 @@ $(function(){
     postBodyPreview: $(".content_preview"),
     wordCountContainer: $(".word_count"),
     bodyWordLimitContainer: $(".word_limit"),
-    bodyWordLimit: $(".word_limit").data("limit")
+    bodyWordLimit: $(".word_limit").data("limit"),
+    titleInput: $("input#post_title"),
+    titleCharacterLimitContainer: $(".character_limit"),
+    titleCharacterLimit: $(".character_limit").data("limit")
   }).init()
 });

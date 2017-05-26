@@ -7,6 +7,9 @@ export default class PostForm {
     this.wordCountContainer = properties.wordCountContainer
     this.bodyWordLimitContainer = properties.bodyWordLimitContainer
     this.bodyWordLimit = properties.bodyWordLimit
+    this.titleInput = properties.titleInput
+    this.titleCharacterLimitContainer = properties.titleCharacterLimitContainer
+    this.titleCharacterLimit = properties.titleCharacterLimit
     this.handlePostBodyPreview = this.handlePostBodyPreview.bind(this);
     this.textConversion = this.textConversion()
   }
@@ -16,12 +19,14 @@ export default class PostForm {
     this.textConversion.init()
     this.setInitialPreview()
     this.observePostBodyInputChange()
+    this.observeTitleInputChange()
   }
 
   setInitialPreview() {
     this.textConversion.convert(this.postBodyInput.text(), "markdown");
     this.updateWordCount()
     this.updateWordLimit()
+    this.updateTitleLimit()
   }
 
   wordCount() {
@@ -37,6 +42,14 @@ export default class PostForm {
       this.bodyWordLimitContainer,
       this.bodyWordLimit - this.wordCount(),
       'word'
+    );
+  }
+
+  updateTitleLimit() {
+    this.renderCountMessage(
+      this.titleCharacterLimitContainer,
+      this.titleCharacterLimit - this.titleInput.val().length,
+      'character'
     );
   }
 
@@ -56,6 +69,12 @@ export default class PostForm {
       this.updateWordCount();
       this.updateWordLimit();
       this.textConversion.convert(e.target.value, "markdown");
+    })
+  }
+
+  observeTitleInputChange() {
+    this.titleInput.on("input", e => {
+      this.updateTitleLimit();
     })
   }
 

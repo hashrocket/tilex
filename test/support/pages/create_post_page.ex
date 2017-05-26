@@ -61,4 +61,11 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
 
     session
   end
+
+  def expect_title_characters_left(session, text) do
+    session
+    |> Browser.find(Query.css(".character_limit", text: text))
+
+    session
+  end
 end
