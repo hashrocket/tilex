@@ -48,7 +48,7 @@ defmodule Tilex.Mixfile do
       {:gettext, "~> 0.13"},
       {:guardian, "~> 0.14"},
       {:html_sanitize_ex, "~> 1.2"},
-      {:phoenix, "~> 1.2.1"},
+      {:phoenix, "~> 1.2.4"},
       {:phoenix_ecto, "~> 3.1"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
