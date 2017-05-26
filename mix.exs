@@ -42,13 +42,13 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:basic_auth, "~> 2.0.0"},
+      {:basic_auth, "~> 2.1"},
       {:cowboy, "~> 1.0"},
-      {:earmark, "~> 1.0.3"},
-      {:gettext, "~> 0.11"},
+      {:earmark, "~> 1.2"},
+      {:gettext, "~> 0.13"},
       {:guardian, "~> 0.14"},
-      {:html_sanitize_ex, "~> 1.0.0"},
-      {:phoenix, "~> 1.2.1"},
+      {:html_sanitize_ex, "~> 1.2"},
+      {:phoenix, "~> 1.2.4"},
       {:phoenix_ecto, "~> 3.1"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
@@ -56,7 +56,7 @@ defmodule Tilex.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.0"},
       {:ueberauth_google, "~> 0.5"},
-      {:wallaby, "~> 0.16.1"},
+      {:wallaby, "~> 0.17.0"},
       {:extwitter, "~> 0.8"},
     ]
   end
