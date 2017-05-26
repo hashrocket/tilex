@@ -3,7 +3,7 @@
     <dt>
       <%= label f, :title %>
       <%= error_tag f, :title %>
-      <small class="character_limit" data-limit="50"></small>
+      <small class="character_limit" data-limit="<%= Tilex.Post.title_max_chars %>"></small>
     </dt>
     <dd>
       <%= text_input f, :title, placeholder: "Enter title..." %>
@@ -13,7 +13,7 @@
     <dt>
       <%= label f, :body %>
       <%= error_tag f, :body %>
-      <small class="word_limit" data-limit="200"></small>
+      <small class="word_limit" data-limit="<%= Tilex.Post.body_max_words %>"></small>
     </dt>
     <dd>
       <%= textarea f, :body,

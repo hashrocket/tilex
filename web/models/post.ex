@@ -1,6 +1,11 @@
 defmodule Tilex.Post do
   use Tilex.Web, :model
 
+  @body_max_words 200
+  def body_max_words, do: @body_max_words
+  @title_max_chars 50
+  def title_max_chars, do: @title_max_chars
+
   schema "posts" do
     field :title, :string
     field :body, :string
@@ -29,7 +34,7 @@ defmodule Tilex.Post do
     struct
     |> cast(params, [:title, :body, :developer_id, :channel_id, :likes, :max_likes])
     |> validate_required([:title, :body, :developer_id, :channel_id, :likes, :max_likes])
-    |> validate_length(:title, max: 50)
+    |> validate_length(:title, max: @title_max_chars)
     |> validate_length_of_body
     |> validate_number(:likes, greater_than: 0)
     |> add_slug
@@ -43,8 +48,8 @@ defmodule Tilex.Post do
   defp validate_length_of_body(changeset, nil), do: changeset
 
   defp validate_length_of_body(changeset, body) do
-    if length(String.split(body, ~r/\s+/)) > 200 do
-      add_error(changeset, :body, "should be at most 200 word(s)")
+    if length(String.split(body, ~r/\s+/)) > @body_max_words do
+      add_error(changeset, :body, "should be at most #{@body_max_words} word(s)")
     else
       changeset
     end
