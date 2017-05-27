@@ -3,6 +3,7 @@
     <dt>
       <%= label f, :title %>
       <%= error_tag f, :title %>
+      <small class="character_limit" data-limit="<%= Tilex.Post.title_max_chars %>"></small>
     </dt>
     <dd>
       <%= text_input f, :title, placeholder: "Enter title..." %>
@@ -12,6 +13,7 @@
     <dt>
       <%= label f, :body %>
       <%= error_tag f, :body %>
+      <small class="word_limit" data-limit="<%= Tilex.Post.body_max_words %>"></small>
     </dt>
     <dd>
       <%= textarea f, :body,
@@ -31,3 +33,16 @@
   <%= submit "Submit" %>
   <%= link("cancel", to: "/") %>
 <% end %>
+
+<article class="post">
+  <section>
+    <div class="post__content copy">
+      <h1 class="title_preview"></h1>
+      <div class="content_preview">
+      </div>
+      <footer>
+        <p>word count: <span class="word_count">0</span></p>
+      </footer>
+    </div>
+  </section>
+</article>

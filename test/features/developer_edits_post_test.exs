@@ -1,6 +1,10 @@
 defmodule DeveloperEditsPostTest do
   use Tilex.IntegrationCase, async: true
 
+  alias Tilex.Integration.Pages.{
+    PostForm
+  }
+
   test "fills out form and updates post from post show", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
@@ -8,7 +12,7 @@ defmodule DeveloperEditsPostTest do
       :post,
       title: "Awesome Post!",
       developer: developer,
-      body: "This is how to be awesome!"
+      body: "This is how to be *awesome*!"
     )
 
     sign_in(session, developer)
@@ -19,6 +23,13 @@ defmodule DeveloperEditsPostTest do
 
     h1_heading = Element.text(find(session, Query.css("main header h1")))
     assert h1_heading == "Edit Post"
+
+    session
+    |> PostForm.expect_preview_content("em", "awesome")
+    |> PostForm.expect_word_count(6)
+    |> PostForm.expect_words_left("194 words available")
+    |> PostForm.expect_title_characters_left("37 characters available")
+    |> PostForm.expect_title_preview("Awesome Post!")
 
     session
     |> fill_in(Query.text_field("Title"), with: "Even Awesomer Post!")

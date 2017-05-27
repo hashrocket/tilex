@@ -3,6 +3,7 @@ defmodule Tilex.UserSocket do
 
   ## Channels
   channel "post:search", Tilex.PostChannel
+  channel "text_converter", Tilex.TextConverterChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

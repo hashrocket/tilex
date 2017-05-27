@@ -5,7 +5,8 @@ defmodule DeveloperCreatesPostTest do
     Navigation,
     IndexPage,
     CreatePostPage,
-    PostShowPage
+    PostShowPage,
+    PostForm
   }
 
   test "fills out form and submits", %{session: session} do
@@ -138,5 +139,28 @@ defmodule DeveloperCreatesPostTest do
     |> click(Query.button("Submit"))
 
     assert find(session, Query.css("code", text: "code"))
+  end
+
+  test "views parsed markdown preview", %{session: session} do
+    Factory.insert!(:channel, name: "phoenix")
+    developer = Factory.insert!(:developer)
+
+    session
+    |> sign_in(developer)
+    |> CreatePostPage.visit()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title:  "Example Title",
+      body: "# yay \n *cool*",
+      channel: "phoenix"
+    })
+
+    session
+    |> PostForm.expect_preview_content("h1","yay")
+    |> PostForm.expect_preview_content("em", "cool")
+    |> PostForm.expect_word_count(3)
+    |> PostForm.expect_words_left("197 words available")
+    |> PostForm.expect_title_characters_left("37 characters available")
+    |> PostForm.expect_title_preview("Example Title")
   end
 end
