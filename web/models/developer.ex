@@ -14,7 +14,7 @@ defmodule Tilex.Developer do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email, :username, :google_id])
+    |> cast(params, [:email, :username, :google_id, :twitter_handle])
     |> validate_required([:email, :username, :google_id])
   end
 

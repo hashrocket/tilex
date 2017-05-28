@@ -108,7 +108,6 @@ defmodule Tilex.PostController do
     end
   end
 
-
   defp load_channels(conn, _) do
     query = Channel
     |> Channel.names_and_ids

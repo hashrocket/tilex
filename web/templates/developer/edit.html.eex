@@ -1,0 +1,41 @@
+<main>
+  <div id="profile_edit">
+    <header class="page_head">
+      <h1>My Profile</h1>
+    </header>
+    <%= form_for @changeset, developer_path(@conn, :update), fn f -> %>
+      <dl>
+        <dt>
+          <%= label f, :email %>
+          <%= error_tag f, :email %>
+        </dt>
+        <dd>
+          chris.erin@hashrocket.com
+        </dd>
+        <dt>
+          <%= label f, :slack_name %>
+          <%= error_tag f, :slack_name %>
+        </dt>
+        <dd>
+          <%= text_input f, :slack_name, placeholder: "Enter name..." %>
+        </dd>
+        <dt>
+          <%= label f, :twitter_handle %>
+          <%= error_tag f, :twitter_handle %>
+        </dt>
+        <dd>
+          <%= text_input f, :twitter_handle, placeholder: "Enter name..." %>
+        </dd>
+        <dt>
+          <%= label f, :editor %>
+          <%= error_tag f, :editor %>
+        </dt>
+        <dd>
+          <%= select f, :editor, ["Text Field", "Ace (w/ Vim)", "Ace"], prompt: "" %>
+        </dd>
+      </dl>
+      <%= submit "Submit" %>
+      <%= link("cancel", to: "/") %>
+    <% end %>
+  </div>
+</main>
