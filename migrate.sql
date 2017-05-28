@@ -22,13 +22,15 @@ insert into developers (
 email,
 username,
 google_id,
+twitter_handle
 inserted_at,
-updated_at
+updated_at,
 ) select
   ld.id,
   ld.email,
   ld.username,
   ld.username,
+  ld.twitter_handle,
   ld.created_at,
   ld.updated_at
 from legacy.developers ld;
@@ -46,7 +48,7 @@ insert into posts (
   likes,
   max_likes,
   published_at,
-  tweeted,
+  tweeted_at,
   developer_id
 ) select
   lp.id,
@@ -59,7 +61,7 @@ insert into posts (
   lp.likes,
   lp.max_likes,
   lp.published_at,
-  lp.tweeted,
+  lp.created_at, -- default the tweeted at column to the time the post was created
   lp.developer_id
 from legacy.posts as lp
 where lp.published_at is not null;
