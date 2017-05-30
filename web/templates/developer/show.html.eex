@@ -1,4 +1,4 @@
-<section id="tag">
+<section id="author">
   <header class="page_head">
     <h1>
       <%= developer_header(@posts_count, @developer) %>
