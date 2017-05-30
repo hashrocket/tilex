@@ -29,7 +29,7 @@ defmodule Features.VisitorViewsStatsTest do
     assert text_without_newlines(phoenix_channel) =~ "#phoenix 1 post"
   end
 
-  test "sees most liked tils", %{session: session} do
+  test "sees most liked and hottest tils", %{session: session} do
     posts = [
       "Controllers",
       "Views",
@@ -47,11 +47,22 @@ defmodule Features.VisitorViewsStatsTest do
     visit(session, "/statistics")
 
     most_liked_posts = find(session, Query.css("article.most_liked_posts"))
-    channels_header = find(most_liked_posts, Query.css("header"))
+    most_liked_posts_header = find(most_liked_posts, Query.css("header"))
 
-    assert Wallaby.Element.text(channels_header) =~ "Most liked TILs"
+    assert Wallaby.Element.text(most_liked_posts_header) =~ "Most liked TILs"
 
     [ fast_tests, slow_tests, insert_mode ] = all(most_liked_posts, Query.css("li"))
+
+    assert text_without_newlines(fast_tests) =~ "Templates #phoenix • 3 likes"
+    assert text_without_newlines(slow_tests) =~ "Views #phoenix • 2 likes"
+    assert text_without_newlines(insert_mode) =~ "Controllers #phoenix • 1 like"
+
+    hottest_posts = find(session, Query.css("article.hottest_posts"))
+    hottest_posts_header = find(hottest_posts, Query.css("header"))
+
+    assert Wallaby.Element.text(hottest_posts_header) =~ "Hottest TILs"
+
+    [ fast_tests, slow_tests, insert_mode ] = all(hottest_posts, Query.css("li"))
 
     assert text_without_newlines(fast_tests) =~ "Templates #phoenix • 3 likes"
     assert text_without_newlines(slow_tests) =~ "Views #phoenix • 2 likes"

@@ -3,6 +3,21 @@ defmodule Tilex.Stats do
 
   alias Tilex.Repo
 
+  defmacro greatest(value1, value2) do
+    quote do
+      fragment("greatest(?, ?)", unquote(value1), unquote(value2))
+    end
+  end
+
+  defmacro hours_since(timestamp) do
+    quote do
+      fragment(
+        "extract(epoch from (current_timestamp - ?)) / 3600",
+        unquote(timestamp)
+      )
+    end
+  end
+
   def all do
     posts_for_days_sql = """
       with posts as (
@@ -37,12 +52,15 @@ defmodule Tilex.Stats do
                             limit: 10,
                             select: {p.title, p.likes, p.slug, c.name})
 
+    hottest_posts = hot_posts()
+
     posts_count = Tilex.Repo.one(from p in "posts", select: fragment("count(*)"))
     channels_count = Tilex.Repo.one(from c in "channels", select: fragment("count(*)"))
 
     data = [
       channels: Repo.all(posts_by_channels_count),
       most_liked_posts: Repo.all(most_liked_posts),
+      hottest_posts: Repo.all(hottest_posts),
       posts_for_days: posts_for_days,
       posts_count: posts_count,
       channels_count: channels_count,
@@ -51,4 +69,32 @@ defmodule Tilex.Stats do
 
     data
   end
+
+  defp hot_posts do
+    posts_with_age_in_hours =
+       from(p in "posts",
+       where: not is_nil(p.published_at),
+       select: %{
+         id: p.id,
+         likes: p.likes,
+         hours_age: greatest(hours_since(p.published_at), 0.1)
+       })
+
+     from(p in subquery(posts_with_age_in_hours),
+       join: posts in "posts", on: posts.id == p.id,
+       join: channels in "channels", on: posts.channel_id == channels.id,
+       order_by: [desc: 5],
+       select: {
+         posts.title,
+         p.likes,
+         posts.slug,
+         channels.name,
+         fragment("? / (? ^ ?)",
+                   p.likes,
+                   p.hours_age,
+                   0.8)
+       },
+       limit: 10)
+  end
+
 end
