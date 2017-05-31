@@ -78,14 +78,18 @@
     <div class="stats_column right">
       <article>
         <header>
-          <h1>28 authors</h1>
+          <h1>
+            <%= Tilex.SharedView.pluralize(@developers_count, "author") %>
+          </h1>
         </header>
         <ul class="post_list" id="authors">
-          <li>
-            <a href="/authors/joshbranchaud"><b>joshbranchaud</b>
-              <small>342 posts</small>
-            </a>
-          </li>
+          <%= for {count, developer} <- @developers do %>
+            <li>
+              <a href="/authors/<%= developer %>"><b><%= developer %></b>
+                <small><%= count %> posts</small>
+              </a>
+            </li>
+          <% end %>
         </ul>
       </article>
     </div>

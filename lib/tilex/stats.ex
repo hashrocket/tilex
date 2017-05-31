@@ -41,10 +41,20 @@ defmodule Tilex.Stats do
                               join: c in "channels",
                               on: p.channel_id == c.id)
 
+    posts_and_developers = from(p in "posts",
+                              join: d in "developers",
+                              on: p.developer_id == d.id)
+
     posts_by_channels_count = from([p, c] in posts_and_channels,
                                    group_by: c.name,
                                    order_by: [desc: count(p.id)],
                                    select: {count(p.id), c.name}
+                                  )
+
+    posts_by_developers_count = from([p, d] in posts_and_developers,
+                                   group_by: d.username,
+                                   order_by: [desc: count(p.id)],
+                                   select: {count(p.id), d.username}
                                   )
 
     most_liked_posts = from([p, c] in posts_and_channels,
@@ -56,9 +66,12 @@ defmodule Tilex.Stats do
 
     posts_count = Tilex.Repo.one(from p in "posts", select: fragment("count(*)"))
     channels_count = Tilex.Repo.one(from c in "channels", select: fragment("count(*)"))
+    developers_count = Tilex.Repo.one(from p in "posts", select: fragment("count(distinct(developer_id))"))
 
     data = [
       channels: Repo.all(posts_by_channels_count),
+      developers: Repo.all(posts_by_developers_count),
+      developers_count: developers_count,
       most_liked_posts: Repo.all(most_liked_posts),
       hottest_posts: Repo.all(hottest_posts),
       posts_for_days: posts_for_days,
