@@ -82,9 +82,14 @@ defmodule Tilex.PostController do
   end
 
   def edit(conn, _params) do
-    post = Guardian.Plug.current_resource(conn)
+    current_user = Guardian.Plug.current_resource(conn)
+
+    post = case current_user.admin do
+      false -> current_user
            |> assoc(:posts)
            |> Repo.get_by!(slug: conn.assigns.slug)
+      true -> Repo.get_by!(Post, slug: conn.assigns.slug)
+    end
 
     changeset = Post.changeset(post)
 
@@ -92,9 +97,14 @@ defmodule Tilex.PostController do
   end
 
   def update(conn, %{"post" => post_params}) do
-    post = Guardian.Plug.current_resource(conn)
+    current_user = Guardian.Plug.current_resource(conn)
+
+    post = case current_user.admin do
+      false -> current_user
            |> assoc(:posts)
            |> Repo.get_by!(slug: conn.assigns.slug)
+      true -> Repo.get_by!(Post, slug: conn.assigns.slug)
+    end
 
     changeset = Post.changeset(post, post_params)
 

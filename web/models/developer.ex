@@ -6,6 +6,7 @@ defmodule Tilex.Developer do
     field :username, :string
     field :google_id, :string
     field :twitter_handle, :string
+    field :admin, :boolean
 
     has_many :posts, Tilex.Post
 
