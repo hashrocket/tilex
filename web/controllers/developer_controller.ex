@@ -30,7 +30,7 @@ defmodule Tilex.DeveloperController do
     changeset = Developer.changeset(developer, developer_params)
 
     case Repo.update(changeset) do
-      {:ok, developer} ->
+      {:ok, _developer} ->
         conn
         |> put_flash(:info, "Developer Updated")
         |> redirect(to: post_path(conn, :index))
