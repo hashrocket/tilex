@@ -95,6 +95,9 @@ $ heroku run "POOL_SIZE=2 mix ecto.migrate"
 7. Push to the branch (`git push origin my-new-feature`)
 8. Create new Pull Request
 
+Check out our [Github Project](https://github.com/hashrocket/tilex/projects/1)
+to get a sense of where the application is headed.
+
 All migrations should be able to be run and roll back. Verify this with
 our built-in command:
 
