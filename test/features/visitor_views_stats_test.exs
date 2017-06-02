@@ -103,4 +103,20 @@ defmodule Features.VisitorViewsStatsTest do
          Query.css("li[data-amount='3'][data-date='Wed, #{Timex.format!(previous_wednesday, "%b %-e", :strftime)}']")
         )
   end
+
+  test "sees total number of posts by developer", %{session: session} do
+
+    developer = Factory.insert!(:developer, username: "makinpancakes")
+    Factory.insert!(:post, developer: developer)
+
+    visit(session, "/statistics")
+
+    query = Query.css(".stats_column header", text: "1 author")
+    developers_header = find(session, query)
+    assert(developers_header)
+
+    developers = find(session, Query.css(".stats_column ul#authors"))
+    [developer] = all(developers, Query.css("li"))
+    assert text_without_newlines(developer) =~ "makinpancakes 1 post"
+  end
 end
