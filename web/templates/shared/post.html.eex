@@ -22,7 +22,7 @@
           <li>
             <%= link("permalink", to: post_path(@conn, :show, @post), class: "post__permalink") %>
           </li>
-          <%= if @post.developer == Guardian.Plug.current_resource(@conn) do %>
+          <%= if Guardian.Plug.current_resource(@conn) && (@post.developer == Guardian.Plug.current_resource(@conn) || Guardian.Plug.current_resource(@conn).admin) do %>
             <li>
               <%= link("edit", to: post_path(@conn, :edit, @post), class: "post__permalink") %>
             </li>
