@@ -1,8 +1,8 @@
-# tilex - Today I Learned in Elixir
+# Tilex - Today I Learned in Elixir
 
 [![Build Status](https://travis-ci.org/hashrocket/tilex.svg)](https://travis-ci.org/hashrocket/tilex)
 
-> tilex is an open-source project by the team at
+> Tilex is an open-source project by the team at
 > [Hashrocket](https://hashrocket.com/) that catalogues the sharing &
 > accumulation of knowledge as it happens day-to-day. Posts have a 200-word
 > limit, and posting is open to any Rocketeer as well as select friends of the
@@ -12,7 +12,7 @@ This site was open-sourced as a window into our development process, as well as
 to allow people to experiment with the site on their own and contribute to the
 project.
 
-We originally implemented _tilex_ as
+We originally implemented Tilex as
 [_hr-til_](https://github.com/hashrocket/hr-til), a Ruby on Rails app.
 
 ### Installation
@@ -58,7 +58,7 @@ $ source .env
 
 ### Testing
 
-Wallaby relies on PhantomJS, install it:
+Wallaby relies on PhantomJS; install it:
 
 ```
 $ npm install -g phantomjs
@@ -72,9 +72,10 @@ $ mix test
 
 ### Deployment
 
-The tilex staging server is here:
+These are the Tilex deployed instances:
 
-https://tilex.herokuapp.com
+Staging: https://tilex-staging.herokuapp.com
+Production: https://tilex.herokuapp.com
 
 Database migrations require telling Heroku how many pools to use. Here's an
 example:
@@ -94,6 +95,9 @@ $ heroku run "POOL_SIZE=2 mix ecto.migrate"
 7. Push to the branch (`git push origin my-new-feature`)
 8. Create new Pull Request
 
+Check out our [Github Project](https://github.com/hashrocket/tilex/projects/1)
+to get a sense of where the application is headed.
+
 All migrations should be able to be run and roll back. Verify this with
 our built-in command:
 
@@ -108,7 +112,7 @@ the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ### License
 
-tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+Tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT).
 
 ---
 
@@ -116,7 +120,7 @@ tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT
 
 [![Hashrocket logo](https://hashrocket.com/hashrocket_logo.svg)](https://hashrocket.com)
 
-tilex is supported by the team at [Hashrocket, a multidisciplinary design and
+Tilex is supported by the team at [Hashrocket, a multidisciplinary design and
 development consultancy](https://hashrocket.com). If you'd like to [work with
 us](https://hashrocket.com/contact-us/hire-us) or [join our
 team](https://hashrocket.com/contact-us/jobs), don't hesitate to get in touch.
