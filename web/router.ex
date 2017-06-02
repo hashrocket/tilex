@@ -32,6 +32,7 @@ defmodule Tilex.Router do
 
     get "/statistics", StatsController, :index
 
+    get "/random", PostController, :random
     get "/:name", ChannelController, :show
     get "/authors/:name", DeveloperController, :show
     get "/profile/edit", DeveloperController, :edit

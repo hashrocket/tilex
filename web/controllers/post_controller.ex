@@ -1,5 +1,6 @@
 defmodule Tilex.PostController do
   use Tilex.Web, :controller
+  import Ecto.Query
 
   plug :load_channels when action in [:new, :create, :edit, :update]
   plug :extract_slug when action in [:show, :edit, :update]
@@ -36,6 +37,17 @@ defmodule Tilex.PostController do
     post = Repo.get_by!(Post, slug: conn.assigns.slug)
            |> Repo.preload([:channel])
            |> Repo.preload([:developer])
+
+    render(conn, "show.html", post: post)
+  end
+
+  def random(conn, _) do
+    query = from post in Post,
+      order_by: fragment("random()"),
+      limit: 1,
+      preload: [:channel, :developer]
+
+    post = Repo.one(query)
 
     render(conn, "show.html", post: post)
   end
