@@ -10,8 +10,8 @@
           <%= error_tag f, :email %>
         </dt>
         <dd>
-          chris.erin@hashrocket.com
-        </dd>
+          <%= Guardian.Plug.current_resource(@conn).email %>
+       </dd>
         <dt>
           <%= label f, :slack_name %>
           <%= error_tag f, :slack_name %>
