@@ -100,6 +100,9 @@
         <li class="site_nav__twitter">
             <%= link("Twitter", to: "https://twitter.com/hashrockettil", class: "site_nav__link") %>
         </li>
+        <li class="site_nav__surprise_me">
+            <%= link("Surprise Me", to: "/random", class: "site_nav__link") %>
+        </li>
       </ul>
     </nav>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
