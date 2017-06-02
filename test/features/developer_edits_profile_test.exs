@@ -1,19 +1,18 @@
 defmodule DeveloperEditsProfileTest do
   use Tilex.IntegrationCase, async: true
 
-  alias Tilex.Integration.Pages.{
-    PostForm
-  }
-
   test "fills out form and updates post from post show", %{session: session} do
-    developer = Factory.insert!(:developer)
+    developer = Factory.insert!(:developer, email: "fine@sixdollareggs.com")
 
     sign_in(session, developer)
 
     click(session, Query.link("Profile"))
 
     h1_heading = Element.text(find(session, Query.css("#profile_edit header h1")))
+    profile_form = Element.text(find(session, Query.css("#profile_edit form")))
+
     assert h1_heading == "My Profile"
+    assert profile_form =~ "fine@sixdollareggs.com"
 
     session
     |> fill_in(Query.text_field("Slack name"), with: "chriserin")
@@ -40,7 +39,5 @@ defmodule DeveloperEditsProfileTest do
                 |> hd
 
     assert developer.twitter_handle == "mcnormalmode"
-    # assert developer.slackname == "chriserin"
-    # assert developer.editor == "Ace"
   end
 end
