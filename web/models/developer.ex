@@ -7,6 +7,7 @@ defmodule Tilex.Developer do
     field :google_id, :string
     field :twitter_handle, :string
     field :admin, :boolean
+    field :editor, :string
 
     has_many :posts, Tilex.Post
 
@@ -15,8 +16,8 @@ defmodule Tilex.Developer do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email, :username, :google_id, :twitter_handle])
-    |> validate_required([:email, :username, :google_id])
+    |> cast(params, [:email, :username, :google_id, :twitter_handle, :editor])
+    |> validate_required([:email, :username, :google_id, :editor])
   end
 
   def find_or_create(repo, attrs) do

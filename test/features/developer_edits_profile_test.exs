@@ -15,7 +15,6 @@ defmodule DeveloperEditsProfileTest do
     assert profile_form =~ "fine@sixdollareggs.com"
 
     session
-    |> fill_in(Query.text_field("Slack name"), with: "chriserin")
     |> fill_in(Query.text_field("Twitter handle"), with: "mcnormalmode")
     |> (fn(session) ->
       find(session, Query.select("Editor"), fn (element) ->
@@ -39,5 +38,6 @@ defmodule DeveloperEditsProfileTest do
                 |> hd
 
     assert developer.twitter_handle == "mcnormalmode"
+    assert developer.editor == "Ace"
   end
 end
