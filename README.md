@@ -72,9 +72,10 @@ $ mix test
 
 ### Deployment
 
-The tilex staging server is here:
+These are the tilex deployed instances:
 
-https://tilex.herokuapp.com
+Staging: https://tilex-staging.herokuapp.com
+Production: https://tilex.herokuapp.com
 
 Database migrations require telling Heroku how many pools to use. Here's an
 example:
