@@ -5,7 +5,7 @@ defmodule Tilex.PostController do
   plug :load_channels when action in [:new, :create, :edit, :update]
   plug :extract_slug when action in [:show, :edit, :update]
 
-  plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when action in [:new, :create]
+  plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when action in [:new, :create, :edit, :update]
 
   def unauthenticated(conn, _) do
     conn
