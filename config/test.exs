@@ -24,3 +24,4 @@ config :tilex, :page_size, 5
 config :tilex, :auth_controller, Test.AuthController
 config :tilex, :slack_notifier, Test.Slack
 config :tilex, :twitter_notifier, Test.Twitter
+config :tilex, :organization_name, "Hashrocket"

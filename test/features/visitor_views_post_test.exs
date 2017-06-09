@@ -12,6 +12,7 @@ defmodule VisitorViewsPostTest do
 
     assert body =~ ~r/A special post/
     assert body =~ ~r/makinpancakes/
+    assert page_title(session) == "Today I Learned - Hashrocket - A special post"
   end
 
   test "and sees marketing copy, if it exists", %{session: session} do

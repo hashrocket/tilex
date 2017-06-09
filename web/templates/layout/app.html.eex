@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
 
-    <title>Today I Learned</title>
+    <title>
+      Today I Learned - <%= Application.get_env(:tilex, :organization_name) %><%= page_title(assigns) %>
+    </title>
 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>

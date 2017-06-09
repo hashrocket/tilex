@@ -20,6 +20,7 @@ defmodule Features.VisitorViewsChannelTest do
 
     assert page_header =~ ~r/1 post about #phoenix/
     assert find(session, Query.css("article.post"))
+    assert page_title(session) == "Today I Learned - Hashrocket - #phoenix"
   end
 
   test "the page has a list of paginated posts", %{session: session} do
