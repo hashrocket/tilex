@@ -76,3 +76,6 @@ config :tilex, :page_size, 50
 config :tilex, :auth_controller, AuthController
 config :tilex, :slack_notifier, Tilex.Slack
 config :tilex, :twitter_notifier, Tilex.Twitter
+
+config :appsignal, :config,
+  active: true

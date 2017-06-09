@@ -19,17 +19,18 @@ defmodule Tilex.Mixfile do
   def application do
     [mod: {Tilex, []},
      applications: [
-       :phoenix,
-       :phoenix_pubsub,
-       :phoenix_html,
+       :appsignal,
        :cowboy,
-       :logger,
+       :extwitter,
        :gettext,
+       :logger,
+       :phoenix,
        :phoenix_ecto,
+       :phoenix_html,
+       :phoenix_pubsub,
        :postgrex,
        :timex,
        :ueberauth_google,
-       :extwitter
      ]]
   end
 
@@ -42,9 +43,11 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:appsignal, "~> 1.0"},
       {:basic_auth, "~> 2.1"},
       {:cowboy, "~> 1.0"},
       {:earmark, "~> 1.2"},
+      {:extwitter, "~> 0.8"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 0.14"},
       {:html_sanitize_ex, "~> 1.2"},
@@ -57,7 +60,6 @@ defmodule Tilex.Mixfile do
       {:timex, "~> 3.0"},
       {:ueberauth_google, "~> 0.5"},
       {:wallaby, "~> 0.17.0", only: :test},
-      {:extwitter, "~> 0.8"},
     ]
   end
 
