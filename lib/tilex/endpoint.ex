@@ -42,5 +42,6 @@ defmodule Tilex.Endpoint do
     key: "_tilex_key",
     signing_salt: "PSNTTaPr"
 
+  use Appsignal.Phoenix
   plug Tilex.Router
 end
