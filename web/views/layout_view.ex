@@ -1,15 +1,8 @@
 defmodule Tilex.LayoutView do
   use Tilex.Web, :view
 
-  def page_title(assigns) do
-    cond do
-      Map.get(assigns, :post) ->
-        " - #{assigns.post.title}"
-      Map.get(assigns, :channel) ->
-        " - ##{assigns.channel.name}"
-      Map.get(assigns, :developer) ->
-        " - #{assigns.developer.username}"
-      true -> ""
-    end
-  end
+  def page_title(%{post: post}), do: " - #{post.title}"
+  def page_title(%{channel: channel}), do: " - ##{channel.name}"
+  def page_title(%{developer: developer}), do: " - #{developer.username}"
+  def page_title(_), do: ""
 end
