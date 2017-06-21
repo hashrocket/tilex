@@ -66,11 +66,13 @@ config :tilex, Tilex.Repo,
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 
-config :tilex, :basic_auth, [
-  realm: "tilex",
-  username: System.get_env("BASIC_AUTH_USERNAME"),
-  password: System.get_env("BASIC_AUTH_PASSWORD"),
-]
+if System.get_env("ENABLE_BASIC_AUTH") do
+  config :tilex, :basic_auth, [
+    realm: "tilex",
+    username: System.get_env("BASIC_AUTH_USERNAME"),
+    password: System.get_env("BASIC_AUTH_PASSWORD"),
+  ]
+end
 
 config :tilex, :page_size, 50
 config :tilex, :auth_controller, AuthController
