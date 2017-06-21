@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/hashrocket/tilex.svg)](https://travis-ci.org/hashrocket/tilex)
 
-> Tilex is an open-source project by the team at
+> Today I Learned is an open-source project by the team at
 > [Hashrocket](https://hashrocket.com/) that catalogues the sharing &
 > accumulation of knowledge as it happens day-to-day. Posts have a 200-word
 > limit, and posting is open to any Rocketeer as well as select friends of the
@@ -75,7 +75,7 @@ $ mix test
 These are the Tilex deployed instances:
 
 - Staging: https://tilex-staging.herokuapp.com
-- Production: https://tilex.herokuapp.com
+- Production: https://til.hashrocket.com
 
 Database migrations require telling Heroku how many pools to use. Here's an
 example:
