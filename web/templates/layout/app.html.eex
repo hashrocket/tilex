@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
-    <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
-
     <title>
       Today I Learned - <%= Application.get_env(:tilex, :organization_name) %><%= page_title(assigns) %>
     </title>
 
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+    <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day.">
+
+    <meta itemprop="name" content="Today I Learned">
+    <meta itemprop="brand" content="Today I Learned">
+    <meta itemprop="description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@hashrockettil">
@@ -24,6 +23,13 @@
     <meta name="twitter:description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.">
     <meta name="twitter:image" content="https://til.hashrocket.com/assets/til_twittercard.png">
 
+    <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
