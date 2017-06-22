@@ -6,6 +6,18 @@
           <%= link(@post.title, to: post_path(@conn, :show, @post)) %>
         </h1>
         <%= raw Tilex.Markdown.to_html(@post.body) %>
+
+        <%= if action_name(@conn) == :show do %>
+          <a href='http://twitter.com/share'
+             class='twitter-share-button'
+             data-text= "Today I learned: <%= @post.title %>"
+             data-via= "<%= @post.developer.twitter_handle %>"
+             data-hashtags= "<%= @post.channel.twitter_hashtag %>"
+             data-url= "<%= post_url(@conn, :show, @post) %>">
+            Tweet
+          </a>
+        <%= end %>
+
         <footer>
           <p>
             <%= link(@post.developer.username, to: developer_path(@conn, :show, @post.developer)) %>
