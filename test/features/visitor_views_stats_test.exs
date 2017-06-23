@@ -49,7 +49,7 @@ defmodule Features.VisitorViewsStatsTest do
     most_liked_posts = find(session, Query.css("article.most_liked_posts"))
     most_liked_posts_header = find(most_liked_posts, Query.css("header"))
 
-    assert Wallaby.Element.text(most_liked_posts_header) =~ "Most liked TILs"
+    assert Wallaby.Element.text(most_liked_posts_header) =~ "Most liked posts"
 
     [ fast_tests, slow_tests, insert_mode ] = all(most_liked_posts, Query.css("li"))
 
@@ -60,7 +60,7 @@ defmodule Features.VisitorViewsStatsTest do
     hottest_posts = find(session, Query.css("article.hottest_posts"))
     hottest_posts_header = find(hottest_posts, Query.css("header"))
 
-    assert Wallaby.Element.text(hottest_posts_header) =~ "Hottest TILs"
+    assert Wallaby.Element.text(hottest_posts_header) =~ "Hottest posts"
 
     [ fast_tests, slow_tests, insert_mode ] = all(hottest_posts, Query.css("li"))
 

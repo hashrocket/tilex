@@ -17,7 +17,7 @@
     </article>
     <article class="hottest_posts">
       <header>
-        <h1>Hottest TILs</h1>
+        <h1>Hottest posts</h1>
       </header>
       <ul class="post_list">
         <%= for {post_title, post_likes, post_slug, channel_name, _score} <- @hottest_posts do %>
@@ -37,7 +37,7 @@
     </article>
     <article class="most_liked_posts">
       <header>
-        <h1>Most liked TILs</h1>
+        <h1>Most liked posts</h1>
       </header>
       <ul class="post_list">
         <%= for {post_title, post_likes, post_slug, channel_name} <- @most_liked_posts do %>
