@@ -24,6 +24,7 @@ defmodule Tilex.Router do
   scope "/", Tilex do
     pipe_through [:browser, :browser_auth]
 
+    get "/rss", FeedController, :index
     get "/admin", @auth_controller, :index
     delete "/auth/logout", AuthController, :delete
     get "/auth/:provider", AuthController, :request
