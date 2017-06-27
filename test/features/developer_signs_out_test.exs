@@ -1,5 +1,5 @@
 defmodule Features.DeveloperSignsOutTest do
-  use Tilex.IntegrationCase
+  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   test 'signs out and does not see create post link', %{:session => session} do
 

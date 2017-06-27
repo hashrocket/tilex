@@ -1,5 +1,5 @@
 defmodule VisitorViewsPostTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   test "the page shows a post", %{session: session} do
 
