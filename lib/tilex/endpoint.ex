@@ -13,7 +13,16 @@ defmodule Tilex.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :tilex, gzip: false,
-    only: ~w(css fonts images js favicon.png favicon.ico hashrocket-log.png robots.txt)
+    only: ~w(assets
+      css
+      favicon.ico
+      favicon.png
+      fonts
+      hashrocket-log.png
+      images
+      js
+      robots.txt
+    )
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
