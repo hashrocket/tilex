@@ -1,7 +1,7 @@
 defmodule Tilex.Slack do
-  def notify(post, developer, _, url) do
+  def notify(post, developer, channel, url) do
     endpoint = System.get_env("slack_post_endpoint")
-    text = "#{developer.username} created a new post <#{url}|#{post.title}>"
+    text = "#{developer.username} created a new post <#{url}|#{post.title}> ##{channel.twitter_hashtag}"
 
     spawn(
       fn ->
