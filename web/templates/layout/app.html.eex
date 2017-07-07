@@ -110,7 +110,7 @@
             <%= link("Twitter", to: "https://twitter.com/hashrockettil", class: "site_nav__link") %>
         </li>
         <li class="site_nav__surprise_me">
-            <%= link("Surprise Me", to: "/random", class: "site_nav__link") %>
+            <%= link("Surprise Me", to: "/random", class: "site_nav__link", rel: "nofollow") %>
         </li>
       </ul>
     </nav>
