@@ -38,7 +38,8 @@ defmodule Tilex.PostController do
            |> Repo.preload([:channel])
            |> Repo.preload([:developer])
 
-    render(conn, "show.html", post: post)
+    Plug.Conn.assign(conn, :canonical_url, "https://til.hashrocket.com" <> Tilex.Router.Helpers.post_path(conn, :show, post))
+    |> render("show.html", post: post)
   end
 
   def random(conn, _) do
