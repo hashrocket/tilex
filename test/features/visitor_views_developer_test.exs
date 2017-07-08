@@ -15,7 +15,7 @@ defmodule Features.VisitorViewsDeveloper do
 
     assert page_header =~ ~r/1 post by makinpancakes/
     assert find(session, Query.css("article.post"))
-    assert page_title(session) == "Today I Learned - Hashrocket - makinpancakes"
+    assert page_title(session) == "makinpancakes - Today I Learned"
   end
 
   test "and sees a prolific developer's posts", %{session: session} do
