@@ -65,6 +65,6 @@ defmodule VisiorSearchesPosts do
   end
 
   defp get_first_post_on_page_title(session) do
-    get_text(session, "#home > #post_show:first-child h1 a")
+    get_text(session, "#home > section:first-child article.post h1 a")
   end
 end

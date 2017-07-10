@@ -3,7 +3,7 @@ defmodule Tilex.Integration.Pages.PostShowPage do
 
   def ensure_page_loaded(session, post) do
     session
-    |> Browser.find(Query.css("#post_show"))
+    |> Browser.find(Query.css("article.post"))
 
     session
     |> Browser.find(Query.css("h1", text: post.title))
