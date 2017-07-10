@@ -1,5 +1,5 @@
 defmodule VisitorVisitsHomepageTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   test "the page does not have a Create Post link", %{session: session} do
     visit(session, "/")

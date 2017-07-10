@@ -1,5 +1,5 @@
 defmodule Features.VisitorViewsStatsTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   def text_without_newlines(element) do
     String.replace(Wallaby.Element.text(element), "\n", " ")
