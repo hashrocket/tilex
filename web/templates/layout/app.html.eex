@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>
-      Today I Learned - <%= Application.get_env(:tilex, :organization_name) %><%= page_title(assigns) %>
+      <%= page_title(assigns) %> - Today I Learned
     </title>
 
     <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
