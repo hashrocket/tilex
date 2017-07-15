@@ -29,3 +29,6 @@ erl_crash.dump
 .env
 
 /tmp
+
+/priv/static/js/app.js
+/priv/static/js/app.js.map
