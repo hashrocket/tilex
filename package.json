@@ -6,6 +6,7 @@
     "watch": "brunch watch --stdin"
   },
   "dependencies": {
+    "autosize": "^4.0.0",
     "jquery": ">= 2.1",
     "jquery.cookie": "^1.4.1",
     "phoenix": "file:deps/phoenix",

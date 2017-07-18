@@ -1,4 +1,5 @@
 import TextConversion from './text_conversion';
+import autosize from 'autosize';
 
 export default class PostForm {
   constructor(properties) {
@@ -24,6 +25,7 @@ export default class PostForm {
     this.setInitialPreview();
     this.observePostBodyInputChange();
     this.observeTitleInputChange();
+    autosize(this.$postBodyInput);
   }
 
   setInitialPreview() {
