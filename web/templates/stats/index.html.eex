@@ -22,7 +22,8 @@
       <ul class="post_list">
         <%= for {post_title, post_likes, post_slug, channel_name, _score} <- @hottest_posts do %>
           <li>
-            <a href="/posts/<%= post_slug %>"><b>
+            <%= link(to: post_path(@conn, :show, %Tilex.Post{slug: post_slug, title: post_title})) do %>
+              <b>
                 <%= post_title %>
               </b>
               <small>
@@ -30,7 +31,7 @@
                 <span>•</span>
                 <%= post_likes %> likes
               </small>
-            </a>
+            <% end %>
           </li>
         <% end %>
       </ul>
@@ -42,7 +43,8 @@
       <ul class="post_list">
         <%= for {post_title, post_likes, post_slug, channel_name} <- @most_liked_posts do %>
           <li>
-            <a href="/posts/<%= post_slug %>"><b>
+            <%= link(to: post_path(@conn, :show, %Tilex.Post{slug: post_slug, title: post_title})) do %>
+              <b>
                 <%= post_title %>
               </b>
               <small>
@@ -50,7 +52,7 @@
                 <span>•</span>
                 <%= post_likes %> likes
               </small>
-            </a>
+            <% end %>
           </li>
         <% end %>
       </ul>
