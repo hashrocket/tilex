@@ -27,15 +27,12 @@ defmodule Tilex.PostController do
     )
   end
 
+  def index(conn, %{"format" => format}) when format in ~w(rss atom), do: redirect(conn, to: "/rss")
+
   def index(conn, params) do
     page = Map.get(params, "page", "1") |> String.to_integer
-
-    format = Map.get(params, "format")
-    if Enum.member?(["atom", "rss"], format) do
-      redirect(conn, to: "/rss")
-    end
-
     posts = Posts.all(page)
+
     render(conn, "index.html", posts: posts, page: page)
   end
 
