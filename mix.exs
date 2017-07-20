@@ -45,6 +45,7 @@ defmodule Tilex.Mixfile do
     [
       {:appsignal, "~> 1.0"},
       {:basic_auth, "~> 2.1"},
+      {:cors_plug, "~> 1.2"},
       {:cowboy, "~> 1.0"},
       {:earmark, github: "pragdave/earmark", ref: "2bc9051"},
       {:extwitter, "~> 0.8"},
