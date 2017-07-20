@@ -20,6 +20,7 @@ defmodule Tilex.Mixfile do
     [mod: {Tilex, []},
      applications: [
        :appsignal,
+       :cachex,
        :cowboy,
        :extwitter,
        :gettext,
@@ -46,6 +47,7 @@ defmodule Tilex.Mixfile do
       {:appsignal, "~> 1.0"},
       {:basic_auth, "~> 2.1"},
       {:cors_plug, "~> 1.2"},
+      {:cachex, "~> 2.1"},
       {:cowboy, "~> 1.0"},
       {:earmark, github: "pragdave/earmark", ref: "2bc9051"},
       {:extwitter, "~> 0.8"},
