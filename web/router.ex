@@ -28,6 +28,8 @@ defmodule Tilex.Router do
 
   scope "/api", Tilex do
     pipe_through [:api]
+
+    get "/developer_posts.json", Api.DeveloperPostController, :index
   end
 
   scope "/", Tilex do
