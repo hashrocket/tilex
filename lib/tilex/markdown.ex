@@ -8,7 +8,7 @@ defmodule Tilex.Markdown do
   def to_html(markdown) do
     Tilex.Cache.cache(markdown, fn()->
       to_html_live(markdown)
-      |> expand_relative_links("https://til.hashrocket.com")
+      #|> expand_relative_links("https://til.hashrocket.com")
     end)
   end
 
