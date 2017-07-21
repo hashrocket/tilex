@@ -4,15 +4,8 @@ defmodule Tilex.Api.DeveloperPostView do
   def render("index.json", %{posts: posts}) do
     %{
       data: %{
-        posts: Enum.map(posts, &post_json/1)
+        posts: render_many(posts, Tilex.Api.PostView, "post.json")
       }
-    }
-  end
-
-  def post_json(post) do
-    %{
-      slug: post.slug,
-      title: post.title,
     }
   end
 end
