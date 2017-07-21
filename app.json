@@ -1,6 +1,7 @@
 {
   "name": "tilex",
   "scripts": {
+    "postdeploy": "mix ecto.migrate"
   },
   "env": {
     "BASIC_AUTH_PASSWORD": {
