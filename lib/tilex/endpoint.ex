@@ -18,7 +18,7 @@ defmodule Tilex.Endpoint do
       favicon.ico
       favicon.png
       fonts
-      hashrocket-log.png
+      hashrocket-logo.png
       images
       js
       robots.txt
