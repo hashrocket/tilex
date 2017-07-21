@@ -2,6 +2,7 @@ defmodule Tilex.Router do
   use Tilex.Web, :router
 
   @auth_controller Application.get_env(:tilex, :auth_controller)
+  @cors_origin     Application.get_env(:tilex, :cors_origin)
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -18,13 +19,24 @@ defmodule Tilex.Router do
   end
 
   pipeline :api do
+    if @cors_origin do
+      plug(CORSPlug, origin: @cors_origin)
+    end
+
     plug :accepts, ["json"]
   end
+
+  scope "/api", Tilex do
+    pipe_through [:api]
+
+    get "/developer_posts.json", Api.DeveloperPostController, :index
+  end
+
+  get "/rss", Tilex.FeedController, :index
 
   scope "/", Tilex do
     pipe_through [:browser, :browser_auth]
 
-    get "/rss", FeedController, :index
     get "/admin", @auth_controller, :index
     delete "/auth/logout", AuthController, :delete
     get "/auth/:provider", AuthController, :request
@@ -33,6 +45,7 @@ defmodule Tilex.Router do
 
     get "/statistics", StatsController, :index
 
+    get "/sitemap.xml", SitemapController, :index
     get "/random", PostController, :random
     get "/:name", ChannelController, :show
     get "/authors/:name", DeveloperController, :show

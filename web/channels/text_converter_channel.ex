@@ -6,7 +6,7 @@ defmodule Tilex.TextConverterChannel do
   end
 
   def handle_in("convert", %{"markdown" => markdown}, socket) do
-    html = Tilex.Markdown.to_html(markdown)
+    html = Tilex.Markdown.to_html_live(markdown)
 
     push socket, "converted", %{html: html}
     {:noreply, socket}

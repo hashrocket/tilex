@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>
-      Today I Learned - <%= Application.get_env(:tilex, :organization_name) %><%= page_title(assigns) %>
+      <%= page_title(assigns) %> - Today I Learned
     </title>
 
     <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
@@ -26,6 +26,8 @@
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="alternate feed" type="application/rss+xml" title="Today I Learned" href="/rss">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -118,5 +120,21 @@
       </ul>
     </nav>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+    <!-- syntax highlighting -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/elixir.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/clojure.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/applescript.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/vim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haml.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/elm.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/erb.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/erlang.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
