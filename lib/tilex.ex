@@ -12,8 +12,7 @@ defmodule Tilex do
       supervisor(Tilex.Repo, []),
       # Start the endpoint when the application starts
       supervisor(Tilex.Endpoint, []),
-      # Start your own worker by calling: Tilex.Worker.start_link(arg1, arg2, arg3)
-      # worker(Tilex.Worker, [arg1, arg2, arg3]),
+      worker(Cachex, [:tilex_cache, []]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
