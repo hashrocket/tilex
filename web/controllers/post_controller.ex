@@ -41,9 +41,9 @@ defmodule Tilex.PostController do
            |> Repo.preload([:channel])
            |> Repo.preload([:developer])
 
-    canonical_post = Application.get_env(:tilex, :canonical_domain) <> Tilex.Router.Helpers.post_path(conn, :show, post)
+    canonical_post = Application.get_env(:tilex, :canonical_domain) <> post_path(conn, :show, post)
 
-    Plug.Conn.assign(conn, :canonical_url, canonical_post)
+    assign(conn, :canonical_url, canonical_post)
     |> render("show.html", post: post)
   end
 
