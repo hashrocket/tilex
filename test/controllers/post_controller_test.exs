@@ -1,5 +1,5 @@
 defmodule Tilex.PostControllerTest do
-  use Tilex.ConnCase
+  use Tilex.Web.ConnCase
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, post_path(conn, :index)

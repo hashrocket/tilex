@@ -10,10 +10,10 @@ config :tilex,
   ecto_repos: [Tilex.Repo]
 
 # Configures the endpoint
-config :tilex, Tilex.Endpoint,
+config :tilex, Tilex.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "mdTtrt4Y4JrtiTv63NepUe4fs1iSt23VfzKpnXm6mawKl6wN8jEfLfIf2HbyMeKe",
-  render_errors: [view: Tilex.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: Tilex.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Tilex.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

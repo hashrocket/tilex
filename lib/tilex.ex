@@ -11,7 +11,7 @@ defmodule Tilex do
       # Start the Ecto repository
       supervisor(Tilex.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(Tilex.Endpoint, []),
+      supervisor(Tilex.Web.Endpoint, []),
       worker(Cachex, [:tilex_cache, []]),
     ]
 
@@ -19,12 +19,5 @@ defmodule Tilex do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Tilex.Supervisor]
     Supervisor.start_link(children, opts)
-  end
-
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
-  def config_change(changed, _new, removed) do
-    Tilex.Endpoint.config_change(changed, removed)
-    :ok
   end
 end

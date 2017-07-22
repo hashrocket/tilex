@@ -1,5 +1,0 @@
-<section id="home">
-  <%= render Tilex.SharedView, "_posts_list.html", conn: @conn, posts: @posts %>
-</section>
-
-<%= render Tilex.SharedView, "_pagination.html", conn: @conn, page: @page, posts: @posts %>

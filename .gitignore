@@ -9,9 +9,9 @@
 erl_crash.dump
 
 # Static artifacts
-/node_modules
+/assets/node_modules
 
-# Since we are building assets from web/static,
+# Since we are building assets from assets/,
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
 /priv/static/
@@ -22,7 +22,7 @@ erl_crash.dump
 # Alternatively, you may comment the line below and commit the
 # secrets file as long as you replace its contents by environment
 # variables.
-/config/prod.secret.exs
+/config/*.secret.exs
 
 /screenshots
 

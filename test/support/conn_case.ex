@@ -1,4 +1,4 @@
-defmodule Tilex.ConnCase do
+defmodule Tilex.Web.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule Tilex.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import Tilex.Router.Helpers
+      import Tilex.Web.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint Tilex.Endpoint
+      @endpoint Tilex.Web.Endpoint
     end
   end
 

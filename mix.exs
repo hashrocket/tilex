@@ -36,15 +36,15 @@ defmodule Tilex.Mixfile do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:appsignal, "~> 1.0"},
+      {:appsignal, github: "appsignal/appsignal-elixir", branch: "phoenix-pre"},
       {:basic_auth, "~> 2.1"},
       {:cors_plug, "~> 1.2"},
       {:cachex, "~> 2.1"},
@@ -55,7 +55,7 @@ defmodule Tilex.Mixfile do
       {:gettext, "~> 0.13"},
       {:guardian, "~> 0.14"},
       {:html_sanitize_ex, "~> 1.2"},
-      {:phoenix, "~> 1.2.4"},
+      {:phoenix, "~> 1.3.0-rc", override: true},
       {:phoenix_ecto, "~> 3.1"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},

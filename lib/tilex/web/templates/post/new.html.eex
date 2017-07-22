@@ -1,0 +1,6 @@
+<section id="post_edit">
+  <header class='page_head'>
+    <h1>Create Post</h1>
+  </header>
+  <%= render Tilex.Web.PostView, "form.html", channels: @channels, changeset: @changeset, action: post_path(@conn, :create) %>
+</section>

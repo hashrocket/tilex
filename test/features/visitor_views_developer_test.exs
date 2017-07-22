@@ -1,6 +1,8 @@
 defmodule Features.VisitorViewsDeveloper do
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
+  alias Tilex.Web.Endpoint
+
   test "and sees the developer's posts", %{session: session} do
 
     developer = Factory.insert!(:developer, username: "makinpancakes")
