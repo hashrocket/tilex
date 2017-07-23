@@ -12,6 +12,5 @@ before_install:
   - nvm install $NODE_VERSION
 before_script:
   - npm install -g brunch
-  - npm install
-  - brunch build --production
-  - mix phoenix.digest
+  - cd assets && npm install && brunch build --production
+  - cd .. && mix phoenix.digest
