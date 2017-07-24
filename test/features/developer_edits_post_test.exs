@@ -5,6 +5,8 @@ defmodule DeveloperEditsPostTest do
     PostForm
   }
 
+  alias Tilex.Web.Endpoint
+
   test "fills out form and updates post from post show", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)

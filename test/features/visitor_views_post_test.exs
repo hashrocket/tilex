@@ -1,6 +1,8 @@
 defmodule VisitorViewsPostTest do
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
+  alias Tilex.Web.Endpoint
+
   test "the page shows a post", %{session: session} do
 
     developer = Factory.insert!(:developer, username: "makinpancakes")
@@ -24,7 +26,7 @@ defmodule VisitorViewsPostTest do
            |> find(Query.css(".more-info"))
            |> Element.text
 
-    {:ok, marketing_content} = File.read("web/templates/shared/_elixir.html.eex")
+    {:ok, marketing_content} = File.read("lib/tilex/web/templates/shared/_elixir.html.eex")
     assert copy =~ String.slice(marketing_content, 0, 10)
   end
 

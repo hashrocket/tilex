@@ -1,6 +1,0 @@
-<section id="post_edit">
-  <header class='page_head'>
-    <h1>Edit Post</h1>
-  </header>
-  <%= render Tilex.PostView, "form.html", channels: @channels, changeset: @changeset, action: post_path(@conn, :update, @post) %>
-</section>

@@ -5,7 +5,7 @@ defmodule Tilex.Integrations do
   def notify(conn, post = %Tilex.Post{}) do
     developer = Tilex.Repo.one(Ecto.assoc(post, :developer))
     channel = Tilex.Repo.one(Ecto.assoc(post, :channel))
-    url = Tilex.Router.Helpers.post_url(conn, :show, post)
+    url = Tilex.Web.Router.Helpers.post_url(conn, :show, post)
 
     @slack_notifier.notify(post, developer, channel, url)
     @twitter_notifier.notify(post, developer, channel, url)
