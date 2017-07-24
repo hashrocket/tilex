@@ -157,7 +157,7 @@
           'ga'
         );
 
-        ga('create', <%= Application.get_env(:tilex, :ga_identifier) %>, 'auto');
+        ga('create', '<%= Application.get_env(:tilex, :ga_identifier) %>', 'auto');
         ga('send', 'pageview');
       </script>
     <% end %>
