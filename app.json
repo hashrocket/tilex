@@ -1,6 +1,7 @@
 {
   "name": "tilex",
   "scripts": {
+    "postdeploy": "mix ecto.migrate && POOL_SIZE=1 mix run priv/repo/seeds.exs"
   },
   "env": {
     "BASIC_AUTH_PASSWORD": {
