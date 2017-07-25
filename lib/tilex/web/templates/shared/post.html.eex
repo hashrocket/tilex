@@ -16,7 +16,7 @@
              data-url= "<%= post_url(@conn, :show, @post) %>">
             Tweet
           </a>
-        <%= end %>
+        <% end %>
 
         <footer>
           <p>

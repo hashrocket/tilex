@@ -15,16 +15,13 @@ defmodule Tilex.Integrations do
 
     conn
   end
+  def notify(conn, _), do: conn
 
   def notify_of_awards(post = %Tilex.Post{max_likes: max_likes}, max_likes_changed) when rem(max_likes, 10) == 0 and max_likes_changed do
     developer = Tilex.Repo.one(Ecto.assoc(post, :developer))
-    url = Tilex.Router.Helpers.post_url(Tilex.Endpoint, :show, post)
+    url = Tilex.Web.Router.Helpers.post_url(Tilex.Endpoint, :show, post)
 
     @slack_notifier.notify_of_awards(post, developer, url)
   end
   def notify_of_awards(_, _), do: nil
-
-  def notify(conn, _) do
-    conn
-  end
 end
