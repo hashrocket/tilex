@@ -3,6 +3,7 @@ defmodule Tilex.Markdown do
     markdown
     |> Earmark.as_html!
     |> HtmlSanitizeEx.markdown_html
+    |> String.trim
   end
 
   def to_html(markdown) do
