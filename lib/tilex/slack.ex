@@ -4,7 +4,7 @@ defmodule Tilex.Slack do
     |> send_slack_message
   end
 
-  def notify_of_awards(post = %Tilex.Post{max_likes: max_likes, title: title}, developer, url) do
+  def notify_of_awards(%Tilex.Post{max_likes: max_likes, title: title}, developer, url) do
     appropriate_emoji = [ "🎉", "🎂", "✨", "💥", "❤️", "🎈", "👑", "🎓", "🏆", "💯 "]
                         |> Enum.at(round((max_likes / 10) - 1), "😀")
 
