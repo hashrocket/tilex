@@ -31,20 +31,20 @@ defmodule DeveloperCreatesPostTest do
     })
     |> CreatePostPage.submit_form()
 
-    post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
-    assert post.body == "Example Body"
-    assert post.title == "Example Title"
-    refute is_nil(post.tweeted_at)
-
     session
-    |> PostShowPage.ensure_page_loaded(post)
     |> PostShowPage.ensure_info_flash("Post created")
+    |> PostShowPage.ensure_page_loaded("Example Title")
     |> PostShowPage.expect_post_attributes(%{
       title: "Example Title",
       body: "Example Body",
       channel: "phoenix",
       likes_count: 1
     })
+
+    post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
+    assert post.body == "Example Body"
+    assert post.title == "Example Title"
+    refute is_nil(post.tweeted_at)
 
     session
     |> Navigation.ensure_heading("TODAY I LEARNED")
