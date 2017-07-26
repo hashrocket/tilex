@@ -1,12 +1,12 @@
 defmodule Tilex.Integration.Pages.PostShowPage do
   use Wallaby.DSL
 
-  def ensure_page_loaded(session, post) do
+  def ensure_page_loaded(session, title) do
     session
     |> Browser.find(Query.css("article.post"))
 
     session
-    |> Browser.find(Query.css("h1", text: post.title))
+    |> Browser.find(Query.css("h1", text: title))
 
     session
   end
