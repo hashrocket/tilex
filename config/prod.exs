@@ -81,6 +81,7 @@ config :tilex, :twitter_notifier, Tilex.Twitter
 config :tilex, :organization_name, System.get_env("ORGANIZATION_NAME")
 config :tilex, :ga_identifier, System.get_env("GA_IDENTIFIER")
 config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
+config :tilex, :default_twitter_handle, System.get_env("DEFAULT_TWITTER_HANDLE")
 
 config :appsignal, :config,
   active: true
