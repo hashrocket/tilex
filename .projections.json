@@ -1,6 +1,6 @@
 {
-  "web/models":{ "type": "model" },
-  "web/models/*.ex":{
+  "lib/tilex/web/models":{ "type": "model" },
+  "lib/tilex/web/models/*.ex":{
     "type": "model",
     "alternate":"test/models/{}_test.exs",
     "template":[
@@ -27,8 +27,8 @@
     "type": "feature",
   },
 
-  "web/controllers":{ "type": "controller" },
-  "web/controllers/*_controller.ex":{
+  "lib/tilex/web/controllers":{ "type": "controller" },
+  "lib/tilex/web/controllers/*_controller.ex":{
     "type": "controller",
     "alternate": "test/controllers/{}_controller_test.exs",
     "template":[
@@ -51,8 +51,8 @@
     ]
   },
 
-  "web/views":{ "type": "view" },
-  "web/views/*_view.ex":{
+  "lib/tilex/web/views":{ "type": "view" },
+  "lib/tilex/web/views/*_view.ex":{
     "type": "view",
     "alternate": "test/views/{}_view_test.exs",
     "template":[
@@ -75,7 +75,7 @@
     ]
   },
 
-  "web/channels/*_channel.ex":{
+  "lib/tilex/web/channels/*_channel.ex":{
     "type": "channel",
     "template":[
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Channel do",
@@ -85,10 +85,10 @@
     ]
   },
 
-  "web/static/css/*.sass":{ "type": "stylesheet", },
-  "web/static/css/*.scss":{ "type": "stylesheet", },
+  "assets/css/*.sass":{ "type": "stylesheet", },
+  "assets/css/*.scss":{ "type": "stylesheet", },
 
-  "web/templates/*.html.eex":{
+  "lib/tilex/web/templates/*.html.eex":{
     "type": "template",
   },
 
@@ -173,8 +173,8 @@
   },
 
   "mix.exs":{ "type": "x", },
-  "web/router.ex":{ "type": "router", },
-  "web/web.ex":{ "type": "web", },
+  "lib/tilex/web/router.ex":{ "type": "router", },
+  "lib/tilex/web/web.ex":{ "type": "web", },
   "test/fixtures":{ "type":"fixture", },
   "test/fixtures/*":{ "type":"fixture", },
   "priv/repo/migrations/*.exs":{ "type": "migration" },
