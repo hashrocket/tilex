@@ -1,7 +1,7 @@
 defmodule Tilex.Twitter do
   def notify(post, developer, channel, url) do
-    text = "#{post.title} #{url} via @#{developer.twitter_handle} #til ##{channel.twitter_hashtag}"
-    send_tweet(text)
+    "#{post.title} #{url} via @#{Tilex.Developer.twitter_handle(developer)} #til ##{channel.twitter_hashtag}"
+    |> send_tweet
   end
 
   def send_tweet(text) do

@@ -32,6 +32,10 @@ defmodule Tilex.Developer do
     end
   end
 
+  def twitter_handle(%Tilex.Developer{twitter_handle: twitter_handle}) do
+    twitter_handle || Application.get_env(:tilex, :default_twitter_handle)
+  end
+
   defimpl Phoenix.Param, for: Tilex.Developer do
     def to_param(%{username: username}) do
       username
