@@ -95,8 +95,7 @@ $ heroku run "POOL_SIZE=2 mix ecto.migrate"
 7. Push to the branch (`git push origin my-new-feature`)
 8. Create new Pull Request
 
-All migrations should be able to be run and roll back. Verify this with
-our built-in command:
+Adding a database migration? Ensure it can be rolled back with this command:
 
 ```
 $ mix ecto.twiki
