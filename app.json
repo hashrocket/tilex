@@ -10,6 +10,9 @@
     "BASIC_AUTH_USERNAME": {
       "required": true
     },
+    "CANONICAL_DOMAIN": {
+      "required": true
+    },
     "ENABLE_BASIC_AUTH": {
       "required": true
     },
