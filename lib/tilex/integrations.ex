@@ -19,7 +19,7 @@ defmodule Tilex.Integrations do
 
   def notify_of_awards(post = %Tilex.Post{max_likes: max_likes}, max_likes_changed) when rem(max_likes, 10) == 0 and max_likes_changed do
     developer = Tilex.Repo.one(Ecto.assoc(post, :developer))
-    url = Tilex.Web.Router.Helpers.post_url(Tilex.Endpoint, :show, post)
+    url = Tilex.Web.Router.Helpers.post_url(Tilex.Web.Endpoint, :show, post)
 
     @slack_notifier.notify_of_awards(post, developer, url)
   end
