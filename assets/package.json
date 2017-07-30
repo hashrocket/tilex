@@ -14,6 +14,7 @@
     "sass-brunch": "^2.7.0"
   },
   "devDependencies": {
+    "chromedriver": "2.31.0",
     "babel-brunch": "~6.0.0",
     "brunch": "^2.9.1",
     "clean-css-brunch": "~2.0.0",
