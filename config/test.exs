@@ -18,8 +18,6 @@ config :tilex, Tilex.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :wallaby, screenshot_on_failure: true
-
 config :tilex, :page_size, 5
 config :tilex, :auth_controller, Test.AuthController
 config :tilex, :slack_notifier, Test.Slack
@@ -31,3 +29,10 @@ config :tilex, :default_twitter_handle, "hashrocket"
 config :tilex, :async_feature_test, (System.get_env("ASYNC_FEATURE_TEST") == "yes")
 
 config :httpoison, timeout: 6000
+
+config :wallaby,
+  driver: Wallaby.Experimental.Chrome,
+  chrome: [
+    headless: true
+  ],
+  screenshot_on_failure: true
