@@ -1,17 +1,15 @@
 language: elixir
+addons:
+  chrome: stable
+
 elixir:
     - 1.5.0
 env:
   - NODE_VERSION="7.7.2"
 before_install:
-  - "export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then rm -rf $PWD/travis_phantomjs; mkdir -p $PWD/travis_phantomjs; fi"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then wget https://assets.membergetmember.co/software/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O $PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2; fi"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then tar -xvf $PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs; fi"
-  - "phantomjs --version"
   - nvm install $NODE_VERSION
 before_script:
   - npm install -g brunch
   - cd assets && npm install && brunch build --production
   - cd .. && mix phx.digest
-dist: precise
+dist: trusty
