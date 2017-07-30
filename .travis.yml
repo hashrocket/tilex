@@ -13,5 +13,5 @@ before_install:
 before_script:
   - npm install -g brunch
   - cd assets && npm install && brunch build --production
-  - cd .. && mix phoenix.digest
+  - cd .. && mix phx.digest
 dist: precise
