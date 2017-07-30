@@ -1,6 +1,10 @@
 language: elixir
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 
 elixir:
     - 1.5.0
@@ -10,6 +14,9 @@ before_install:
   - nvm install $NODE_VERSION
 before_script:
   - npm install -g brunch
-  - cd assets && npm install && brunch build --production
+  - npm install -g chromedriver
+  - cd assets
+  - npm install
+  - brunch build --production
   - cd .. && mix phx.digest
 dist: trusty
