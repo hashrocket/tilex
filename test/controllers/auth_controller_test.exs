@@ -1,5 +1,5 @@
 defmodule Tilex.AuthControllerTest do
-  use Tilex.Web.ConnCase#, async: true
+  use TilexWeb.ConnCase#, async: true
 
   alias Tilex.Factory
 

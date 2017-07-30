@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      <%= page_title(assigns) %> - Today I Learned
+    </title>
+
+    <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day.">
+
+    <meta itemprop="name" content="Today I Learned">
+    <meta itemprop="brand" content="Today I Learned">
+    <meta itemprop="description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@hashrockettil">
+    <meta name="twitter:creator" content="@hashrockettil">
+    <meta name="twitter:title" content="Today I Learned: a Hashrocket Project">
+    <meta name="twitter:description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.">
+    <meta name="twitter:image" content=<%= TilexWeb.Endpoint.static_url() <> "/assets/til_twittercard.png" %>>
+
+    <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel="alternate feed" type="application/rss+xml" title="Today I Learned" href="/rss">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <%= if assigns[:canonical_url] do %>
+      <link rel="canonical" href="<%= @canonical_url %>">
+    <% end %>
+  </head>
+
+  <body>
+    <%= if developer = Guardian.Plug.current_resource(@conn) do %>
+      <nav class="admin_panel">
+        <ul>
+          <li> <%= link(developer.username, to: developer_path(@conn, :show, developer)) %> </li>
+          <li> <%= link("Sign Out", to: auth_path(@conn, :delete), method: :delete) %> </li>
+          <li> <%= link("Create Post", to: post_path(@conn, :new)) %> </li>
+          <li> <%= link("Profile", to: developer_path(@conn, :edit)) %> </li>
+        </ul>
+      </nav>
+    <% end %>
+
+    <header class="site_head">
+      <div>
+        <h1><a href="/">Today I Learned</a></h1>
+        <h2>
+          <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
+          <span>
+            <a href="https://twitter.com/hashrockettil" class="twitter">Follow on Twitter</a>
+          </span>
+        </h2>
+      </div>
+    </header>
+
+    <div id="flash">
+      <%= if message = get_flash(@conn, :info) do %>
+        <p class="alert alert-info" role="alert">
+          <%= message %>
+        </p>
+      <% end %>
+    </div>
+
+    <main>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
+    <nav class="site_nav">
+      <ul>
+        <li class="site_nav__search">
+          <%= link("search", to: "#", class: "site_nav__link") %>
+          <div class="site_nav__toggle">
+            <%= form_tag post_path(@conn, :index), method: :get do %>
+              <input type="search" name="q" id="q">
+              <%= submit "Search" %>
+            <% end %>
+          </div>
+        </li>
+        <li class="site_nav__about">
+          <%= link("?", to: "#", class: "site_nav__link") %>
+          <div class="site_nav__toggle">
+            <div class="copy">
+              Today I Learned is an open-source project by
+              <a href="https://hashrocket.com">
+                Hashrocket
+              </a>
+              that exists to catalogue the sharing & accumulation of knowledge
+              as it happens day-to-day. Posts have a 200-word limit, and
+              posting is open to any Rocketeer as well as selected friends of
+              Hashrocket. We hope you enjoy learning along with us.
+              <ul class="social">
+                <li>
+                  <%= link("/hashrockettil", to: "https://twitter.com/hashrockettil", class: "social_twitter") %>
+                </li>
+                <li>
+                  <%= link("/hashrocket/tilex", to: "https://github.com/hashrocket/tilex", class: "social_github") %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="site_nav__statistics">
+          <%= link("Statistics", to: "/statistics", class: "site_nav__link") %>
+        </li>
+        <li class="site_nav__twitter">
+            <%= link("Twitter", to: "https://twitter.com/hashrockettil", class: "site_nav__link") %>
+        </li>
+        <li class="site_nav__surprise_me">
+            <%= link("Surprise Me", to: "/random", class: "site_nav__link", rel: "nofollow") %>
+        </li>
+      </ul>
+    </nav>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+    <!-- syntax highlighting -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/elixir.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/clojure.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/applescript.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/javascript.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/vim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/swift.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haml.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/elm.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/erb.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/erlang.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <%= if Application.get_env(:tilex, :ga_identifier) do %>
+      <script type="text/javascript">
+        (function(i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          (i[r] =
+            i[r] ||
+            function() {
+              (i[r].q = i[r].q || []).push(arguments);
+            }), (i[r].l = 1 * new Date());
+          (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m);
+        })(
+          window,
+          document,
+          'script',
+          'https://www.google-analytics.com/analytics.js',
+          'ga'
+        );
+
+        ga('create', '<%= Application.get_env(:tilex, :ga_identifier) %>', 'auto');
+        ga('send', 'pageview');
+      </script>
+    <% end %>
+  </body>
+</html>

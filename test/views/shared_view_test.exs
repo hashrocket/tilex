@@ -1,7 +1,7 @@
 defmodule Tilex.SharedViewTest do
-  use Tilex.Web.ConnCase
+  use TilexWeb.ConnCase
 
-  import Tilex.Web.SharedView
+  import TilexWeb.SharedView
 
   test "renders rfc 822 dates" do
     time = %{inserted_at: ~N[2002-10-02 08:00:00.142287]}

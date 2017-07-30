@@ -1,5 +1,5 @@
 defmodule Tilex.Api.DeveloperPostControllerTest do
-  use Tilex.Web.ConnCase
+  use TilexWeb.ConnCase
 
   alias Tilex.Factory
 

@@ -1,0 +1,99 @@
+<section id="statistics">
+  <header class="page_head">
+    <h1>Statistics</h1>
+  </header>
+  <div class="wrapper">
+    <article>
+      <header>
+        <h1>Last 30 days</h1>
+      </header>
+      <ul class="activity_chart" id="activity">
+        <%= for [date, count] <- @posts_for_days do %>
+          <li data-amount="<%= count %>" data-date="<%= Timex.format!(date, "%a, %b %-e", :strftime)%>">
+            <div class="activity_chart_bar" style="height: <%= (count * 100) / @max_count %>%;"></div>
+          </li>
+        <% end %>
+      </ul>
+    </article>
+    <article class="hottest_posts">
+      <header>
+        <h1>Hottest posts</h1>
+      </header>
+      <ul class="post_list">
+        <%= for {post_title, post_likes, post_slug, channel_name, _score} <- @hottest_posts do %>
+          <li>
+            <%= link(to: post_path(@conn, :show, %Tilex.Post{slug: post_slug, title: post_title})) do %>
+              <b>
+                <%= post_title %>
+              </b>
+              <small>
+                #<%= channel_name %>
+                <span>•</span>
+                <%= post_likes %> likes
+              </small>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </article>
+    <article class="most_liked_posts">
+      <header>
+        <h1>Most liked posts</h1>
+      </header>
+      <ul class="post_list">
+        <%= for {post_title, post_likes, post_slug, channel_name} <- @most_liked_posts do %>
+          <li>
+            <%= link(to: post_path(@conn, :show, %Tilex.Post{slug: post_slug, title: post_title})) do %>
+              <b>
+                <%= post_title %>
+              </b>
+              <small>
+                #<%= channel_name %>
+                <span>•</span>
+                <%= post_likes %> likes
+              </small>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </article>
+    <div class="stats_column">
+      <article>
+        <header>
+          <h1>
+            <%= TilexWeb.SharedView.pluralize(@posts_count, "post") %> in
+            <%= TilexWeb.SharedView.pluralize(@channels_count, "channel") %>
+          </h1>
+        </header>
+        <ul class="post_list" id="channels">
+
+          <%= for {count, channel} <- @channels do %>
+            <li>
+              <a href="/<%= channel %>"><b>#<%= channel %></b>
+                <small><%= count %> posts</small>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </article>
+    </div>
+    <div class="stats_column right">
+      <article>
+        <header>
+          <h1>
+            <%= TilexWeb.SharedView.pluralize(@developers_count, "author") %>
+          </h1>
+        </header>
+        <ul class="post_list" id="authors">
+          <%= for {count, developer} <- @developers do %>
+            <li>
+              <a href="/authors/<%= developer %>"><b><%= developer %></b>
+                <small><%= count %> posts</small>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
