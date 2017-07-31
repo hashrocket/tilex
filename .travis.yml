@@ -1,20 +1,24 @@
 language: elixir
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
-
+node_js: "7.7.2"
 elixir:
     - 1.5.0
 env:
-  - NODE_VERSION="7.7.2"
+  - NODE_VERSION="7.7.2" DISPLAY=":99.0"
 before_install:
   - nvm install $NODE_VERSION
 before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - export CHROMEDRIVER_VERSION=`curl -s http://chromedriver.storage.googleapis.com/LATEST_RELEASE`
+  - curl -L -O "http://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
+  - unzip chromedriver_linux64.zip
+  - sudo chmod +x chromedriver
+  - sudo mv chromedriver /usr/local/bin
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test --yes
+  - sudo apt-get update
+  - sudo apt-get install google-chrome-beta
+  - sudo apt-get install libstdc++6-4.7-dev
   - npm install -g brunch
-  - npm install -g chromedriver
   - cd assets
   - npm install
   - brunch build --production
