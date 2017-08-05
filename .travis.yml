@@ -14,6 +14,7 @@ before_script:
   - unzip chromedriver_linux64.zip
   - sudo chmod +x chromedriver
   - sudo mv chromedriver /usr/local/bin
+  - chromedriver --version
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test --yes
   - sudo apt-get update
   - sudo apt-get install google-chrome-beta
