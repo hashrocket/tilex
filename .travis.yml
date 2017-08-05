@@ -1,3 +1,6 @@
+dist: trusty
+addons: 
+  chrome: stable
 language: elixir
 node_js: "7.7.2"
 elixir:
@@ -15,13 +18,10 @@ before_script:
   - sudo chmod +x chromedriver
   - sudo mv chromedriver /usr/local/bin
   - chromedriver --version
+  - google-chrome --version
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test --yes
-  - sudo apt-get update
-  - sudo apt-get install google-chrome-beta
-  - sudo apt-get install libstdc++6-4.7-dev
   - npm install -g brunch
   - cd assets
   - npm install
   - brunch build --production
   - cd .. && mix phx.digest
-dist: trusty
