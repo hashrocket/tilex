@@ -1,0 +1,11 @@
+<section id="search">
+  <header class="page_head">
+    <h1>
+      <%= TilexWeb.SharedView.pluralize(@posts_count, "post") %>
+      about
+      <%= @query %>
+    </h1>
+  </header>
+</section>
+
+<%= render TilexWeb.PostView, "index.html", conn: @conn, posts: @posts, page: @page %>

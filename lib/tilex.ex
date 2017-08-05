@@ -11,7 +11,7 @@ defmodule Tilex do
       # Start the Ecto repository
       supervisor(Tilex.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(Tilex.Web.Endpoint, []),
+      supervisor(TilexWeb.Endpoint, []),
       worker(Cachex, [:tilex_cache, []]),
     ]
 

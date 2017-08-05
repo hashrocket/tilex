@@ -1,0 +1,10 @@
+<section id="tag">
+  <header class="page_head">
+    <h1>
+      <%= channel_header(@posts_count, @channel) %>
+    </h1>
+  </header>
+  <%= render TilexWeb.SharedView, "_posts_list.html", conn: @conn, posts: @posts %>
+</section>
+
+<%= render TilexWeb.SharedView, "_pagination.html", conn: @conn, page: @page, posts: @posts %>

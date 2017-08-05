@@ -1,0 +1,7 @@
+<%= render TilexWeb.SharedView, "post.html", conn: @conn, post: @post %>
+
+<%= if TilexWeb.PostView.more_info?(@post.channel) do %>
+  <div class="more-info">
+    <%= render TilexWeb.SharedView, "_#{@post.channel.name}.html" %>
+  </div>
+<% end %>

@@ -5,7 +5,7 @@ defmodule Tilex.Integrations do
   def notify(conn, post = %Tilex.Post{}) do
     developer = Tilex.Repo.one(Ecto.assoc(post, :developer))
     channel = Tilex.Repo.one(Ecto.assoc(post, :channel))
-    url = Tilex.Web.Router.Helpers.post_url(conn, :show, post)
+    url = TilexWeb.Router.Helpers.post_url(conn, :show, post)
 
     @slack_notifier.notify(post, developer, channel, url)
     @twitter_notifier.notify(post, developer, channel, url)
@@ -19,7 +19,7 @@ defmodule Tilex.Integrations do
 
   def notify_of_awards(post = %Tilex.Post{max_likes: max_likes}, max_likes_changed) when rem(max_likes, 10) == 0 and max_likes_changed do
     developer = Tilex.Repo.one(Ecto.assoc(post, :developer))
-    url = Tilex.Web.Router.Helpers.post_url(Tilex.Endpoint, :show, post)
+    url = TilexWeb.Router.Helpers.post_url(TilexWeb.Endpoint, :show, post)
 
     @slack_notifier.notify_of_awards(post, developer, url)
   end

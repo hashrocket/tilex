@@ -1,0 +1,3 @@
+<%= for post <- Enum.take(@posts, Application.get_env(:tilex, :page_size)) do %>
+  <%= render TilexWeb.SharedView, "post.html", conn: @conn, post: post %>
+<% end %>

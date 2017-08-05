@@ -1,0 +1,15 @@
+<section id="author">
+  <header class="page_head">
+    <h1>
+      <%= developer_header(@posts_count, @developer) %>
+      <%= if handle = @developer.twitter_handle do %>
+        <a class="author_twitter" target="_blank" href="https://twitter.com/<%= handle %>">
+          @<%= handle %>
+        </a>
+      <% end %>
+    </h1>
+  </header>
+  <%= render TilexWeb.SharedView, "_posts_list.html", conn: @conn, posts: @posts %>
+</section>
+
+<%= render TilexWeb.SharedView, "_pagination.html", conn: @conn, page: @page, posts: @posts %>

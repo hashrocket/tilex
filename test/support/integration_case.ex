@@ -13,7 +13,7 @@ defmodule Tilex.IntegrationCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import Tilex.Web.Router.Helpers
+      import TilexWeb.Router.Helpers
       import Tilex.TestHelpers
 
       def sign_in(session, developer) do
