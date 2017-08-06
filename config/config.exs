@@ -62,6 +62,7 @@ config :extwitter, :oauth, [
 
 config :wallaby,
   driver: Wallaby.Experimental.Chrome,
+  hackney_options: [timeout: :infinity, recv_timeout: :infinity],
   chrome: [
     headless: true
   ]
