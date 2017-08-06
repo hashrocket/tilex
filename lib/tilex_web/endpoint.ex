@@ -14,6 +14,9 @@ defmodule TilexWeb.Endpoint do
   plug Plug.Static,
     at: "/", from: :tilex, gzip: false,
     only: ~w(assets
+      apple-touch-icon-120x120.png
+      apple-touch-icon.png
+      apple-touch-icon-precomposed.png
       css
       favicon.ico
       favicon.png
