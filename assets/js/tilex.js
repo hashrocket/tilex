@@ -14,6 +14,8 @@ $(function(){
       .find(":input:visible").eq(0).focus();
   });
 
+  $('.post').syntaxLabel();
+
   new PostForm({
     postBodyInput: $("textarea#post_body"),
     postBodyPreview: $(".content_preview"),
