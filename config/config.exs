@@ -59,10 +59,3 @@ config :extwitter, :oauth, [
    access_token: System.get_env("twitter_access_token"),
    access_token_secret: System.get_env("twitter_access_token_secret")
 ]
-
-config :wallaby,
-  driver: Wallaby.Experimental.Chrome,
-  hackney_options: [timeout: :infinity, recv_timeout: :infinity],
-  chrome: [
-    headless: true
-  ]

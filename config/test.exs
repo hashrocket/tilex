@@ -32,6 +32,7 @@ config :httpoison, timeout: 6000
 
 config :wallaby,
   driver: Wallaby.Experimental.Chrome,
+  hackney_options: [timeout: :infinity, recv_timeout: :infinity],
   chrome: [
     headless: true
   ],
