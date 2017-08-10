@@ -1,11 +1,11 @@
 {
-  "lib/tilex/web/models":{ "type": "model" },
-  "lib/tilex/web/models/*.ex":{
+  "lib/tilex_web/models":{ "type": "model" },
+  "lib/tilex_web/models/*.ex":{
     "type": "model",
     "alternate":"test/models/{}_test.exs",
     "template":[
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot} do",
-      "  use {project|camelcase|capitalize|basename}.Web, :model",
+      "  use {project|camelcase|capitalize|basename}Web, :model",
       "",
       "end",
     ]
@@ -27,13 +27,13 @@
     "type": "feature",
   },
 
-  "lib/tilex/web/controllers":{ "type": "controller" },
-  "lib/tilex/web/controllers/*_controller.ex":{
+  "lib/tilex_web/controllers":{ "type": "controller" },
+  "lib/tilex_web/controllers/*_controller.ex":{
     "type": "controller",
     "alternate": "test/controllers/{}_controller_test.exs",
     "template":[
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Controller do",
-      "  use {project|camelcase|capitalize|basename}.Web, :controller" ,
+      "  use {project|camelcase|capitalize|basename}Web, :controller" ,
       "",
       "end",
     ]
@@ -51,13 +51,13 @@
     ]
   },
 
-  "lib/tilex/web/views":{ "type": "view" },
-  "lib/tilex/web/views/*_view.ex":{
+  "lib/tilex_web/views":{ "type": "view" },
+  "lib/tilex_web/views/*_view.ex":{
     "type": "view",
     "alternate": "test/views/{}_view_test.exs",
     "template":[
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}View do",
-      "  use {project|camelcase|capitalize|basename}.Web, :view" ,
+      "  use {project|camelcase|capitalize|basename}Web, :view" ,
       "",
       "end",
     ]
@@ -75,7 +75,7 @@
     ]
   },
 
-  "lib/tilex/web/channels/*_channel.ex":{
+  "lib/tilex_web/channels/*_channel.ex":{
     "type": "channel",
     "template":[
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Channel do",
@@ -88,7 +88,7 @@
   "assets/css/*.sass":{ "type": "stylesheet", },
   "assets/css/*.scss":{ "type": "stylesheet", },
 
-  "lib/tilex/web/templates/*.html.eex":{
+  "lib/tilex_web/templates/*.html.eex":{
     "type": "template",
   },
 
@@ -173,8 +173,8 @@
   },
 
   "mix.exs":{ "type": "x", },
-  "lib/tilex/web/router.ex":{ "type": "router", },
-  "lib/tilex/web/web.ex":{ "type": "web", },
+  "lib/tilex_web/router.ex":{ "type": "router", },
+  "lib/tilex_web/web.ex":{ "type": "web", },
   "test/fixtures":{ "type":"fixture", },
   "test/fixtures/*":{ "type":"fixture", },
   "priv/repo/migrations/*.exs":{ "type": "migration" },
