@@ -1,141 +1,146 @@
 {
-  "lib/tilex/web/models":{ "type": "model" },
-  "lib/tilex/web/models/*.ex":{
+  "lib/tilex_web/models": {
+    "type": "model"
+  },
+  "lib/tilex_web/models/*.ex": {
     "type": "model",
-    "alternate":"test/models/{}_test.exs",
-    "template":[
+    "alternate": "test/models/{}_test.exs",
+    "template": [
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot} do",
-      "  use {project|camelcase|capitalize|basename}.Web, :model",
+      "  use {project|camelcase|capitalize|basename}Web, :model",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "test/models":{ "type": "tmodel" },
-  "test/models/*_test.exs":{
+  "test/models": {
+    "type": "tmodel"
+  },
+  "test/models/*_test.exs": {
     "type": "tmodel",
-    "alternate":"web/models/{}.ex",
-    "template":[
+    "alternate": "web/models/{}.ex",
+    "template": [
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Test do",
       "  use {project|camelcase|capitalize|basename}.ModelCase#, async: true",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "test/features/*.exs":{
-    "type": "feature",
+  "test/features/*.exs": {
+    "type": "feature"
   },
-
-  "lib/tilex/web/controllers":{ "type": "controller" },
-  "lib/tilex/web/controllers/*_controller.ex":{
+  "lib/tilex_web/controllers": {
+    "type": "controller"
+  },
+  "lib/tilex_web/controllers/*_controller.ex": {
     "type": "controller",
     "alternate": "test/controllers/{}_controller_test.exs",
-    "template":[
+    "template": [
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Controller do",
-      "  use {project|camelcase|capitalize|basename}.Web, :controller" ,
+      "  use {project|camelcase|capitalize|basename}Web, :controller",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "test/controllers":{ "type": "tcontroller" },
-  "test/controllers/*_controller_test.exs":{
+  "test/controllers": {
+    "type": "tcontroller"
+  },
+  "test/controllers/*_controller_test.exs": {
     "type": "tcontroller",
     "alternate": "web/controllers/{}_controller.ex",
-    "template":[
+    "template": [
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}ControllerTest do",
       "  use {project|camelcase|capitalize|basename}.ConnCase#, async: true",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "lib/tilex/web/views":{ "type": "view" },
-  "lib/tilex/web/views/*_view.ex":{
+  "lib/tilex_web/views": {
+    "type": "view"
+  },
+  "lib/tilex_web/views/*_view.ex": {
     "type": "view",
     "alternate": "test/views/{}_view_test.exs",
-    "template":[
+    "template": [
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}View do",
-      "  use {project|camelcase|capitalize|basename}.Web, :view" ,
+      "  use {project|camelcase|capitalize|basename}Web, :view",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "test/views":{ "type": "tview" },
-  "test/views/*_view_test.exs":{
+  "test/views": {
+    "type": "tview"
+  },
+  "test/views/*_view_test.exs": {
     "type": "tview",
     "alternate": "web/views/{}_view.ex",
-    "template":[
+    "template": [
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}ViewTest do",
       "  use {project|camelcase|capitalize|basename}.ConnCase#, async: true",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "lib/tilex/web/channels/*_channel.ex":{
+  "lib/tilex_web/channels/*_channel.ex": {
     "type": "channel",
-    "template":[
+    "template": [
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot}Channel do",
       "  use Phoenix.Channel",
       "",
       "end"
     ]
   },
-
-  "assets/css/*.sass":{ "type": "stylesheet", },
-  "assets/css/*.scss":{ "type": "stylesheet", },
-
-  "lib/tilex/web/templates/*.html.eex":{
-    "type": "template",
+  "assets/css/*.sass": {
+    "type": "stylesheet"
   },
-
-  "lib":{ "type": "lib" },
-  "lib/*.ex":{
+  "assets/css/*.scss": {
+    "type": "stylesheet"
+  },
+  "lib/tilex_web/templates/*.html.eex": {
+    "type": "template"
+  },
+  "lib": {
+    "type": "lib"
+  },
+  "lib/*.ex": {
     "type": "lib",
     "alternate": "test/lib/{}_test.exs",
-    "template":[
+    "template": [
       "defmodule {camelcase|capitalize|dot} do",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "test/lib/*.exs":{
+  "test/lib/*.exs": {
     "alternate": "lib/{}.ex",
-    "template":[
+    "template": [
       "defmodule {camelcase|capitalize|dot} do",
       "  use ExUnit.Case",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "test":{ "type":"test" },
-  "test/*_test.exs":{
+  "test": {
+    "type": "test"
+  },
+  "test/*_test.exs": {
     "type": "test",
     "alternate": "{}.ex",
-    "template":[
+    "template": [
       "defmodule {camelcase|capitalize|dot}Test do",
       "  use ExUnit.Case#, async: true",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "test/test_helper.exs":{
-    "type":"helper",
+  "test/test_helper.exs": {
+    "type": "helper"
   },
-
-  "test/support":{
-    "type":"support",
+  "test/support": {
+    "type": "support"
   },
-
-  "test/support/*.ex":{
-    "type":"support",
-    "template":[
+  "test/support/*.ex": {
+    "type": "support",
+    "template": [
       "defmodule {project|camelcase|capitalize|basename}.{camelcase|capitalize|dot} do",
       "",
       "  use ExUnit.CaseTemplate",
@@ -151,36 +156,54 @@
       "    :ok",
       "  end",
       "",
-      "end",
+      "end"
     ]
   },
-
-  "config/config.exs":{ "type": "config", },
-  "config/*.exs":{
+  "config/config.exs": {
+    "type": "config"
+  },
+  "config/*.exs": {
     "type": "config",
-    "template":[
-      "use Mix.Config",
+    "template": [
+      "use Mix.Config"
     ]
   },
-
-  "config/*.secret.exs":{
+  "config/*.secret.exs": {
     "type": "secret",
-    "template":[
+    "template": [
       "use Mix.Config",
       "",
       "import_config \"{}.secret.exs\""
     ]
   },
-
-  "mix.exs":{ "type": "x", },
-  "lib/tilex/web/router.ex":{ "type": "router", },
-  "lib/tilex/web/web.ex":{ "type": "web", },
-  "test/fixtures":{ "type":"fixture", },
-  "test/fixtures/*":{ "type":"fixture", },
-  "priv/repo/migrations/*.exs":{ "type": "migration" },
-  "priv/repo/seeds.exs":{ "type": "seeds" },
-  "test/support/factory.ex":{ "type": "factory" },
-
-  "*.exs": { "console": "iex -S mix", },
-  "*.ex": { "console": "iex -S mix", },
+  "mix.exs": {
+    "type": "x"
+  },
+  "lib/tilex_web/router.ex": {
+    "type": "router"
+  },
+  "lib/tilex_web/web.ex": {
+    "type": "web"
+  },
+  "test/fixtures": {
+    "type": "fixture"
+  },
+  "test/fixtures/*": {
+    "type": "fixture"
+  },
+  "priv/repo/migrations/*.exs": {
+    "type": "migration"
+  },
+  "priv/repo/seeds.exs": {
+    "type": "seeds"
+  },
+  "test/support/factory.ex": {
+    "type": "factory"
+  },
+  "*.exs": {
+    "console": "iex -S mix"
+  },
+  "*.ex": {
+    "console": "iex -S mix"
+  }
 }
