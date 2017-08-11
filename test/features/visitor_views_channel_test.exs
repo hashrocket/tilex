@@ -27,23 +27,22 @@ defmodule Features.VisitorViewsChannelTest do
 
     channel = Factory.insert!(:channel, name: "smalltalk")
 
-    Factory.insert_list!(:post, 5 + 1,
-      title: "A post about porting Rails applications to Phoenix",
-      body: "It starts with Rails and ends with Elixir",
-      channel: channel
-    )
+    Enum.each(1..6, fn (x)->
+      Factory.insert!(:post,
+        title: "Title#{x}",
+        body: "It starts with Rails and ends with Elixir",
+        channel: channel
+      )
+    end)
 
     visit(session, "/smalltalk")
-
-    assert find(session, Query.css("article.post", count: 5))
-
-    assert find(session, Query.css("nav.pagination", visible: true))
-    click(session, Query.link("older TILs"))
-
-    assert find(session, Query.css("article.post", count: 1))
-
-    click(session, Query.link("newer TILs"))
-
-    assert find(session, Query.css("article.post", count: 5))
+    |> assert_has(Query.css("article.post", count: 5))
+    |> assert_has(Query.css("nav.pagination", visible: true))
+    |> click(Query.link("older TILs"))
+    |> assert_has(Query.css("h1", text: "Title1", visible: true))
+    |> assert_has(Query.css("article.post", count: 1))
+    |> click(Query.link("newer TILs"))
+    |> assert_has(Query.css("h1", text: "Title5", visible: true))
+    |> assert_has(Query.css("article.post", count: 5))
   end
 end
