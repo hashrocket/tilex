@@ -28,7 +28,7 @@ config :ueberauth, Ueberauth,
         approval_prompt: "force",
         access_type: "offline",
         default_scope: "email profile",
-        hd: "hashrocket.com"
+        hd: System.get_env("HOSTED_DOMAIN"),
       ]}
   ]
 
