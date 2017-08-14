@@ -56,6 +56,28 @@ Then, set your variables and source them:
 $ source .env
 ```
 
+### Authentication
+
+Authentication is managed by Omniauth and Google. See the
+[omniauth-google-oauth2 README](https://github.com/zquestz/omniauth-google-oauth2/blob/master/README.md)
+and [Google Oauth 2 docs](https://developers.google.com/identity/protocols/OAuth2WebServer) for
+setup instructions. To allow users from a domain, set those configurations in
+your environment:
+
+```
+# .env
+
+export GOOGLE_CLIENT_ID="your-key.apps.googleusercontent.com"
+export GOOGLE_CLIENT_SECRET="yoursecret"
+export HOSTED_DOMAIN="your-domain.com"
+```
+
+Once set, visit [`localhost:4000/admin`](http://localhost:4000/admin) and log
+in with an email address from your permitted domain.
+
+Tilex creates a new user on the first authentication, and then finds that same
+user on subsequent authentications.
+
 ### Testing
 
 Wallaby relies on PhantomJS; install it:
