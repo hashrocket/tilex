@@ -47,15 +47,37 @@ defmodule Tilex.Posts do
   end
 
   def by_search(search_query, page) do
-    query = posts(page)
-            |> where([p], ilike(p.title, ^"%#{search_query}%"))
+    sql = """
+      select p.* from posts p
+        join developers d on d.id = p.developer_id
+        join channels c on c.id = p.channel_id
+        join lateral (
+          select ts_rank_cd(
+            setweight(to_tsvector('english', p.title), 'A')
+            ||
+            setweight(to_tsvector('english', d.username), 'B')
+            ||
+            setweight(to_tsvector('english', c.name), 'B')
+            ||
+            setweight(to_tsvector('english', p.body), 'C')
+            ,
+            plainto_tsquery('english', $1)
+          ) as rank
+        ) ranks on true
+        where ranks.rank > 0
+        order by ranks.rank desc, p.inserted_at desc
+    """
 
-    posts_count = Repo.one(from p in "posts",
-      where: ilike(p.title, ^"%#{search_query}%"),
-      select: fragment("count(*)")
-    )
+    results = Ecto.Adapters.SQL.query!(Repo, sql, [search_query])
 
-    {Repo.all(query), posts_count}
+    posts = Enum.map(results.rows, &Repo.load(Post, {results.columns, &1}))
+            |> Repo.preload(:developer)
+            |> Repo.preload(:channel)
+
+    offset = (page - 1) * Application.get_env(:tilex, :page_size)
+    limit = Application.get_env(:tilex, :page_size) + 1
+
+    {Enum.slice(posts, offset..(offset+limit)), Enum.count(posts)}
   end
 
   defp posts(page) do
