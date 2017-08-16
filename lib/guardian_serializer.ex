@@ -1,8 +1,7 @@
 defmodule Tilex.GuardianSerializer do
   @behaviour Guardian.Serializer
 
-  alias Tilex.Repo
-  alias Tilex.Developer
+  alias Tilex.{Developer, Repo}
 
   def for_token(developer = %Developer{}), do: { :ok, "Developer:#{developer.id}" }
   def for_token(_), do: { :error, "Unknown resource type" }
