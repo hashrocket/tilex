@@ -1,4 +1,9 @@
 defmodule TilexWeb.ChannelController do
+
+  @moduledoc """
+    Provides a function to query posts by channel.
+  """
+
   use TilexWeb, :controller
 
   def show(conn, %{"name" => channel_name} = params) do

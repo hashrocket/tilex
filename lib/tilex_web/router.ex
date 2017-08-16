@@ -1,4 +1,9 @@
 defmodule TilexWeb.Router do
+
+  @moduledoc """
+    Defines Tilex's Phoenix router.
+  """
+
   use TilexWeb, :router
 
   @auth_controller Application.get_env(:tilex, :auth_controller)

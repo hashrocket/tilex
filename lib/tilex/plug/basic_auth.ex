@@ -1,4 +1,9 @@
 defmodule Tilex.Plug.BasicAuth do
+
+  @moduledoc """
+    Provides basic authentication for staging instances.
+  """
+
   def init(default), do: default
 
   def call(conn, _default) do

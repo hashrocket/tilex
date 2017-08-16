@@ -1,4 +1,9 @@
 defmodule TilexWeb.Test.AuthController do
+
+  @moduledoc """
+    Provides support for Tilex statistics.
+  """
+
   use TilexWeb, :controller
 
   def index(conn, params) do

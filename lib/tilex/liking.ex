@@ -1,4 +1,9 @@
 defmodule Tilex.Liking do
+
+  @moduledoc """
+    Provides functions for liking and unliking a post.
+  """
+
   def like(slug) do
     post = Tilex.Repo.get_by!(Tilex.Post, slug: slug)
     likes = post.likes + 1

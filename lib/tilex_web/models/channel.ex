@@ -1,4 +1,9 @@
 defmodule Tilex.Channel do
+
+  @moduledoc """
+    Defines Tilex's Phoenix channel.
+  """
+
   use TilexWeb, :model
 
   schema "channels" do

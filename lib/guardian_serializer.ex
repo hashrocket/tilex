@@ -1,4 +1,9 @@
 defmodule Tilex.GuardianSerializer do
+
+  @moduledoc """
+    Provides functions for managing sessions with Guardian.
+  """
+
   @behaviour Guardian.Serializer
 
   alias Tilex.{Developer, Repo}

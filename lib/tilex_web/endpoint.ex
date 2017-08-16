@@ -1,4 +1,9 @@
 defmodule TilexWeb.Endpoint do
+
+  @moduledoc """
+    Defines Tilex's Phoenix endpoint.
+  """
+
   use Phoenix.Endpoint, otp_app: :tilex
 
   if Application.get_env(:tilex, :sql_sandbox) do
