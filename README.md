@@ -80,10 +80,10 @@ user on subsequent authentications.
 
 ### Testing
 
-Wallaby relies on PhantomJS; install it:
+Wallaby relies on ChromeDriver; install it (OSX):
 
 ```
-$ npm install -g phantomjs
+$ brew install chromedriver
 ```
 
 Run the tests with:
