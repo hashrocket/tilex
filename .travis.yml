@@ -1,6 +1,10 @@
+sudo: required
 dist: trusty
 addons: 
   chrome: stable
+  postgres: "9.6"
+services:
+  - postgresql
 language: elixir
 node_js: "7.7.2"
 elixir:
@@ -19,6 +23,10 @@ before_script:
   - sudo mv chromedriver /usr/local/bin
   - chromedriver --version
   - google-chrome --version
+  - sudo service postgresql stop 9.2
+  - sudo service postgresql start 9.6
+  - createdb travis
+  - psql -c "show server_version;"
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test --yes
   - npm install -g brunch
   - cd assets
