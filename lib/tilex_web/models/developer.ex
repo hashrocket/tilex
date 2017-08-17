@@ -36,6 +36,12 @@ defmodule Tilex.Developer do
     twitter_handle || Application.get_env(:tilex, :default_twitter_handle)
   end
 
+  def format_username(name) when is_binary(name) do
+    name
+      |> String.downcase
+      |> String.replace(" ", "")
+  end
+
   defimpl Phoenix.Param, for: Tilex.Developer do
     def to_param(%{username: username}) do
       username

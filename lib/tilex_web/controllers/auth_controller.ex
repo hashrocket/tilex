@@ -2,6 +2,8 @@ defmodule TilexWeb.AuthController do
   use TilexWeb, :controller
   plug Ueberauth
 
+  alias Tilex.{Developer, Repo}
+
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     case authenticate(auth) do
       {:ok, developer} ->
@@ -29,7 +31,7 @@ defmodule TilexWeb.AuthController do
 
   defp authenticate(%{info: info, uid: uid}) do
     email = Map.get(info, :email)
-    name  = Map.get(info, :name)
+    name  = Developer.format_username(Map.get(info, :name))
 
     case String.match?(email, ~r/@hashrocket.com$/) do
       true ->
@@ -39,7 +41,7 @@ defmodule TilexWeb.AuthController do
           google_id: uid
         }
 
-        Tilex.Developer.find_or_create(Tilex.Repo, attrs)
+        Developer.find_or_create(Repo, attrs)
       _ ->
         {:error, email}
     end
