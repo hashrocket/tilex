@@ -1,5 +1,5 @@
 defmodule Tilex.AuthControllerTest do
-  use TilexWeb.ConnCase#, async: true
+  use TilexWeb.ConnCase
 
   alias Tilex.Factory
 
@@ -19,6 +19,7 @@ defmodule Tilex.AuthControllerTest do
     new_developer =
       Tilex.Repo.get_by!(Tilex.Developer, google_id: "186823978541230597895")
     assert new_developer.email == "developer@hashrocket.com"
+    assert new_developer.username == "rickyrocketeer"
   end
 
   test "GET /auth/google/callback with existing hashrocket email", %{conn: conn} do
