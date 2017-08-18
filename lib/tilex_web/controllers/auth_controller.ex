@@ -1,4 +1,9 @@
 defmodule TilexWeb.AuthController do
+
+  @moduledoc """
+    Provides functions to support Google OAuth and authentication.
+  """
+
   use TilexWeb, :controller
   plug Ueberauth
 

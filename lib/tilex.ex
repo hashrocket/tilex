@@ -1,4 +1,9 @@
 defmodule Tilex do
+
+  @moduledoc """
+    Defines the Tilex application.
+  """
+
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html

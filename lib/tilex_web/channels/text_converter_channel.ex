@@ -1,4 +1,9 @@
 defmodule Tilex.TextConverterChannel do
+
+  @moduledoc """
+    Allows developers to view a post body preview.
+  """
+
   use Phoenix.Channel
 
   def join("text_converter", _message, socket) do

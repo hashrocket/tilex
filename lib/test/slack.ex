@@ -1,4 +1,9 @@
 defmodule Test.Slack do
+
+  @moduledoc """
+    Mocks Slack functions for testing.
+  """
+
   def notify(_post, _developer, _channel, _url) do
     :ok
   end

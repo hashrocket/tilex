@@ -1,4 +1,9 @@
 defmodule Tilex.Post do
+
+  @moduledoc """
+    Defines the post model.
+  """
+
   use TilexWeb, :model
 
   @body_max_words 200

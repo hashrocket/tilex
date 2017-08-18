@@ -1,4 +1,9 @@
 defmodule Tilex.Stats do
+
+  @moduledoc """
+    Provides functions for querying statistics data.
+  """
+
   import Ecto.Query
 
   alias Tilex.Repo

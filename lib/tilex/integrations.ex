@@ -1,4 +1,9 @@
 defmodule Tilex.Integrations do
+
+  @moduledoc """
+    Integrates Twitter and Slack into Tilex.
+  """
+
   @slack_notifier Application.get_env(:tilex, :slack_notifier)
   @twitter_notifier Application.get_env(:tilex, :twitter_notifier)
 

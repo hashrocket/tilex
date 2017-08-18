@@ -1,4 +1,9 @@
 defmodule Tilex.Slack do
+
+  @moduledoc """
+    Provides functions for posting to Slack.
+  """
+
   def notify(post, developer, channel, url) do
     "#{developer.username} created a new post <#{url}|#{post.title}> ##{channel.name}"
     |> send_slack_message

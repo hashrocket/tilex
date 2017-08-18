@@ -1,4 +1,9 @@
 defmodule Tilex.Developer do
+
+  @moduledoc """
+    Defines the developer model.
+  """
+
   use TilexWeb, :model
 
   schema "developers" do

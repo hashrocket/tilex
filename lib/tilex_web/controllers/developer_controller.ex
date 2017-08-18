@@ -1,4 +1,9 @@
 defmodule TilexWeb.DeveloperController do
+
+  @moduledoc """
+    Provides functions to manage developers.
+  """
+
   use TilexWeb, :controller
 
   alias Tilex.Developer

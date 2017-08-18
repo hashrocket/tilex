@@ -1,4 +1,9 @@
 defmodule TilexWeb.Api.DeveloperPostController do
+
+  @moduledoc """
+    Provides an API endpoint for querying a developer's three latest posts.
+  """
+
   use TilexWeb, :controller
 
   def index(conn, params) do

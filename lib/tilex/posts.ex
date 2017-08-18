@@ -1,4 +1,9 @@
 defmodule Tilex.Posts do
+
+  @moduledoc """
+    Provides query functions for retrieving posts and associated data.
+  """
+
   import Ecto.Query
 
   alias Tilex.{Channel, Developer, Post, Repo}

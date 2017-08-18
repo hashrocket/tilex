@@ -1,4 +1,9 @@
 defmodule Tilex.Markdown do
+
+  @moduledoc """
+    Provides support for rendering Markdown.
+  """
+
   def to_html_live(markdown) do
     markdown
     |> Earmark.as_html!

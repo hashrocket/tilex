@@ -1,4 +1,9 @@
 defmodule TilexWeb.PostController do
+
+  @moduledoc """
+    Provides functions to manage posts.
+  """
+
   use TilexWeb, :controller
   import Ecto.Query
 

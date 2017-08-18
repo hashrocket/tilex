@@ -1,10 +1,15 @@
 defmodule Tilex.Cache do
+
+  @moduledoc """
+    Caches markdown conversion to HTML.
+  """
+
   def cache(key, value_block) do
     Cachex.get(:tilex_cache, key)
     |> process_cache(key, value_block)
   end
 
-  defp process_cache({:ok, value}, _,_), do: value
+  defp process_cache({:ok, value}, _, _), do: value
 
   defp process_cache({:missing, _}, key, value_block) do
     value = value_block.()

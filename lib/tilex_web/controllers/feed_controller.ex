@@ -1,4 +1,9 @@
 defmodule TilexWeb.FeedController do
+
+  @moduledoc """
+    Provides a function to display an RSS feed.
+  """
+
   use TilexWeb, :controller
 
   def index(conn, _params) do

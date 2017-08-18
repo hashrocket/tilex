@@ -1,4 +1,9 @@
 defmodule TilexWeb.StatsController do
+
+  @moduledoc """
+    Provides support for Tilex statistics.
+  """
+
   use TilexWeb, :controller
 
   def index(conn, _params) do

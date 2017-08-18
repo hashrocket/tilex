@@ -1,4 +1,9 @@
 defmodule TilexWeb.UserSocket do
+
+  @moduledoc """
+    Defines channels for searching and previewing posts.
+  """
+
   use Phoenix.Socket
 
   ## Channels
