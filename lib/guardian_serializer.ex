@@ -3,9 +3,9 @@ defmodule Tilex.GuardianSerializer do
 
   alias Tilex.{Developer, Repo}
 
-  def for_token(developer = %Developer{}), do: { :ok, "Developer:#{developer.id}" }
-  def for_token(_), do: { :error, "Unknown resource type" }
+  def for_token(developer = %Developer{}), do: {:ok, "Developer:#{developer.id}"}
+  def for_token(_), do: {:error, "Unknown resource type"}
 
-  def from_token("Developer:" <> id), do: { :ok, Repo.get(Developer, id) }
-  def from_token(_), do: { :error, "Unknown resource type" }
+  def from_token("Developer:" <> id), do: {:ok, Repo.get(Developer, id)}
+  def from_token(_), do: {:error, "Unknown resource type"}
 end

@@ -81,7 +81,7 @@ defmodule Tilex.Posts do
     offset = (page - 1) * Application.get_env(:tilex, :page_size)
     limit = Application.get_env(:tilex, :page_size) + 1
 
-    {Enum.slice(posts, offset..(offset+limit)), Enum.count(posts)}
+    {Enum.slice(posts, offset..(offset + limit)), Enum.count(posts)}
   end
 
   defp posts(page) do
