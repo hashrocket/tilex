@@ -33,3 +33,4 @@ before_script:
   - npm install
   - brunch build --production
   - cd .. && mix phx.digest
+script: mix test && mix credo
