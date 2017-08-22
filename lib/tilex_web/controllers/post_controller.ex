@@ -42,9 +42,10 @@ defmodule TilexWeb.PostController do
     render(conn, "index.html", posts: posts, page: page)
   end
 
-  def show(conn, _) do
+  def show(%{assigns: %{slug: slug}} = conn, _) do
+    format = Phoenix.Controller.get_format(conn)
     post = Post
-    |> Repo.get_by!(slug: conn.assigns.slug)
+    |> Repo.get_by!(slug: slug)
     |> Repo.preload([:channel])
     |> Repo.preload([:developer])
 
@@ -52,7 +53,7 @@ defmodule TilexWeb.PostController do
 
     conn
     |> assign(:canonical_url, canonical_post)
-    |> render("show.html", post: post)
+    |> render("show.#{format}", post: post)
   end
 
   def random(conn, _) do
