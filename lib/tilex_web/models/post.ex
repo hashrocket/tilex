@@ -65,11 +65,12 @@ defmodule Tilex.Post do
   end
 
   defp add_slug(changeset) do
-    unless get_field(changeset, :slug) do
-      generate_slug()
-      |> (&put_change(changeset, :slug, &1)).()
-    else
-      changeset
+    case get_field(changeset, :slug) do
+      nil ->
+        generate_slug()
+        |> (&put_change(changeset, :slug, &1)).()
+      _ ->
+        changeset
     end
   end
 
