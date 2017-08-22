@@ -1,6 +1,7 @@
 defmodule Tilex.Cache do
   def cache(key, value_block) do
-    Cachex.get(:tilex_cache, key)
+    :tilex_cache
+    |> Cachex.get(key)
     |> process_cache(key, value_block)
   end
 

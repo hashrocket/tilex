@@ -27,7 +27,8 @@ defmodule Tilex.Developer do
       %Tilex.Developer{} = developer ->
         {:ok, developer}
       _ ->
-        changeset(%Tilex.Developer{}, attrs)
+        %Tilex.Developer{}
+        |> changeset(attrs)
         |> repo.insert()
     end
   end
@@ -38,8 +39,8 @@ defmodule Tilex.Developer do
 
   def format_username(name) when is_binary(name) do
     name
-      |> String.downcase
-      |> String.replace(" ", "")
+    |> String.downcase
+    |> String.replace(" ", "")
   end
 
   defimpl Phoenix.Param, for: Tilex.Developer do
