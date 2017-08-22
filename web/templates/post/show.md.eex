@@ -1,0 +1,9 @@
+<%= @post.title %>
+
+
+<%= @post.body %>
+
+
+<%= @post.developer.username %>
+
+<%= Tilex.SharedView.display_date(@post) %>

@@ -11,6 +11,7 @@ defmodule TilexWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Tilex.Plug.BasicAuth
+    plug Tilex.Plug.FormatInjector
   end
 
   pipeline :browser_auth do

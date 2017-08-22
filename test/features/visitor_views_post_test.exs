@@ -72,4 +72,33 @@ defmodule VisitorViewsPostTest do
     assert post.likes == 1
     assert post.max_likes == 2
   end
+
+  test "clicks 'RAW' and sees raw markdown version", %{session: session} do
+    title = "A special post"
+    body = """
+    # title
+    **some text**
+    [hashrocket](http://hashrocket.com)
+    """
+    developer = Factory.insert!(:developer, username: "makinpancakes")
+    post = Factory.insert!(:post,
+                           title: title,
+                           body: body,
+                           developer: developer)
+
+
+    visit(session, post_path(Endpoint, :show, post))
+    |> find(Query.css(".post a.post__raw-link"))
+    |> Element.click()
+
+
+    assert text(session) == String.trim("""
+    #{title}
+
+    #{body}
+
+    #{developer.username}
+    #{Tilex.SharedView.display_date(post)}
+    """)
+  end
 end

@@ -34,6 +34,9 @@
           <li>
             <%= link("permalink", to: post_path(@conn, :show, @post), class: "post__permalink") %>
           </li>
+          <li>
+            <%= link("raw", to: post_path(@conn, :show, "#{@post.slug}-#{Tilex.Post.slugified_title(@post.title)}.md"), class: "post__raw-link") %>
+          </li>
           <%= if Guardian.Plug.current_resource(@conn) && (@post.developer == Guardian.Plug.current_resource(@conn) || Guardian.Plug.current_resource(@conn).admin) do %>
             <li>
               <%= link("edit", to: post_path(@conn, :edit, @post), class: "post__permalink") %>
