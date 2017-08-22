@@ -118,8 +118,8 @@ $ heroku run "POOL_SIZE=2 mix ecto.migrate"
 8. Create new Pull Request
 
 All pull requests are evaluated for style using
-[Credo](https://github.com/rrrene/credo). Run it check your code, or leave us a
-note if the recommendation doesn't make sense:
+[Credo](https://github.com/rrrene/credo). Run it to check your code, or leave
+us a note if the recommendation doesn't make sense:
 
 ```
 $ mix credo
