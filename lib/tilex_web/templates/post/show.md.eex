@@ -6,4 +6,4 @@
 
 <%= @post.developer.username %>
 
-<%= Tilex.SharedView.display_date(@post) %>
+<%= TilexWeb.SharedView.display_date(@post) %>
