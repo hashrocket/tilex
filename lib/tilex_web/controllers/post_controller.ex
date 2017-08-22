@@ -42,8 +42,8 @@ defmodule TilexWeb.PostController do
     render(conn, "index.html", posts: posts, page: page)
   end
 
-  def show(conn, _) do
-    %{assigns: %{slug: slug}, private: %{phoenix_format: format}} = conn
+  def show(%{assigns: %{slug: slug}} = conn, _) do
+    format = Phoenix.Controller.get_format(conn)
     post = Post
     |> Repo.get_by!(slug: slug)
     |> Repo.preload([:channel])
