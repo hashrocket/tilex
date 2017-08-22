@@ -119,8 +119,8 @@ CONDUCT](/CODE_OF_CONDUCT.md) for more information.
 
 ### Usage
 
-We love seeing forks of Today I Learned in production! Please consult our
-[usage guide](/USAGE.md) for guidelines on appropriate styling and attribution.
+We love seeing forks of Today I Learned in production! Please consult
+[USAGE](/USAGE.md) for guidelines on appropriate styling and attribution.
 
 ### License
 
