@@ -124,7 +124,8 @@ We love seeing forks of Today I Learned in production! Please consult
 
 ### License
 
-Tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+Tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT). Please
+see [LICENSE](/LICENSE.md) for more information.
 
 ---
 
