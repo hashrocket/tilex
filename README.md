@@ -117,6 +117,14 @@ $ heroku run "POOL_SIZE=2 mix ecto.migrate"
 7. Push to the branch (`git push origin my-new-feature`)
 8. Create new Pull Request
 
+All pull requests are evaluated for style using
+[Credo](https://github.com/rrrene/credo). Run it check your code, or leave us a
+note if the recommendation doesn't make sense:
+
+```
+$ mix credo
+```
+
 Adding a database migration? Ensure it can be rolled back with this command:
 
 ```
