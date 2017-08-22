@@ -18,7 +18,6 @@ defmodule VisitorViewsPostTest do
   end
 
   test "and sees marketing copy, if it exists", %{session: session} do
-
     marketing_channel = Factory.insert!(:channel, name: "elixir")
     post_in_marketing_channel = Factory.insert!(:post, channel: marketing_channel)
 
@@ -31,7 +30,6 @@ defmodule VisitorViewsPostTest do
   end
 
   test "and sees a special slug", %{session: session} do
-
     post = Factory.insert!(:post, title: "Super Sluggable Title")
     url = visit(session, post_path(Endpoint, :show, post))
       |> current_url
