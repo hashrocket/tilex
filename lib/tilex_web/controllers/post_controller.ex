@@ -17,7 +17,10 @@ defmodule TilexWeb.PostController do
   alias Tilex.{Post, Channel, Posts}
 
   def index(conn, %{"q" => search_query} = params) do
-    page = Map.get(params, "page", "1") |> String.to_integer
+    page = params
+    |> Map.get("page", "1")
+    |> String.to_integer
+
     {posts, posts_count} = Posts.by_search(search_query, page)
     render(conn, "search_results.html",
       posts: posts,
@@ -30,20 +33,25 @@ defmodule TilexWeb.PostController do
   def index(conn, %{"format" => format}) when format in ~w(rss atom), do: redirect(conn, to: "/rss")
 
   def index(conn, params) do
-    page = Map.get(params, "page", "1") |> String.to_integer
+    page = params
+    |> Map.get("page", "1")
+    |> String.to_integer
+
     posts = Posts.all(page)
 
     render(conn, "index.html", posts: posts, page: page)
   end
 
   def show(conn, _) do
-    post = Repo.get_by!(Post, slug: conn.assigns.slug)
-           |> Repo.preload([:channel])
-           |> Repo.preload([:developer])
+    post = Post
+    |> Repo.get_by!(slug: conn.assigns.slug)
+    |> Repo.preload([:channel])
+    |> Repo.preload([:developer])
 
     canonical_post = Application.get_env(:tilex, :canonical_domain) <> post_path(conn, :show, post)
 
-    assign(conn, :canonical_url, canonical_post)
+    conn
+    |> assign(:canonical_url, canonical_post)
     |> render("show.html", post: post)
   end
 

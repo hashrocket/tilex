@@ -57,7 +57,8 @@ defmodule Mix.Tasks.Ecto.Twiki do
   end
 
   defp direction_count(direction, repo, migration_dir) do
-    Ecto.Migrator.migrations(repo, migration_dir)
+    repo
+    |> Ecto.Migrator.migrations(migration_dir)
     |> Enum.filter(fn({status, _, _}) -> status == direction end)
     |> Enum.count
   end

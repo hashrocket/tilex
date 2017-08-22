@@ -4,15 +4,17 @@ defmodule Tilex.Posts do
   alias Tilex.{Channel, Developer, Post, Repo}
 
   def all(page) do
-    posts(page)
+    page
+    |> posts
     |> Repo.all
   end
 
   def by_channel(channel_name, page) do
     channel = Repo.get_by!(Channel, name: channel_name)
 
-    query = posts(page)
-            |> where([p], p.channel_id == ^channel.id)
+    query = page
+    |> posts
+    |> where([p], p.channel_id == ^channel.id)
 
     posts_count = Repo.one(from p in "posts",
       where: p.channel_id == ^channel.id,
@@ -35,8 +37,9 @@ defmodule Tilex.Posts do
   def by_developer(username, page) do
     developer = Repo.get_by!(Developer, username: username)
 
-    query = posts(page)
-            |> where([p], p.developer_id == ^developer.id)
+    query = page
+    |> posts
+    |> where([p], p.developer_id == ^developer.id)
 
     posts_count = Repo.one(from p in "posts",
       where: p.developer_id == ^developer.id,
@@ -70,14 +73,15 @@ defmodule Tilex.Posts do
 
     results = Ecto.Adapters.SQL.query!(Repo, sql, [search_query])
 
-    posts = Enum.map(results.rows, &Repo.load(Post, {results.columns, &1}))
-            |> Repo.preload(:developer)
-            |> Repo.preload(:channel)
+    posts = results.rows
+    |> Enum.map(&Repo.load(Post, {results.columns, &1}))
+    |> Repo.preload(:developer)
+    |> Repo.preload(:channel)
 
     offset = (page - 1) * Application.get_env(:tilex, :page_size)
     limit = Application.get_env(:tilex, :page_size) + 1
 
-    {Enum.slice(posts, offset..(offset+limit)), Enum.count(posts)}
+    {Enum.slice(posts, offset..(offset + limit)), Enum.count(posts)}
   end
 
   defp posts(page) do

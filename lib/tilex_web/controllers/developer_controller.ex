@@ -4,7 +4,9 @@ defmodule TilexWeb.DeveloperController do
   alias Tilex.Developer
 
   def show(conn, %{"name" => username} = params) do
-    page = Map.get(params, "page", "1") |> String.to_integer
+    page = params
+    |> Map.get("page", "1")
+    |> String.to_integer
 
     {posts, posts_count, developer} = Tilex.Posts.by_developer(username, page)
 

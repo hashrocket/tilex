@@ -56,18 +56,21 @@ defmodule Tilex.Post do
   end
 
   def generate_slug do
-    :base64.encode(:crypto.strong_rand_bytes(16))
+    16
+    |> :crypto.strong_rand_bytes
+    |> :base64.encode
     |> String.replace(~r/[^A-Za-z0-9]/, "")
     |> String.slice(0, 10)
     |> String.downcase
   end
 
   defp add_slug(changeset) do
-    unless get_field(changeset, :slug) do
-      generate_slug()
-      |> (&put_change(changeset, :slug, &1)).()
-    else
-      changeset
+    case get_field(changeset, :slug) do
+      nil ->
+        generate_slug()
+        |> (&put_change(changeset, :slug, &1)).()
+      _ ->
+        changeset
     end
   end
 

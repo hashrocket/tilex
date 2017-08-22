@@ -24,7 +24,8 @@ defmodule TilexWeb.AuthController do
   end
 
   def delete(conn, _params) do
-    Guardian.Plug.sign_out(conn)
+    conn
+    |> Guardian.Plug.sign_out
     |> put_flash(:info, "Signed out")
     |> redirect(to: "/")
   end

@@ -2,7 +2,9 @@ defmodule TilexWeb.ChannelController do
   use TilexWeb, :controller
 
   def show(conn, %{"name" => channel_name} = params) do
-    page = Map.get(params, "page", "1") |> String.to_integer
+    page = params
+    |> Map.get("page", "1")
+    |> String.to_integer
 
     {posts, posts_count, channel} = Tilex.Posts.by_channel(channel_name, page)
 
