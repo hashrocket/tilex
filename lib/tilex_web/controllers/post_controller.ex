@@ -9,7 +9,8 @@ defmodule TilexWeb.PostController do
   plug :load_channels when action in [:new, :create, :edit, :update]
   plug :extract_slug when action in [:show, :edit, :update]
 
-  plug Plug.EnsureAuthenticated, [handler: __MODULE__] when action in [:new, :create, :edit, :update]
+  plug Plug.EnsureAuthenticated, [handler: __MODULE__]
+    when action in ~w(new create edit update)a
 
   def unauthenticated(conn, _) do
     conn
@@ -51,7 +52,8 @@ defmodule TilexWeb.PostController do
     |> Repo.preload([:channel])
     |> Repo.preload([:developer])
 
-    canonical_post = Application.get_env(:tilex, :canonical_domain) <> post_path(conn, :show, post)
+    canonical_post = Application.get_env(:tilex, :canonical_domain)
+      <> post_path(conn, :show, post)
 
     conn
     |> assign(:canonical_url, canonical_post)

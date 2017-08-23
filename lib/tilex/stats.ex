@@ -78,7 +78,8 @@ defmodule Tilex.Stats do
       posts_for_days: posts_for_days,
       posts_count: posts_count,
       channels_count: channels_count,
-      max_count: [1] ++ Enum.map(posts_for_days, fn([_, count]) -> count end) |> Enum.max
+      max_count: [1] ++ Enum.map(posts_for_days, fn([_, count]) -> count end)
+      |> Enum.max
     ]
 
     data
