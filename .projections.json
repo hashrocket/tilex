@@ -138,6 +138,14 @@
   "test/support": {
     "type": "support"
   },
+  "test/support/pages/*.ex": {
+    "type": "page",
+    "template": [
+      "defmodule {project|camelcase|capitalize|basename}.Intgration.Pages.{camelcase|capitalize} do",
+      "  use Wallaby.DSL",
+      "end"
+    ]
+  },
   "test/support/*.ex": {
     "type": "support",
     "template": [
