@@ -1,18 +1,17 @@
 defmodule Tilex.Channel do
   use TilexWeb, :model
 
+  alias Tilex.Post
+
   schema "channels" do
     field :name, :string
     field :twitter_hashtag, :string
 
-    has_many :posts, Tilex.Post
+    has_many :posts, Post
 
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :twitter_hashtag])

@@ -1,6 +1,7 @@
 defmodule Tilex.Posts do
   import Ecto.Query
 
+  alias Ecto.Adapters.SQL
   alias Tilex.{Channel, Developer, Post, Repo}
 
   def all(page) do
@@ -71,7 +72,7 @@ defmodule Tilex.Posts do
         order by ranks.rank desc, p.inserted_at desc
     """
 
-    results = Ecto.Adapters.SQL.query!(Repo, sql, [search_query])
+    results = SQL.query!(Repo, sql, [search_query])
 
     posts = results.rows
     |> Enum.map(&Repo.load(Post, {results.columns, &1}))

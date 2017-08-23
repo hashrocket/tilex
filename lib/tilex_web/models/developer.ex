@@ -1,6 +1,8 @@
 defmodule Tilex.Developer do
   use TilexWeb, :model
 
+  alias Tilex.{Developer, Post}
+
   schema "developers" do
     field :email, :string
     field :username, :string
@@ -9,7 +11,7 @@ defmodule Tilex.Developer do
     field :admin, :boolean
     field :editor, :string
 
-    has_many :posts, Tilex.Post
+    has_many :posts, Post
 
     timestamps()
   end
@@ -23,17 +25,17 @@ defmodule Tilex.Developer do
   def find_or_create(repo, attrs) do
     email = Map.get(attrs, :email)
 
-    case repo.get_by(Tilex.Developer, email: email) do
-      %Tilex.Developer{} = developer ->
+    case repo.get_by(Developer, email: email) do
+      %Developer{} = developer ->
         {:ok, developer}
       _ ->
-        %Tilex.Developer{}
+        %Developer{}
         |> changeset(attrs)
         |> repo.insert()
     end
   end
 
-  def twitter_handle(%Tilex.Developer{twitter_handle: twitter_handle}) do
+  def twitter_handle(%Developer{twitter_handle: twitter_handle}) do
     twitter_handle || Application.get_env(:tilex, :default_twitter_handle)
   end
 
@@ -43,7 +45,7 @@ defmodule Tilex.Developer do
     |> String.replace(" ", "")
   end
 
-  defimpl Phoenix.Param, for: Tilex.Developer do
+  defimpl Phoenix.Param, for: Developer do
     def to_param(%{username: username}) do
       username
     end

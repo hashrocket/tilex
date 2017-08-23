@@ -1,9 +1,12 @@
 defmodule TilexWeb.Test.AuthController do
   use TilexWeb, :controller
 
+  alias Guardian.Plug
+  alias Tilex.{Developer, Repo}
+
   def index(conn, params) do
-    developer = Tilex.Repo.get_by!(Tilex.Developer, id: params["id"])
-    conn = Guardian.Plug.sign_in(conn, developer)
+    developer = Repo.get_by!(Developer, id: params["id"])
+    conn = Plug.sign_in(conn, developer)
 
     redirect(conn, to: "/")
   end

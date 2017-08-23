@@ -1,6 +1,8 @@
 defmodule Tilex.Post do
   use TilexWeb, :model
 
+  alias Tilex.{Developer, Channel, Post}
+
   @body_max_words 200
   def body_max_words, do: @body_max_words
   @title_max_chars 50
@@ -14,8 +16,8 @@ defmodule Tilex.Post do
     field :max_likes, :integer, default: 1
     field :tweeted_at, :utc_datetime
 
-    belongs_to :channel, Tilex.Channel
-    belongs_to :developer, Tilex.Developer
+    belongs_to :channel, Channel
+    belongs_to :developer, Developer
 
     timestamps()
   end
@@ -74,9 +76,9 @@ defmodule Tilex.Post do
     end
   end
 
-  defimpl Phoenix.Param, for: Tilex.Post do
+  defimpl Phoenix.Param, for: Post do
     def to_param(%{slug: slug, title: title}) do
-      "#{slug}-#{Tilex.Post.slugified_title(title)}"
+      "#{slug}-#{Post.slugified_title(title)}"
     end
   end
 end
