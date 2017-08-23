@@ -72,7 +72,7 @@ defmodule TilexWeb.PostController do
   end
 
   def new(conn, _params) do
-    current_user = Guardian.Plug.current_resource(conn)
+    current_user = Plug.current_resource(conn)
     changeset = Post.changeset(%Post{})
 
     conn
