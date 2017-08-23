@@ -1,4 +1,6 @@
 defmodule Tilex.Markdown do
+  alias Tilex.Cache
+
   def to_html_live(markdown) do
     markdown
     |> Earmark.as_html!
@@ -7,7 +9,7 @@ defmodule Tilex.Markdown do
   end
 
   def to_html(markdown) do
-    Tilex.Cache.cache(markdown, fn() ->
+    Cache.cache(markdown, fn() ->
       to_html_live(markdown)
       #|> expand_relative_links("https://til.hashrocket.com")
     end)

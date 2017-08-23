@@ -2,10 +2,15 @@ defmodule TilexWeb.PostController do
   use TilexWeb, :controller
   import Ecto.Query
 
+  alias Guardian.Plug
+  alias Phoenix.Controller
+  alias Tilex.{Channel, Integrations, Liking, Post, Posts}
+
   plug :load_channels when action in [:new, :create, :edit, :update]
   plug :extract_slug when action in [:show, :edit, :update]
 
-  plug Guardian.Plug.EnsureAuthenticated, [handler: __MODULE__] when action in [:new, :create, :edit, :update]
+  plug Plug.EnsureAuthenticated, [handler: __MODULE__]
+    when action in ~w(new create edit update)a
 
   def unauthenticated(conn, _) do
     conn
@@ -13,8 +18,6 @@ defmodule TilexWeb.PostController do
     |> put_flash(:info, "Authentication required")
     |> redirect(to: "/")
   end
-
-  alias Tilex.{Post, Channel, Posts}
 
   def index(conn, %{"q" => search_query} = params) do
     page = params
@@ -43,13 +46,14 @@ defmodule TilexWeb.PostController do
   end
 
   def show(%{assigns: %{slug: slug}} = conn, _) do
-    format = Phoenix.Controller.get_format(conn)
+    format = Controller.get_format(conn)
     post = Post
     |> Repo.get_by!(slug: slug)
     |> Repo.preload([:channel])
     |> Repo.preload([:developer])
 
-    canonical_post = Application.get_env(:tilex, :canonical_domain) <> post_path(conn, :show, post)
+    canonical_post = Application.get_env(:tilex, :canonical_domain)
+      <> post_path(conn, :show, post)
 
     conn
     |> assign(:canonical_url, canonical_post)
@@ -78,7 +82,7 @@ defmodule TilexWeb.PostController do
   end
 
   def like(conn, %{"slug" => slug}) do
-    likes = Tilex.Liking.like(slug)
+    likes = Liking.like(slug)
 
     conn
     |> put_resp_content_type("application/json")
@@ -86,7 +90,7 @@ defmodule TilexWeb.PostController do
   end
 
   def unlike(conn, %{"slug" => slug}) do
-    likes = Tilex.Liking.unlike(slug)
+    likes = Liking.unlike(slug)
 
     conn
     |> put_resp_content_type("application/json")
@@ -94,7 +98,7 @@ defmodule TilexWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
-    developer = Guardian.Plug.current_resource(conn)
+    developer = Plug.current_resource(conn)
 
     changeset =
       %Post{}
@@ -106,7 +110,7 @@ defmodule TilexWeb.PostController do
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
-        |> Tilex.Integrations.notify(post)
+        |> Integrations.notify(post)
 
       {:error, changeset} ->
         conn
@@ -117,7 +121,7 @@ defmodule TilexWeb.PostController do
   end
 
   def edit(conn, _params) do
-    current_user = Guardian.Plug.current_resource(conn)
+    current_user = Plug.current_resource(conn)
 
     post = case current_user.admin do
       false -> current_user
@@ -136,7 +140,7 @@ defmodule TilexWeb.PostController do
   end
 
   def update(conn, %{"post" => post_params}) do
-    current_user = Guardian.Plug.current_resource(conn)
+    current_user = Plug.current_resource(conn)
 
     post = case current_user.admin do
       false -> current_user

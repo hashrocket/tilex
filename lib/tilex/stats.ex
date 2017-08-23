@@ -1,6 +1,7 @@
 defmodule Tilex.Stats do
   import Ecto.Query
 
+  alias Ecto.Adapters.SQL
   alias Tilex.Repo
 
   defmacro greatest(value1, value2) do
@@ -34,7 +35,7 @@ defmodule Tilex.Stats do
       order by dates_table.date;
     """
 
-    result = Ecto.Adapters.SQL.query!(Tilex.Repo, posts_for_days_sql, [])
+    result = SQL.query!(Repo, posts_for_days_sql, [])
     posts_for_days = result.rows
 
     posts_and_channels = from(p in "posts",
@@ -64,9 +65,9 @@ defmodule Tilex.Stats do
 
     hottest_posts = hot_posts()
 
-    posts_count = Tilex.Repo.one(from p in "posts", select: fragment("count(*)"))
-    channels_count = Tilex.Repo.one(from c in "channels", select: fragment("count(*)"))
-    developers_count = Tilex.Repo.one(from p in "posts", select: fragment("count(distinct(developer_id))"))
+    posts_count = Repo.one(from p in "posts", select: fragment("count(*)"))
+    channels_count = Repo.one(from c in "channels", select: fragment("count(*)"))
+    developers_count = Repo.one(from p in "posts", select: fragment("count(distinct(developer_id))"))
 
     data = [
       channels: Repo.all(posts_by_channels_count),
@@ -77,7 +78,8 @@ defmodule Tilex.Stats do
       posts_for_days: posts_for_days,
       posts_count: posts_count,
       channels_count: channels_count,
-      max_count: [1] ++ Enum.map(posts_for_days, fn([_, count]) -> count end) |> Enum.max
+      max_count: [1] ++ Enum.map(posts_for_days, fn([_, count]) -> count end)
+      |> Enum.max
     ]
 
     data

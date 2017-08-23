@@ -1,6 +1,9 @@
 defmodule Mix.Tasks.Ecto.Twiki do
   use Mix.Task
 
+  alias Ecto.{Migrator}
+  alias Mix.{Ecto, Project}
+
   @shortdoc "Ecto Migration: Up, Down, Up"
 
   @moduledoc """
@@ -10,9 +13,9 @@ defmodule Mix.Tasks.Ecto.Twiki do
   """
 
   def run(args) do
-    Application.ensure_all_started(Mix.Project.config[:app])
+    Application.ensure_all_started(Project.config[:app])
 
-    repos = Mix.Ecto.parse_repo(args)
+    repos = Ecto.parse_repo(args)
 
     twiki(repos)
   end
@@ -20,7 +23,7 @@ defmodule Mix.Tasks.Ecto.Twiki do
   defp twiki(repo) when is_atom(repo) do
     migration_dir =
       repo
-      |> Mix.Ecto.source_repo_priv
+      |> Ecto.source_repo_priv
       |> Path.absname
       |> Path.join("migrations")
 
@@ -49,7 +52,7 @@ defmodule Mix.Tasks.Ecto.Twiki do
 
   defp migrate(direction, repo, migration_dir, opts) do
     Mix.shell.info "Migrating #{direction}"
-    Ecto.Migrator.run(repo, migration_dir, direction, opts)
+    Migrator.run(repo, migration_dir, direction, opts)
   end
 
   defp down_count(repo, migration_dir) do
@@ -58,7 +61,7 @@ defmodule Mix.Tasks.Ecto.Twiki do
 
   defp direction_count(direction, repo, migration_dir) do
     repo
-    |> Ecto.Migrator.migrations(migration_dir)
+    |> Migrator.migrations(migration_dir)
     |> Enum.filter(fn({status, _, _}) -> status == direction end)
     |> Enum.count
   end

@@ -1,6 +1,17 @@
 defmodule Tilex.Slack do
 
-  @emoji ~w(:tada: :birthday: :sparkles: :boom: :hearts: :balloon: :crown: :mortar_board: :trophy: :100:)
+  @emoji ~w(
+    :tada:
+    :birthday:
+    :sparkles:
+    :boom:
+    :hearts:
+    :balloon:
+    :crown:
+    :mortar_board:
+    :trophy:
+    :100:
+  )
 
   def notify(post, developer, channel, url) do
     "#{developer.username} created a new post <#{url}|#{post.title}> ##{channel.name}"
