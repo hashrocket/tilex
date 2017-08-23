@@ -50,8 +50,8 @@ defmodule Tilex.Post do
   defp validate_length_of_body(changeset, nil), do: changeset
 
   defp validate_length_of_body(changeset, body) do
-    if length(String.split(body, ~r/\s+/)) > @body_max_words do
-      add_error(changeset, :body, "should be at most #{@body_max_words} word(s)")
+    if length(String.split(body, ~r/\s+/)) > body_max_words() do
+      add_error(changeset, :body, "should be at most #{body_max_words()} word(s)")
     else
       changeset
     end
