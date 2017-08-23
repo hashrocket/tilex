@@ -1,5 +1,16 @@
 import TextConversion from './text_conversion';
 import autosize from 'autosize';
+import CodeMirror from 'codemirror';
+import 'codemirror-mode-elixir';
+import 'codemirror/keymap/vim';
+import 'codemirror/mode/gfm/gfm';
+import 'codemirror/mode/ruby/ruby';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/go/go';
+import 'codemirror/mode/elm/elm';
+import 'codemirror/mode/erlang/erlang';
+import 'codemirror/mode/css/css';
+import 'codemirror/mode/sass/sass';
 
 export default class PostForm {
   constructor(properties) {
@@ -21,11 +32,38 @@ export default class PostForm {
     if (!this.$postBodyInput.length) {
       return;
     }
+
     this.textConversion.init();
     this.setInitialPreview();
     this.observePostBodyInputChange();
     this.observeTitleInputChange();
     autosize(this.$postBodyInput);
+
+    if (/Code Editor|Vim/.test(TIL.editor)) {
+      const defaultOptions = {
+        lineNumbers: true,
+        theme: 'dracula',
+        tabSize: 2,
+        mode: 'gfm',
+        insertSoftTab: true,
+        smartIndent: false,
+        lineWrapping: true,
+      };
+
+      const options =
+        TIL.editor === 'Vim'
+          ? Object.assign({}, defaultOptions, { keyMap: 'vim' })
+          : defaultOptions;
+
+      const textarea = this.$postBodyInput.get(0);
+      const editor = CodeMirror.fromTextArea(textarea, options);
+
+      const that = this;
+      editor.on('changes', instance => {
+        const value = instance.getValue();
+        that.$postBodyInput.val(value).trigger('change');
+      });
+    }
   }
 
   setInitialPreview() {
@@ -79,7 +117,13 @@ export default class PostForm {
   }
 
   observePostBodyInputChange() {
-    this.$postBodyInput.on('input', e => {
+    this.$postBodyInput.on('keyup', e => {
+      this.updateWordCount();
+      this.updateWordLimit();
+      this.textConversion.convert(e.target.value, 'markdown');
+    });
+
+    this.$postBodyInput.on('change', e => {
       this.updateWordCount();
       this.updateWordLimit();
       this.textConversion.convert(e.target.value, 'markdown');

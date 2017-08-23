@@ -7,7 +7,6 @@ defmodule VisiorSearchesPosts do
     |> Element.click()
 
     fill_in(session, Query.text_field("q"), with: query)
-    |> take_screenshot
     |> click(Query.button("Search"))
   end
 

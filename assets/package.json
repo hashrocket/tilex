@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "autosize": "^4.0.0",
+    "codemirror": "^5.28.0",
+    "codemirror-mode-elixir": "^1.1.1",
     "jquery": ">= 2.1",
     "jquery.cookie": "^1.4.1",
     "phoenix": "file:../deps/phoenix",

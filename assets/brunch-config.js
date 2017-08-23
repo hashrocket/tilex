@@ -20,7 +20,7 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css",
+      joinTo: 'css/app.css',
       order: {
         after: ["web/static/css/app.css"] // concat app.css last
       }
@@ -54,7 +54,7 @@ exports.config = {
     },
     sass: {
       mode: "native"
-    }
+    },
   },
 
   modules: {
@@ -64,6 +64,9 @@ exports.config = {
   },
 
   npm: {
+    styles: {
+      codemirror: ['lib/codemirror.css','theme/dracula.css']
+    },
     enabled: true,
     globals: {
       $: 'jquery',
