@@ -13,16 +13,11 @@ defmodule DeveloperCreatesPostTest do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
-    sign_in(session, developer)
-
     session
+    |> sign_in(developer)
     |> IndexPage.visit()
     |> IndexPage.ensure_page_loaded()
-
-    session
     |> Navigation.click_create_post()
-
-    session
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
       title:  "Example Title",
@@ -30,8 +25,6 @@ defmodule DeveloperCreatesPostTest do
       channel: "phoenix"
     })
     |> CreatePostPage.submit_form()
-
-    session
     |> PostShowPage.ensure_info_flash("Post created")
     |> PostShowPage.ensure_page_loaded("Example Title")
     |> PostShowPage.expect_post_attributes(%{
@@ -41,7 +34,10 @@ defmodule DeveloperCreatesPostTest do
       likes_count: 1
     })
 
-    post = Enum.reverse(Tilex.Repo.all(Post)) |> hd
+    post = Post
+    |> Repo.all
+    |> Enum.reverse
+    |> hd
     assert post.body == "Example Body"
     assert post.title == "Example Title"
     refute is_nil(post.tweeted_at)
@@ -52,19 +48,16 @@ defmodule DeveloperCreatesPostTest do
 
   test "cancels submission", %{session: session} do
     developer = Factory.insert!(:developer)
-    sign_in(session, developer)
 
     session
+    |> sign_in(developer)
     |> CreatePostPage.visit()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.click_cancel()
-
-    session
     |> IndexPage.ensure_page_loaded()
   end
 
   test "fails to enter things", %{session: session} do
-
     developer = Factory.insert!(:developer)
 
     session
@@ -72,8 +65,6 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.visit()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.submit_form()
-
-    session
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.expect_form_has_error("Title can't be blank")
     |> CreatePostPage.expect_form_has_error("Body can't be blank")
@@ -81,7 +72,6 @@ defmodule DeveloperCreatesPostTest do
   end
 
   test "enters a title that is too long", %{session: session} do
-
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
@@ -95,8 +85,6 @@ defmodule DeveloperCreatesPostTest do
       channel: "phoenix"
     })
     |> CreatePostPage.submit_form()
-
-    session
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.expect_form_has_error("Title should be at most 50 character(s)")
   end
@@ -115,30 +103,25 @@ defmodule DeveloperCreatesPostTest do
       channel: "phoenix"
     })
     |> CreatePostPage.submit_form()
-
-    session
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.expect_form_has_error("Body should be at most 200 word(s)")
   end
 
-  @tag :skip
   test "enters markdown code into the body", %{session: session} do
-
     Factory.insert!(:channel, name: "phoenix")
+    developer = Factory.insert!(:developer)
 
     session
-    |> visit("/posts/new")
-    |> fill_in(Query.text_field("Title"), with: "Example Title")
-    |> fill_in(Query.text_field("Body"), with: "`code`")
-    |> (fn(session) ->
-      find(session, Query.select("Channel"), fn (element) ->
-        click(element, Query.option("phoenix"))
-      end)
-      session
-    end).()
-    |> click(Query.button("Submit"))
+    |> sign_in(developer)
+    |> CreatePostPage.visit()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title: "Example Title",
+      body: "**bold powerup**",
+      channel: "phoenix",
+    })
 
-    assert find(session, Query.css("code", text: "code"))
+    assert find(session, Query.css("strong", text: "bold powerup"))
   end
 
   test "views parsed markdown preview", %{session: session} do
@@ -154,9 +137,7 @@ defmodule DeveloperCreatesPostTest do
       body: "# yay \n *cool*",
       channel: "phoenix"
     })
-
-    session
-    |> PostForm.expect_preview_content("h1","yay")
+    |> PostForm.expect_preview_content("h1", "yay")
     |> PostForm.expect_preview_content("em", "cool")
     |> PostForm.expect_word_count(3)
     |> PostForm.expect_words_left("197 words available")

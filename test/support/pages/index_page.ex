@@ -8,7 +8,6 @@ defmodule Tilex.Integration.Pages.IndexPage do
   def ensure_page_loaded(session) do
     session
     |> Browser.find(Query.css("#home"))
-
     session
   end
 end
