@@ -24,7 +24,7 @@
           <%= error_tag f, :editor %>
         </dt>
         <dd>
-          <%= select f, :editor, ["Text Field", "Ace (w/ Vim)", "Ace"] %>
+          <%= select f, :editor, ["Text Field", "Vim", "Code Editor"] %>
         </dd>
       </dl>
       <%= submit "Submit" %>

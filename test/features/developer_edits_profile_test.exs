@@ -18,7 +18,7 @@ defmodule DeveloperEditsProfileTest do
     |> fill_in(Query.text_field("Twitter handle"), with: "mcnormalmode")
     |> (fn(session) ->
       find(session, Query.select("Editor"), fn (element) ->
-        click(element, Query.option("Ace"))
+        click(element, Query.option("Vim"))
       end)
       session
     end).()
@@ -38,6 +38,6 @@ defmodule DeveloperEditsProfileTest do
                 |> hd
 
     assert developer.twitter_handle == "mcnormalmode"
-    assert developer.editor == "Ace"
+    assert developer.editor == "Vim"
   end
 end

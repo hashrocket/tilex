@@ -68,8 +68,13 @@ defmodule TilexWeb.PostController do
   end
 
   def new(conn, _params) do
+    current_user = Guardian.Plug.current_resource(conn)
     changeset = Post.changeset(%Post{})
-    render conn, "new.html", changeset: changeset
+
+    conn
+    |> assign(:changeset, changeset)
+    |> assign(:current_user, current_user)
+    |> render("new.html")
   end
 
   def like(conn, %{"slug" => slug}) do
@@ -104,7 +109,10 @@ defmodule TilexWeb.PostController do
         |> Tilex.Integrations.notify(post)
 
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> assign(:current_user, developer)
+        |> assign(:changeset, changeset)
+        |> render("new.html")
     end
   end
 
@@ -120,7 +128,11 @@ defmodule TilexWeb.PostController do
 
     changeset = Post.changeset(post)
 
-    render(conn, "edit.html", post: post, changeset: changeset)
+    conn
+    |> assign(:post, post)
+    |> assign(:changeset, changeset)
+    |> assign(:current_user, current_user)
+    |> render("edit.html")
   end
 
   def update(conn, %{"post" => post_params}) do
