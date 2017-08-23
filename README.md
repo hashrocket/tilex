@@ -32,7 +32,7 @@ $ cd tilex
 $ mix deps.get
 $ mix ecto.setup
 $ npm install
-$ mix phoenix.server
+$ mix phx.server
 ```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
@@ -41,7 +41,7 @@ To serve the app at a different port, include the `PORT` environment
 variable when starting the server:
 
 ```
-$ PORT=4444 mix phoenix.server
+$ PORT=4444 mix phx.server
 ```
 
 To set environmental variables, copy the example file:
