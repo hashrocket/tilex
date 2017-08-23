@@ -31,7 +31,7 @@ config :tilex, Tilex.Repo,
 # To get SSL working, you will need to add the `https` key
 # to the previous section and set your `:url` port to 443:
 #
-#     config :tilex, Tilex.Endpoint,
+#     config :tilex, TilexWeb.Endpoint,
 #       ...
 #       url: [host: "example.com", port: 443],
 #       https: [port: 443,
@@ -60,7 +60,7 @@ config :tilex, Tilex.Repo,
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
-#     config :tilex, Tilex.Endpoint, server: true
+#     config :tilex, TilexWeb.Endpoint, server: true
 #
 
 # Finally import the config/prod.secret.exs
