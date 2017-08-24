@@ -43,6 +43,21 @@ defmodule Tilex.Integration.Pages.PostForm do
     |> fill_in(Query.text_field("Title"), with: title)
   end
 
+  def fill_in_body(session, body) do
+    session
+    |> fill_in(Query.text_field("Body"), with: body)
+  end
+
+  def select_channel(session, name) do
+    session
+    |> (fn(session) ->
+      find(session, Query.select("Channel"), fn (element) ->
+        click(element, Query.option(name))
+      end)
+      session
+    end).()
+  end
+
   def click_submit(session) do
     session
     |> click(Query.button("Submit"))
