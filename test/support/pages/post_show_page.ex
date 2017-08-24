@@ -1,6 +1,10 @@
 defmodule Tilex.Integration.Pages.PostShowPage do
   use Wallaby.DSL
 
+  def navigate(session, post) do
+    visit(session, "/posts/#{post.slug}")
+  end
+
   def ensure_page_loaded(session, title) do
     session
     |> Browser.find(Query.css("article.post"))
@@ -37,5 +41,9 @@ defmodule Tilex.Integration.Pages.PostShowPage do
     |> Browser.find(Query.css(".js-like-action", text: expected_likes_count))
 
     session
+  end
+
+  def click_edit(session) do
+    click(session, Query.link("edit"))
   end
 end
