@@ -1,7 +1,7 @@
 defmodule Tilex.Integration.Pages.CreatePostPage do
   use Wallaby.DSL
 
-  def visit(session) do
+  def navigate(session) do
     visit(session, "/posts/new")
   end
 

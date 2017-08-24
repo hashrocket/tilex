@@ -8,7 +8,7 @@ defmodule DeveloperViewsDeveloper do
     sign_in(session, developer)
 
     session
-    |> IndexPage.visit()
+    |> IndexPage.navigate()
     |> IndexPage.ensure_page_loaded()
     |> click(Query.link("greatgrasshopper"))
 
