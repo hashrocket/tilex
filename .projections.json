@@ -141,7 +141,7 @@
   "test/support/pages/*.ex": {
     "type": "page",
     "template": [
-      "defmodule {project|camelcase|capitalize|basename}.Intgration.Pages.{camelcase|capitalize} do",
+      "defmodule {project|camelcase|capitalize|basename}.Integration.Pages.{camelcase|capitalize} do",
       "  use Wallaby.DSL",
       "end"
     ]
