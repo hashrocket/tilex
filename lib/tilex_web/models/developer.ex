@@ -20,6 +20,7 @@ defmodule Tilex.Developer do
     struct
     |> cast(params, [:email, :username, :google_id, :twitter_handle, :editor])
     |> validate_required([:email, :username, :google_id])
+    |> clean_twitter_handle
   end
 
   def find_or_create(repo, attrs) do
@@ -43,6 +44,19 @@ defmodule Tilex.Developer do
     name
     |> String.downcase
     |> String.replace(" ", "")
+  end
+
+  defp clean_twitter_handle(changeset) do
+    twitter_handle = get_change(changeset, :twitter_handle)
+
+    if twitter_handle do
+      clean_twitter_handle = String.replace_leading(twitter_handle, "@", "")
+
+      changeset
+      |> put_change(:twitter_handle, clean_twitter_handle)
+    else
+      changeset
+    end
   end
 
   defimpl Phoenix.Param, for: Developer do
