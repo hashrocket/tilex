@@ -3,17 +3,29 @@ defmodule VisitorViewsPostTest do
 
   alias TilexWeb.Endpoint
 
+  alias Tilex.Integration.Pages.{
+    PostShowPage
+  }
+
   test "the page shows a post", %{session: session} do
-
     developer = Factory.insert!(:developer, username: "makinpancakes")
-    post = Factory.insert!(:post, title: "A special post", developer: developer)
+    channel = Factory.insert!(:channel, name: "awesomeness")
+    post = Factory.insert!(:post,
+      title: "A special post",
+      body: "This is how to be super awesome!",
+      developer: developer,
+      channel: channel
+    )
 
-    body = visit(session, post_path(Endpoint, :show, post))
-      |> find(Query.css("body"))
-      |> Element.text
+    session
+    |> PostShowPage.navigate(post)
+    |> PostShowPage.expect_post_attributes(%{
+      title: "A special post",
+      body: "This is how to be super awesome!",
+      channel: "#awesomeness",
+      likes_count: 1
+    })
 
-    assert body =~ ~r/A special post/
-    assert body =~ ~r/makinpancakes/
     assert page_title(session) == "A special post - Today I Learned"
   end
 

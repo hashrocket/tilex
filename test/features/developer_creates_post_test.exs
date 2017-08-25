@@ -15,7 +15,7 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> sign_in(developer)
-    |> IndexPage.visit()
+    |> IndexPage.navigate()
     |> IndexPage.ensure_page_loaded()
     |> Navigation.click_create_post()
     |> CreatePostPage.ensure_page_loaded()
@@ -51,7 +51,7 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> sign_in(developer)
-    |> CreatePostPage.visit()
+    |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.click_cancel()
     |> IndexPage.ensure_page_loaded()
@@ -62,7 +62,7 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> sign_in(developer)
-    |> CreatePostPage.visit()
+    |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.submit_form()
     |> CreatePostPage.ensure_page_loaded()
@@ -77,7 +77,7 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> sign_in(developer)
-    |> CreatePostPage.visit()
+    |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
       title:  String.duplicate("I can codez ", 10),
@@ -95,7 +95,7 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> sign_in(developer)
-    |> CreatePostPage.visit()
+    |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
       title:  "Example Title",
@@ -113,7 +113,7 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> sign_in(developer)
-    |> CreatePostPage.visit()
+    |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
       title: "Example Title",
@@ -130,7 +130,7 @@ defmodule DeveloperCreatesPostTest do
 
     session
     |> sign_in(developer)
-    |> CreatePostPage.visit()
+    |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
       title:  "Example Title",

@@ -1,7 +1,7 @@
 defmodule Tilex.Integration.Pages.IndexPage do
   use Wallaby.DSL
 
-  def visit(session) do
+  def navigate(session) do
     visit(session, "/")
   end
 
