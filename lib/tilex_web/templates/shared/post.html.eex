@@ -7,7 +7,7 @@
         </h1>
         <%= raw Tilex.Markdown.to_html(@post.body) %>
 
-        <%= if action_name(@conn) == :show && Mix.env != :test do %>
+        <%= if action_name(@conn) == :show && controller_module(@conn) == TilexWeb.PostController do %>
           <a href='http://twitter.com/share'
              class='twitter-share-button'
              data-text= "Today I learned: <%= @post.title %>"
