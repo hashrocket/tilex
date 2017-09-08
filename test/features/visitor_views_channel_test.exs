@@ -2,15 +2,13 @@ defmodule Features.VisitorViewsChannelTest do
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   test "sees associated posts", %{session: session} do
-
     target_channel = Factory.insert!(:channel, name: "phoenix")
     other_channel = Factory.insert!(:channel, name: "other")
-
-    Factory.insert!(:post, title: "functional programming rocks", channel: target_channel)
 
     Enum.each(["i'm fine", "all these people out here", "what?"], fn(title) ->
       Factory.insert!(:post, title: title, channel: other_channel)
     end)
+    Factory.insert!(:post, title: "functional programming rocks", channel: target_channel)
 
     visit(session, "/")
     assert find(session, Query.css("article.post", count: 4))
@@ -24,10 +22,9 @@ defmodule Features.VisitorViewsChannelTest do
   end
 
   test "the page has a list of paginated posts", %{session: session} do
-
     channel = Factory.insert!(:channel, name: "smalltalk")
 
-    Enum.each(1..6, fn (x)->
+    Enum.each(1..6, fn (x) ->
       Factory.insert!(:post,
         title: "Title#{x}",
         body: "It starts with Rails and ends with Elixir",
@@ -35,7 +32,8 @@ defmodule Features.VisitorViewsChannelTest do
       )
     end)
 
-    visit(session, "/smalltalk")
+    session
+    |> visit("/smalltalk")
     |> assert_has(Query.css("article.post", count: 5))
     |> assert_has(Query.css("nav.pagination", visible: true))
     |> click(Query.link("older TILs"))
