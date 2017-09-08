@@ -33,7 +33,8 @@ defmodule VisitorViewsPostTest do
     marketing_channel = Factory.insert!(:channel, name: "elixir")
     post_in_marketing_channel = Factory.insert!(:post, channel: marketing_channel)
 
-    copy = visit(session, post_path(Endpoint, :show, post_in_marketing_channel))
+    copy = session
+           |> visit(post_path(Endpoint, :show, post_in_marketing_channel))
            |> find(Query.css(".more-info"))
            |> Element.text
 
@@ -43,16 +44,18 @@ defmodule VisitorViewsPostTest do
 
   test "and sees a special slug", %{session: session} do
     post = Factory.insert!(:post, title: "Super Sluggable Title")
-    url = visit(session, post_path(Endpoint, :show, post))
-      |> current_url
+    url = session
+          |> visit(post_path(Endpoint, :show, post))
+          |> current_url
 
     assert url =~ "#{post.slug}-super-sluggable-title"
 
     changeset = Post.changeset(post, %{title: "Alternate Also Cool Title"})
     Repo.update!(changeset)
     post = Repo.get(Post, post.id)
-    url = visit(session, post_path(Endpoint, :show, post))
-      |> current_url
+    url = session
+          |> visit(post_path(Endpoint, :show, post))
+          |> current_url
 
     assert url =~ "#{post.slug}-alternate-also-cool-title"
   end
@@ -61,14 +64,19 @@ defmodule VisitorViewsPostTest do
     developer = Factory.insert!(:developer, username: "makinpancakes")
     post = Factory.insert!(:post, title: "A special post", developer: developer, likes: 1)
 
-    visit(session, post_path(Endpoint, :show, post))
-      |> find(Query.css("header[data-likes-loaded=true]"))
+    session
+    |> visit(post_path(Endpoint, :show, post))
+    |> find(Query.css("header[data-likes-loaded=true]"))
 
     link = find(session, Query.css(".post .js-like-action"))
 
     Element.click(link)
 
-    find(session, Query.css(".post .js-like-action.liked"))
+    session
+    |> find(Query.css("header[data-likes-loaded=true]"))
+
+    session
+    |> find(Query.css(".post .js-like-action.liked"))
 
     post = Repo.get(Post, post.id)
     assert post.likes == 2
@@ -97,7 +105,8 @@ defmodule VisitorViewsPostTest do
                            developer: developer)
 
 
-    visit(session, post_path(Endpoint, :show, post))
+    session
+    |> visit(post_path(Endpoint, :show, post))
     |> find(Query.css(".post a.post__raw-link"))
     |> Element.click()
 
