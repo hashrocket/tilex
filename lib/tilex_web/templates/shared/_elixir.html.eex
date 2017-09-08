@@ -4,5 +4,8 @@ clients. The developers at
 <a href="https://hashrocket.com/elixir">Hashrocket</a>
 are learning along with the rest of the development community that Elixir and
 Phoenix are viable Rails alternatives for the right application.
-<a href="https://hashrocket.com/contact-us">Contact us</a>
+Check out the
+<a href="https://github.com/hashrocket/tilex">source code</a>
+for Today I Learned, written in Elixir, and
+<a href="https://hashrocket.com/contact-us">contact us</a>
 if you need help with your Elixir project.
