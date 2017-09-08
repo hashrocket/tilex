@@ -13,6 +13,9 @@ defmodule Features.VisitorViewsDeveloper do
 
     click(session, Query.link("makinpancakes"))
 
+    session
+    |> find(Query.css("article.post", count: 1))
+
     page_header = Element.text(find(session, Query.css(".page_head")))
 
     assert page_header =~ ~r/1 post by makinpancakes/
@@ -25,6 +28,9 @@ defmodule Features.VisitorViewsDeveloper do
     Factory.insert_list!(:post, 15, developer: developer)
 
     visit(session, developer_path(Endpoint, :show, developer))
+
+    session
+    |> find(Query.css("article.post", count: 5))
 
     page_header = Element.text(find(session, Query.css(".page_head")))
     assert page_header =~ ~r/15 posts by banjocardhush/
