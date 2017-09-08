@@ -2,11 +2,13 @@ defmodule VisiorSearchesPosts do
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   def fill_in_search(session, query) do
-    visit(session, "/")
+    session
+    |> visit("/")
     |> find(Query.css(".site_nav__search .site_nav__link"))
     |> Element.click()
 
-    fill_in(session, Query.text_field("q"), with: query)
+    session
+    |> fill_in(Query.text_field("q"), with: query)
     |> click(Query.button("Search"))
   end
 
@@ -38,7 +40,7 @@ defmodule VisiorSearchesPosts do
 
   test "with paginated query results", %{session: session} do
     max_posts_on_page = Application.get_env(:tilex, :page_size)
-    #create 2 pages worth of matching posts
+
     1..(max_posts_on_page * 2)
     |> Enum.map(&("Random Elixir Post #{&1}"))
     |> Enum.each(&(Factory.insert!(:post, title: &1)))
@@ -53,7 +55,7 @@ defmodule VisiorSearchesPosts do
     assert search_result_header == "10 posts about Elixir"
     assert find(session, Query.css("article.post", [count: max_posts_on_page]))
 
-    click(session, Query.link("older TILs"))
+    visit(session, "/?_utf8=✓&page=2&q=Elixir")
 
     second_page_first_post = get_first_post_on_page_title(session)
     search_result_header = get_text(session, "#search")

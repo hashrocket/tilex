@@ -8,7 +8,8 @@ defmodule VisitorVisitsHomepageTest do
   end
 
   test "the page has the appropriate branding", %{session: session} do
-    header_text = visit(session, "/")
+    header_text = session
+                  |> visit("/")
                   |> find(Query.css("h1 > a"))
                   |> Element.text
 
@@ -16,7 +17,6 @@ defmodule VisitorVisitsHomepageTest do
   end
 
   test "the page has a list of posts", %{session: session} do
-
     channel = Factory.insert!(:channel, name: "smalltalk")
 
     Factory.insert!(:post,
@@ -41,7 +41,6 @@ defmodule VisitorVisitsHomepageTest do
   end
 
   test "the page has a list of paginated posts", %{session: session} do
-
     Factory.insert_list!(:post, 5 + 1)
 
     visit(session, "/")
@@ -49,11 +48,11 @@ defmodule VisitorVisitsHomepageTest do
     assert find(session, Query.css("article.post", count: 5))
     assert find(session, Query.css("nav.pagination", visible: true))
 
-    click(session, Query.link("older TILs"))
+    visit(session, "/?page=2")
 
     assert find(session, Query.css("article.post", count: 1))
 
-    click(session, Query.link("newer TILs"))
+    visit(session, "/")
 
     assert find(session, Query.css("article.post", count: 5))
   end
