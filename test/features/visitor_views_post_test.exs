@@ -8,7 +8,7 @@ defmodule VisitorViewsPostTest do
   }
 
   test "the page shows a post", %{session: session} do
-    developer = Factory.insert!(:developer, username: "makinpancakes")
+    developer = Factory.insert!(:developer)
     channel = Factory.insert!(:channel, name: "awesomeness")
     post = Factory.insert!(:post,
       title: "A special post",
@@ -58,17 +58,20 @@ defmodule VisitorViewsPostTest do
   end
 
   test "and clicks 'like' for that post", %{session: session} do
-    developer = Factory.insert!(:developer, username: "makinpancakes")
+    developer = Factory.insert!(:developer)
     post = Factory.insert!(:post, title: "A special post", developer: developer, likes: 1)
 
-    visit(session, post_path(Endpoint, :show, post))
-      |> find(Query.css("header[data-likes-loaded=true]"))
+    session
+    |> visit(post_path(Endpoint, :show, post))
+    |> find(Query.css("header[data-likes-loaded=true]"))
 
     link = find(session, Query.css(".post .js-like-action"))
 
     Element.click(link)
 
-    find(session, Query.css(".post .js-like-action.liked"))
+    session
+    |> assert_has(Query.css("header[data-likes-loaded=true]"))
+    |> assert_has(Query.css(".post .js-like-action.liked"))
 
     post = Repo.get(Post, post.id)
     assert post.likes == 2
@@ -76,7 +79,9 @@ defmodule VisitorViewsPostTest do
 
     Element.click(link)
 
-    find(session, Query.css(".post .js-like-action:not(.liked)"))
+    session
+    |> assert_has(Query.css("header[data-likes-loaded=true]"))
+    |> assert_has(Query.css(".post .js-like-action:not(.liked)"))
 
     post = Repo.get(Post, post.id)
     assert post.likes == 1
@@ -90,7 +95,7 @@ defmodule VisitorViewsPostTest do
     **some text**
     [hashrocket](http://hashrocket.com)
     """
-    developer = Factory.insert!(:developer, username: "makinpancakes")
+    developer = Factory.insert!(:developer)
     post = Factory.insert!(:post,
                            title: title,
                            body: body,

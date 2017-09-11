@@ -2,8 +2,8 @@ defmodule Tilex.Integration.Pages.PostForm do
   use Wallaby.DSL
 
   def ensure_page_loaded(session) do
-    Browser.find(session, Query.css("main header h1", text: "Edit Post"))
     session
+    |> element_with_text?("main header h1", "Edit Post")
   end
 
   def expect_preview_content(session, tag, text) do
@@ -33,8 +33,7 @@ defmodule Tilex.Integration.Pages.PostForm do
 
   defp element_with_text?(session, selector, text) do
     session
-    |> Browser.find(Query.css(selector, text: text))
-
+    |> assert_has(Query.css(selector, text: text))
     session
   end
 
