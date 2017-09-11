@@ -33,5 +33,6 @@ Here's an example of an easy way to link to us:
 ### Forks in Production
 
 Have you deployed TIL to production? Please open a pull request or contact
-dev@hashrocket.com to be recognized.  Thank you to everybody who has
-contributed!
+dev@hashrocket.com to be recognized. Here's an
+[example](https://til.energizedwork.com/)! Thank you to everybody who has
+contributed.
