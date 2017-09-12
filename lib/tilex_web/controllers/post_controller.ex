@@ -57,6 +57,7 @@ defmodule TilexWeb.PostController do
 
     conn
     |> assign(:canonical_url, canonical_post)
+    |> assign(:twitter_shareable, true)
     |> render("show.#{format}", post: post)
   end
 
