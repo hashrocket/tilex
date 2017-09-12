@@ -23,7 +23,7 @@ defmodule Features.VisitorViewsStatsTest do
     channels_header = find(session, query)
     assert(channels_header)
 
-    [ other_channel, phoenix_channel ] = all(channels, Query.css("li"))
+    [other_channel, phoenix_channel] = all(channels, Query.css("li"))
 
     assert text_without_newlines(other_channel) =~ "#other 3 posts"
     assert text_without_newlines(phoenix_channel) =~ "#phoenix 1 post"
@@ -51,7 +51,7 @@ defmodule Features.VisitorViewsStatsTest do
 
     assert Wallaby.Element.text(most_liked_posts_header) =~ "Most liked posts"
 
-    [ fast_tests, slow_tests, insert_mode ] = all(most_liked_posts, Query.css("li"))
+    [fast_tests, slow_tests, insert_mode] = all(most_liked_posts, Query.css("li"))
 
     assert text_without_newlines(fast_tests) =~ "Templates #phoenix • 3 likes"
     assert text_without_newlines(slow_tests) =~ "Views #phoenix • 2 likes"
@@ -62,7 +62,7 @@ defmodule Features.VisitorViewsStatsTest do
 
     assert Wallaby.Element.text(hottest_posts_header) =~ "Hottest posts"
 
-    [ fast_tests, slow_tests, insert_mode ] = all(hottest_posts, Query.css("li"))
+    [fast_tests, slow_tests, insert_mode] = all(hottest_posts, Query.css("li"))
 
     assert text_without_newlines(fast_tests) =~ "Templates #phoenix • 3 likes"
     assert text_without_newlines(slow_tests) =~ "Views #phoenix • 2 likes"
