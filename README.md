@@ -31,7 +31,7 @@ $ git clone https://github.com/hashrocket/tilex
 $ cd tilex
 $ mix deps.get
 $ mix ecto.setup
-$ npm install
+$ npm install --prefix assets
 $ mix phx.server
 ```
 
