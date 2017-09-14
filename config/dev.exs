@@ -37,6 +37,8 @@ config :phoenix, :stacktrace_depth, 20
 config :tilex, Tilex.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "tilex_dev",
+  username: "test",
+  password: "test",
   hostname: "localhost",
   pool_size: 10
 

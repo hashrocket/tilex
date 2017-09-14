@@ -15,7 +15,10 @@ config :logger, level: :warn
 config :tilex, Tilex.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "tilex_test",
+  username: "test",
+  password: "test",
   hostname: "localhost",
+  post: 5234,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :tilex, :page_size, 5
