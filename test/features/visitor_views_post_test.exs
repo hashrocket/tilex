@@ -84,7 +84,8 @@ defmodule VisitorViewsPostTest do
 
     session
     |> assert_has(Query.css("header[data-likes-loaded=true]"))
-    |> assert_has(Query.css(".post .js-like-action:not(.liked)"))
+    |> assert_has(Query.css(".post .js-like-action"))
+    |> refute_has(Query.css(".post .js-like-action.liked"))
 
     post = Repo.get(Post, post.id)
     assert post.likes == 1
