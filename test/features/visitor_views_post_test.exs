@@ -120,4 +120,19 @@ defmodule VisitorViewsPostTest do
     #{TilexWeb.SharedView.display_date(post)}
     """)
   end
+
+  test "via the random url", %{session: session} do
+    post = Factory.insert!(:post)
+
+    session
+    |> visit(post_path(Endpoint, :random))
+    |> PostShowPage.expect_post_attributes(%{
+      title: post.title,
+      body: post.body,
+      channel: post.channel.name,
+      likes_count: 1
+    })
+
+    assert page_title(session) == "#{post.title} - Today I Learned"
+  end
 end

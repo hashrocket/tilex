@@ -52,11 +52,8 @@ defmodule TilexWeb.PostController do
     |> Repo.preload([:channel])
     |> Repo.preload([:developer])
 
-    canonical_post = Application.get_env(:tilex, :canonical_domain)
-      <> post_path(conn, :show, post)
-
     conn
-    |> assign(:canonical_url, canonical_post)
+    |> assign_post_canonical_url(post)
     |> assign(:twitter_shareable, true)
     |> render("show.#{format}", post: post)
   end
@@ -69,7 +66,10 @@ defmodule TilexWeb.PostController do
 
     post = Repo.one(query)
 
-    render(conn, "show.html", post: post)
+    conn
+    |> assign_post_canonical_url(post)
+    |> assign(:twitter_shareable, true)
+    |> render("show.html", post: post)
   end
 
   def new(conn, _params) do
@@ -185,4 +185,13 @@ defmodule TilexWeb.PostController do
 
   defp extracted_slug(<<slug::size(10)-binary, _rest::binary>>), do: {:ok, slug}
   defp extracted_slug(_), do: :error
+
+  defp assign_post_canonical_url(conn, post) do
+    canonical_post = Application.get_env(:tilex, :canonical_domain)
+                     |> URI.merge(post_path(conn, :show, post))
+                     |> URI.to_string()
+
+    conn
+    |> assign(:canonical_url, canonical_post)
+  end
 end
