@@ -69,7 +69,9 @@ defmodule TilexWeb.PostController do
 
     post = Repo.one(query)
 
-    render(conn, "show.html", post: post)
+    conn
+    |> assign(:twitter_shareable, true)
+    |> render("show.html", post: post)
   end
 
   def new(conn, _params) do
