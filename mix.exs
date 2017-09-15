@@ -18,21 +18,7 @@ defmodule Tilex.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Tilex, []},
-     applications: [
-       :appsignal,
-       :cachex,
-       :cowboy,
-       :extwitter,
-       :gettext,
-       :logger,
-       :phoenix,
-       :phoenix_ecto,
-       :phoenix_html,
-       :phoenix_pubsub,
-       :postgrex,
-       :timex,
-       :ueberauth_google,
-     ]]
+     extra_applications: [:logger]]
   end
 
   # Specifies which paths to compile per environment.
