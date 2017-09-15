@@ -49,7 +49,7 @@ defmodule Tilex.Mixfile do
       {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
-      {:timex, "~> 3.0"},
+      {:timex, "~> 3.1"},
       {:ueberauth_google, "~> 0.5"},
       {:wallaby, "~> 0.19.1", only: :test},
     ]
