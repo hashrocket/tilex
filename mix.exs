@@ -18,7 +18,7 @@ defmodule Tilex.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Tilex, []},
-     extra_applications: [:logger]]
+     extra_applications: [:logger, :appsignal]]
   end
 
   # Specifies which paths to compile per environment.
@@ -30,7 +30,7 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:appsignal, github: "appsignal/appsignal-elixir", branch: "phoenix-pre"},
+      {:appsignal, "~> 1.0"},
       {:basic_auth, "~> 2.1"},
       {:cachex, "~> 2.1"},
       {:cors_plug, "~> 1.2"},
