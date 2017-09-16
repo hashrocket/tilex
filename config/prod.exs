@@ -85,3 +85,5 @@ config :tilex, :cors_origin, System.get_env("CORS_ORIGIN")
 
 config :appsignal, :config,
   active: true
+
+config :tilex, :page_size, 50

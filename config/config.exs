@@ -18,6 +18,18 @@ config :tilex, TilexWeb.Endpoint,
            adapter: Phoenix.PubSub.PG2],
   http: [protocol_options: [max_request_line_length: 8192, max_header_value_length: 8192]]
 
+# Provide reasonable default for configuration options
+config :tilex, :page_size, 5
+config :tilex, :auth_controller, AuthController
+config :tilex, :slack_notifier, Tilex.Slack
+config :tilex, :twitter_notifier, Tilex.Twitter
+config :tilex, :organization_name, System.get_env("ORGANIZATION_NAME")
+config :tilex, :ga_identifier, System.get_env("GA_IDENTIFIER")
+config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
+config :tilex, :default_twitter_handle, System.get_env("DEFAULT_TWITTER_HANDLE")
+config :tilex, :cors_origin, System.get_env("CORS_ORIGIN")
+config :tilex, :hosted_domain, System.get_env("HOSTED_DOMAIN")
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
@@ -36,10 +48,6 @@ config :ueberauth, Ueberauth,
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
-
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
 
 config :guardian, Guardian,
   allowed_algos: ["HS512"], # optional
@@ -60,3 +68,7 @@ config :extwitter, :oauth, [
    access_token: System.get_env("twitter_access_token"),
    access_token_secret: System.get_env("twitter_access_token_secret")
 ]
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"
