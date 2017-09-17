@@ -36,6 +36,7 @@
     <%= if assigns[:canonical_url] do %>
       <link rel="canonical" href="<%= @canonical_url %>">
     <% end %>
+    <link rel="manifest" href="<%= web_manifest_path(@conn, :index) %>">
   </head>
 
   <body>
