@@ -4,7 +4,7 @@ defmodule TilexWeb.PostController do
 
   alias Guardian.Plug
   alias Phoenix.Controller
-  alias Tilex.{Channel, Integrations, Liking, Post, Posts}
+  alias Tilex.{Channel, Notifications, Liking, Post, Posts}
 
   plug :load_channels when action in [:new, :create, :edit, :update]
   plug :extract_slug when action in [:show, :edit, :update]
@@ -111,7 +111,7 @@ defmodule TilexWeb.PostController do
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
-        |> Integrations.notify(post)
+        |> Notifications.notify(post)
 
       {:error, changeset} ->
         conn

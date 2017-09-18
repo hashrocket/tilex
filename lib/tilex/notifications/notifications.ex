@@ -1,4 +1,4 @@
-defmodule Tilex.Integrations do
+defmodule Tilex.Notifications do
   @slack_notifier Application.get_env(:tilex, :slack_notifier)
   @twitter_notifier Application.get_env(:tilex, :twitter_notifier)
 
