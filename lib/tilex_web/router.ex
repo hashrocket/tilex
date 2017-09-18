@@ -47,6 +47,7 @@ defmodule TilexWeb.Router do
     get "/statistics", StatsController, :index
 
     get "/sitemap.xml", SitemapController, :index
+    get "/manifest.json", WebManifestController, :index
     get "/random", PostController, :random
     get "/:name", ChannelController, :show
     get "/authors/:name", DeveloperController, :show
