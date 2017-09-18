@@ -1,4 +1,4 @@
-defmodule Tilex.Twitter do
+defmodule Tilex.Notifications.Twitter do
   alias Tilex.Developer
 
   def notify(post, developer, channel, url) do
