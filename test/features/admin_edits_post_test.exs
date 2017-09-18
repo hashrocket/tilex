@@ -20,10 +20,7 @@ defmodule AdminEditsPostTest do
 
     session
     |> sign_in(admin)
-    |> PostShowPage.navigate(post)
-    |> PostShowPage.click_edit()
-
-    session
+    |> PostForm.navigate(post)
     |> PostForm.ensure_page_loaded()
     |> PostForm.expect_title_preview("Awesome Post!")
     |> PostForm.fill_in_title("Even Awesomer Post!")
