@@ -108,10 +108,12 @@ defmodule TilexWeb.PostController do
 
     case Repo.insert(changeset) do
       {:ok, post} ->
+
+        Notifications.notify(post)
+
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
-        |> Notifications.notify(post)
 
       {:error, changeset} ->
         conn
