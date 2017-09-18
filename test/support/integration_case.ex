@@ -8,7 +8,8 @@ defmodule Tilex.IntegrationCase do
       alias Wallaby.Query
       alias Wallaby.Element
 
-      alias Tilex.{Endpoint, Channel, Factory, Post, Repo}
+      alias Tilex.{Channel, Factory, Post, Repo}
+      alias TilexWeb.Endpoint
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
