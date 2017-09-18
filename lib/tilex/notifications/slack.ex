@@ -1,4 +1,4 @@
-defmodule Tilex.Slack do
+defmodule Tilex.Notifications.Slack do
 
   @emoji ~w(
     :tada:

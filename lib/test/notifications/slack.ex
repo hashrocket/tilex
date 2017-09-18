@@ -1,4 +1,4 @@
-defmodule Test.Slack do
+defmodule Test.Notifications.Slack do
   def notify(_post, _developer, _channel, _url) do
     :ok
   end

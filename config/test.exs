@@ -21,7 +21,7 @@ config :tilex, Tilex.Repo,
 
 config :tilex, :page_size, 5
 config :tilex, :auth_controller, Test.AuthController
-config :tilex, :slack_notifier, Test.Slack
+config :tilex, :slack_notifier, Test.Notifications.Slack
 config :tilex, :twitter_notifier, Test.Twitter
 config :tilex, :organization_name, "Hashrocket"
 config :tilex, :canonical_domain, "https://til.hashrocket.com"
