@@ -38,7 +38,7 @@ defmodule Tilex.Mixfile do
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       {:earmark, github: "pragdave/earmark", ref: "2bc9051"},
       {:extwitter, "~> 0.8"},
-      {:floki, "~> 0.17"},
+      {:floki, "~> 0.18.0"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 0.14"},
       {:hackney, "1.8.0"},

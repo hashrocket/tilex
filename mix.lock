@@ -20,7 +20,7 @@
   "eternal": {:hex, :eternal, "1.1.4", "3a40fd9b9708f79216a6ec8ae886f2b17685dc26b119b9c0403c2b0d3dc1ac69", [:mix], [{:deppie, "~> 1.1", [hex: :deppie, optional: false]}]},
   "extwitter": {:hex, :extwitter, "0.8.6", "eb74428267805b376b898cf220ce40846668c6598ec763b45d705cd4f6a04e8d", [:mix], [{:oauther, "~> 1.1", [hex: :oauther, optional: false]}, {:poison, "~> 3.0", [hex: :poison, optional: false]}]},
   "file_system": {:hex, :file_system, "0.2.1", "c4bec8f187d2aabace4beb890f0d4e468f65ca051593db768e533a274d0df587", [], [], "hexpm"},
-  "floki": {:hex, :floki, "0.17.2", "81b3a39d85f5cae39c8da16236ce152f7f8f50faf84b480ba53351d7e96ca6ca", [:mix], [{:mochiweb, "~> 2.15", [hex: :mochiweb, optional: false]}]},
+  "floki": {:hex, :floki, "0.18.0", "643d5e4bb325905328d250760ea622faebac4f7e1521f770d35fbb43d8dd4f5f", [:mix], [{:mochiweb, "~> 2.15", [hex: :mochiweb, repo: "hexpm", optional: false]}], "hexpm"},
   "fs": {:hex, :fs, "0.9.2", "ed17036c26c3f70ac49781ed9220a50c36775c6ca2cf8182d123b6566e49ec59", [:rebar], []},
   "gettext": {:hex, :gettext, "0.13.1", "5e0daf4e7636d771c4c71ad5f3f53ba09a9ae5c250e1ab9c42ba9edccc476263", [:mix], []},
   "guardian": {:hex, :guardian, "0.14.5", "6d4e89b673accdacbc092ad000dc7494019426bd898eebf699caf1d19000cdcd", [:mix], [{:jose, "~> 1.8", [hex: :jose, optional: false]}, {:phoenix, "~> 1.2 and < 1.4.0", [hex: :phoenix, optional: true]}, {:plug, "~> 1.3", [hex: :plug, optional: false]}, {:poison, ">= 1.3.0 and < 4.0.0", [hex: :poison, optional: false]}, {:uuid, ">=1.1.1", [hex: :uuid, optional: false]}]},
