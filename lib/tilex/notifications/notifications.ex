@@ -41,7 +41,7 @@ defmodule Tilex.Notifications do
     url = Helpers.post_url(Endpoint, :show, post)
 
     @slack_notifier.post_created(post, developer, channel, url)
-    @twitter_notifier.notify(post, developer, channel, url)
+    @twitter_notifier.post_created(post, developer, channel, url)
 
     post_changeset = Changeset.change(post, %{tweeted_at: DateTime.utc})
     Repo.update!(post_changeset)

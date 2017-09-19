@@ -1,5 +1,6 @@
 defmodule Tilex.Notifications.Supervisor do
   @slack_notifier Application.get_env(:tilex, :slack_notifier)
+  @twitter_notifier Application.get_env(:tilex, :twitter_notifier)
 
   use Supervisor
 
@@ -10,6 +11,7 @@ defmodule Tilex.Notifications.Supervisor do
   def init(_) do
     children = [
       @slack_notifier,
+      @twitter_notifier,
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
