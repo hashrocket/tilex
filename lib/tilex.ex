@@ -14,6 +14,7 @@ defmodule Tilex do
       supervisor(TilexWeb.Endpoint, []),
       worker(Cachex, [:tilex_cache, []]),
       worker(Tilex.Notifications, []),
+      supervisor(Tilex.Notifications.Supervisor, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

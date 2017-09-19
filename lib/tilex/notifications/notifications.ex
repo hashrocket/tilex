@@ -40,7 +40,7 @@ defmodule Tilex.Notifications do
     channel = Repo.one(Ecto.assoc(post, :channel))
     url = Helpers.post_url(Endpoint, :show, post)
 
-    @slack_notifier.notify(post, developer, channel, url)
+    @slack_notifier.post_created(post, developer, channel, url)
     @twitter_notifier.notify(post, developer, channel, url)
 
     post_changeset = Changeset.change(post, %{tweeted_at: DateTime.utc})
@@ -54,7 +54,7 @@ defmodule Tilex.Notifications do
       developer = Repo.one(Ecto.assoc(post, :developer))
       url = Helpers.post_url(Endpoint, :show, post)
 
-      @slack_notifier.notify_of_awards(post, developer, url)
+      @slack_notifier.post_liked(post, developer, url)
     end
 
     {:noreply, :nostate}
