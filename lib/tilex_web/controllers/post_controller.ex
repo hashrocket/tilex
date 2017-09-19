@@ -109,7 +109,7 @@ defmodule TilexWeb.PostController do
     case Repo.insert(changeset) do
       {:ok, post} ->
 
-        Notifications.notify(post)
+        Notifications.post_created(post)
 
         conn
         |> put_flash(:info, "Post created")

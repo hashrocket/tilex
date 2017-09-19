@@ -10,7 +10,7 @@ defmodule Tilex.Liking do
     changeset = Post.changeset(post, like_changes)
     post = Repo.update!(changeset)
 
-    Notifications.notify_of_awards(post, max_likes_changed)
+    Notifications.post_liked(post, max_likes_changed)
 
     likes
   end

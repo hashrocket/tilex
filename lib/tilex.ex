@@ -13,6 +13,7 @@ defmodule Tilex do
       # Start the endpoint when the application starts
       supervisor(TilexWeb.Endpoint, []),
       worker(Cachex, [:tilex_cache, []]),
+      worker(Tilex.Notifications, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
