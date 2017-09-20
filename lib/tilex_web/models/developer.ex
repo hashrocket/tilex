@@ -1,6 +1,8 @@
 defmodule Tilex.Developer do
   use TilexWeb, :model
 
+  @type t :: module
+
   alias Tilex.{Developer, Post}
 
   schema "developers" do
