@@ -1,13 +1,11 @@
 defmodule Tilex.Notifications do
-  @slack_notifier Application.get_env(:tilex, :slack_notifier)
-  @twitter_notifier Application.get_env(:tilex, :twitter_notifier)
-
   use GenServer
 
   alias Ecto.{Changeset, DateTime}
   alias Tilex.{Post, Repo}
   alias TilexWeb.Endpoint
   alias TilexWeb.Router.Helpers
+  alias Tilex.Notifications.NotifiersSupervisor
 
   ### Client API
 
@@ -40,8 +38,8 @@ defmodule Tilex.Notifications do
     channel = Repo.one(Ecto.assoc(post, :channel))
     url = Helpers.post_url(Endpoint, :show, post)
 
-    @slack_notifier.post_created(post, developer, channel, url)
-    @twitter_notifier.post_created(post, developer, channel, url)
+    notifiers()
+    |> Enum.each(&(&1.post_created(post, developer, channel, url)))
 
     post_changeset = Changeset.change(post, %{tweeted_at: DateTime.utc})
     Repo.update!(post_changeset)
@@ -54,9 +52,14 @@ defmodule Tilex.Notifications do
       developer = Repo.one(Ecto.assoc(post, :developer))
       url = Helpers.post_url(Endpoint, :show, post)
 
-      @slack_notifier.post_liked(post, developer, url)
+      notifiers()
+      |> Enum.each(&(&1.post_liked(post, developer, url)))
     end
 
     {:noreply, :nostate}
+  end
+
+  def notifiers(notifiers_supervisor \\ NotifiersSupervisor) do
+    notifiers_supervisor.children()
   end
 end

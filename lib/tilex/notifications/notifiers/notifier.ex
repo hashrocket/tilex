@@ -18,6 +18,9 @@ defmodule Tilex.Notifications.Notifier do
       # send notification about liked post to facebook
     end
   end
+
+  Then add your new notifier to
+  Tilex.Notifications.NotifiersSupervisor.children/1
   """
 
   alias Tilex.{Post, Developer, Channel}
