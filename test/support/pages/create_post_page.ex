@@ -7,8 +7,7 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
 
   def ensure_page_loaded(session) do
     session
-    |> Browser.find(Query.css("main header h1", text: "Create Post"))
-
+    |> assert_has(Query.css("main header h1", text: "Create Post"))
     session
   end
 
@@ -36,8 +35,7 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
 
   def expect_form_has_error(session, error_text) do
     session
-    |> Browser.find(Query.css("form", text: error_text))
-
+    |> assert_has(Query.css("form", text: error_text))
     session
   end
 end

@@ -1,5 +1,12 @@
 defmodule Tilex.Integration.Pages.PostForm do
   use Wallaby.DSL
+  import TilexWeb.Router.Helpers
+  alias TilexWeb.Endpoint
+
+  def navigate(session, post) do
+    session
+    |> visit(post_path(Endpoint, :edit, post))
+  end
 
   def ensure_page_loaded(session) do
     session

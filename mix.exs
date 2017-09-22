@@ -18,21 +18,7 @@ defmodule Tilex.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Tilex, []},
-     applications: [
-       :appsignal,
-       :cachex,
-       :cowboy,
-       :extwitter,
-       :gettext,
-       :logger,
-       :phoenix,
-       :phoenix_ecto,
-       :phoenix_html,
-       :phoenix_pubsub,
-       :postgrex,
-       :timex,
-       :ueberauth_google,
-     ]]
+     extra_applications: [:logger, :appsignal]]
   end
 
   # Specifies which paths to compile per environment.
@@ -44,7 +30,7 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:appsignal, github: "appsignal/appsignal-elixir", branch: "phoenix-pre"},
+      {:appsignal, "~> 1.0"},
       {:basic_auth, "~> 2.1"},
       {:cachex, "~> 2.1"},
       {:cors_plug, "~> 1.2"},
@@ -52,7 +38,7 @@ defmodule Tilex.Mixfile do
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
       {:earmark, github: "pragdave/earmark", ref: "2bc9051"},
       {:extwitter, "~> 0.8"},
-      {:floki, "~> 0.17"},
+      {:floki, "~> 0.18.0"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 0.14"},
       {:hackney, "1.8.0"},
@@ -60,10 +46,10 @@ defmodule Tilex.Mixfile do
       {:phoenix, "~> 1.3.0"},
       {:phoenix_ecto, "~> 3.1"},
       {:phoenix_html, "~> 2.6"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
-      {:timex, "~> 3.0"},
+      {:timex, "~> 3.1"},
       {:ueberauth_google, "~> 0.5"},
       {:wallaby, "~> 0.19.1", only: :test},
     ]
