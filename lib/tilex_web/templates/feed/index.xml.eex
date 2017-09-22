@@ -5,7 +5,7 @@
     <description>TIL is an open-source project by Hashrocket that exists to catalogue the sharing and accumulation of knowledge as it happens day-to-day.
     </description>
     <link><%= post_url(@conn, :index) %></link>
-    <atom:link href="https://til.hashrocket.com/rss" rel="self" type="application/rss+xml" />
+    <atom:link href="<%= feed_url(@conn, :index) %>" rel="self" type="application/rss+xml" />
     <%= for post <- @items do %>
       <item>
         <title>
