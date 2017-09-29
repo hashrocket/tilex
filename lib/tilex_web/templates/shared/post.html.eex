@@ -7,7 +7,7 @@
         </h1>
         <%= raw Tilex.Markdown.to_html(@post.body) %>
 
-        <%= if assigns[:twitter_shareable] do %>
+        <%= if assigns[:twitter_shareable] && Mix.env != :test do %>
           <a href='http://twitter.com/share'
              class='twitter-share-button'
              data-text= "Today I learned: <%= @post.title %>"
