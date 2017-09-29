@@ -1,6 +1,8 @@
 defmodule Tilex.Post do
   use TilexWeb, :model
 
+  @type t :: module
+
   alias Tilex.{Developer, Channel, Post}
 
   @body_max_words 200

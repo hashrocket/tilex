@@ -1,5 +1,5 @@
 defmodule Tilex.Liking do
-  alias Tilex.{Integrations, Post, Repo}
+  alias Tilex.{Notifications, Post, Repo}
 
   def like(slug) do
     post = Repo.get_by!(Post, slug: slug)
@@ -10,7 +10,7 @@ defmodule Tilex.Liking do
     changeset = Post.changeset(post, like_changes)
     post = Repo.update!(changeset)
 
-    Integrations.notify_of_awards(post, max_likes_changed)
+    Notifications.post_liked(post, max_likes_changed)
 
     likes
   end

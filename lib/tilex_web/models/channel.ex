@@ -1,6 +1,8 @@
 defmodule Tilex.Channel do
   use TilexWeb, :model
 
+  @type t :: module
+
   alias Tilex.Post
 
   schema "channels" do
