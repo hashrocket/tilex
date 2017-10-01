@@ -45,7 +45,7 @@ defmodule Tilex.Mixfile do
       {:html_sanitize_ex, "~> 1.2"},
       {:phoenix, "~> 1.3.0"},
       {:phoenix_ecto, "~> 3.1"},
-      {:phoenix_html, "~> 2.10.4"},
+      {:phoenix_html, "~> 2.10.3"},
       {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
