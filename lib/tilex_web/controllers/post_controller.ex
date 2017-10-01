@@ -189,7 +189,8 @@ defmodule TilexWeb.PostController do
   defp extracted_slug(_), do: :error
 
   defp assign_post_canonical_url(conn, post) do
-    canonical_post = Application.get_env(:tilex, :canonical_domain)
+    canonical_post = :tilex
+                     |> Application.get_env(:canonical_domain)
                      |> URI.merge(post_path(conn, :show, post))
                      |> URI.to_string()
 
