@@ -2,6 +2,13 @@ defmodule Mix.Tasks.Tilex.Streaks do
   use Mix.Task
   import Mix.Ecto
 
+  @shortdoc "Tilex Stats: Days in a row a til was posted"
+
+  @moduledoc """
+  Run `mix tilex.streaks` to get days in a row a til was posted.
+  Run `mix tilex.streaks chriserin` to get days in a row a til was posted by chriserin.
+  """
+
   def run([]), do: run(["%"])
   def run([username] = args) do
     repo = args
