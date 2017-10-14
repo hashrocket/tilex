@@ -20,8 +20,18 @@
     <meta name="twitter:site" content="@hashrockettil">
     <meta name="twitter:creator" content="@hashrockettil">
     <meta name="twitter:title" content="Today I Learned: a Hashrocket Project">
-    <meta name="twitter:description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.">
-    <meta name="twitter:image" content=<%= TilexWeb.Endpoint.static_url() <> "/assets/til_twittercard.png" %>>
+
+    <%= if assigns[:post] do %>
+      <meta name="twitter:description" content="<%= Tilex.Post.twitter_description(assigns[:post]) %>">
+    <% else %>
+      <meta name="twitter:description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.">
+    <% end %>
+
+    <%= if assigns[:post] && File.exists?("assets/static/assets/#{String.replace(assigns[:post].channel.name, "-", "_")}_twitter_card.png") do %>
+      <meta name="twitter:image" content=<%= TilexWeb.Endpoint.static_url() <> "/assets/#{String.replace(assigns[:post].channel.name, "-", "_")}_twitter_card.png}" %>>
+    <% else %>
+      <meta name="twitter:image" content=<%= TilexWeb.Endpoint.static_url() <> "/assets/til_twittercard.png" %>>
+    <% end %>
 
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>

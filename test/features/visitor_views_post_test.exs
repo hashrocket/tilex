@@ -9,7 +9,7 @@ defmodule VisitorViewsPostTest do
 
   test "the page shows a post", %{session: session} do
     developer = Factory.insert!(:developer)
-    channel = Factory.insert!(:channel, name: "awesomeness")
+    channel = Factory.insert!(:channel, name: "command-line")
     post = Factory.insert!(:post,
       title: "A special post",
       body: "This is how to be super awesome!",
@@ -22,7 +22,7 @@ defmodule VisitorViewsPostTest do
     |> PostShowPage.expect_post_attributes(%{
       title: "A special post",
       body: "This is how to be super awesome!",
-      channel: "#awesomeness",
+      channel: "#command-line",
       likes_count: 1
     })
 
@@ -58,6 +58,25 @@ defmodule VisitorViewsPostTest do
           |> current_url
 
     assert url =~ "#{post.slug}-alternate-also-cool-title"
+  end
+
+  test "and sees a channel specific twitter card and a post specific twitter description", %{session: session} do
+    popular_channel = Factory.insert!(:channel, name: "command-line")
+    post = Factory.insert!(:post, channel: popular_channel, body: "One sentence that sets up the post.\nAnother sentence that is more informative")
+
+    image_url = session
+           |> visit(post_path(Endpoint, :show, post))
+           |> find(Query.css("meta[name='twitter:image']", visible: false))
+           |> Element.attr("content")
+
+    assert image_url =~ "command_line_twitter_card.png"
+
+    twitter_description = session
+           |> find(Query.css("meta[name='twitter:description']", visible: false))
+           |> Element.attr("content")
+
+    assert twitter_description =~ "One sentence that sets up the post."
+    refute twitter_description =~ "Another sentence"
   end
 
   test "and clicks 'like' for that post", %{session: session} do

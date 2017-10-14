@@ -70,6 +70,12 @@ defmodule Tilex.Post do
     |> String.downcase
   end
 
+  def twitter_description(post) do
+    post.body
+    |> String.split("\n")
+    |> hd
+  end
+
   defp add_slug(changeset) do
     case get_field(changeset, :slug) do
       nil ->
