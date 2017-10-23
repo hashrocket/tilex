@@ -41,6 +41,7 @@ defmodule Tilex.Integration.Pages.PostForm do
   defp element_with_text?(session, selector, text) do
     session
     |> assert_has(Query.css(selector, text: text))
+
     session
   end
 
@@ -56,12 +57,13 @@ defmodule Tilex.Integration.Pages.PostForm do
 
   def select_channel(session, name) do
     session
-    |> (fn(session) ->
-      find(session, Query.select("Channel"), fn (element) ->
-        click(element, Query.option(name))
-      end)
-      session
-    end).()
+    |> (fn session ->
+          find(session, Query.select("Channel"), fn element ->
+            click(element, Query.option(name))
+          end)
+
+          session
+        end).()
   end
 
   def click_submit(session) do

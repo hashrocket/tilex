@@ -8,6 +8,7 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
   def ensure_page_loaded(session) do
     session
     |> assert_has(Query.css("main header h1", text: "Create Post"))
+
     session
   end
 
@@ -15,12 +16,13 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
     session
     |> fill_in(Query.text_field("Title"), with: Map.get(fields, :title))
     |> fill_in(Query.text_field("Body"), with: Map.get(fields, :body))
-    |> (fn(session) ->
-      find(session, Query.select("Channel"), fn (element) ->
-        click(element, Query.option(Map.get(fields, :channel)))
-      end)
-      session
-    end).()
+    |> (fn session ->
+          find(session, Query.select("Channel"), fn element ->
+            click(element, Query.option(Map.get(fields, :channel)))
+          end)
+
+          session
+        end).()
   end
 
   def submit_form(session) do
@@ -36,6 +38,7 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
   def expect_form_has_error(session, error_text) do
     session
     |> assert_has(Query.css("form", text: error_text))
+
     session
   end
 end
