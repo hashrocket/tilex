@@ -35,7 +35,9 @@ defmodule Tilex.Integration.Pages.PostShowPage do
     |> Browser.find(Query.css(".post .copy", text: expected_body))
 
     session
-    |> Browser.find(Query.css(".post aside .post__tag-link", text: String.upcase(expected_channel)))
+    |> Browser.find(
+         Query.css(".post aside .post__tag-link", text: String.upcase(expected_channel))
+       )
 
     session
     |> Browser.find(Query.css(".js-like-action", text: expected_likes_count))
