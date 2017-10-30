@@ -26,6 +26,7 @@ config :tilex, :twitter_notifier, Test.Notifications.Notifiers.Twitter
 config :tilex, :organization_name, "Hashrocket"
 config :tilex, :canonical_domain, "https://til.hashrocket.com"
 config :tilex, :default_twitter_handle, "hashrocket"
+config :tilex, :hosted_domain, "hashrocket.com"
 
 config :tilex, :async_feature_test, (System.get_env("ASYNC_FEATURE_TEST") == "yes")
 
@@ -38,4 +39,3 @@ config :wallaby,
     headless: true
   ],
   screenshot_on_failure: true
-

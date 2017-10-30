@@ -82,6 +82,7 @@ config :tilex, :ga_identifier, System.get_env("GA_IDENTIFIER")
 config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
 config :tilex, :default_twitter_handle, System.get_env("DEFAULT_TWITTER_HANDLE")
 config :tilex, :cors_origin, System.get_env("CORS_ORIGIN")
+config :tilex, :hosted_domain, System.get_env("HOSTED_DOMAIN")
 
 config :appsignal, :config,
   active: true
