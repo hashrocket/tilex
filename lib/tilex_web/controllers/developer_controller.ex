@@ -5,13 +5,16 @@ defmodule TilexWeb.DeveloperController do
   alias Tilex.{Developer, Posts, Repo}
 
   def show(conn, %{"name" => username} = params) do
-    page = params
-    |> Map.get("page", "1")
-    |> String.to_integer
+    page =
+      params
+      |> Map.get("page", "1")
+      |> String.to_integer()
 
     {posts, posts_count, developer} = Posts.by_developer(username, page)
 
-    render(conn, "show.html",
+    render(
+      conn,
+      "show.html",
       posts: posts,
       posts_count: posts_count,
       developer: developer,
@@ -36,6 +39,7 @@ defmodule TilexWeb.DeveloperController do
         conn
         |> put_flash(:info, "Developer Updated")
         |> redirect(to: post_path(conn, :index))
+
       {:error, changeset} ->
         render(conn, "edit.html", developer: developer, changeset: changeset)
     end
