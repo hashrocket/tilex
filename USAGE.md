@@ -17,7 +17,7 @@ development.
 Here's an example of an easy way to link to us:
 
 ```elixir
-# lib/tilex/web/templates/layout/app.html.eex
+# lib/tilex_web/templates/layout/app.html.eex
 
 <div class="copy">
   Today I Learned is an open-source project by
@@ -33,6 +33,9 @@ Here's an example of an easy way to link to us:
 ### Forks in Production
 
 Have you deployed TIL to production? Please open a pull request or contact
-dev@hashrocket.com to be recognized. Here's an
-[example](https://til.energizedwork.com/)! Thank you to everybody who has
-contributed.
+dev@hashrocket.com to be recognized. Here are a few examples:
+
+- https://til.energizedwork.com/
+- https://til.brianemory.com/
+
+Thank you to everybody who has forked and contributed.
