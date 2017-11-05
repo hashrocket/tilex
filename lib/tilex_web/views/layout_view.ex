@@ -16,7 +16,7 @@ defmodule TilexWeb.LayoutView do
     end
   end
   def twitter_image_url(name) when is_binary(name) do
-    TilexWeb.Endpoint.static_url() <> "/assets/#{name}_twitter_card.png}"
+    TilexWeb.Endpoint.static_url() <> "/assets/#{name}_twitter_card.png"
   end
   def twitter_image_url(name) when is_nil(name) do
     TilexWeb.Endpoint.static_url() <> "/assets/til_twittercard.png"
