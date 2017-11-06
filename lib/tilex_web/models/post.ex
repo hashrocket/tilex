@@ -70,6 +70,10 @@ defmodule Tilex.Post do
     |> String.downcase
   end
 
+  def twitter_title(post) do
+    "Today I Learned: " <> post.title
+  end
+
   def twitter_description(post) do
     post.body
     |> String.split("\n")
