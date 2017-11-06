@@ -31,6 +31,14 @@ defmodule TilexWeb.LayoutView do
     end
   end
 
+  def twitter_title(%Tilex.Post{} = post) do
+    TilexPost.twitter_title(post)
+  end
+
+  def twitter_title(_post) do
+    "Today I Learned: a Hashrocket Project"
+  end
+
   def twitter_description(%Tilex.Post{} = post) do
     Tilex.Post.twitter_description(post)
   end

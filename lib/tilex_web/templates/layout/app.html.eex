@@ -19,7 +19,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
     <meta name="twitter:creator" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
-    <meta name="twitter:title" content="Today I Learned: a Hashrocket Project">
+    <meta name="twitter:title" content="<%= twitter_title(assigns[:post]) %>">
     <meta name="twitter:description" content="<%= twitter_description(assigns[:post]) %>">
     <meta name="twitter:image" content=<%= twitter_image_url(assigns[:post]) %>>
 
