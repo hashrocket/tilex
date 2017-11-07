@@ -74,9 +74,6 @@ if System.get_env("ENABLE_BASIC_AUTH") do
 end
 
 config :tilex, :page_size, 50
-config :tilex, :auth_controller, AuthController
-config :tilex, :slack_notifier, Tilex.Slack
-config :tilex, :twitter_notifier, Tilex.Twitter
 config :tilex, :ga_identifier, System.get_env("GA_IDENTIFIER")
 
 config :appsignal, :config,

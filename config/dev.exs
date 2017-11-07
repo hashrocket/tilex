@@ -41,8 +41,5 @@ config :tilex, Tilex.Repo,
   pool_size: 10
 
 config :tilex, :page_size, 50
-config :tilex, :auth_controller, AuthController
-config :tilex, :slack_notifier, Tilex.Slack
-config :tilex, :twitter_notifier, Tilex.Twitter
 config :tilex, :cors_origin, "http://localhost:3000"
 config :tilex, :default_twitter_handle, "hashrocket"
