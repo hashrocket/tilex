@@ -83,11 +83,9 @@ user on subsequent authentications.
 
 ### Testing
 
-Wallaby relies on ChromeDriver; install it (OSX):
-
-```
-$ brew install chromedriver
-```
+Wallaby relies on
+[ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/); install
+it via your method of choice.
 
 Run the tests with:
 
