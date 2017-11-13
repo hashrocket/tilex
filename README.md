@@ -95,7 +95,8 @@ $ mix test
 
 ### Deployment
 
-These are the Tilex deployed instances:
+Hashrocket's Tilex is deployed to [Heroku](https://www.heroku.com/). These are
+Hashrocket's deployed instances:
 
 - Staging: https://tilex-staging.herokuapp.com
 - Production: https://til.hashrocket.com
