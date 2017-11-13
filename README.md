@@ -110,24 +110,24 @@ $ heroku run "POOL_SIZE=2 mix ecto.migrate"
 
 ### Contributing
 
-Please see [CONTRIBUTING](/CONTRIBUTING.md) for more information.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for more information.
 
 ### Code of Conduct
 
 This project is intended to be a safe, welcoming space for collaboration, and
 contributors are expected to adhere to the [Contributor
 Covenant](http://contributor-covenant.org) code of conduct. Please see [CODE OF
-CONDUCT](/CODE_OF_CONDUCT.md) for more information.
+CONDUCT](CODE_OF_CONDUCT.md) for more information.
 
 ### Usage
 
 We love seeing forks of Today I Learned in production! Please consult
-[USAGE](/USAGE.md) for guidelines on appropriate styling and attribution.
+[USAGE](USAGE.md) for guidelines on appropriate styling and attribution.
 
 ### License
 
 Tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT). Please
-see [LICENSE](/LICENSE.md) for more information.
+see [LICENSE](LICENSE.md) for more information.
 
 ---
 
