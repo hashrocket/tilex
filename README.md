@@ -53,7 +53,7 @@ To set environmental variables, copy the example file:
 $ cp .env{.example,}
 ```
 
-Then, set your variables and source them:
+Set your environmental variables in the new file, and then source them:
 
 ```
 $ source .env
