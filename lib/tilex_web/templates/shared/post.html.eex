@@ -37,7 +37,7 @@
           <li>
             <%= link("raw", to: "#{post_path(@conn, :show, @post)}.md", class: "post__raw-link") %>
           </li>
-          <%= if Guardian.Plug.current_resource(@conn) && (@post.developer == Guardian.Plug.current_resource(@conn) || Guardian.Plug.current_resource(@conn).admin) do %>
+          <%= if TilexWeb.SharedView.post_creator_or_admin?(@conn, @post) do %>
             <li>
               <%= link("edit", to: post_path(@conn, :edit, @post), class: "post__permalink") %>
             </li>
