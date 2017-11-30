@@ -17,17 +17,20 @@ defmodule Tilex.ChannelTest do
   end
 
   test "it can return an alphabetized list of all records" do
-    Enum.each(["zsh", "jekyll", "ada"], fn(name) ->
+    Enum.each(["zsh", "jekyll", "ada"], fn name ->
       Factory.insert!(:channel, name: name)
     end)
 
-    query = Channel
-    |> Channel.alphabetized
+    query =
+      Channel
+      |> Channel.alphabetized()
+
     channels = Repo.all(query)
 
-    names = Enum.map(channels, fn(channel) ->
-      channel.name
-    end)
+    names =
+      Enum.map(channels, fn channel ->
+        channel.name
+      end)
 
     assert names == ["ada", "jekyll", "zsh"]
   end

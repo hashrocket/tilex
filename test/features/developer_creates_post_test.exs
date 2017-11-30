@@ -1,5 +1,5 @@
 defmodule DeveloperCreatesPostTest do
- use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   alias Tilex.Integration.Pages.{
     Navigation,
@@ -20,24 +20,26 @@ defmodule DeveloperCreatesPostTest do
     |> Navigation.click_create_post()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title:  "Example Title",
-      body: "Example Body",
-      channel: "phoenix"
-    })
+         title: "Example Title",
+         body: "Example Body",
+         channel: "phoenix"
+       })
     |> CreatePostPage.submit_form()
     |> PostShowPage.ensure_info_flash("Post created")
     |> PostShowPage.ensure_page_loaded("Example Title")
     |> PostShowPage.expect_post_attributes(%{
-      title: "Example Title",
-      body: "Example Body",
-      channel: "phoenix",
-      likes_count: 1
-    })
+         title: "Example Title",
+         body: "Example Body",
+         channel: "phoenix",
+         likes_count: 1
+       })
 
-    post = Post
-    |> Repo.all
-    |> Enum.reverse
-    |> hd
+    post =
+      Post
+      |> Repo.all()
+      |> Enum.reverse()
+      |> hd
+
     assert post.body == "Example Body"
     assert post.title == "Example Title"
     refute is_nil(post.tweeted_at)
@@ -80,10 +82,10 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title:  String.duplicate("I can codez ", 10),
-      body: "Example Body",
-      channel: "phoenix"
-    })
+         title: String.duplicate("I can codez ", 10),
+         body: "Example Body",
+         channel: "phoenix"
+       })
     |> CreatePostPage.submit_form()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.expect_form_has_error("Title should be at most 50 character(s)")
@@ -98,10 +100,10 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title:  "Example Title",
-      body: String.duplicate("wordy ", 201),
-      channel: "phoenix"
-    })
+         title: "Example Title",
+         body: String.duplicate("wordy ", 201),
+         channel: "phoenix"
+       })
     |> CreatePostPage.submit_form()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.expect_form_has_error("Body should be at most 200 word(s)")
@@ -116,10 +118,10 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title: "Example Title",
-      body: "**bold powerup**",
-      channel: "phoenix",
-    })
+         title: "Example Title",
+         body: "**bold powerup**",
+         channel: "phoenix"
+       })
 
     assert find(session, Query.css("strong", text: "bold powerup"))
   end
@@ -133,10 +135,10 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title:  "Example Title",
-      body: "# yay \n *cool*",
-      channel: "phoenix"
-    })
+         title: "Example Title",
+         body: "# yay \n *cool*",
+         channel: "phoenix"
+       })
     |> PostForm.expect_preview_content("h1", "yay")
     |> PostForm.expect_preview_content("em", "cool")
     |> PostForm.expect_word_count(3)

@@ -44,8 +44,7 @@ config :tilex, Tilex.Repo,
 #
 # We also recommend setting `force_ssl`, ensuring no data is
 # ever sent via http, always redirecting to https:
-config :tilex, TilexWeb.Endpoint,
-  force_ssl: [rewrite_on: [:x_forwarded_proto]]
+config :tilex, TilexWeb.Endpoint, force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
 # Check `Plug.SSL` for all available options in `force_ssl`.
 
@@ -66,11 +65,10 @@ config :tilex, TilexWeb.Endpoint,
 # which should be versioned separately.
 
 if System.get_env("ENABLE_BASIC_AUTH") do
-  config :tilex, :basic_auth, [
+  config :tilex, :basic_auth,
     realm: "tilex",
     username: System.get_env("BASIC_AUTH_USERNAME"),
-    password: System.get_env("BASIC_AUTH_PASSWORD"),
-  ]
+    password: System.get_env("BASIC_AUTH_PASSWORD")
 end
 
 config :tilex, :page_size, 50
@@ -83,5 +81,4 @@ config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
 config :tilex, :default_twitter_handle, System.get_env("DEFAULT_TWITTER_HANDLE")
 config :tilex, :cors_origin, System.get_env("CORS_ORIGIN")
 
-config :appsignal, :config,
-  active: true
+config :appsignal, :config, active: true

@@ -9,12 +9,14 @@ defmodule DeveloperEditsPostTest do
   test "fills out form and updates post from post show", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
-    post = Factory.insert!(
-      :post,
-      title: "Awesome Post!",
-      developer: developer,
-      body: "This is how to be *awesome*!"
-    )
+
+    post =
+      Factory.insert!(
+        :post,
+        title: "Awesome Post!",
+        developer: developer,
+        body: "This is how to be *awesome*!"
+      )
 
     session
     |> sign_in(developer)
@@ -37,10 +39,10 @@ defmodule DeveloperEditsPostTest do
     |> PostShowPage.ensure_page_loaded("Even Awesomer Post!")
     |> PostShowPage.ensure_info_flash("Post Updated")
     |> PostShowPage.expect_post_attributes(%{
-      title: "Even Awesomer Post!",
-      body: "This is how to be super awesome!",
-      channel: "#phoenix",
-      likes_count: 1
-    })
+         title: "Even Awesomer Post!",
+         body: "This is how to be super awesome!",
+         channel: "#phoenix",
+         likes_count: 1
+       })
   end
 end

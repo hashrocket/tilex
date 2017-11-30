@@ -25,8 +25,8 @@ defmodule Tilex.Notifications.Notifier do
 
   alias Tilex.{Post, Developer, Channel}
 
-  @callback handle_post_created(Post.t, Developer.t, Channel.t, url :: String.t) :: any
-  @callback handle_post_liked(Post.t, Developer.t, url :: String.t) :: any
+  @callback handle_post_created(Post.t(), Developer.t(), Channel.t(), url :: String.t()) :: any
+  @callback handle_post_liked(Post.t(), Developer.t(), url :: String.t()) :: any
 
   defmacro __using__(_) do
     quote location: :keep do

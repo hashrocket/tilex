@@ -10,10 +10,12 @@ defmodule Mix.Tasks.Tilex.Streaks do
   """
 
   def run([]), do: run(["%"])
+
   def run([username] = args) do
-    repo = args
-           |> parse_repo
-           |> hd
+    repo =
+      args
+      |> parse_repo
+      |> hd
 
     streaks_sql = """
       with days as (
@@ -56,11 +58,11 @@ defmodule Mix.Tasks.Tilex.Streaks do
 
     {:ok, result} = repo.query(streaks_sql, [username], log: false)
 
-    Enum.each(result.rows, fn ([streak_length, start_date, end_date, _people]) ->
+    Enum.each(result.rows, fn [streak_length, start_date, end_date, _people] ->
       formatted_start_date = Timex.format!(start_date, "%m/%d/%Y", :strftime)
       formatted_end_date = Timex.format!(end_date, "%m/%d/%Y", :strftime)
 
-      IO.puts "#{streak_length} days from #{formatted_start_date} to #{formatted_end_date}"
+      IO.puts("#{streak_length} days from #{formatted_start_date} to #{formatted_end_date}")
     end)
   end
 end
