@@ -35,8 +35,9 @@ defmodule TilexWeb.AuthController do
   defp authenticate(%{info: info, uid: uid}) do
     email = Map.get(info, :email)
     name = Developer.format_username(Map.get(info, :name))
+    pattern = ~r/@#{Application.get_env(:tilex, :hosted_domain)}$/
 
-    case String.match?(email, ~r/@hashrocket.com$/) do
+    case String.match?(email, pattern) do
       true ->
         attrs = %{
           email: email,
