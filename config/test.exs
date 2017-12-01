@@ -19,13 +19,10 @@ config :tilex, Tilex.Repo,
   username: "postgres",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :tilex, :page_size, 5
-config :tilex, :auth_controller, Test.AuthController
-config :tilex, :slack_notifier, Test.Notifications.Notifiers.Slack
-config :tilex, :twitter_notifier, Test.Notifications.Notifiers.Twitter
 config :tilex, :organization_name, "Hashrocket"
 config :tilex, :canonical_domain, "https://til.hashrocket.com"
 config :tilex, :default_twitter_handle, "hashrocket"
+config :tilex, :hosted_domain, "hashrocket.com"
 
 config :tilex, :async_feature_test, (System.get_env("ASYNC_FEATURE_TEST") == "yes")
 
