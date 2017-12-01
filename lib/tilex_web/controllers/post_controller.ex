@@ -4,13 +4,16 @@ defmodule TilexWeb.PostController do
 
   alias Guardian.Plug
   alias Phoenix.Controller
-  alias Tilex.{Channel, Integrations, Liking, Post, Posts}
+  alias Tilex.{Channel, Notifications, Liking, Post, Posts}
 
-  plug :load_channels when action in [:new, :create, :edit, :update]
-  plug :extract_slug when action in [:show, :edit, :update]
+  plug(:load_channels when action in [:new, :create, :edit, :update])
+  plug(:extract_slug when action in [:show, :edit, :update])
 
-  plug Plug.EnsureAuthenticated, [handler: __MODULE__]
+  plug(
+    Plug.EnsureAuthenticated,
+    [handler: __MODULE__]
     when action in ~w(new create edit update)a
+  )
 
   def unauthenticated(conn, _) do
     conn
@@ -20,12 +23,16 @@ defmodule TilexWeb.PostController do
   end
 
   def index(conn, %{"q" => search_query} = params) do
-    page = params
-    |> Map.get("page", "1")
-    |> String.to_integer
+    page =
+      params
+      |> Map.get("page", "1")
+      |> String.to_integer()
 
     {posts, posts_count} = Posts.by_search(search_query, page)
-    render(conn, "search_results.html",
+
+    render(
+      conn,
+      "search_results.html",
       posts: posts,
       posts_count: posts_count,
       page: page,
@@ -33,12 +40,14 @@ defmodule TilexWeb.PostController do
     )
   end
 
-  def index(conn, %{"format" => format}) when format in ~w(rss atom), do: redirect(conn, to: "/rss")
+  def index(conn, %{"format" => format}) when format in ~w(rss atom),
+    do: redirect(conn, to: "/rss")
 
   def index(conn, params) do
-    page = params
-    |> Map.get("page", "1")
-    |> String.to_integer
+    page =
+      params
+      |> Map.get("page", "1")
+      |> String.to_integer()
 
     posts = Posts.all(page)
 
@@ -47,10 +56,12 @@ defmodule TilexWeb.PostController do
 
   def show(%{assigns: %{slug: slug}} = conn, _) do
     format = Controller.get_format(conn)
-    post = Post
-    |> Repo.get_by!(slug: slug)
-    |> Repo.preload([:channel])
-    |> Repo.preload([:developer])
+
+    post =
+      Post
+      |> Repo.get_by!(slug: slug)
+      |> Repo.preload([:channel])
+      |> Repo.preload([:developer])
 
     conn
     |> assign_post_canonical_url(post)
@@ -59,10 +70,13 @@ defmodule TilexWeb.PostController do
   end
 
   def random(conn, _) do
-    query = from post in Post,
-      order_by: fragment("random()"),
-      limit: 1,
-      preload: [:channel, :developer]
+    query =
+      from(
+        post in Post,
+        order_by: fragment("random()"),
+        limit: 1,
+        preload: [:channel, :developer]
+      )
 
     post = Repo.one(query)
 
@@ -108,10 +122,11 @@ defmodule TilexWeb.PostController do
 
     case Repo.insert(changeset) do
       {:ok, post} ->
+        Notifications.post_created(post)
+
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: post_path(conn, :index))
-        |> Integrations.notify(post)
 
       {:error, changeset} ->
         conn
@@ -124,12 +139,16 @@ defmodule TilexWeb.PostController do
   def edit(conn, _params) do
     current_user = Plug.current_resource(conn)
 
-    post = case current_user.admin do
-      false -> current_user
-           |> assoc(:posts)
-           |> Repo.get_by!(slug: conn.assigns.slug)
-      true -> Repo.get_by!(Post, slug: conn.assigns.slug)
-    end
+    post =
+      case current_user.admin do
+        false ->
+          current_user
+          |> assoc(:posts)
+          |> Repo.get_by!(slug: conn.assigns.slug)
+
+        true ->
+          Repo.get_by!(Post, slug: conn.assigns.slug)
+      end
 
     changeset = Post.changeset(post)
 
@@ -143,12 +162,16 @@ defmodule TilexWeb.PostController do
   def update(conn, %{"post" => post_params}) do
     current_user = Plug.current_resource(conn)
 
-    post = case current_user.admin do
-      false -> current_user
-           |> assoc(:posts)
-           |> Repo.get_by!(slug: conn.assigns.slug)
-      true -> Repo.get_by!(Post, slug: conn.assigns.slug)
-    end
+    post =
+      case current_user.admin do
+        false ->
+          current_user
+          |> assoc(:posts)
+          |> Repo.get_by!(slug: conn.assigns.slug)
+
+        true ->
+          Repo.get_by!(Post, slug: conn.assigns.slug)
+      end
 
     changeset = Post.changeset(post, post_params)
 
@@ -157,15 +180,17 @@ defmodule TilexWeb.PostController do
         conn
         |> put_flash(:info, "Post Updated")
         |> redirect(to: post_path(conn, :show, post))
+
       {:error, changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset)
     end
   end
 
   defp load_channels(conn, _) do
-    query = Channel
-    |> Channel.names_and_ids
-    |> Channel.alphabetized
+    query =
+      Channel
+      |> Channel.names_and_ids()
+      |> Channel.alphabetized()
 
     channels = Repo.all(query)
     assign(conn, :channels, channels)
@@ -175,6 +200,7 @@ defmodule TilexWeb.PostController do
     case extracted_slug(conn.params["titled_slug"]) do
       {:ok, slug} ->
         assign(conn, :slug, slug)
+
       :error ->
         conn
         |> put_status(404)
@@ -187,9 +213,11 @@ defmodule TilexWeb.PostController do
   defp extracted_slug(_), do: :error
 
   defp assign_post_canonical_url(conn, post) do
-    canonical_post = Application.get_env(:tilex, :canonical_domain)
-                     |> URI.merge(post_path(conn, :show, post))
-                     |> URI.to_string()
+    canonical_post =
+      :tilex
+      |> Application.get_env(:canonical_domain)
+      |> URI.merge(post_path(conn, :show, post))
+      |> URI.to_string()
 
     conn
     |> assign(:canonical_url, canonical_post)

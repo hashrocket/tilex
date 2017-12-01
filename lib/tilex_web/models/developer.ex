@@ -1,17 +1,19 @@
 defmodule Tilex.Developer do
   use TilexWeb, :model
 
+  @type t :: module
+
   alias Tilex.{Developer, Post}
 
   schema "developers" do
-    field :email, :string
-    field :username, :string
-    field :google_id, :string
-    field :twitter_handle, :string
-    field :admin, :boolean
-    field :editor, :string
+    field(:email, :string)
+    field(:username, :string)
+    field(:google_id, :string)
+    field(:twitter_handle, :string)
+    field(:admin, :boolean)
+    field(:editor, :string)
 
-    has_many :posts, Post
+    has_many(:posts, Post)
 
     timestamps()
   end
@@ -29,6 +31,7 @@ defmodule Tilex.Developer do
     case repo.get_by(Developer, email: email) do
       %Developer{} = developer ->
         {:ok, developer}
+
       _ ->
         %Developer{}
         |> changeset(attrs)
@@ -42,7 +45,7 @@ defmodule Tilex.Developer do
 
   def format_username(name) when is_binary(name) do
     name
-    |> String.downcase
+    |> String.downcase()
     |> String.replace(" ", "")
   end
 

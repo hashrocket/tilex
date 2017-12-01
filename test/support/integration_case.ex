@@ -1,5 +1,4 @@
 defmodule Tilex.IntegrationCase do
-
   use ExUnit.CaseTemplate
 
   using do
@@ -24,7 +23,6 @@ defmodule Tilex.IntegrationCase do
   end
 
   setup tags do
-
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tilex.Repo)
 
     unless tags[:async] do

@@ -34,8 +34,15 @@ defmodule Tilex.Integration.Pages.PostShowPage do
     session
     |> Browser.find(Query.css(".post .copy", text: expected_body))
 
-    session
-    |> Browser.find(Query.css(".post aside .post__tag-link", text: String.upcase(expected_channel)))
+    channel_name =
+      session
+      |> Browser.find(Query.css(".post aside .post__tag-link"))
+      |> Element.text()
+
+    ExUnit.Assertions.assert(
+      channel_name =~ ~r/#{expected_channel}/i,
+      "Unable to find text channel #{expected_channel}, instead found #{channel_name}"
+    )
 
     session
     |> Browser.find(Query.css(".js-like-action", text: expected_likes_count))

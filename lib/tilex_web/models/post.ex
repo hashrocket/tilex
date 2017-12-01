@@ -1,6 +1,8 @@
 defmodule Tilex.Post do
   use TilexWeb, :model
 
+  @type t :: module
+
   alias Tilex.{Developer, Channel, Post}
 
   @body_max_words 200
@@ -66,6 +68,12 @@ defmodule Tilex.Post do
     |> String.replace(~r/[^A-Za-z0-9]/, "")
     |> String.slice(0, 10)
     |> String.downcase
+  end
+
+  def twitter_description(post) do
+    post.body
+    |> String.split("\n")
+    |> hd
   end
 
   defp add_slug(changeset) do

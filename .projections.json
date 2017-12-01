@@ -95,7 +95,7 @@
   "assets/css/*.scss": {
     "type": "stylesheet"
   },
-  "lib/tilex_web/templates/*.html.eex": {
+  "lib/tilex_web/templates/*.eex": {
     "type": "template"
   },
   "lib": {
@@ -213,5 +213,6 @@
   },
   "*.ex": {
     "console": "iex -S mix"
-  }
+  },
+  "README.md": { "type": "doc" }
 }

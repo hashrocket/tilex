@@ -1,13 +1,15 @@
 defmodule Tilex.Channel do
   use TilexWeb, :model
 
+  @type t :: module
+
   alias Tilex.Post
 
   schema "channels" do
-    field :name, :string
-    field :twitter_hashtag, :string
+    field(:name, :string)
+    field(:twitter_hashtag, :string)
 
-    has_many :posts, Post
+    has_many(:posts, Post)
 
     timestamps()
   end
@@ -20,10 +22,10 @@ defmodule Tilex.Channel do
   end
 
   def names_and_ids(query) do
-    from c in query, select: {c.name, c.id}
+    from(c in query, select: {c.name, c.id})
   end
 
   def alphabetized(query) do
-    from c in query, order_by: c.name
+    from(c in query, order_by: c.name)
   end
 end

@@ -32,5 +32,6 @@ jobs:
       - run: cd assets && npm install
       - run: cd assets && brunch build --production
       - run: mix test
+      - run: mix credo
       - store_artifacts:
           path: /home/circleci/tilex/screenshots

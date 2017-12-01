@@ -24,7 +24,7 @@ Then install the [Phoenix
 Dependencies](http://www.phoenixframework.org/docs/installation) as well as
 PostgreSQL.
 
-Next, follow these setup steps (includes database seeds):
+Next, follow these setup steps:
 
 ```
 $ git clone https://github.com/hashrocket/tilex
@@ -34,6 +34,9 @@ $ mix ecto.setup
 $ npm install --prefix assets
 $ mix phx.server
 ```
+
+If you'd like to skip the database seeds, run `mix ecto.create && mix
+ecto.migrate` in place of `mix ecto.setup`.
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
@@ -50,7 +53,7 @@ To set environmental variables, copy the example file:
 $ cp .env{.example,}
 ```
 
-Then, set your variables and source them:
+Set your environmental variables in the new file, and then source them:
 
 ```
 $ source .env
@@ -80,11 +83,9 @@ user on subsequent authentications.
 
 ### Testing
 
-Wallaby relies on ChromeDriver; install it (OSX):
-
-```
-$ brew install chromedriver
-```
+Wallaby relies on
+[ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/); install
+it via your method of choice.
 
 Run the tests with:
 
@@ -94,7 +95,8 @@ $ mix test
 
 ### Deployment
 
-These are the Tilex deployed instances:
+Hashrocket's Tilex is deployed to [Heroku](https://www.heroku.com/). These are
+Hashrocket's deployed instances:
 
 - Staging: https://tilex-staging.herokuapp.com
 - Production: https://til.hashrocket.com
@@ -108,24 +110,24 @@ $ heroku run "POOL_SIZE=2 mix ecto.migrate"
 
 ### Contributing
 
-Please see [CONTRIBUTING](/CONTRIBUTING.md) for more information.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for more information.
 
 ### Code of Conduct
 
 This project is intended to be a safe, welcoming space for collaboration, and
 contributors are expected to adhere to the [Contributor
 Covenant](http://contributor-covenant.org) code of conduct. Please see [CODE OF
-CONDUCT](/CODE_OF_CONDUCT.md) for more information.
+CONDUCT](CODE_OF_CONDUCT.md) for more information.
 
 ### Usage
 
 We love seeing forks of Today I Learned in production! Please consult
-[USAGE](/USAGE.md) for guidelines on appropriate styling and attribution.
+[USAGE](USAGE.md) for guidelines on appropriate styling and attribution.
 
 ### License
 
 Tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT). Please
-see [LICENSE](/LICENSE.md) for more information.
+see [LICENSE](LICENSE.md) for more information.
 
 ---
 

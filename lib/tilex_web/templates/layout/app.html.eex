@@ -20,8 +20,8 @@
     <meta name="twitter:site" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
     <meta name="twitter:creator" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
     <meta name="twitter:title" content="Today I Learned: a Hashrocket Project">
-    <meta name="twitter:description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.">
-    <meta name="twitter:image" content=<%= TilexWeb.Endpoint.static_url() <> "/assets/til_twittercard.png" %>>
+    <meta name="twitter:description" content="<%= twitter_description(assigns[:post]) %>">
+    <meta name="twitter:image" content=<%= twitter_image_url(assigns[:post]) %>>
 
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
