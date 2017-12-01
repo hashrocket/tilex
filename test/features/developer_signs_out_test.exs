@@ -1,14 +1,12 @@
 defmodule Features.DeveloperSignsOutTest do
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
-  test 'signs out and does not see create post link', %{:session => session} do
+  test 'signs out and sees a flash message', %{:session => session} do
     developer = Factory.insert!(:developer)
 
     session
     |> sign_in(developer)
-    |> visit("/")
     |> click(Query.link("Sign Out"))
-
-    refute has?(session, Query.link("Create Post"))
+    |> Browser.find(Query.css(".alert-info", text: "Signed out"))
   end
 end
