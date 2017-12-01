@@ -1,5 +1,4 @@
 defmodule Tilex.Factory do
-
   alias Tilex.{Channel, Developer, Post, Repo}
   import Ecto.Query
 
@@ -16,7 +15,7 @@ defmodule Tilex.Factory do
       body: "A body",
       channel: find_first_or_build(:channel),
       developer: find_first_or_build(:developer),
-      slug: Post.generate_slug(),
+      slug: Post.generate_slug()
     }
   end
 
@@ -33,14 +32,14 @@ defmodule Tilex.Factory do
   end
 
   def insert!(factory_name, attributes \\ []) do
-    Repo.insert! build(factory_name, attributes)
+    Repo.insert!(build(factory_name, attributes))
   end
 
   def insert_list!(factory_name, count, attributes \\ []) do
     1..count
-    |> Enum.each(fn(_i) ->
-      Repo.insert! build(factory_name, attributes)
-    end)
+    |> Enum.each(fn _i ->
+         Repo.insert!(build(factory_name, attributes))
+       end)
   end
 
   defp find_first_or_build(:channel) do

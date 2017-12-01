@@ -7,30 +7,38 @@ defmodule Tilex.Posts do
   def all(page) do
     page
     |> posts
-    |> Repo.all
+    |> Repo.all()
   end
 
   def by_channel(channel_name, page) do
     channel = Repo.get_by!(Channel, name: channel_name)
 
-    query = page
-    |> posts
-    |> where([p], p.channel_id == ^channel.id)
+    query =
+      page
+      |> posts
+      |> where([p], p.channel_id == ^channel.id)
 
-    posts_count = Repo.one(from p in "posts",
-      where: p.channel_id == ^channel.id,
-      select: fragment("count(*)")
-    )
+    posts_count =
+      Repo.one(
+        from(
+          p in "posts",
+          where: p.channel_id == ^channel.id,
+          select: fragment("count(*)")
+        )
+      )
 
     {Repo.all(query), posts_count, channel}
   end
 
   def by_developer(username, limit: limit) do
-    query = from p in Post,
-      order_by: [desc: p.inserted_at],
-      join: d in assoc(p, :developer),
-      limit: ^limit,
-      where: d.username == ^username
+    query =
+      from(
+        p in Post,
+        order_by: [desc: p.inserted_at],
+        join: d in assoc(p, :developer),
+        limit: ^limit,
+        where: d.username == ^username
+      )
 
     Repo.all(query)
   end
@@ -38,14 +46,19 @@ defmodule Tilex.Posts do
   def by_developer(username, page) do
     developer = Repo.get_by!(Developer, username: username)
 
-    query = page
-    |> posts
-    |> where([p], p.developer_id == ^developer.id)
+    query =
+      page
+      |> posts
+      |> where([p], p.developer_id == ^developer.id)
 
-    posts_count = Repo.one(from p in "posts",
-      where: p.developer_id == ^developer.id,
-      select: fragment("count(*)")
-    )
+    posts_count =
+      Repo.one(
+        from(
+          p in "posts",
+          where: p.developer_id == ^developer.id,
+          select: fragment("count(*)")
+        )
+      )
 
     {Repo.all(query), posts_count, developer}
   end
@@ -74,10 +87,11 @@ defmodule Tilex.Posts do
 
     results = SQL.query!(Repo, sql, [search_query])
 
-    posts = results.rows
-    |> Enum.map(&Repo.load(Post, {results.columns, &1}))
-    |> Repo.preload(:developer)
-    |> Repo.preload(:channel)
+    posts =
+      results.rows
+      |> Enum.map(&Repo.load(Post, {results.columns, &1}))
+      |> Repo.preload(:developer)
+      |> Repo.preload(:channel)
 
     offset = (page - 1) * Application.get_env(:tilex, :page_size)
     limit = Application.get_env(:tilex, :page_size) + 1
@@ -89,12 +103,14 @@ defmodule Tilex.Posts do
     offset = (page - 1) * Application.get_env(:tilex, :page_size)
     limit = Application.get_env(:tilex, :page_size) + 1
 
-    from p in Post,
+    from(
+      p in Post,
       order_by: [desc: p.inserted_at],
       join: c in assoc(p, :channel),
       join: d in assoc(p, :developer),
       preload: [channel: c, developer: d],
       limit: ^limit,
       offset: ^offset
+    )
   end
 end

@@ -16,15 +16,16 @@ defmodule DeveloperEditsProfileTest do
 
     session
     |> fill_in(Query.text_field("Twitter handle"), with: "mcnormalmode")
-    |> (fn(session) ->
-      find(session, Query.select("Editor"), fn (element) ->
-        click(element, Query.option("Vim"))
-      end)
-      session
-    end).()
+    |> (fn session ->
+          find(session, Query.select("Editor"), fn element ->
+            click(element, Query.option("Vim"))
+          end)
+
+          session
+        end).()
     |> click(Query.button("Submit"))
 
-    element_text = fn (session, selector) ->
+    element_text = fn session, selector ->
       Element.text(find(session, Query.css(selector)))
     end
 
@@ -32,10 +33,11 @@ defmodule DeveloperEditsProfileTest do
 
     assert info_flash == "Developer Updated"
 
-    developer = Tilex.Developer
-                |> Tilex.Repo.all
-                |> Enum.reverse
-                |> hd
+    developer =
+      Tilex.Developer
+      |> Tilex.Repo.all()
+      |> Enum.reverse()
+      |> hd
 
     assert developer.twitter_handle == "mcnormalmode"
     assert developer.editor == "Vim"

@@ -2,28 +2,29 @@ defmodule Tilex.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :tilex,
-     version: "0.0.1",
-     elixir: "~> 1.5",
-     elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix, :gettext] ++ Mix.compilers,
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     aliases: aliases(),
-     deps: deps()]
+    [
+      app: :tilex,
+      version: "0.0.1",
+      elixir: "~> 1.5",
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application.
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {Tilex, []},
-     extra_applications: [:logger, :appsignal]]
+    [mod: {Tilex, []}, extra_applications: [:logger, :appsignal]]
   end
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -51,7 +52,7 @@ defmodule Tilex.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"},
       {:ueberauth_google, "~> 0.5"},
-      {:wallaby, "~> 0.19.1", only: :test},
+      {:wallaby, "~> 0.19.1", only: :test}
     ]
   end
 
@@ -62,8 +63,10 @@ defmodule Tilex.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+    [
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+    ]
   end
 end

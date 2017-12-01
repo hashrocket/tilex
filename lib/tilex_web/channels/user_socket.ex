@@ -2,11 +2,11 @@ defmodule TilexWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "post:search", Tilex.PostChannel
-  channel "text_converter", Tilex.TextConverterChannel
+  channel("post:search", Tilex.PostChannel)
+  channel("text_converter", Tilex.TextConverterChannel)
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport(:websocket, Phoenix.Transports.WebSocket)
   # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can

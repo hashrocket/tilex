@@ -6,13 +6,12 @@ defmodule Features.VisitorViewsStatsTest do
   end
 
   test "sees total number of posts by channel", %{session: session} do
-
     target_channel = Factory.insert!(:channel, name: "phoenix")
     other_channel = Factory.insert!(:channel, name: "other")
 
     Factory.insert!(:post, title: "functional programming rocks", channel: target_channel)
 
-    Enum.each(["i'm fine", "all these people out here", "what?"], fn(title) ->
+    Enum.each(["i'm fine", "all these people out here", "what?"], fn title ->
       Factory.insert!(:post, title: title, channel: other_channel)
     end)
 
@@ -33,16 +32,16 @@ defmodule Features.VisitorViewsStatsTest do
     posts = [
       "Controllers",
       "Views",
-      "Templates",
+      "Templates"
     ]
 
     Factory.insert!(:channel, name: "phoenix")
 
     posts
-    |> Enum.with_index
-    |> Enum.each(fn({title, likes}) ->
-      Factory.insert!(:post, title: title, likes: likes + 1)
-    end)
+    |> Enum.with_index()
+    |> Enum.each(fn {title, likes} ->
+         Factory.insert!(:post, title: title, likes: likes + 1)
+       end)
 
     visit(session, "/statistics")
 
@@ -70,14 +69,14 @@ defmodule Features.VisitorViewsStatsTest do
   end
 
   test "sees til activity", %{session: session} do
-    dt = fn ({_y, _m, _d} = date) ->
+    dt = fn {_y, _m, _d} = date ->
       Ecto.DateTime.cast!({date, {12, 0, 0}})
     end
 
-    today = Timex.today
-    day_of_the_week = :calendar.day_of_the_week(Date.to_erl(Timex.today))
+    today = Timex.today()
+    day_of_the_week = :calendar.day_of_the_week(Date.to_erl(Timex.today()))
 
-    duration = Timex.Duration.from_days((day_of_the_week - 1) + 7)
+    duration = Timex.Duration.from_days(day_of_the_week - 1 + 7)
     previous_monday = Timex.subtract(today, duration)
 
     previous_tuesday = Timex.add(previous_monday, Timex.Duration.from_days(1))
@@ -93,19 +92,35 @@ defmodule Features.VisitorViewsStatsTest do
     visit(session, "/statistics")
     activity_tag = find(session, Query.css("ul#activity"))
 
-    find(activity_tag,
-         Query.css("li[data-amount='1'][data-date='Mon, #{Timex.format!(previous_monday, "%b %-e", :strftime)}']")
-       )
-    find(activity_tag,
-         Query.css("li[data-amount='2'][data-date='Tue, #{Timex.format!(previous_tuesday, "%b %-e", :strftime)}']")
-       )
-    find(activity_tag,
-         Query.css("li[data-amount='3'][data-date='Wed, #{Timex.format!(previous_wednesday, "%b %-e", :strftime)}']")
-        )
+    find(
+      activity_tag,
+      Query.css(
+        "li[data-amount='1'][data-date='Mon, #{
+          Timex.format!(previous_monday, "%b %-e", :strftime)
+        }']"
+      )
+    )
+
+    find(
+      activity_tag,
+      Query.css(
+        "li[data-amount='2'][data-date='Tue, #{
+          Timex.format!(previous_tuesday, "%b %-e", :strftime)
+        }']"
+      )
+    )
+
+    find(
+      activity_tag,
+      Query.css(
+        "li[data-amount='3'][data-date='Wed, #{
+          Timex.format!(previous_wednesday, "%b %-e", :strftime)
+        }']"
+      )
+    )
   end
 
   test "sees total number of posts by developer", %{session: session} do
-
     developer = Factory.insert!(:developer, username: "makinpancakes")
     Factory.insert!(:post, developer: developer)
 

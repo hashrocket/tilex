@@ -11,12 +11,13 @@ defmodule AdminEditsPostTest do
     developer = Factory.insert!(:developer)
     admin = Factory.insert!(:developer, %{admin: true})
 
-    post = Factory.insert!(
-      :post,
-      title: "Awesome Post!",
-      developer: developer,
-      body: "This is how to be *awesome*!"
-    )
+    post =
+      Factory.insert!(
+        :post,
+        title: "Awesome Post!",
+        developer: developer,
+        body: "This is how to be *awesome*!"
+      )
 
     session
     |> sign_in(admin)

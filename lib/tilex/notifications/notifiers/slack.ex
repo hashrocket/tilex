@@ -20,8 +20,9 @@ defmodule Tilex.Notifications.Notifiers.Slack do
   end
 
   def handle_post_liked(%Tilex.Post{max_likes: max_likes, title: title}, developer, url) do
-    appropriate_emoji = @emoji
-    |> Enum.at(round((max_likes / 10) - 1), ":smile:")
+    appropriate_emoji =
+      @emoji
+      |> Enum.at(round(max_likes / 10 - 1), ":smile:")
 
     "#{developer.username}'s post has #{max_likes} likes! #{appropriate_emoji} - <#{url}|#{title}>"
     |> send_slack_message
