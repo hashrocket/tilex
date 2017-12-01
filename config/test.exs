@@ -23,6 +23,9 @@ config :tilex, :organization_name, "Hashrocket"
 config :tilex, :canonical_domain, "https://til.hashrocket.com"
 config :tilex, :default_twitter_handle, "hashrocket"
 config :tilex, :hosted_domain, "hashrocket.com"
+config :tilex, :auth_controller, Test.AuthController
+config :tilex, :slack_notifier, Test.Notifications.Notifiers.Slack
+config :tilex, :twitter_notifier, Test.Notifications.Notifiers.Twitter
 
 config :tilex, :async_feature_test, (System.get_env("ASYNC_FEATURE_TEST") == "yes")
 
