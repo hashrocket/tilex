@@ -32,7 +32,7 @@ defmodule TilexWeb.AuthController do
     |> redirect(to: "/")
   end
 
-  defp authenticate(%{info: info, uid: uid}) do
+  defp authenticate(%{info: info}) do
     email = Map.get(info, :email)
     name = Developer.format_username(Map.get(info, :name))
 
@@ -40,8 +40,7 @@ defmodule TilexWeb.AuthController do
       true ->
         attrs = %{
           email: email,
-          username: name,
-          google_id: uid
+          username: name
         }
 
         Developer.find_or_create(Repo, attrs)

@@ -8,7 +8,6 @@ defmodule Tilex.Developer do
   schema "developers" do
     field(:email, :string)
     field(:username, :string)
-    field(:google_id, :string)
     field(:twitter_handle, :string)
     field(:admin, :boolean)
     field(:editor, :string)
@@ -20,8 +19,8 @@ defmodule Tilex.Developer do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email, :username, :google_id, :twitter_handle, :editor])
-    |> validate_required([:email, :username, :google_id])
+    |> cast(params, [:email, :username, :twitter_handle, :editor])
+    |> validate_required([:email, :username])
     |> clean_twitter_handle
   end
 
