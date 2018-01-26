@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/tilex
     docker:
-      - image: circleci/elixir:latest
+      - image: circleci/elixir:1.6
       - image: postgres:9.6.5
         environment:
           POSTGRES_USER: postgres
