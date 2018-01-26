@@ -23,6 +23,7 @@ jobs:
       - run: sudo apt-get install libasound2 libgtk-3-0 libxtst6 fonts-liberation lsb-release xdg-utils
       - run: sudo dpkg -i ./google-chrome*.deb
       - run: sudo apt-get install -f
+      - run: elixir -v
       - run: mix local.hex --force
       - run: mix local.rebar --force
       - run: mix deps.get
