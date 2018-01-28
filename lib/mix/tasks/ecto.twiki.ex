@@ -13,7 +13,7 @@ defmodule Mix.Tasks.Ecto.Twiki do
   """
 
   def run(args) do
-    Application.ensure_all_started(Project.config[:app])
+    Application.ensure_all_started(Project.config()[:app])
 
     repos = Ecto.parse_repo(args)
 
@@ -23,14 +23,14 @@ defmodule Mix.Tasks.Ecto.Twiki do
   defp twiki(repo) when is_atom(repo) do
     migration_dir =
       repo
-      |> Ecto.source_repo_priv
-      |> Path.absname
+      |> Ecto.source_repo_priv()
+      |> Path.absname()
       |> Path.join("migrations")
 
     count = down_count(repo, migration_dir)
 
-    Enum.each([:up, :down, :up], fn(direction) ->
-      migrate(direction, repo, migration_dir, [step: count])
+    Enum.each([:up, :down, :up], fn direction ->
+      migrate(direction, repo, migration_dir, step: count)
     end)
   end
 
@@ -39,19 +39,19 @@ defmodule Mix.Tasks.Ecto.Twiki do
   end
 
   defp twiki([_repo | _more_repos] = repos) do
-    Mix.shell.info """
+    Mix.shell().info("""
       Ecto.Twiki only supports migrating a single repo.
-      However, we found multiple repos: #{inspect repos}
-    """
+      However, we found multiple repos: #{inspect(repos)}
+    """)
   end
 
-  defp migrate(direction, _repo, _migration_dir, [step: 0]) do
-    Mix.shell.info "Already #{direction}"
+  defp migrate(direction, _repo, _migration_dir, step: 0) do
+    Mix.shell().info("Already #{direction}")
     []
   end
 
   defp migrate(direction, repo, migration_dir, opts) do
-    Mix.shell.info "Migrating #{direction}"
+    Mix.shell().info("Migrating #{direction}")
     Migrator.run(repo, migration_dir, direction, opts)
   end
 
@@ -62,7 +62,7 @@ defmodule Mix.Tasks.Ecto.Twiki do
   defp direction_count(direction, repo, migration_dir) do
     repo
     |> Migrator.migrations(migration_dir)
-    |> Enum.filter(fn({status, _, _}) -> status == direction end)
-    |> Enum.count
+    |> Enum.filter(fn {status, _, _} -> status == direction end)
+    |> Enum.count()
   end
 end
