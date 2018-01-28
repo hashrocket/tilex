@@ -39,9 +39,9 @@ defmodule Tilex.Notifications do
     url = Helpers.post_url(Endpoint, :show, post)
 
     notifiers()
-    |> Enum.each(&(&1.post_created(post, developer, channel, url)))
+    |> Enum.each(& &1.post_created(post, developer, channel, url))
 
-    post_changeset = Changeset.change(post, %{tweeted_at: DateTime.utc})
+    post_changeset = Changeset.change(post, %{tweeted_at: DateTime.utc()})
     Repo.update!(post_changeset)
 
     {:noreply, :nostate}
@@ -53,7 +53,7 @@ defmodule Tilex.Notifications do
       url = Helpers.post_url(Endpoint, :show, post)
 
       notifiers()
-      |> Enum.each(&(&1.post_liked(post, developer, url)))
+      |> Enum.each(& &1.post_liked(post, developer, url))
     end
 
     {:noreply, :nostate}
