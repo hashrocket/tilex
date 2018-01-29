@@ -13,18 +13,18 @@ defmodule Tilex.Post do
 
   @params ~w(title body developer_id channel_id likes max_likes)a
   def permitted_params, do: @params
-  def required_params,  do: @params
+  def required_params, do: @params
 
   schema "posts" do
-    field :title, :string
-    field :body, :string
-    field :slug, :string
-    field :likes, :integer, default: 1
-    field :max_likes, :integer, default: 1
-    field :tweeted_at, :utc_datetime
+    field(:title, :string)
+    field(:body, :string)
+    field(:slug, :string)
+    field(:likes, :integer, default: 1)
+    field(:max_likes, :integer, default: 1)
+    field(:tweeted_at, :utc_datetime)
 
-    belongs_to :channel, Channel
-    belongs_to :developer, Developer
+    belongs_to(:channel, Channel)
+    belongs_to(:developer, Developer)
 
     timestamps()
   end
@@ -41,7 +41,7 @@ defmodule Tilex.Post do
 
   def slugified_title(title) do
     title
-    |> String.downcase
+    |> String.downcase()
     |> String.replace(~r/[^A-Za-z0-9\s-]/, "")
     |> String.replace(~r/(\s|-)+/, "-")
   end
@@ -63,11 +63,11 @@ defmodule Tilex.Post do
 
   def generate_slug do
     16
-    |> :crypto.strong_rand_bytes
-    |> :base64.encode
+    |> :crypto.strong_rand_bytes()
+    |> :base64.encode()
     |> String.replace(~r/[^A-Za-z0-9]/, "")
     |> String.slice(0, 10)
-    |> String.downcase
+    |> String.downcase()
   end
 
   def twitter_description(post) do
@@ -81,6 +81,7 @@ defmodule Tilex.Post do
       nil ->
         generate_slug()
         |> (&put_change(changeset, :slug, &1)).()
+
       _ ->
         changeset
     end
