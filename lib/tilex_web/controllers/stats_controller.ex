@@ -6,6 +6,6 @@ defmodule TilexWeb.StatsController do
   def index(conn, _params) do
     conn
     |> assign(:page_title, "Statistics")
-    |> render("index.html", Stats.all)
+    |> render("index.html", Stats.all())
   end
 end
