@@ -15,9 +15,11 @@ defmodule TilexWeb.LayoutView do
       false -> twitter_image_url(nil)
     end
   end
+
   def twitter_image_url(name) when is_binary(name) do
     TilexWeb.Endpoint.static_url() <> "/assets/#{name}_twitter_card.png"
   end
+
   def twitter_image_url(name) when is_nil(name) do
     TilexWeb.Endpoint.static_url() <> "/assets/til_twittercard.png"
   end
@@ -35,7 +37,7 @@ defmodule TilexWeb.LayoutView do
 
   def twitter_description(_post) do
     """
-TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.
+    TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.
     """
   end
 end
