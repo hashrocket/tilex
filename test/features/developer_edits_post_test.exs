@@ -9,12 +9,14 @@ defmodule DeveloperEditsPostTest do
   test "fills out form and updates post from post show", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
-    post = Factory.insert!(
-      :post,
-      title: "Awesome Post!",
-      developer: developer,
-      body: "This is how to be *awesome*!"
-    )
+
+    post =
+      Factory.insert!(
+        :post,
+        title: "Awesome Post!",
+        developer: developer,
+        body: "This is how to be *awesome*!"
+      )
 
     session
     |> sign_in(developer)
