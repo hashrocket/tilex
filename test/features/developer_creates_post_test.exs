@@ -1,5 +1,5 @@
 defmodule DeveloperCreatesPostTest do
- use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   alias Tilex.Integration.Pages.{
     Navigation,
@@ -20,7 +20,7 @@ defmodule DeveloperCreatesPostTest do
     |> Navigation.click_create_post()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title:  "Example Title",
+      title: "Example Title",
       body: "Example Body",
       channel: "phoenix"
     })
@@ -34,10 +34,12 @@ defmodule DeveloperCreatesPostTest do
       likes_count: 1
     })
 
-    post = Post
-    |> Repo.all
-    |> Enum.reverse
-    |> hd
+    post =
+      Post
+      |> Repo.all()
+      |> Enum.reverse()
+      |> hd
+
     assert post.body == "Example Body"
     assert post.title == "Example Title"
     refute is_nil(post.tweeted_at)
@@ -80,7 +82,7 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title:  String.duplicate("I can codez ", 10),
+      title: String.duplicate("I can codez ", 10),
       body: "Example Body",
       channel: "phoenix"
     })
@@ -98,7 +100,7 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title:  "Example Title",
+      title: "Example Title",
       body: String.duplicate("wordy ", 201),
       channel: "phoenix"
     })
@@ -118,7 +120,7 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.fill_in_form(%{
       title: "Example Title",
       body: "**bold powerup**",
-      channel: "phoenix",
+      channel: "phoenix"
     })
 
     assert find(session, Query.css("strong", text: "bold powerup"))
@@ -133,7 +135,7 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.navigate()
     |> CreatePostPage.ensure_page_loaded()
     |> CreatePostPage.fill_in_form(%{
-      title:  "Example Title",
+      title: "Example Title",
       body: "# yay \n *cool*",
       channel: "phoenix"
     })
