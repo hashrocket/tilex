@@ -21,11 +21,12 @@ To open a pull request, please follow these steps:
 7. Push to the branch (`git push origin my-new-feature`)
 8. Create new Pull Request
 
-All pull requests are evaluated for style using
-[Credo](https://github.com/rrrene/credo). Run it to check your code, or leave
-us a note if the recommendation doesn't make sense:
+All pull requests are checked for style using the Elixir autoformatter
+(requires Elixir 1.6 or greater) and [Credo](https://github.com/rrrene/credo).
+Run both to confirm that your code will pass:
 
 ```
+$ mix format
 $ mix credo
 ```
 
