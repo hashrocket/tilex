@@ -20,9 +20,9 @@ We originally implemented Tilex as
 If you are creating your own version of the site,
 [fork](https://help.github.com/articles/fork-a-repo/) the repository.
 
-Then install the [Phoenix
-Dependencies](http://www.phoenixframework.org/docs/installation) as well as
-PostgreSQL.
+Then, install [Erlang](https://www.erlang.org/),
+[Elixir](https://elixir-lang.org/),
+[Phoenix](http://www.phoenixframework.org/docs/installation), and PostgreSQL.
 
 Next, follow these setup steps:
 
