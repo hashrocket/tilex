@@ -12,10 +12,7 @@ defmodule Tilex.Stats do
 
   defmacro hours_since(timestamp) do
     quote do
-      fragment(
-        "extract(epoch from (current_timestamp - ?)) / 3600",
-        unquote(timestamp)
-      )
+      fragment("extract(epoch from (current_timestamp - ?)) / 3600", unquote(timestamp))
     end
   end
 

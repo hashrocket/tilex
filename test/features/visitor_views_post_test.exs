@@ -3,9 +3,7 @@ defmodule VisitorViewsPostTest do
 
   alias TilexWeb.Endpoint
 
-  alias Tilex.Integration.Pages.{
-    PostShowPage
-  }
+  alias Tilex.Integration.Pages.{PostShowPage}
 
   test "the page shows a post", %{session: session} do
     developer = Factory.insert!(:developer)

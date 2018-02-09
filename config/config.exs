@@ -34,29 +34,30 @@ config :logger, :console,
 
 config :ueberauth, Ueberauth,
   providers: [
-    google:
-      {Ueberauth.Strategy.Google,
-       [
-         approval_prompt: "force",
-         access_type: "offline",
-         default_scope: "email profile",
-         hd: System.get_env("HOSTED_DOMAIN")
-       ]}
+    google: {
+      Ueberauth.Strategy.Google,
+      [
+        approval_prompt: "force",
+        access_type: "offline",
+        default_scope: "email profile",
+        hd: System.get_env("HOSTED_DOMAIN")
+      ]
+    }
   ]
 
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
 
+# optional
+# optional
+# optional
 config :guardian, Guardian,
-  # optional
   allowed_algos: ["HS512"],
-  # optional
   verify_module: Guardian.JWT,
   issuer: "MyApp",
   ttl: {30, :days},
   allowed_drift: 2000,
-  # optional
   verify_issuer: true,
   secret_key: %{
     "k" => "_AbBL082GKlPjoY9o-KM78PhyALavJRtZXOW7D-ZyqE",

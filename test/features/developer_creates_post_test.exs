@@ -1,15 +1,10 @@
 defmodule DeveloperCreatesPostTest do
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
-  alias Tilex.Integration.Pages.{
-    Navigation,
-    IndexPage,
-    CreatePostPage,
-    PostShowPage,
-    PostForm
-  }
+  alias Tilex.Integration.Pages.{Navigation, IndexPage, CreatePostPage, PostShowPage, PostForm}
 
   test "fills out form and submits", %{session: session} do
+    Ecto.Adapters.SQL.Sandbox.allow(Tilex.Repo, self(), Process.whereis(Tilex.Notifications))
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 

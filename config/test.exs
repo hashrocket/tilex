@@ -17,7 +17,8 @@ config :tilex, Tilex.Repo,
   database: "tilex_test",
   hostname: "localhost",
   username: "postgres",
-  pool: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox,
+  timeout: 30_000
 
 config :tilex, :organization_name, "Hashrocket"
 config :tilex, :canonical_domain, "https://til.hashrocket.com"
