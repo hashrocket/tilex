@@ -10,6 +10,7 @@ defmodule DeveloperCreatesPostTest do
   }
 
   test "fills out form and submits", %{session: session} do
+    Ecto.Adapters.SQL.Sandbox.allow(Tilex.Repo, self(), Process.whereis(Tilex.Notifications))
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 

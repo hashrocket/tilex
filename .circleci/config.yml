@@ -7,6 +7,7 @@ jobs:
       - image: postgres:9.6.5
         environment:
           POSTGRES_USER: postgres
+          ASYNC_FEATURE_TEST: yes
     steps:
       - checkout
       - run: sudo apt-get update
