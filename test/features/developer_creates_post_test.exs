@@ -147,4 +147,79 @@ defmodule DeveloperCreatesPostTest do
     |> PostForm.expect_title_characters_left("37 characters available")
     |> PostForm.expect_title_preview("Example Title")
   end
+
+  test "fills out form with a common language fenced code block", %{session: session} do
+    Ecto.Adapters.SQL.Sandbox.allow(Tilex.Repo, self(), Process.whereis(Tilex.Notifications))
+    Factory.insert!(:channel, name: "ruby")
+    developer = Factory.insert!(:developer)
+
+    session
+    |> sign_in(developer)
+    |> IndexPage.navigate()
+    |> IndexPage.ensure_page_loaded()
+    |> Navigation.click_create_post()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title: "Example Title",
+      body: "```ruby\ndef test; end\n```",
+      channel: "ruby"
+    })
+    |> CreatePostPage.submit_form()
+    |> PostShowPage.ensure_info_flash("Post created")
+    |> PostShowPage.ensure_page_loaded("Example Title")
+    |> PostShowPage.expect_fenced_code_block(%{
+      header: "ruby",
+      code: "ruby"
+    })
+  end
+
+  test "fills out form with a made-up language fenced code block", %{session: session} do
+    Ecto.Adapters.SQL.Sandbox.allow(Tilex.Repo, self(), Process.whereis(Tilex.Notifications))
+    Factory.insert!(:channel, name: "madeuplang")
+    developer = Factory.insert!(:developer)
+
+    session
+    |> sign_in(developer)
+    |> IndexPage.navigate()
+    |> IndexPage.ensure_page_loaded()
+    |> Navigation.click_create_post()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title: "Example Title",
+      body: "```madeuplang\ndefn testly; end\n```",
+      channel: "madeuplang"
+    })
+    |> CreatePostPage.submit_form()
+    |> PostShowPage.ensure_info_flash("Post created")
+    |> PostShowPage.ensure_page_loaded("Example Title")
+    |> PostShowPage.expect_fenced_code_block(%{
+      header: "madeuplang",
+      code: "madeuplang"
+    })
+  end
+
+  test "fills out form with an inferred language fenced code block", %{session: session} do
+    Ecto.Adapters.SQL.Sandbox.allow(Tilex.Repo, self(), Process.whereis(Tilex.Notifications))
+    Factory.insert!(:channel, name: "ruby")
+    developer = Factory.insert!(:developer)
+
+    session
+    |> sign_in(developer)
+    |> IndexPage.navigate()
+    |> IndexPage.ensure_page_loaded()
+    |> Navigation.click_create_post()
+    |> CreatePostPage.ensure_page_loaded()
+    |> CreatePostPage.fill_in_form(%{
+      title: "Example Title",
+      body: "```\ndef obviously_ruby; puts 'Ruby is great'; end\n```",
+      channel: "ruby"
+    })
+    |> CreatePostPage.submit_form()
+    |> PostShowPage.ensure_info_flash("Post created")
+    |> PostShowPage.ensure_page_loaded("Example Title")
+    |> PostShowPage.expect_fenced_code_block(%{
+      header: "ruby",
+      code: "ruby"
+    })
+  end
 end
