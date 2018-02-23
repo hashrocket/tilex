@@ -14,9 +14,9 @@ defmodule TilexWeb.AuthController do
         |> put_flash(:info, "Signed in with #{developer.email}")
         |> redirect(to: "/")
 
-      {:error, email} when is_binary(email) ->
+      {:error, reason} ->
         conn
-        |> put_flash(:info, "#{email} is not a valid email address")
+        |> put_flash(:info, reason)
         |> redirect(to: "/")
     end
   end
@@ -32,21 +32,39 @@ defmodule TilexWeb.AuthController do
     |> redirect(to: "/")
   end
 
-  defp authenticate(%{info: info}) do
-    email = Map.get(info, :email)
-    name = Developer.format_username(Map.get(info, :name))
-
-    case String.match?(email, ~r/@#{Application.get_env(:tilex, :hosted_domain)}$/) do
-      true ->
+  defp authenticate(%{info: %{email: email, name: name}}) when is_binary(name) do
+    case authorized(email) do
+      {:ok, email} ->
         attrs = %{
           email: email,
-          username: name
+          username: Developer.format_username(name)
         }
 
         Developer.find_or_create(Repo, attrs)
 
       _ ->
-        {:error, email}
+        {:error, "#{email} is not a valid email address"}
+    end
+  end
+
+  defp authenticate(_), do: {:error, "oauth2 profile is missing a valid name"}
+
+  defp authorized(email) do
+    cond do
+      String.match?(email, ~r/@#{hosted_domain()}$/) -> {:ok, email}
+      email in guest_whitelist() -> {:ok, email}
+      true -> {:error, email}
+    end
+  end
+
+  defp hosted_domain, do: Application.get_env(:tilex, :hosted_domain)
+
+  defp guest_whitelist do
+    with emails when is_binary(emails) <- Application.get_env(:tilex, :guest_author_whitelist),
+         whitelist <- String.split(emails, [",", " "], trim: true) do
+      whitelist
+    else
+      _ -> []
     end
   end
 end
