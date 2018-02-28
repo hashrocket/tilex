@@ -64,7 +64,7 @@ $ source .env
 Authentication is managed by Omniauth and Google. See the
 [omniauth-google-oauth2 README](https://github.com/zquestz/omniauth-google-oauth2/blob/master/README.md)
 and [Google Oauth 2 docs](https://developers.google.com/identity/protocols/OAuth2WebServer) for
-setup instructions. To allow users from a domain, set those configurations in
+setup instructions. To allow users from a domain and/or comma separated whitelist, set those configurations in
 your environment:
 
 ```
@@ -73,6 +73,7 @@ your environment:
 export GOOGLE_CLIENT_ID="your-key.apps.googleusercontent.com"
 export GOOGLE_CLIENT_SECRET="yoursecret"
 export HOSTED_DOMAIN="your-domain.com"
+export GUEST_AUTHOR_WHITELIST="joedeveloper@otherdomain.com, suziedeveloper@freelancer.com"
 ```
 
 Once set, visit [`localhost:4000/admin`](http://localhost:4000/admin) and log

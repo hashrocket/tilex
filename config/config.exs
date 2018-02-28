@@ -26,6 +26,7 @@ config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
 config :tilex, :default_twitter_handle, System.get_env("DEFAULT_TWITTER_HANDLE")
 config :tilex, :cors_origin, System.get_env("CORS_ORIGIN")
 config :tilex, :hosted_domain, System.get_env("HOSTED_DOMAIN")
+config :tilex, :guest_author_whitelist, System.get_env("GUEST_AUTHOR_WHITELIST")
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -39,8 +40,7 @@ config :ueberauth, Ueberauth,
        [
          approval_prompt: "force",
          access_type: "offline",
-         default_scope: "email profile",
-         hd: System.get_env("HOSTED_DOMAIN")
+         default_scope: "email profile"
        ]}
   ]
 

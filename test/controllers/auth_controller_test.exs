@@ -52,6 +52,32 @@ defmodule Tilex.AuthControllerTest do
     assert get_flash(conn, :info) == "developer@gmail.com is not a valid email address"
   end
 
+  test "GET /auth/google/callback with nameless profile", %{conn: conn} do
+    ueberauth_auth =
+      ueberauth_struct("developer@gmail.com", nil, "186823978541230597895")
+
+    conn = assign(conn, :ueberauth_auth, ueberauth_auth)
+
+    conn = get(conn, auth_path(conn, :callback, "google"))
+
+    assert redirected_to(conn) == "/"
+    assert get_flash(conn, :info) == "oauth2 profile is missing a valid name"
+  end
+
+  test "GET /auth/google/callback with whitelisted email", %{conn: conn} do
+    Application.put_env(:tilex, :guest_author_whitelist, "david@byrne.com, bell@thecat.com")
+
+    ueberauth_auth =
+      ueberauth_struct("bell@thecat.com", "Archibald Douglas", "186823978541230597895")
+
+    conn = assign(conn, :ueberauth_auth, ueberauth_auth)
+
+    conn = get(conn, auth_path(conn, :callback, "google"))
+
+    assert redirected_to(conn) == "/"
+    assert get_flash(conn, :info) == "Signed in with bell@thecat.com"
+  end
+
   defp ueberauth_struct(email, name, uid) do
     %Ueberauth.Auth{
       info: %Ueberauth.Auth.Info{
