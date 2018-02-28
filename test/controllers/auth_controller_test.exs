@@ -53,8 +53,7 @@ defmodule Tilex.AuthControllerTest do
   end
 
   test "GET /auth/google/callback with nameless profile", %{conn: conn} do
-    ueberauth_auth =
-      ueberauth_struct("developer@gmail.com", nil, "186823978541230597895")
+    ueberauth_auth = ueberauth_struct("developer@gmail.com", nil, "186823978541230597895")
 
     conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
