@@ -8,8 +8,10 @@ $(function() {
         .attr('class')
         .replace(/\s*hljs\s*/, ' ')
         .trim()
-        .split(' ')[0];
-      $(this).parent().attr('data-language', language);
+        .replace(/ .*/, '');
+      $(this)
+        .parent()
+        .attr('data-language', language);
       $(this).attr('class', language + ' ' + 'hljs');
     });
   };
