@@ -53,4 +53,15 @@ defmodule Tilex.Integration.Pages.PostShowPage do
   def click_edit(session) do
     click(session, Query.link("edit"))
   end
+
+  def expect_fenced_code_block(session, attrs \\ %{}) do
+    expected_header = Map.fetch!(attrs, :header)
+    expected_code = Map.fetch!(attrs, :code)
+
+    session
+    |> Browser.find(Query.xpath(".//pre[@data-language='#{expected_header}']"))
+    |> Browser.find(Query.css("code.#{expected_code}.hljs"))
+
+    session
+  end
 end
