@@ -27,6 +27,20 @@ defmodule TilexWeb.Router do
     plug(:accepts, ["json"])
   end
 
+  scope "/apiv2" do
+    pipe_through(:api)
+
+    forward(
+      "/graphiql",
+      Absinthe.Plug.GraphiQL,
+      schema: TilexWeb.Schema,
+      interface: :simple,
+      context: %{pubsub: TilexWeb.Endpoint}
+    )
+
+    forward("/", Absinthe.Plug, schema: TilexWeb.Schema)
+  end
+
   scope "/api", TilexWeb do
     pipe_through([:api])
 

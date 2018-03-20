@@ -31,6 +31,8 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:absinthe_ecto, "~> 0.1.3"},
+      {:absinthe_plug, "~> 1.4.0"},
       {:appsignal, "~> 1.0"},
       {:basic_auth, "~> 2.1"},
       {:cachex, "~> 2.1"},
