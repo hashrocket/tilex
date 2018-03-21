@@ -33,7 +33,7 @@ jobs:
       - run: sudo npm install -g brunch
       - run: cd assets && npm install
       - run: cd assets && brunch build --production
-      - run: mix format --check-formatted --check-equivalent --dry-run
+      - run: mix format --check-formatted
       - run: mix test
       - run: mix credo
       - store_artifacts:
