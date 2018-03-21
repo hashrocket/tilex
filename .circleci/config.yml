@@ -15,7 +15,7 @@ jobs:
       - run: sudo apt-get install nodejs
       - run: sudo apt-get install build-essential
       - run: sudo apt-get install libnss3 libgconf-2-4
-      - run: curl -L -O "http://chromedriver.storage.googleapis.com/2.32/chromedriver_linux64.zip"
+      - run: curl -L -O "http://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip"
       - run: file chromedriver_linux64.zip
       - run: sudo unzip chromedriver_linux64.zip chromedriver -d /usr/local/bin/
       - run: sudo chmod +x /usr/local/bin/chromedriver
