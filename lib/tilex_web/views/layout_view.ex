@@ -32,7 +32,7 @@ defmodule TilexWeb.LayoutView do
   end
 
   def twitter_title(%Tilex.Post{} = post) do
-    TilexPost.twitter_title(post)
+    Tilex.Post.twitter_title(post)
   end
 
   def twitter_title(_post) do
