@@ -75,7 +75,10 @@ export default class PostForm {
   }
 
   wordCount() {
-    return this.$postBodyInput.val().split(/\s+|\n/).filter(Boolean).length;
+    return this.$postBodyInput
+      .val()
+      .split(/\s+|\n/)
+      .filter(Boolean).length;
   }
 
   updateWordCount() {
@@ -110,10 +113,7 @@ export default class PostForm {
   }
 
   handlePostBodyPreview(html) {
-    this.$postBodyPreview.html(html).syntaxLabel();
-    this.$postBodyPreview.find('pre code').each((_index, codeEl) => {
-      window.hljs.highlightBlock(codeEl);
-    });
+    Prism.highlightAll(this.$postBodyPreview.html(html));
   }
 
   observePostBodyInputChange() {

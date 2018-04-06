@@ -21,7 +21,6 @@ import 'jquery.cookie';
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
-import './syntax_label';
 import tilex from './tilex';
 import like from './like';
 import twitter from './twitter_button';
