@@ -78,14 +78,24 @@
       yaml: 'YAML',
     };
     Prism.plugins.toolbar.registerButton('show-language', function(t) {
-      var a = t.element.parentNode;
-      if (a && /pre/i.test(a.nodeName) && t.language) {
-        var s =
-          e[t.language] ||
-          t.language.substring(0, 1).toUpperCase() + t.language.substring(1),
-          i = document.createElement('span');
-        return (i.textContent = s), i;
+      var pre = t.element.parentNode;
+      if (!pre || !/pre/i.test(pre.nodeName)) {
+        return;
       }
+      var language =
+        pre.getAttribute('data-language') ||
+        e[t.language] ||
+        (t.language &&
+          t.language.substring(0, 1).toUpperCase() + t.language.substring(1));
+
+      if (!language) {
+        return;
+      }
+
+      var element = document.createElement('span');
+      element.textContent = language;
+
+      return element;
     });
   }
 })();
