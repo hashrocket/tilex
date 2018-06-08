@@ -1,7 +1,7 @@
 %{
   "appsignal": {:hex, :appsignal, "1.6.4", "a5656dd472f6dde3f0618367732ca0fa913e091f4b67a9f02f399ef01b9c4d4c", [:make, :mix], [{:decorator, "~> 1.2.3", [hex: :decorator, repo: "hexpm", optional: false]}, {:httpoison, "~> 0.11 or ~> 1.0", [hex: :httpoison, repo: "hexpm", optional: false]}, {:phoenix, ">= 1.2.0", [hex: :phoenix, repo: "hexpm", optional: true]}, {:plug, ">= 1.1.0", [hex: :plug, repo: "hexpm", optional: true]}, {:poison, ">= 1.3.0", [hex: :poison, repo: "hexpm", optional: false]}], "hexpm"},
   "base64url": {:hex, :base64url, "0.0.1", "36a90125f5948e3afd7be97662a1504b934dd5dac78451ca6e9abf85a10286be", [:rebar], []},
-  "basic_auth": {:hex, :basic_auth, "2.2.1", "32e9383f4d3fbbecbe11690d73fabbd2e81fe0cf7d209f2bf8983c8e2b9f11bd", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, optional: false]}, {:plug, "~> 0.14 or ~> 1.0", [hex: :plug, optional: false]}]},
+  "basic_auth": {:hex, :basic_auth, "2.2.2", "802748bd581c3ed836c66bd897478c84cd3d51ae16df227ed26a00d25b67a2af", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, repo: "hexpm", optional: false]}, {:plug, "~> 0.14 or ~> 1.0", [hex: :plug, repo: "hexpm", optional: false]}], "hexpm"},
   "bunt": {:hex, :bunt, "0.2.0", "951c6e801e8b1d2cbe58ebbd3e616a869061ddadcc4863d0a2182541acae9a38", [:mix], []},
   "cachex": {:hex, :cachex, "2.1.0", "fad49b4e78d11c6c314e75bd8c9408f5b78cb065c047442798caed10803ee3be", [:mix], [{:eternal, "~> 1.1", [hex: :eternal, optional: false]}]},
   "certifi": {:hex, :certifi, "1.1.0", "c9b71a547016c2528a590ccfc28de786c7edb74aafa17446b84f54e04efc00ee", [:rebar3], []},
