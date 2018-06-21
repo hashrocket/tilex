@@ -9,7 +9,8 @@ defmodule Tilex.Api.DeveloperPostControllerTest do
     jack_post_titles = [
       "30 Rock Is Awesome",
       "I'm a Big Meanie",
-      "Get It Together, Lemon"
+      "Get It Together, Lemon",
+      "Another reference to a show I don't watch"
     ]
 
     Enum.each(jack_post_titles, fn title ->

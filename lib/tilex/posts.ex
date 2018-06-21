@@ -30,6 +30,18 @@ defmodule Tilex.Posts do
     {Repo.all(query), posts_count, channel}
   end
 
+  def by_developer(username) do
+    query =
+      from(
+        p in Post,
+        order_by: [desc: p.inserted_at],
+        join: d in assoc(p, :developer),
+        where: d.username == ^username
+      )
+
+    Repo.all(query)
+  end
+
   def by_developer(username, limit: limit) do
     query =
       from(
