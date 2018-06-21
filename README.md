@@ -102,11 +102,10 @@ Hashrocket's deployed instances:
 - Staging: https://tilex-staging.herokuapp.com
 - Production: https://til.hashrocket.com
 
-Database migrations require telling Heroku how many pools to use. Here's an
-example:
+This project contains Mix tasks to deploy our instances; use as follows:
 
 ```
-$ heroku run "POOL_SIZE=2 mix ecto.migrate"
+$ mix deploy <environment>
 ```
 
 ### Contributing

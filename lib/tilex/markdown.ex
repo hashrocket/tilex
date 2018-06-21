@@ -3,7 +3,7 @@ defmodule Tilex.Markdown do
 
   def to_html_live(markdown) do
     markdown
-    |> Earmark.as_html!()
+    |> Earmark.as_html!(%Earmark.Options{code_class_prefix: "language-"})
     |> HtmlSanitizeEx.markdown_html()
     |> String.trim()
   end
