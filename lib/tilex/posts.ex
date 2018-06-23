@@ -21,7 +21,7 @@ defmodule Tilex.Posts do
     posts_count =
       Repo.one(
         from(
-          p in "posts",
+          p in Post,
           where: p.channel_id == ^channel.id,
           select: fragment("count(*)")
         )
@@ -31,48 +31,45 @@ defmodule Tilex.Posts do
   end
 
   def by_developer(username) do
-    query =
-      from(
-        p in Post,
-        order_by: [desc: p.inserted_at],
-        join: d in assoc(p, :developer),
-        where: d.username == ^username
-      )
+    query = by_developer_query(username)
 
     Repo.all(query)
   end
 
   def by_developer(username, limit: limit) do
-    query =
-      from(
-        p in Post,
-        order_by: [desc: p.inserted_at],
-        join: d in assoc(p, :developer),
-        limit: ^limit,
-        where: d.username == ^username
-      )
+    base_query = by_developer_query(username)
+    query = from(q in base_query, limit: ^limit)
 
     Repo.all(query)
   end
 
-  def by_developer(username, page) do
+  def by_developer_paged(username, page) do
     developer = Repo.get_by!(Developer, username: username)
 
     query =
       page
-      |> posts
+      |> posts()
       |> where([p], p.developer_id == ^developer.id)
 
     posts_count =
       Repo.one(
         from(
-          p in "posts",
+          p in Post,
           where: p.developer_id == ^developer.id,
           select: fragment("count(*)")
         )
       )
 
     {Repo.all(query), posts_count, developer}
+  end
+
+  defp by_developer_query(username) do
+    from(
+      p in Post,
+      order_by: [desc: p.inserted_at],
+      join: d in assoc(p, :developer),
+      where: d.username == ^username
+    )
   end
 
   def by_search(search_query, page) do
