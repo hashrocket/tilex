@@ -9,7 +9,7 @@
     <%= for post <- @items do %>
       <item>
         <title>
-          <![CDATA[<%= post.title %>]]>
+          <![CDATA[<%= post.title %> - #<%= post.channel.name %>]]>
         </title>
         <link><%= post_url(@conn, :show, post) %></link>
         <description>
