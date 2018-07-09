@@ -7,7 +7,7 @@ defmodule TilexWeb.FeedController do
         from(
           p in Tilex.Post,
           order_by: [desc: p.inserted_at],
-          preload: [:developer],
+          preload: [:channel, :developer],
           limit: 25
         )
       )

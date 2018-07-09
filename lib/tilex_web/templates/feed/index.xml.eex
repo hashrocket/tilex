@@ -9,15 +9,13 @@
     <%= for post <- @items do %>
       <item>
         <title>
-          <![CDATA[<%= post.title %>]]>
+          <![CDATA[<%= post.title %> - #<%= post.channel.name %>]]>
         </title>
         <link><%= post_url(@conn, :show, post) %></link>
         <description>
           <![CDATA[<%= Tilex.Markdown.to_html(post.body) %>]]>
         </description>
-        <dc:creator>
-          <%= post.developer.username %>
-        </dc:creator>
+        <dc:creator><%= post.developer.username %></dc:creator>
         <pubDate><%= TilexWeb.SharedView.rss_date(post) %></pubDate>
         <guid isPermaLink="true"><%= post_url(@conn, :show, post) %></guid>
       </item>
