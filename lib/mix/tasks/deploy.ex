@@ -11,6 +11,7 @@ defmodule Mix.Tasks.Deploy do
   def run(_), do: raise("Unsupported environment")
 
   defp do_run(env) do
+    System.cmd("git", ["fetch", "--tags"])
     System.cmd("git", ["tag", "-d", env])
     System.cmd("git", ["push", "origin", ":refs/tags/#{env}"])
     System.cmd("git", ["tag", env])
