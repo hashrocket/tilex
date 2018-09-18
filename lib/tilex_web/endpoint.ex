@@ -11,7 +11,7 @@ defmodule TilexWeb.Endpoint do
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
-  plug(Plug.Static, at: "/", from: :tilex, gzip: false, only: ~w(assets
+  plug(Plug.Static, at: "/", from: :tilex, gzip: true, only: ~w(assets
       apple-touch-icon-120x120.png
       apple-touch-icon.png
       apple-touch-icon-precomposed.png
