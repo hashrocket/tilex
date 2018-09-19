@@ -21,7 +21,7 @@ defmodule Tilex.Posts do
     posts_count =
       Repo.one(
         from(
-          p in "posts",
+          p in Post,
           where: p.channel_id == ^channel.id,
           select: fragment("count(*)")
         )
@@ -54,7 +54,7 @@ defmodule Tilex.Posts do
     posts_count =
       Repo.one(
         from(
-          p in "posts",
+          p in Post,
           where: p.developer_id == ^developer.id,
           select: fragment("count(*)")
         )
