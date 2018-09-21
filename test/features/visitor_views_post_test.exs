@@ -30,6 +30,14 @@ defmodule VisitorViewsPostTest do
     })
 
     assert page_title(session) == "A special post - Today I Learned"
+
+    assert %{rows: [[path | _]]} =
+             Ecto.Adapters.SQL.query!(
+               Repo,
+               "select page, request_time from requests"
+             )
+
+    assert Regex.match?(~r"#{post.slug}", path)
   end
 
   test "and sees marketing copy, if it exists", %{session: session} do

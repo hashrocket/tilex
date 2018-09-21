@@ -37,6 +37,7 @@
       <link rel="canonical" href="<%= @canonical_url %>">
     <% end %>
     <link rel="manifest" href="<%= web_manifest_path(@conn, :index) %>">
+    <script async src="/pixel"></script>
   </head>
 
   <body>

@@ -34,6 +34,7 @@ defmodule TilexWeb.Router do
   end
 
   get("/rss", TilexWeb.FeedController, :index)
+  get("/pixel", TilexWeb.PixelController, :index)
 
   scope "/", TilexWeb do
     pipe_through([:browser, :browser_auth])
