@@ -44,11 +44,7 @@ defmodule TilexWeb.PostController do
     do: redirect(conn, to: "/rss")
 
   def index(conn, params) do
-    page =
-      params
-      |> Map.get("page", "1")
-      |> String.to_integer()
-
+    page = robust_page(params)
     posts = Posts.all(page)
 
     render(conn, "index.html", posts: posts, page: page)
@@ -221,5 +217,19 @@ defmodule TilexWeb.PostController do
 
     conn
     |> assign(:canonical_url, canonical_post)
+  end
+
+  defp robust_page(params) do
+    page_param =
+      params
+      |> Map.get("page", "1")
+
+    page =
+      case Integer.parse(page_param) do
+        :error -> 1
+        {integer, _remainder} -> integer
+      end
+
+    page
   end
 end
