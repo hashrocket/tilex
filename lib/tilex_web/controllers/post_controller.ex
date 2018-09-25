@@ -23,11 +23,7 @@ defmodule TilexWeb.PostController do
   end
 
   def index(conn, %{"q" => search_query} = params) do
-    page =
-      params
-      |> Map.get("page", "1")
-      |> String.to_integer()
-
+    page = robust_page(params)
     {posts, posts_count} = Posts.by_search(search_query, page)
 
     render(
