@@ -7,7 +7,7 @@ defmodule Tilex.PostControllerTest do
   end
 
   test "supports a pagination parameter", %{conn: conn} do
-    conn = get(conn, post_path(conn, :index, page: 1))
+    conn = get(conn, post_path(conn, :index, page: "1"))
     assert html_response(conn, 200) =~ "Today I Learned"
   end
 
