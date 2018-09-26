@@ -97,6 +97,29 @@ defmodule VisitorViewsPostTest do
     refute twitter_description =~ "Another sentence"
   end
 
+  test "and sees a post specific twitter description WITHOUT markdown", %{
+    session: session
+  } do
+    popular_channel = Factory.insert!(:channel, name: "command-line")
+
+    post =
+      Factory.insert!(
+        :post,
+        channel: popular_channel,
+        body:
+          "One [sentence](http://www.example.com) that is a link. \nAnother sentence that is more informative"
+      )
+
+    twitter_description =
+      session
+      |> visit(post_path(Endpoint, :show, post))
+      |> find(Query.css("meta[name='twitter:description']", visible: false))
+      |> Element.attr("content")
+
+    assert twitter_description =~ "One sentence that is a link."
+    refute twitter_description =~ "Another sentence"
+  end
+
   test "and clicks 'like' for that post", %{session: session} do
     developer = Factory.insert!(:developer)
     post = Factory.insert!(:post, title: "A special post", developer: developer, likes: 1)

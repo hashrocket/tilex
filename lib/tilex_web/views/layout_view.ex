@@ -42,11 +42,12 @@ defmodule TilexWeb.LayoutView do
   def twitter_description(%Tilex.Post{} = post) do
     markdown = Tilex.Post.twitter_description(post)
 
-    with {:ok, html} <- Earmark.as_html(markdown),
+    with {:ok, html, _} <- Earmark.as_html(markdown),
          text <- Floki.text(html) do
       text
     else
-      _ -> markdown
+      value ->
+        markdown
     end
   end
 
