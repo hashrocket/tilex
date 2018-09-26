@@ -215,17 +215,12 @@ defmodule TilexWeb.PostController do
     |> assign(:canonical_url, canonical_post)
   end
 
-  defp robust_page(params) do
-    page_param =
-      params
-      |> Map.get("page", "1")
-
-    page =
-      case Integer.parse(page_param) do
-        :error -> 1
-        {integer, _remainder} -> integer
-      end
-
-    page
+  defp robust_page(%{"page" => page}) do
+    case Integer.parse(page) do
+      :error -> 1
+      {integer, _remainder} -> integer
+    end
   end
+
+  defp robust_page(_params), do: 1
 end
