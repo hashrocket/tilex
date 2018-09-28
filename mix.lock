@@ -38,6 +38,7 @@
   "mochiweb": {:hex, :mochiweb, "2.18.0", "eb55f1db3e6e960fac4e6db4e2db9ec3602cc9f30b86cd1481d56545c3145d2e", [:rebar3], [], "hexpm"},
   "oauth2": {:hex, :oauth2, "0.9.3", "e6c4a396858881cb88e1edf8d077aeb30ad0e65cf9d8cd87e33c1a9d0c77fdba", [:mix], [{:hackney, ">= 1.7.0 and <= 1.9.0", [hex: :hackney, repo: "hexpm", optional: false]}], "hexpm"},
   "oauther": {:hex, :oauther, "1.1.1", "7d8b16167bb587ecbcddd3f8792beb9ec3e7b65c1f8ebd86b8dd25318d535752", [:mix], [], "hexpm"},
+  "optimus": {:hex, :optimus, "0.1.8", "4c4b83062fb71683c50e32b9b968a0e76971bb7cbe7512d83333e2feeb436402", [:mix], [{:yamerl, "~> 0.6", [hex: :yamerl, repo: "hexpm", optional: false]}], "hexpm"},
   "phoenix": {:hex, :phoenix, "1.3.4", "aaa1b55e5523083a877bcbe9886d9ee180bf2c8754905323493c2ac325903dc5", [:mix], [{:cowboy, "~> 1.0", [hex: :cowboy, repo: "hexpm", optional: true]}, {:phoenix_pubsub, "~> 1.0", [hex: :phoenix_pubsub, repo: "hexpm", optional: false]}, {:plug, "~> 1.3.3 or ~> 1.4", [hex: :plug, repo: "hexpm", optional: false]}, {:poison, "~> 2.2 or ~> 3.0", [hex: :poison, repo: "hexpm", optional: false]}], "hexpm"},
   "phoenix_ecto": {:hex, :phoenix_ecto, "3.4.0", "91cd39427006fe4b5588d69f0941b9c3d3d8f5e6477c563a08379de7de2b0c58", [:mix], [{:ecto, "~> 2.1", [hex: :ecto, repo: "hexpm", optional: false]}, {:phoenix_html, "~> 2.9", [hex: :phoenix_html, repo: "hexpm", optional: true]}, {:plug, "~> 1.0", [hex: :plug, repo: "hexpm", optional: false]}], "hexpm"},
   "phoenix_html": {:hex, :phoenix_html, "2.10.5", "4f9df6b0fb7422a9440a73182a566cb9cbe0e3ffe8884ef9337ccf284fc1ef0a", [:mix], [{:plug, "~> 1.0", [hex: :plug, repo: "hexpm", optional: false]}], "hexpm"},
@@ -56,4 +57,5 @@
   "unicode_util_compat": {:hex, :unicode_util_compat, "0.2.0", "dbbccf6781821b1c0701845eaf966c9b6d83d7c3bfc65ca2b78b88b8678bfa35", [:rebar3], [], "hexpm"},
   "uuid": {:hex, :uuid, "1.1.7", "007afd58273bc0bc7f849c3bdc763e2f8124e83b957e515368c498b641f7ab69", [:mix], []},
   "wallaby": {:hex, :wallaby, "0.19.2", "358bbff251e3555e02566280d1795132da792969dd58ff89963536d013058719", [:mix], [{:httpoison, "~> 0.12", [hex: :httpoison, repo: "hexpm", optional: false]}, {:poison, ">= 1.4.0", [hex: :poison, repo: "hexpm", optional: false]}, {:poolboy, "~> 1.5", [hex: :poolboy, repo: "hexpm", optional: false]}], "hexpm"},
+  "yamerl": {:hex, :yamerl, "0.7.0", "e51dba652dce74c20a88294130b48051ebbbb0be7d76f22de064f0f3ccf0aaf5", [:rebar3], [], "hexpm"},
 }

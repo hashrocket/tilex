@@ -44,6 +44,7 @@ defmodule Tilex.Mixfile do
       {:guardian, "~> 0.14"},
       {:hackney, "1.8.0"},
       {:html_sanitize_ex, "~> 1.2"},
+      {:optimus, "~> 0.1.0"},
       {:phoenix, "~> 1.3.2"},
       {:phoenix_ecto, "~> 3.1"},
       {:phoenix_html, "~> 2.10.3"},
