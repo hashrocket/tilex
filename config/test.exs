@@ -39,3 +39,5 @@ config :wallaby,
     headless: true
   ],
   screenshot_on_failure: true
+
+config :tilex, :request_tracking, true
