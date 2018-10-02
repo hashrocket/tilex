@@ -77,3 +77,4 @@ config :tilex, :ga_identifier, System.get_env("GA_IDENTIFIER")
 config :appsignal, :config, active: true
 
 config :tilex, :page_size, 50
+config :tilex, :request_tracking, System.get_env("REQUEST_TRACKING")

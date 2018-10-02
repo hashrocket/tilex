@@ -1,6 +1,8 @@
 defmodule TilexWeb.LayoutView do
   use TilexWeb, :view
 
+  @request_tracking Application.get_env(:tilex, :request_tracking)
+
   def page_title(%{post: post}), do: post.title
   def page_title(%{channel: channel}), do: String.capitalize(channel.name)
   def page_title(%{developer: developer}), do: developer.username
@@ -55,5 +57,9 @@ defmodule TilexWeb.LayoutView do
     """
     TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.
     """
+  end
+
+  def request_tracking() do
+    @request_tracking
   end
 end
