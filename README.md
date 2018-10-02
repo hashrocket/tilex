@@ -61,8 +61,8 @@ $ source .env
 
 ### Authentication
 
-Authentication is managed by Omniauth and Google. See the
-[omniauth-google-oauth2 README](https://github.com/zquestz/omniauth-google-oauth2/blob/master/README.md)
+Authentication is managed by Ueberauth and Google. See the
+[ueberauth_google README](https://github.com/ueberauth/ueberauth_google)
 and [Google Oauth 2 docs](https://developers.google.com/identity/protocols/OAuth2WebServer) for
 setup instructions. To allow users from a domain and/or comma separated whitelist, set those configurations in
 your environment:
