@@ -1,0 +1,11 @@
+<section id="home">
+  <section>
+    <article class="post">
+      <section>
+        <div class="post__content copy">
+          <h1>&hellip; that something is broken!</h1>
+        </div>
+      </section>
+    </article>
+  </section>
+</section>
