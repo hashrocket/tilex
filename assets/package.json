@@ -14,11 +14,11 @@
     "jquery.cookie": "^1.4.1",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
-    "sass-brunch": "^2.7.0"
+    "sass-brunch": "2.10.7"
   },
   "devDependencies": {
     "babel-brunch": "6.1.0",
-    "brunch": "^2.9.1",
+    "brunch": "2.10.17",
     "chromedriver": "2.31.0",
     "clean-css-brunch": "~2.0.0",
     "css-brunch": "~2.0.0",
