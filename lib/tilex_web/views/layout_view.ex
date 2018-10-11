@@ -50,7 +50,7 @@ defmodule TilexWeb.LayoutView do
          text <- Floki.text(html) do
       text
     else
-      value ->
+      _error ->
         markdown
     end
   end
