@@ -3,7 +3,6 @@ defmodule TilexWeb.PostController do
   import Ecto.Query
 
   alias Guardian.Plug
-  alias Phoenix.Controller
   alias Tilex.{Channel, Notifications, Liking, Post, Posts}
 
   plug(:load_channels when action in [:new, :create, :edit, :update])
@@ -47,8 +46,6 @@ defmodule TilexWeb.PostController do
   end
 
   def show(%{assigns: %{slug: slug}} = conn, _) do
-    format = Controller.get_format(conn)
-
     post =
       Post
       |> Repo.get_by!(slug: slug)
@@ -58,7 +55,7 @@ defmodule TilexWeb.PostController do
     conn
     |> assign_post_canonical_url(post)
     |> assign(:twitter_shareable, true)
-    |> render("show.#{format}", post: post)
+    |> render(:show, post: post)
   end
 
   def random(conn, _) do
