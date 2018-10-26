@@ -1,0 +1,61 @@
+defmodule Tilex.PageViewsReport do
+  def report(repo) do
+    sql = """
+    ((select count(*), date_trunc('day', request_time at time zone 'america/chicago'), 'day' as period from requests  where request_time between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('day', request_time at time zone 'america/chicago') order by date_trunc desc)
+    union
+    (select count(*), date_trunc('week', request_time at time zone 'america/chicago'), 'week' as period from requests  where request_time between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('week', request_time at time zone 'america/chicago') order by date_trunc desc)) order by date_trunc desc;
+    """
+
+    {:ok, result} = repo.query(sql, [], log: false)
+
+    last_week_row =
+      result.rows
+      |> Enum.find(fn [_, _, period] -> period == "week" end)
+
+    best_day_last_week =
+      result.rows
+      |> Enum.filter(fn [_, _, p] -> p == "day" end)
+      |> Enum.filter(fn [_, d, _] ->
+        Timex.compare(d, Enum.at(last_week_row, 1)) == 1 or
+          Timex.compare(d, Enum.at(last_week_row, 1)) == 0
+      end)
+      |> Enum.sort_by(fn [c | _] -> c end)
+      |> Enum.reverse()
+      |> hd
+
+    previous_week_row =
+      result.rows
+      |> Enum.filter(fn [_, _, period] -> period == "week" end)
+      |> Enum.reverse()
+      |> hd
+
+    best_day_previous_week =
+      result.rows
+      |> Enum.filter(fn [_, _, p] -> p == "day" end)
+      |> Enum.filter(fn [_, d, _] ->
+        (Timex.compare(d, Enum.at(previous_week_row, 1)) == 1 or
+           Timex.compare(d, Enum.at(previous_week_row, 1)) == 0) and
+          Timex.compare(d, Enum.at(last_week_row, 1)) == -1
+      end)
+      |> Enum.sort_by(fn [c | _] -> c end)
+      |> Enum.reverse()
+      |> hd
+
+    {:ok, string_pid} = StringIO.open("report")
+
+    IO.puts(string_pid, "Best Day Last Week:   #{day_output(best_day_last_week)}")
+    IO.puts(string_pid, "Last Week:            #{day_output(last_week_row)}")
+    IO.puts(string_pid, "Best Day Week Before: #{day_output(best_day_previous_week)}")
+    IO.puts(string_pid, "Week Before:          #{day_output(previous_week_row)}")
+
+    string_pid
+  end
+
+  defp day_output([count, date, _period]) do
+    "#{String.pad_leading(to_string(count), 10, " ")} #{format(date)}"
+  end
+
+  defp format(date) do
+    Timex.format!(date, "%a %m/%d", :strftime)
+  end
+end

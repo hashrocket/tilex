@@ -28,6 +28,14 @@ defmodule Tilex.Notifications.Notifiers.Slack do
     |> send_slack_message
   end
 
+  def handle_page_views_report(report_pid) do
+    contents = StringIO.contents(report_pid)
+
+    contents
+    |> elem(1)
+    |> send_slack_message
+  end
+
   defp send_slack_message(message) do
     endpoint = System.get_env("slack_post_endpoint")
     HTTPoison.post("https://hooks.slack.com" <> endpoint, "{\"text\": \"#{message}\"}")

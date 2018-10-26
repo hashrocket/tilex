@@ -14,6 +14,10 @@ defmodule Tilex.Notifications.Notifiers.Twitter do
     :ok
   end
 
+  def handle_page_views_report(_pid) do
+    :ok
+  end
+
   def send_tweet(text) do
     ExTwitter.update(text)
   end

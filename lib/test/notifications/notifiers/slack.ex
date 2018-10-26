@@ -8,4 +8,8 @@ defmodule Test.Notifications.Notifiers.Slack do
   def handle_post_liked(_post, _developer, _url) do
     :ok
   end
+
+  def handle_page_views_report(_pid) do
+    :ok
+  end
 end
