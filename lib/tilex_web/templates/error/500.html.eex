@@ -1,11 +1,44 @@
-<section id="home">
-  <section>
-    <article class="post">
-      <section>
-        <div class="post__content copy">
-          <h1>&hellip; that something is broken!</h1>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Server Error - Today I Learned
+    </title>
+
+    <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="/css/app.css">
+  </head>
+
+  <body>
+    <header class="site_head">
+      <div>
+        <h1><a href="/">Today I Learned</a></h1>
+        <h2>
+          <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
+          <span>
+            <a href="https://twitter.com/hashrocket" class="twitter">Follow on Twitter</a>
+          </span>
+        </h2>
+      </div>
+    </header>
+    <main>
+      <section id="home">
+        <section>
+          <article class="post">
+            <section>
+              <div class="post__content copy">
+                <h1>&hellip;that something is broken!</h1>
+              </div>
+            </section>
+          </article>
+        </section>
       </section>
-    </article>
-  </section>
-</section>
+    </main>
+    <iframe src="/phoenix/live_reload/frame" style="display: none;"></iframe>
+  </body>
+</html>

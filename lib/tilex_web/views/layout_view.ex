@@ -7,8 +7,6 @@ defmodule TilexWeb.LayoutView do
   def page_title(%{channel: channel}), do: String.capitalize(channel.name)
   def page_title(%{developer: developer}), do: developer.username
   def page_title(%{page_title: page_title}), do: page_title
-  def page_title(%{view_template: "404.html"}), do: "Not Found"
-  def page_title(%{view_template: "500.html"}), do: "Server Error"
   def page_title(_), do: Application.get_env(:tilex, :organization_name)
 
   def twitter_image_url(%Tilex.Post{} = post) do
