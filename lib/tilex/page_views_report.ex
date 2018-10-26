@@ -8,12 +8,18 @@ defmodule Tilex.PageViewsReport do
 
     {:ok, result} = repo.query(sql, [], log: false)
 
+    create_report(result.rows)
+  end
+
+  defp create_report([]), do: {:norows, ""}
+
+  defp create_report(rows) do
     last_week_row =
-      result.rows
+      rows
       |> Enum.find(fn [_, _, period] -> period == "week" end)
 
     best_day_last_week =
-      result.rows
+      rows
       |> Enum.filter(fn [_, _, p] -> p == "day" end)
       |> Enum.filter(fn [_, d, _] ->
         Timex.compare(d, Enum.at(last_week_row, 1)) == 1 or
@@ -24,13 +30,13 @@ defmodule Tilex.PageViewsReport do
       |> hd
 
     previous_week_row =
-      result.rows
+      rows
       |> Enum.filter(fn [_, _, period] -> period == "week" end)
       |> Enum.reverse()
       |> hd
 
     best_day_previous_week =
-      result.rows
+      rows
       |> Enum.filter(fn [_, _, p] -> p == "day" end)
       |> Enum.filter(fn [_, d, _] ->
         (Timex.compare(d, Enum.at(previous_week_row, 1)) == 1 or
@@ -48,7 +54,7 @@ defmodule Tilex.PageViewsReport do
     Week Before:          #{day_output(previous_week_row)}
     """
 
-    report
+    {:ok, report}
   end
 
   defp day_output([count, date, _period]) do

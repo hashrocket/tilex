@@ -22,12 +22,16 @@ defmodule Mix.Tasks.Tilex.PageViews do
   def run([notification]) do
     Application.ensure_all_started(:tilex)
 
-    report = Tilex.PageViewsReport.report()
+    {status, report} = Tilex.PageViewsReport.report()
 
-    IO.puts(report)
+    if status == :ok do
+      IO.puts(report)
 
-    if notification == "notify" do
-      Tilex.Notifications.page_views_report(report)
+      if notification == "notify" do
+        Tilex.Notifications.page_views_report(report)
+      end
+    else
+      IO.puts("no data available")
     end
   end
 end
