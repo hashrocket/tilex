@@ -20,8 +20,8 @@ defmodule Tilex.Notifications do
     GenServer.cast(__MODULE__, {:post_created, post})
   end
 
-  def page_views_report(report_pid) do
-    GenServer.call(__MODULE__, {:page_views_report, report_pid})
+  def page_views_report(report) do
+    GenServer.call(__MODULE__, {:page_views_report, report})
   end
 
   @doc """

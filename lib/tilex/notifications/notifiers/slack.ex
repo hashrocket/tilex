@@ -28,11 +28,8 @@ defmodule Tilex.Notifications.Notifiers.Slack do
     |> send_slack_message
   end
 
-  def handle_page_views_report(report_pid) do
-    contents = StringIO.contents(report_pid)
-
-    contents
-    |> elem(1)
+  def handle_page_views_report(report) do
+    report
     |> send_slack_message
   end
 

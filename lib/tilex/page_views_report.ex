@@ -1,5 +1,5 @@
 defmodule Tilex.PageViewsReport do
-  def report(repo) do
+  def report(repo \\ Tilex.Repo) do
     sql = """
     ((select count(*), date_trunc('day', request_time at time zone 'america/chicago'), 'day' as period from requests  where request_time between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('day', request_time at time zone 'america/chicago') order by date_trunc desc)
     union
@@ -41,14 +41,14 @@ defmodule Tilex.PageViewsReport do
       |> Enum.reverse()
       |> hd
 
-    {:ok, string_pid} = StringIO.open("report")
+    report = """
+    Best Day Last Week:   #{day_output(best_day_last_week)}
+    Last Week:            #{day_output(last_week_row)}
+    Best Day Week Before: #{day_output(best_day_previous_week)}
+    Week Before:          #{day_output(previous_week_row)}
+    """
 
-    IO.puts(string_pid, "Best Day Last Week:   #{day_output(best_day_last_week)}")
-    IO.puts(string_pid, "Last Week:            #{day_output(last_week_row)}")
-    IO.puts(string_pid, "Best Day Week Before: #{day_output(best_day_previous_week)}")
-    IO.puts(string_pid, "Week Before:          #{day_output(previous_week_row)}")
-
-    string_pid
+    report
   end
 
   defp day_output([count, date, _period]) do

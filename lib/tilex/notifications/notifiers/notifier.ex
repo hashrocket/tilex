@@ -48,8 +48,8 @@ defmodule Tilex.Notifications.Notifier do
         GenServer.cast(__MODULE__, {:post_liked, post, developer, url})
       end
 
-      def page_views_report(report_pid) do
-        GenServer.call(__MODULE__, {:page_views_report, report_pid})
+      def page_views_report(report) do
+        GenServer.call(__MODULE__, {:page_views_report, report})
       end
 
       ### Server Callbacks
@@ -68,8 +68,8 @@ defmodule Tilex.Notifications.Notifier do
         {:noreply, state}
       end
 
-      def handle_call({:page_views_report, report_pid}, from, state) do
-        handle_page_views_report(report_pid)
+      def handle_call({:page_views_report, report}, from, state) do
+        handle_page_views_report(report)
         {:reply, from, state}
       end
     end
