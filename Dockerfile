@@ -29,6 +29,6 @@ RUN mix local.hex --force && \
   mix local.rebar --force && \
   npm install --prefix assets
 
-ENTRYPOINT [ "mix", "ecto.setup", "--force" ]
+ENTRYPOINT [ "./docker-entrypoint.sh" ]
 
 CMD [ "mix", "phx.server" ]
