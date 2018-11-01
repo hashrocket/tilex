@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+  til:
+    build: .
+    environment:
+      DATABASE_URL: 'postgresql://postgres@db:5432/tilex_dev'
+    image: tilex_til:latest
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
