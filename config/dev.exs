@@ -39,11 +39,18 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :tilex, Tilex.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "tilex_dev",
-  hostname: "localhost",
-  pool_size: 10
+if System.get_env("DATABASE_URL") do
+  config :tilex, Tilex.Repo,
+    adapter: Ecto.Adapters.Postgres,
+    url: System.get_env("DATABASE_URL"),
+    pool_size: 10
+else
+  config :tilex, Tilex.Repo,
+    adapter: Ecto.Adapters.Postgres,
+    database: "tilex_dev",
+    hostname: "localhost",
+    pool_size: 10
+end
 
 config :tilex, :page_size, 50
 config :tilex, :cors_origin, "http://localhost:3000"
