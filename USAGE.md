@@ -17,17 +17,10 @@ development.
 Here's an example of an easy way to link to us:
 
 ```elixir
-# lib/tilex_web/templates/layout/app.html.eex
+# lib/your_app/templates/layout/app.html.eex
 
-<div class="copy">
-  Today I Learned is an open-source project by
-  <a href="https://hashrocket.com">
-    Hashrocket
-  </a>. Check out the
-  <a href="https://github.com/hashrocket/tilex">
-    source code
-  </a>
-    to make your own!
+Today I Learned is an open-source project by <a href="https://hashrocket.com">Hashrocket</a>.
+Check out the <a href="https://github.com/hashrocket/tilex">source code</a> to make your own!
 ```
 
 ### Forks in Production
