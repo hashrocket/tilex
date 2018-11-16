@@ -28,8 +28,8 @@ jobs:
       - run: mix local.hex --force
       - run: mix local.rebar --force
       - run: mix deps.get
-      - run: mix ecto.create
-      - run: mix ecto.migrate
+      - run: MIX_ENV=test mix ecto.create
+      - run: MIX_ENV=test mix ecto.migrate
       - run: sudo npm install -g brunch
       - run: cd assets && npm install
       - run: cd assets && brunch build --production
