@@ -47,13 +47,13 @@ defmodule Tilex.Mixfile do
       {:html_sanitize_ex, "~> 1.2"},
       {:optimus, "~> 0.1.0"},
       {:phoenix, "~> 1.3.2"},
-      {:phoenix_ecto, "~> 3.1"},
+      {:phoenix_ecto, "~> 3.6"},
       {:phoenix_html, "~> 2.10.3"},
       {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
+      {:plug_cowboy, "~> 1.0"},
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"},
-      {:httpoison, "~> 0.12.0"},
       {:ueberauth_google, "~> 0.5"},
       {:wallaby, "~> 0.19.1", only: :test}
     ]
