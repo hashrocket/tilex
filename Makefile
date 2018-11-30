@@ -28,7 +28,7 @@ setup: ## Runs the project setup.
 	npm install --prefix assets/
 
 server: ## Starts the server.
-	sleep 3 && open http://localhost:4000/ &
+	(sleep 3 && open http://localhost:4000/) &
 	mix phx.server
 
 test: ## Tests the project.

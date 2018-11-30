@@ -26,9 +26,28 @@ Then, install [Erlang](https://www.erlang.org/),
 
 Next, follow these setup steps:
 
-```
+```shell
 $ git clone https://github.com/hashrocket/tilex
 $ cd tilex
+```
+
+At this point you can use `make` for development commands. To access make help just type: `make` or `make help`. Then you can run make with target(s) such as: `make setup server` and so on. Environment variables will automatically loaded from `.env` file in case you need to change it.
+
+```shell
+$ make
+$ make setup server
+```
+
+Or run commands manually. To set environmental variables, copy the example file:
+
+```shell
+$ cp .env{.example,}
+```
+
+For setting up the project and start the server manually run:
+
+```shell
+$ source .env
 $ mix deps.get
 $ mix ecto.setup
 $ npm install --prefix assets
@@ -43,20 +62,8 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 To serve the app at a different port, include the `PORT` environment
 variable when starting the server:
 
-```
+```shell
 $ PORT=4444 mix phx.server
-```
-
-To set environmental variables, copy the example file:
-
-```
-$ cp .env{.example,}
-```
-
-Set your environmental variables in the new file, and then source them:
-
-```
-$ source .env
 ```
 
 ### Authentication
@@ -67,7 +74,7 @@ and [Google Oauth 2 docs](https://developers.google.com/identity/protocols/OAuth
 setup instructions. To allow users from a domain and/or comma separated whitelist, set those configurations in
 your environment:
 
-```
+```shell
 # .env
 
 export GOOGLE_CLIENT_ID="your-key.apps.googleusercontent.com"
@@ -90,7 +97,13 @@ it via your method of choice.
 
 Run the tests with:
 
+```shell
+$ make test
 ```
+
+or:
+
+```shell
 $ mix test
 ```
 
@@ -104,7 +117,7 @@ Hashrocket's deployed instances:
 
 This project contains Mix tasks to deploy our instances; use as follows:
 
-```
+```shell
 $ mix deploy <environment>
 ```
 
