@@ -43,6 +43,7 @@ defmodule Tilex.Mixfile do
       {:gettext, "~> 0.13"},
       {:guardian, "~> 0.14"},
       {:hackney, "1.8.0"},
+      {:httpoison, "0.13.0"},
       {:html_sanitize_ex, "~> 1.2"},
       {:optimus, "~> 0.1.0"},
       {:phoenix, "~> 1.3.2"},
