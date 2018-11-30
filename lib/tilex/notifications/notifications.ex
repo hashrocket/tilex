@@ -20,6 +20,10 @@ defmodule Tilex.Notifications do
     GenServer.cast(__MODULE__, {:post_created, post})
   end
 
+  def page_views_report(report) do
+    GenServer.call(__MODULE__, {:page_views_report, report})
+  end
+
   @doc """
   Alert the notification system that a post has been liked
   """
@@ -57,6 +61,13 @@ defmodule Tilex.Notifications do
     end
 
     {:noreply, :nostate}
+  end
+
+  def handle_call({:page_views_report, string_pid}, from, :nostate) do
+    notifiers()
+    |> Enum.each(& &1.page_views_report(string_pid))
+
+    {:reply, from, true}
   end
 
   def notifiers(notifiers_supervisor \\ NotifiersSupervisor) do

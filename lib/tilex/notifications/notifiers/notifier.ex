@@ -27,6 +27,7 @@ defmodule Tilex.Notifications.Notifier do
 
   @callback handle_post_created(Post.t(), Developer.t(), Channel.t(), url :: String.t()) :: any
   @callback handle_post_liked(Post.t(), Developer.t(), url :: String.t()) :: any
+  @callback handle_page_views_report(pid) :: any
 
   defmacro __using__(_) do
     quote location: :keep do
@@ -47,6 +48,10 @@ defmodule Tilex.Notifications.Notifier do
         GenServer.cast(__MODULE__, {:post_liked, post, developer, url})
       end
 
+      def page_views_report(report) do
+        GenServer.call(__MODULE__, {:page_views_report, report})
+      end
+
       ### Server Callbacks
 
       def init(state) do
@@ -61,6 +66,11 @@ defmodule Tilex.Notifications.Notifier do
       def handle_cast({:post_liked, post, developer, url}, state) do
         handle_post_liked(post, developer, url)
         {:noreply, state}
+      end
+
+      def handle_call({:page_views_report, report}, from, state) do
+        handle_page_views_report(report)
+        {:reply, from, state}
       end
     end
   end
