@@ -41,6 +41,7 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :tilex, Tilex.Repo,
   adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
   database: "tilex_dev",
   hostname: "localhost",
   pool_size: 10
