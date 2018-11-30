@@ -1,11 +1,507 @@
-<section id="home">
-  <section>
-    <article class="post">
-      <section>
-        <div class="post__content copy">
-          <h1>&hellip; that there is no page at this URL!</h1>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Not Found - Today I Learned
+    </title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+
+    <style>
+      html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+      }
+      article,
+      header,
+      main,
+      section {
+        display: block;
+      }
+      a {
+        background-color: transparent;
+      }
+      a:active,
+      a:hover {
+        outline: 0;
+      }
+      h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+      }
+      h1,
+      h2 {
+        font-size: 1em;
+      }
+      h1,
+      h2,
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      header,
+      section,
+      article,
+      main {
+        display: block;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        -webkit-text-size-adjust: none;
+        -webkit-font-smoothing: antialiased;
+        background: #d5e9f5;
+        color: #414347;
+        font-family: 'Lora', 'Helvetica Neue', Helvetica, sans-serif;
+        font-size: 1.6em;
+      }
+      header.site_head {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        padding: 2vw 6vw;
+        text-align: center;
+      }
+      header.site_head div {
+        display: inline-block;
+        position: relative;
+      }
+      header.site_head a {
+        display: block;
+        font-family: 'Raleway', 'Helvetica Neue', Helvetica, sans-serif;
+        text-transform: uppercase;
+        color: #082736;
+        letter-spacing: 0.1em;
+        font-weight: 900;
+        font-size: 7vw;
+        line-height: 1;
+      }
+      header.site_head h2 {
+        position: absolute;
+        top: 90%;
+        right: 0;
+        margin-right: 1vw;
+      }
+      header.site_head h2 a {
+        text-align: right;
+        font-size: 1.4rem;
+        font-weight: 700;
+        display: inline-block;
+        padding: 1rem 0 1rem 2.5rem;
+      }
+      @media screen and (max-width: 600px) {
+        header.site_head h2 a {
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          margin-top: 1.2rem;
+        }
+      }
+      header.site_head h2 a.hr {
+        color: #ae1f23;
+        background: left 55% no-repeat
+          url('http://localhost:4000/images/hashrocket-logo.png');
+        background-size: 1.8rem auto;
+      }
+      header.site_head h2 a.twitter {
+        color: #55acee;
+        background: url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 15.8 12.9' width='15.8px' height='12.9px' preserveAspectRatio='defer' shape-rendering='geometricPrecision'%3E%3Cg fill='%2355acee'%3E%3Cpath d='M0,11.4c0.2,0,0.5,0,0.8,0c1.5,0,2.8-0.5,4-1.4c-0.7,0-1.3-0.2-1.9-0.6C2.4,9,2,8.5,1.8,7.8 c0.2,0,0.4,0.1,0.6,0.1c0.3,0,0.6,0,0.9-0.1C2.5,7.6,1.9,7.2,1.4,6.6C0.9,6,0.6,5.3,0.6,4.6v0c0.5,0.3,0.9,0.4,1.5,0.4 C1.7,4.6,1.3,4.3,1.1,3.8c-0.3-0.5-0.4-1-0.4-1.5c0-0.6,0.1-1.1,0.4-1.6c0.8,1,1.8,1.8,3,2.4c1.2,0.6,2.4,0.9,3.7,1 C7.7,3.7,7.7,3.5,7.7,3.2c0-0.9,0.3-1.7,0.9-2.3S10.1,0,11,0c0.9,0,1.7,0.3,2.4,1c0.7-0.1,1.4-0.4,2.1-0.8C15.1,1,14.7,1.6,14,2 c0.6-0.1,1.2-0.2,1.9-0.5c-0.4,0.7-1,1.2-1.6,1.7c0,0.1,0,0.2,0,0.4c0,0.9-0.1,1.7-0.4,2.6c-0.3,0.9-0.6,1.7-1.2,2.5 c-0.5,0.8-1.1,1.5-1.9,2.1s-1.6,1.1-2.6,1.5c-1,0.4-2.1,0.5-3.2,0.5C3.2,12.9,1.5,12.4,0,11.4z'/%3E%3C/g%3E%3C/svg%3E")
+          center left no-repeat;
+        background-size: 1.7rem auto;
+        margin: 0 0 0 1rem;
+      }
+      @media screen and (max-width: 600px) {
+        header.site_head {
+          z-index: 100;
+          background: #fff;
+          text-align: right;
+          background: rgba(255, 255, 255, 0.9);
+          border: 0.2rem solid rgba(255, 255, 255, 0.9);
+          padding-right: 1rem;
+          padding-bottom: 0;
+        }
+        header.site_head h2 {
+          position: static;
+          float: right;
+          margin-top: -1rem;
+        }
+      }
+      main {
+        position: relative;
+        min-height: 60vh;
+        margin: 17vw 0 7rem 0;
+        z-index: 2;
+      }
+      @media screen and (max-width: 800px) {
+        main {
+          margin-top: 20vw;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        main {
+          margin-top: 40vw;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: #ae1f23;
+      }
+      .post {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 3vw;
+        justify-content: center;
+      }
+      .post:after {
+        content: '';
+        clear: both;
+        display: block;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
+      @media screen and (max-width: 600px) {
+        .post {
+          display: block;
+          padding: 0 1rem;
+        }
+      }
+      .post section {
+        flex: 0 1 auto;
+        box-sizing: border-box;
+        min-width: 35rem;
+        max-width: 60%;
+        background: rgba(255, 255, 255, 0.9);
+        border: 0.2rem solid rgba(255, 255, 255, 0.9);
+      }
+      @media screen and (max-width: 600px) {
+        .post section {
+          max-width: none;
+          min-width: 0;
+        }
+      }
+      .post .post__content {
+        overflow: auto;
+        padding: 4vw;
+      }
+      @media screen and (max-width: 600px) {
+        .copy {
+          font-size: 0.85em;
+        }
+      }
+      .copy h1 {
+        margin: 0 0 1.2em 0;
+      }
+      @media screen and (max-width: 600px) {
+        .copy h1 {
+          margin-bottom: 0.7em;
+        }
+      }
+      .copy h1 {
+        font-size: 1.6em;
+      }
+      html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+      }
+      article,
+      header,
+      main,
+      section {
+        display: block;
+      }
+      a {
+        background-color: transparent;
+      }
+      a:active,
+      a:hover {
+        outline: 0;
+      }
+      h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 400;
+        src: local('Lora Italic'), local('Lora-Italic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIhMX1D_JOuMw_LLPtLtfOm84TX.woff2)
+          format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+          U+FE2E-FE2F;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 400;
+        src: local('Lora Italic'), local('Lora-Italic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIhMX1D_JOuMw_LJftLtfOm84TX.woff2)
+          format('woff2');
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 400;
+        src: local('Lora Italic'), local('Lora-Italic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIhMX1D_JOuMw_LLvtLtfOm84TX.woff2)
+          format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 400;
+        src: local('Lora Italic'), local('Lora-Italic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIhMX1D_JOuMw_LL_tLtfOm84TX.woff2)
+          format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 400;
+        src: local('Lora Italic'), local('Lora-Italic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIhMX1D_JOuMw_LIftLtfOm8w.woff2)
+          format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+          U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+          U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 700;
+        src: local('Lora Bold Italic'), local('Lora-BoldItalic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIiMX1D_JOuMw_Dmt5eldGr2b7e-DpH.woff2)
+          format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+          U+FE2E-FE2F;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 700;
+        src: local('Lora Bold Italic'), local('Lora-BoldItalic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIiMX1D_JOuMw_Dmt5enNGr2b7e-DpH.woff2)
+          format('woff2');
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 700;
+        src: local('Lora Bold Italic'), local('Lora-BoldItalic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIiMX1D_JOuMw_Dmt5el9Gr2b7e-DpH.woff2)
+          format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 700;
+        src: local('Lora Bold Italic'), local('Lora-BoldItalic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIiMX1D_JOuMw_Dmt5eltGr2b7e-DpH.woff2)
+          format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: italic;
+        font-weight: 700;
+        src: local('Lora Bold Italic'), local('Lora-BoldItalic'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIiMX1D_JOuMw_Dmt5emNGr2b7e-A.woff2)
+          format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+          U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+          U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Lora Regular'), local('Lora-Regular'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIvMX1D_JOuMwf7I_FMl_GW8g.woff2)
+          format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+          U+FE2E-FE2F;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Lora Regular'), local('Lora-Regular'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIvMX1D_JOuMw77I_FMl_GW8g.woff2)
+          format('woff2');
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Lora Regular'), local('Lora-Regular'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIvMX1D_JOuMwX7I_FMl_GW8g.woff2)
+          format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Lora Regular'), local('Lora-Regular'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIvMX1D_JOuMwT7I_FMl_GW8g.woff2)
+          format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Lora Regular'), local('Lora-Regular'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIvMX1D_JOuMwr7I_FMl_E.woff2)
+          format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+          U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+          U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Lora Bold'), local('Lora-Bold'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIgMX1D_JOuO7HeNtFumtus-7zu-Q.woff2)
+          format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+          U+FE2E-FE2F;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Lora Bold'), local('Lora-Bold'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIgMX1D_JOuO7HeNthumtus-7zu-Q.woff2)
+          format('woff2');
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Lora Bold'), local('Lora-Bold'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIgMX1D_JOuO7HeNtNumtus-7zu-Q.woff2)
+          format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Lora Bold'), local('Lora-Bold'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIgMX1D_JOuO7HeNtJumtus-7zu-Q.woff2)
+          format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: 'Lora';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Lora Bold'), local('Lora-Bold'),
+          url(https://fonts.gstatic.com/s/lora/v12/0QIgMX1D_JOuO7HeNtxumtus-7w.woff2)
+          format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+          U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+          U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Raleway Bold'), local('Raleway-Bold'),
+          url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwJYtWqhPANqczVsq4A.woff2)
+          format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Raleway Bold'), local('Raleway-Bold'),
+          url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwJYtWqZPANqczVs.woff2)
+          format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+          U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+          U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 900;
+        src: local('Raleway Black'), local('Raleway-Black'),
+          url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwK4vWqhPANqczVsq4A.woff2)
+          format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 900;
+        src: local('Raleway Black'), local('Raleway-Black'),
+          url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwK4vWqZPANqczVs.woff2)
+          format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+          U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+          U+FEFF, U+FFFD;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site_head">
+      <div>
+        <h1><a href="/">Today I Learned</a></h1>
+        <h2>
+          <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
+          <span>
+            <a href="https://twitter.com/hashrocket" class="twitter">Follow on Twitter</a>
+          </span>
+        </h2>
+      </div>
+    </header>
+    <main>
+      <section id="home">
+        <section>
+          <article class="post">
+            <section>
+              <div class="post__content copy">
+                <h1>&hellip;that there is no page at this URL!</h1>
+              </div>
+            </section>
+          </article>
+        </section>
       </section>
-    </article>
-  </section>
-</section>
+    </main>
+    <iframe src="/phoenix/live_reload/frame" style="display: none;"></iframe>
+  </body>
+</html>
