@@ -1,4 +1,4 @@
-.PHONY: help outdated setup
+.PHONY: help outdated setup server test
 
 help: ## Shows this help.
 	@IFS=$$'\n' ; \
@@ -20,3 +20,11 @@ setup: ## Runs the project setup.
 	mix compile
 	mix ecto.setup
 	npm install --prefix assets/
+
+server: ## Starts the server.
+	sleep 3 && open http://localhost:4000/ &
+	mix phx.server
+
+test: ## Tests the project.
+	mix format
+	mix test --trace
