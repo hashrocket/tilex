@@ -1,4 +1,10 @@
+#!make
+include .env
+
 .PHONY: help outdated setup server test
+
+.env:
+	cp .env.example .env
 
 help: ## Shows this help.
 	@IFS=$$'\n' ; \
