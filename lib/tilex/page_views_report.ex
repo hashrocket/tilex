@@ -1,9 +1,9 @@
 defmodule Tilex.PageViewsReport do
   def report(repo \\ Tilex.Repo) do
     sql = """
-    ((select count(*), date_trunc('day', request_time at time zone 'america/chicago'), 'day' as period from requests  where request_time between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('day', request_time at time zone 'america/chicago') order by date_trunc desc)
+    ((select count(*), date_trunc('day', request_time at time zone 'america/chicago'), 'day' as period from requests  where request_time at time zone 'america/chicago' between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('day', request_time at time zone 'america/chicago') order by date_trunc desc)
     union
-    (select count(*), date_trunc('week', request_time at time zone 'america/chicago'), 'week' as period from requests  where request_time between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('week', request_time at time zone 'america/chicago') order by date_trunc desc)) order by date_trunc desc;
+    (select count(*), date_trunc('week', request_time at time zone 'america/chicago'), 'week' as period from requests  where request_time at time zone 'america/chicago' between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('week', request_time at time zone 'america/chicago') order by date_trunc desc)) order by date_trunc desc;
     """
 
     {:ok, result} = repo.query(sql, [], log: false)
