@@ -30,9 +30,10 @@ jobs:
       - run: mix deps.get
       - run: MIX_ENV=test mix ecto.create
       - run: MIX_ENV=test mix ecto.migrate
-      - run: sudo npm install -g brunch
+      - run: sudo npm install -g webpack
       - run: cd assets && npm install
-      - run: cd assets && brunch build --production
+      - run: cd assets && node node_modules/webpack/bin/webpack.js --mode production
+      - run: mix phx.digest
       - run: mix format --check-formatted
       - run: mix test
       - run: mix credo
