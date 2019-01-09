@@ -26,8 +26,8 @@ config :tilex, TilexWeb.Endpoint,
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{lib/tilex/web/views/.*(ex)$},
-      ~r{lib/tilex/web/templates/.*(eex)$}
+      ~r{lib/tilex_web/views/.*(ex)$},
+      ~r{lib/tilex_web/templates/.*(eex)$}
     ]
   ]
 
