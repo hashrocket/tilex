@@ -50,7 +50,6 @@ defmodule TilexWeb.Router do
     get("/sitemap.xml", SitemapController, :index)
     get("/manifest.json", WebManifestController, :index)
     get("/random", PostController, :random)
-    get("/:name", ChannelController, :show)
     get("/authors/:name", DeveloperController, :show)
     get("/profile/edit", DeveloperController, :edit)
     put("/profile/edit", DeveloperController, :update)
@@ -59,5 +58,7 @@ defmodule TilexWeb.Router do
     resources("/posts", PostController, param: "titled_slug")
     post("/posts/:slug/like.json", PostController, :like)
     post("/posts/:slug/unlike.json", PostController, :unlike)
+    # catch-any route should be last
+    get("/:name", ChannelController, :show)
   end
 end
