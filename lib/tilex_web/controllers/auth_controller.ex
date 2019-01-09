@@ -12,24 +12,24 @@ defmodule TilexWeb.AuthController do
 
         conn
         |> put_flash(:info, "Signed in with #{developer.email}")
-        |> redirect(to: "/")
+        |> redirect(to: post_path(conn, :index))
 
       {:error, reason} ->
         conn
         |> put_flash(:info, reason)
-        |> redirect(to: "/")
+        |> redirect(to: post_path(conn, :index))
     end
   end
 
   def index(conn, _params) do
-    redirect(conn, to: "/auth/google")
+    redirect(conn, to: auth_path(conn, :request, "google"))
   end
 
   def delete(conn, _params) do
     conn
     |> Plug.sign_out()
     |> put_flash(:info, "Signed out")
-    |> redirect(to: "/")
+    |> redirect(to: post_path(conn, :index))
   end
 
   defp authenticate(%{info: %{email: email, name: name}}) when is_binary(name) do

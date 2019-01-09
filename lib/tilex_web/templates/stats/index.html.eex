@@ -69,7 +69,7 @@
 
           <%= for {count, channel} <- @channels do %>
             <li>
-              <a href="/<%= channel %>"><b>#<%= channel %></b>
+              <a href="<%= channel_path(@conn, :show, channel) %>"><b>#<%= channel %></b>
                 <small><%= count %> posts</small>
               </a>
             </li>
@@ -87,7 +87,7 @@
         <ul class="post_list" id="authors">
           <%= for {count, developer} <- @developers do %>
             <li>
-              <a href="/authors/<%= developer %>"><b><%= developer %></b>
+              <a href="<%= developer_path(@conn, :show, developer) %>"><b><%= developer %></b>
                 <small><%= count %> posts</small>
               </a>
             </li>
