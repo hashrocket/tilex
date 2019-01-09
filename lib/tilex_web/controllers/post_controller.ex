@@ -18,7 +18,7 @@ defmodule TilexWeb.PostController do
     conn
     |> put_status(302)
     |> put_flash(:info, "Authentication required")
-    |> redirect(to: "/")
+    |> redirect(to: post_path(conn, :index))
   end
 
   def index(conn, %{"q" => search_query} = params) do
@@ -36,7 +36,7 @@ defmodule TilexWeb.PostController do
   end
 
   def index(conn, %{"format" => format}) when format in ~w(rss atom),
-    do: redirect(conn, to: "/rss")
+    do: redirect(conn, to: feed_path(conn, :index))
 
   def index(conn, params) do
     page = robust_page(params)

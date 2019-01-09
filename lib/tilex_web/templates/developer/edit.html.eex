@@ -28,7 +28,7 @@
         </dd>
       </dl>
       <%= submit "Submit" %>
-      <%= link("cancel", to: "/") %>
+      <%= link("cancel", to: post_path(@conn, :index)) %>
     <% end %>
   </div>
 </main>

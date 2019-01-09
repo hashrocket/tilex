@@ -25,7 +25,7 @@
 
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
-    <link rel="alternate feed" type="application/rss+xml" title="Today I Learned" href="/rss">
+    <link rel="alternate feed" type="application/rss+xml" title="Today I Learned" href="<%= feed_path(@conn, :index) %>">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
 
@@ -39,7 +39,7 @@
     <link rel="manifest" href="<%= web_manifest_path(@conn, :index) %>">
 
     <%= if request_tracking() do %>
-      <script async src="/pixel"></script>
+      <script async src="<%= pixel_path(@conn, :index) %>"></script>
     <% end %>
   </head>
 
@@ -57,7 +57,7 @@
 
     <header class="site_head">
       <div>
-        <h1><a href="/">Today I Learned</a></h1>
+        <h1><%= link("Today I Learned", to: post_path(@conn, :index)) %></h1>
         <h2>
           <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
           <span>
@@ -114,13 +114,13 @@
           </div>
         </li>
         <li class="site_nav__statistics">
-          <%= link("Statistics", to: "/statistics", class: "site_nav__link") %>
+          <%= link("Statistics", to: stats_path(@conn, :index), class: "site_nav__link") %>
         </li>
         <li class="site_nav__twitter">
             <%= link("Twitter", to: "https://twitter.com/#{Application.get_env(:tilex, :default_twitter_handle)}", class: "site_nav__link") %>
         </li>
         <li class="site_nav__surprise_me">
-            <%= link("Surprise Me", to: "/random", class: "site_nav__link", rel: "nofollow") %>
+            <%= link("Surprise Me", to: post_path(@conn, :random), class: "site_nav__link", rel: "nofollow") %>
         </li>
       </ul>
     </nav>
