@@ -11,6 +11,8 @@ import 'codemirror/mode/elm/elm';
 import 'codemirror/mode/erlang/erlang';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/sass/sass';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/dracula.css';
 
 export default class PostForm {
   constructor(properties) {
