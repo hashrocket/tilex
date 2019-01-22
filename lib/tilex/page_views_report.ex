@@ -58,7 +58,7 @@ defmodule Tilex.PageViewsReport do
   end
 
   defp day_output([count, date, _period]) do
-    "#{String.pad_leading(to_string(count), 10, " ")} #{format(date)}"
+    "#{count |> to_string |> String.pad_leading(10, " ")} #{format(date)}"
   end
 
   defp day_output(nil) do
