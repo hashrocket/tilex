@@ -27,13 +27,13 @@ defmodule Tilex.PageViewsReport do
       end)
       |> Enum.sort_by(fn [c | _] -> c end)
       |> Enum.reverse()
-      |> hd
+      |> List.first()
 
     previous_week_row =
       rows
       |> Enum.filter(fn [_, _, period] -> period == "week" end)
       |> Enum.reverse()
-      |> hd
+      |> List.first()
 
     best_day_previous_week =
       rows
@@ -45,7 +45,7 @@ defmodule Tilex.PageViewsReport do
       end)
       |> Enum.sort_by(fn [c | _] -> c end)
       |> Enum.reverse()
-      |> hd
+      |> List.first()
 
     report = """
     Best Day Last Week:   #{day_output(best_day_last_week)}
@@ -59,6 +59,10 @@ defmodule Tilex.PageViewsReport do
 
   defp day_output([count, date, _period]) do
     "#{String.pad_leading(to_string(count), 10, " ")} #{format(date)}"
+  end
+
+  defp day_output(nil) do
+    String.pad_leading("No data available", 10)
   end
 
   defp format(date) do
