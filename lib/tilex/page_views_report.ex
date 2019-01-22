@@ -20,8 +20,8 @@ defmodule Tilex.PageViewsReport do
 
     best_day_last_week =
       rows
-      |> Enum.filter(fn [_, _, p] -> p == "day" end)
-      |> Enum.filter(fn [_, d, _] ->
+      |> Stream.filter(fn [_, _, p] -> p == "day" end)
+      |> Stream.filter(fn [_, d, _] ->
         Timex.compare(d, Enum.at(last_week_row, 1)) == 1 or
           Timex.compare(d, Enum.at(last_week_row, 1)) == 0
       end)
@@ -31,14 +31,14 @@ defmodule Tilex.PageViewsReport do
 
     previous_week_row =
       rows
-      |> Enum.filter(fn [_, _, period] -> period == "week" end)
+      |> Stream.filter(fn [_, _, period] -> period == "week" end)
       |> Enum.reverse()
       |> List.first()
 
     best_day_previous_week =
       rows
-      |> Enum.filter(fn [_, _, p] -> p == "day" end)
-      |> Enum.filter(fn [_, d, _] ->
+      |> Stream.filter(fn [_, _, p] -> p == "day" end)
+      |> Stream.filter(fn [_, d, _] ->
         (Timex.compare(d, Enum.at(previous_week_row, 1)) == 1 or
            Timex.compare(d, Enum.at(previous_week_row, 1)) == 0) and
           Timex.compare(d, Enum.at(last_week_row, 1)) == -1
