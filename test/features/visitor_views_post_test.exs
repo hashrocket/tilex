@@ -16,6 +16,7 @@ defmodule VisitorViewsPostTest do
         :post,
         title: "A special post",
         body: "This is how to be super awesome!",
+        inserted_at: Timex.to_datetime({2018, 2, 2}),
         developer: developer,
         channel: channel
       )
@@ -29,6 +30,8 @@ defmodule VisitorViewsPostTest do
       likes_count: 1
     })
 
+    assert post_date(session) == "February 2, 2018"
+
     assert page_title(session) == "A special post - Today I Learned"
 
     assert %{rows: [[path | _]]} =
@@ -38,6 +41,28 @@ defmodule VisitorViewsPostTest do
              )
 
     assert Regex.match?(~r"#{post.slug}", path)
+  end
+
+  test "the page shows a post with the correct timezone if given",
+       %{session: session} do
+    Application.put_env(:tilex, :date_display_tz, "America/Chicago")
+
+    developer = Factory.insert!(:developer)
+    channel = Factory.insert!(:channel, name: "command-line")
+
+    post =
+      Factory.insert!(
+        :post,
+        title: "A special post",
+        body: "This is how to be super awesome!",
+        inserted_at: Timex.to_datetime({2018, 2, 2}),
+        developer: developer,
+        channel: channel
+      )
+
+    session |> PostShowPage.navigate(post)
+
+    assert post_date(session) == "February 2, 2018"
   end
 
   test "and sees marketing copy, if it exists", %{session: session} do
@@ -206,5 +231,11 @@ defmodule VisitorViewsPostTest do
     })
 
     assert page_title(session) == "#{post.title} - Today I Learned"
+  end
+
+  defp post_date(session) do
+    session
+    |> find(Query.css("footer .post__permalink"))
+    |> Element.text()
   end
 end
