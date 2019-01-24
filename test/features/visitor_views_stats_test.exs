@@ -1,10 +1,6 @@
 defmodule Features.VisitorViewsStatsTest do
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
-  def text_without_newlines(element) do
-    String.replace(Wallaby.Element.text(element), "\n", " ")
-  end
-
   test "sees total number of posts by channel", %{session: session} do
     target_channel = Factory.insert!(:channel, name: "phoenix")
     other_channel = Factory.insert!(:channel, name: "other")
