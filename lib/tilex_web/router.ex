@@ -46,6 +46,7 @@ defmodule TilexWeb.Router do
     post("/auth/:provider/callback", AuthController, :callback)
 
     get("/statistics", StatsController, :index)
+    get("/developer/statistics", StatsController, :developer)
 
     get("/sitemap.xml", SitemapController, :index)
     get("/manifest.json", WebManifestController, :index)
