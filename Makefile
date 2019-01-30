@@ -1,7 +1,7 @@
 #!make
 include .env
 
-.PHONY: help outdated setup server test
+.PHONY: help outdated console setup server test
 
 .env:
 	cp .env.example .env
@@ -21,6 +21,9 @@ outdated: ## Shows outdated packages.
 	mix hex.outdated
 	npm outdated --prefix assets/
 
+console:
+	iex -S mix
+
 setup: ## Runs the project setup.
 	mix deps.get
 	mix compile
@@ -33,4 +36,6 @@ server: ## Starts the server.
 
 test: ## Tests the project.
 	mix format
+	mix credo
+	rm -f screenshots/*
 	mix test --trace
