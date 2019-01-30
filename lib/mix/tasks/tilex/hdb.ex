@@ -56,18 +56,15 @@ defmodule Mix.Tasks.Tilex.Hdb do
 
   defp fetch_heroku_dsn(heroku_app) do
     result =
-      System.cmd(
-        "heroku",
-        [
-          "run",
-          "-a",
-          heroku_app,
-          "--no-notify",
-          "--no-tty",
-          "-x",
-          "sh -c 'echo $DATABASE_URL'"
-        ]
-      )
+      System.cmd("heroku", [
+        "run",
+        "-a",
+        heroku_app,
+        "--no-notify",
+        "--no-tty",
+        "-x",
+        "sh -c 'echo $DATABASE_URL'"
+      ])
 
     case result do
       {dsn, 0} -> {:ok, String.trim(dsn)}

@@ -45,8 +45,7 @@ defmodule VisitorViewsPostTest do
     assert Regex.match?(~r"#{post.slug}", path)
   end
 
-  test "the page shows a post with the correct timezone if given",
-       %{session: session} do
+  test "the page shows a post with the correct timezone if given", %{session: session} do
     Application.put_env(:tilex, :date_display_tz, "America/Chicago")
 
     developer = Factory.insert!(:developer)
