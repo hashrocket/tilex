@@ -7,7 +7,7 @@
       <header>
         <h1>Filter</h1>
       </header>
-      <%= form_for @conn, stats_path(@conn, :developer), [method: :get], fn f -> %>
+      <%= form_for @conn, stats_path(@conn, :developer), [method: :get], fn _f -> %>
         <ul class="filters" id="filter">
           <li><label>Start Date:</label><%= date_input :filter, :start_date, value: @start_date, id: "start-date" %></li>
           <li><label>End Date:</label><%= date_input :filter, :end_date, value: @end_date, id: "end-date" %></li>

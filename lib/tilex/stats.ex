@@ -37,13 +37,13 @@ defmodule Tilex.Stats do
     [
       start_date: format_date(start_date),
       end_date: format_date(end_date),
-      channels: Repo.all(posts_by_channels_count |> posts_where.()),
-      developers: Repo.all(posts_by_developers_count |> posts_where.()),
-      developers_count: Repo.one(developers_count |> posts_where.()),
-      most_liked_posts: Repo.all(most_liked_posts |> posts_where.()),
-      hottest_posts: Repo.all(hottest_posts |> posts_where.()),
+      channels: Repo.all(posts_by_channels_count() |> posts_where.()),
+      developers: Repo.all(posts_by_developers_count() |> posts_where.()),
+      developers_count: Repo.one(developers_count() |> posts_where.()),
+      most_liked_posts: Repo.all(most_liked_posts() |> posts_where.()),
+      hottest_posts: Repo.all(hottest_posts() |> posts_where.()),
       posts_for_days: posts_for_days,
-      posts_count: Repo.one(posts_count |> posts_where.()),
+      posts_count: Repo.one(posts_count() |> posts_where.()),
       channels_count:
         Repo.one(
           Channel
@@ -58,17 +58,17 @@ defmodule Tilex.Stats do
   end
 
   def all do
-    posts_for_days = query_posts_for_days!
+    posts_for_days = query_posts_for_days!()
 
     [
-      channels: Repo.all(posts_by_channels_count),
-      developers: Repo.all(posts_by_developers_count),
-      developers_count: Repo.one(developers_count),
-      most_liked_posts: Repo.all(most_liked_posts),
-      hottest_posts: Repo.all(hottest_posts),
+      channels: Repo.all(posts_by_channels_count()),
+      developers: Repo.all(posts_by_developers_count()),
+      developers_count: Repo.one(developers_count()),
+      most_liked_posts: Repo.all(most_liked_posts()),
+      hottest_posts: Repo.all(hottest_posts()),
       posts_for_days: posts_for_days,
-      posts_count: Repo.one(posts_count),
-      channels_count: Repo.one(channels_count),
+      posts_count: Repo.one(posts_count()),
+      channels_count: Repo.one(channels_count()),
       max_count:
         ([1] ++ Enum.map(posts_for_days, fn [_, count] -> count end))
         |> Enum.max()
@@ -131,7 +131,7 @@ defmodule Tilex.Stats do
   defp posts_by_channels_count,
     do:
       from(
-        [p, c] in posts_and_channels,
+        [p, c] in posts_and_channels(),
         group_by: c.name,
         order_by: [desc: count(p.id)],
         select: {count(p.id), c.name}
@@ -140,7 +140,7 @@ defmodule Tilex.Stats do
   defp posts_by_developers_count,
     do:
       from(
-        [p, d] in posts_and_developers,
+        [p, d] in posts_and_developers(),
         group_by: d.username,
         order_by: [desc: count(p.id)],
         select: {count(p.id), d.username}
@@ -149,7 +149,7 @@ defmodule Tilex.Stats do
   defp most_liked_posts,
     do:
       from(
-        [p, c] in posts_and_channels,
+        [p, c] in posts_and_channels(),
         order_by: [desc: p.likes],
         limit: 10,
         select: {p.title, p.likes, p.slug, c.name}
