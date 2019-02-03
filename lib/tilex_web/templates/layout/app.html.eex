@@ -44,7 +44,7 @@
   </head>
 
   <body>
-    <%= if developer = Guardian.Plug.current_resource(@conn) do %>
+    <%= if developer = current_user(@conn) do %>
       <nav class="admin_panel">
         <ul>
           <li> <%= link(developer.username, to: developer_path(@conn, :show, developer)) %> </li>
@@ -114,7 +114,7 @@
           </div>
         </li>
         <li class="site_nav__statistics">
-          <%= if Guardian.Plug.current_resource(@conn) do %>
+          <%= if current_user(@conn) do %>
             <%= link("Statistics", to: stats_path(@conn, :developer), class: "site_nav__link") %>
           <% else %>
             <%= link("Statistics", to: stats_path(@conn, :index), class: "site_nav__link") %>
@@ -128,9 +128,18 @@
         </li>
       </ul>
     </nav>
+
+    <script type="text/javascript">
+      window.Tilex = window.Tilex || {};
+      window.Tilex.clientConfig = {
+        editor: '<%= editor_preference(@conn) %>',
+        imgurApiKey: '<%= imgur_api_key(@conn) %>',
+      };
+    </script>
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 
-    <%= if Application.get_env(:tilex, :ga_identifier) do %>
+    <%= if ga_identifier() do %>
       <script type="text/javascript">
         (function(i, s, o, g, r, a, m) {
           i['GoogleAnalyticsObject'] = r;
@@ -151,7 +160,7 @@
           'ga'
         );
 
-        ga('create', '<%= Application.get_env(:tilex, :ga_identifier) %>', 'auto');
+        ga('create', '<%= ga_identifier() %>', 'auto');
         ga('send', 'pageview');
       </script>
     <% end %>

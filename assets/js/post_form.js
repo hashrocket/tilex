@@ -13,35 +13,36 @@ import 'codemirror/mode/css/css';
 import 'codemirror/mode/sass/sass';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/dracula.css';
+import { uploadImage } from './image_uploader.js';
 
 export default class PostForm {
-  constructor(properties) {
-    this.$postBodyInput = properties.postBodyInput;
-    this.$postBodyPreview = properties.postBodyPreview;
-    this.$wordCountContainer = properties.wordCountContainer;
-    this.$bodyWordLimitContainer = properties.bodyWordLimitContainer;
-    this.bodyWordLimit = properties.bodyWordLimit;
-    this.$titleInput = properties.titleInput;
-    this.$titleCharacterLimitContainer =
-      properties.titleCharacterLimitContainer;
-    this.titleCharacterLimit = properties.titleCharacterLimit;
-    this.$previewTitleContainer = properties.previewTitleContainer;
-    this.handlePostBodyPreview = this.handlePostBodyPreview.bind(this);
+  constructor(props) {
+    this.$postBodyInput = props.postBodyInput;
+    this.$postBodyPreview = props.postBodyPreview;
+    this.$wordCountContainer = props.wordCountContainer;
+    this.$bodyWordLimitContainer = props.bodyWordLimitContainer;
+    this.bodyWordLimit = props.bodyWordLimit;
+    this.$titleInput = props.titleInput;
+    this.$titleCharacterLimitContainer = props.titleCharacterLimitContainer;
+    this.titleCharacterLimit = props.titleCharacterLimit;
+    this.$previewTitleContainer = props.previewTitleContainer;
     this.textConversion = this.textConversion();
   }
 
   init() {
-    if (!this.$postBodyInput.length) {
-      return;
-    }
+    if (!this.$postBodyInput.length) return;
 
+    const { editor } = window.Tilex.clientConfig;
     this.textConversion.init();
     this.setInitialPreview();
     this.observePostBodyInputChange();
     this.observeTitleInputChange();
+    this.observeImagePaste();
     autosize(this.$postBodyInput);
 
-    if (/Code Editor|Vim/.test(TIL.editor)) {
+    const useCodeMirror = /Code Editor|Vim/.test(editor);
+
+    if (useCodeMirror) {
       const defaultOptions = {
         lineNumbers: true,
         theme: 'dracula',
@@ -53,17 +54,23 @@ export default class PostForm {
       };
 
       const options =
-        TIL.editor === 'Vim'
-          ? Object.assign({}, defaultOptions, { keyMap: 'vim' })
+        editor === 'Vim'
+          ? { ...defaultOptions, keyMap: 'vim' }
           : defaultOptions;
 
       const textarea = this.$postBodyInput.get(0);
-      const editor = CodeMirror.fromTextArea(textarea, options);
+      const codeMirror = CodeMirror.fromTextArea(textarea, options);
 
       const that = this;
-      editor.on('changes', instance => {
+      codeMirror.on('changes', instance => {
         const value = instance.getValue();
         that.$postBodyInput.val(value).trigger('change');
+      });
+
+      codeMirror.on('paste', (instance, ev) => {
+        this.handleEditorPaste(ev, url => {
+          instance.replaceSelection(this.urlToMarkdownImage(url));
+        });
       });
     }
   }
@@ -114,8 +121,29 @@ export default class PostForm {
       .text(amount + ' ' + noun + plural + ' available');
   }
 
-  handlePostBodyPreview(html) {
+  handleEditorPaste = (ev, onSuccess) => {
+    const clipboard = ev.clipboardData
+      ? ev.clipboardData
+      : ev.originalEvent.clipboardData;
+    const files = clipboard.files;
+    const file = files.length > 0 ? files[0] : null;
+    const isImage = file && !!file.type.match('image');
+
+    if (isImage) {
+      uploadImage(file, onSuccess);
+    }
+  };
+
+  handlePostBodyPreview = html => {
     Prism.highlightAll(this.$postBodyPreview.html(html));
+  };
+
+  observeImagePaste() {
+    this.$postBodyInput.on('paste', ev =>
+      this.handleEditorPaste(ev, url => {
+        this.replaceSelection(ev.target, this.urlToMarkdownImage(url));
+      })
+    );
   }
 
   observePostBodyInputChange() {
@@ -137,6 +165,23 @@ export default class PostForm {
       this.updateTitleLimit();
       this.updatePreviewTitle();
     });
+  }
+
+  urlToMarkdownImage(url) {
+    return `![image](${url})`;
+  }
+
+  replaceSelection(myField, myValue) {
+    if (myField.selectionStart || myField.selectionStart == '0') {
+      var startPos = myField.selectionStart;
+      var endPos = myField.selectionEnd;
+      myField.value =
+        myField.value.substring(0, startPos) +
+        myValue +
+        myField.value.substring(endPos, myField.value.length);
+    } else {
+      myField.value += myValue;
+    }
   }
 
   textConversion() {
