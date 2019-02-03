@@ -46,8 +46,3 @@
     </div>
   </section>
 </article>
-
-<script type="text/javascript">
-  var TIL = TIL || {};
-  TIL.editor = '<%= @current_user.editor %>';
-</script>

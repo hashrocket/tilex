@@ -28,6 +28,7 @@ config :tilex, :cors_origin, System.get_env("CORS_ORIGIN")
 config :tilex, :hosted_domain, System.get_env("HOSTED_DOMAIN")
 config :tilex, :guest_author_whitelist, System.get_env("GUEST_AUTHOR_WHITELIST")
 config :tilex, :date_display_tz, System.get_env("DATE_DISPLAY_TZ")
+config :tilex, :imgur_client_id, System.get_env("IMGUR_CLIENT_ID")
 
 # Configures Elixir's Logger
 config :logger, :console,
