@@ -6,9 +6,10 @@ defmodule Mix.Tasks.Deploy do
     Deploys our environments.
   """
 
-  def run(["staging"]), do: do_run("staging")
-  def run(["production"]), do: do_run("production")
-  def run(_), do: raise("Unsupported environment")
+  @environments ~w(staging production)
+
+  def run([env]) when env in @environments, do: do_run(env)
+  def run(_), do: raise("Unsupported environment, try one of these: #{inspect(@environments)}")
 
   defp do_run(env) do
     System.cmd("git", ["fetch", "--tags"])
