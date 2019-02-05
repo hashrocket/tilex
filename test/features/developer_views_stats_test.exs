@@ -2,8 +2,6 @@ defmodule Features.DeveloperViewsStatsTest do
   require IEx
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
-  alias TilexWeb.Endpoint
-
   test "sees total number of posts by channel", %{session: session} do
     developer = Factory.insert!(:developer)
 

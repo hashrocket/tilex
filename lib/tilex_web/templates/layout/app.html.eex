@@ -114,7 +114,7 @@
           </div>
         </li>
         <li class="site_nav__statistics">
-          <%= if developer = Guardian.Plug.current_resource(@conn) do %>
+          <%= if Guardian.Plug.current_resource(@conn) do %>
             <%= link("Statistics", to: stats_path(@conn, :developer), class: "site_nav__link") %>
           <% else %>
             <%= link("Statistics", to: stats_path(@conn, :index), class: "site_nav__link") %>

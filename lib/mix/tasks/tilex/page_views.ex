@@ -1,6 +1,5 @@
 defmodule Mix.Tasks.Tilex.PageViews do
   use Mix.Task
-  import Mix.Ecto
 
   @shortdoc "Tilex Page Views: Highlight page views stats for the last couple of weeks"
 
