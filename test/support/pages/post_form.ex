@@ -70,4 +70,11 @@ defmodule Tilex.Integration.Pages.PostForm do
     session
     |> click(Query.button("Submit"))
   end
+
+  def expect_form_has_error(session, error_text) do
+    session
+    |> assert_has(Query.css("form", text: error_text))
+
+    session
+  end
 end
