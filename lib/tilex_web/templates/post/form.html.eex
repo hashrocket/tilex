@@ -6,7 +6,7 @@
       <small class="character_limit" data-limit="<%= Tilex.Post.title_max_chars %>"></small>
     </dt>
     <dd>
-      <%= text_input f, :title, placeholder: "Enter title..." %>
+      <%= text_input f, :title, required: true, maxlength: 50, placeholder: "Enter title..." %>
     </dd>
   </dl>
   <dl>
@@ -18,6 +18,7 @@
     <dd>
       <%= textarea f, :body,
         placeholder: "Enter body...",
+        required: true,
         class: "autosize",
         style: "overflow: hidden; word-wrap: break-word; height: 72px;"
       %>
@@ -27,7 +28,7 @@
       <%= error_tag f, :channel_id %>
     </dt>
     <dd>
-      <%= select f, :channel_id, @channels, prompt: "" %>
+      <%= select f, :channel_id, @channels, required: true, prompt: "" %>
     </dd>
   </dl>
   <%= submit "Submit" %>
