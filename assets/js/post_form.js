@@ -104,7 +104,7 @@ export default class PostForm {
   }
 
   updatePreviewTitle() {
-    this.$previewTitleContainer.html(this.$titleInput.val());
+    this.$previewTitleContainer.text(this.$titleInput.val());
   }
 
   renderCountMessage($el, amount, noun) {
