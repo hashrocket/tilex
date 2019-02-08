@@ -49,21 +49,15 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
 
-config :guardian, Guardian,
-  # optional
-  allowed_algos: ["HS512"],
-  # optional
-  verify_module: Guardian.JWT,
-  issuer: "MyApp",
+config :tilex, Tilex.Guardian,
+  issuer: "tilex",
   ttl: {30, :days},
   allowed_drift: 2000,
-  # optional
   verify_issuer: true,
   secret_key: %{
     "k" => "_AbBL082GKlPjoY9o-KM78PhyALavJRtZXOW7D-ZyqE",
     "kty" => "oct"
-  },
-  serializer: Tilex.GuardianSerializer
+  }
 
 config :extwitter, :oauth,
   consumer_key: System.get_env("twitter_consumer_key"),

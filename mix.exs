@@ -41,7 +41,7 @@ defmodule Tilex.Mixfile do
       {:extwitter, "~> 0.8"},
       {:floki, "~> 0.18.0"},
       {:gettext, "~> 0.13"},
-      {:guardian, "~> 0.14"},
+      {:guardian, "~> 1.0"},
       {:hackney, "1.8.0"},
       {:httpoison, "0.13.0"},
       {:html_sanitize_ex, "~> 1.2"},

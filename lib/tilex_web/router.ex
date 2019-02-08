@@ -15,8 +15,9 @@ defmodule TilexWeb.Router do
   end
 
   pipeline :browser_auth do
+    plug(Guardian.Plug.Pipeline, module: Tilex.Guardian)
     plug(Guardian.Plug.VerifySession)
-    plug(Guardian.Plug.LoadResource)
+    plug(Guardian.Plug.LoadResource, allow_blank: true)
   end
 
   pipeline :api do
