@@ -2,13 +2,12 @@ defmodule TilexWeb.AuthController do
   use TilexWeb, :controller
   plug(Ueberauth)
 
-  alias Guardian.Plug
-  alias Tilex.{Developer, Repo}
+  alias Tilex.{Developer, Repo, Guardian}
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     case authenticate(auth) do
       {:ok, developer} ->
-        conn = Plug.sign_in(conn, developer)
+        conn = Guardian.Plug.sign_in(conn, developer)
 
         conn
         |> put_flash(:info, "Signed in with #{developer.email}")
@@ -27,7 +26,7 @@ defmodule TilexWeb.AuthController do
 
   def delete(conn, _params) do
     conn
-    |> Plug.sign_out()
+    |> Guardian.Plug.sign_out()
     |> put_flash(:info, "Signed out")
     |> redirect(to: post_path(conn, :index))
   end

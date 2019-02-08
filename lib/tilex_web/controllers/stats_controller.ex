@@ -11,7 +11,7 @@ defmodule TilexWeb.StatsController do
     when action in ~w(admin)
   )
 
-  def unauthenticated(conn, _) do
+  def auth_error(conn, {failure_type, reason}, opts) do
     conn
     |> put_status(302)
     |> put_flash(:info, "Authentication required")
