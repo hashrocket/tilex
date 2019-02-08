@@ -171,7 +171,7 @@ defmodule TilexWeb.PostController do
         |> redirect(to: post_path(conn, :show, post))
 
       {:error, changeset} ->
-        render(conn, "edit.html", post: post, changeset: changeset)
+        render(conn, "edit.html", post: post, changeset: changeset, current_user: current_user)
     end
   end
 
