@@ -8,7 +8,7 @@ export function uploadImage(file, onSuccess, onError) {
   }
 
   const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://api.imgur.com/3/image');
+  xhr.open('POST', 'https://api.imgur.com/3/image', true);
   xhr.setRequestHeader('Authorization', `Client-id ${imgurApiKey}`);
   xhr.onload = () => {
     const parsedResponse = JSON.parse(xhr.response);
