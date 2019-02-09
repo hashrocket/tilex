@@ -2,7 +2,6 @@ defmodule TilexWeb.Router do
   use TilexWeb, :router
 
   @auth_controller Application.get_env(:tilex, :auth_controller)
-  @cors_origin Application.get_env(:tilex, :cors_origin)
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -21,10 +20,6 @@ defmodule TilexWeb.Router do
   end
 
   pipeline :api do
-    if @cors_origin do
-      plug(CORSPlug, origin: @cors_origin)
-    end
-
     plug(:accepts, ["json"])
   end
 

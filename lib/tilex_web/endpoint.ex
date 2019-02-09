@@ -1,11 +1,21 @@
 defmodule TilexWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :tilex
 
+  @cors_origin Application.get_env(:tilex, :cors_origin)
+
   if Application.get_env(:tilex, :sql_sandbox) do
     plug(Phoenix.Ecto.SQL.Sandbox)
   end
 
   socket("/socket", TilexWeb.UserSocket)
+
+  if @cors_origin do
+    origin =
+      @cors_origin
+      |> String.split([",", " "], trim: true)
+
+    plug(CORSPlug, origin: origin)
+  end
 
   # Serve at "/" the static files from "priv/static" directory.
   #
