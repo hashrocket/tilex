@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/tilex
     docker:
-      - image: circleci/elixir:1.6
+      - image: circleci/elixir:1.7.4-node-browsers
       - image: postgres:9.6.5
         environment:
           POSTGRES_USER: postgres
@@ -11,18 +11,10 @@ jobs:
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-      - run: sudo apt-get install nodejs
       - run: sudo apt-get install build-essential
       - run: sudo apt-get install libnss3 libgconf-2-4
-      - run: curl -L -O "http://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip"
-      - run: file chromedriver_linux64.zip
-      - run: sudo unzip chromedriver_linux64.zip chromedriver -d /usr/local/bin/
-      - run: sudo chmod +x /usr/local/bin/chromedriver
       - run: sudo apt-get install libxss1 libappindicator1 libindicator7
-      - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       - run: sudo apt-get install libasound2 libgtk-3-0 libxtst6 fonts-liberation lsb-release xdg-utils libappindicator3-1
-      - run: sudo dpkg -i ./google-chrome*.deb
       - run: sudo apt-get install -f
       - run: elixir -v
       - run: mix local.hex --force
