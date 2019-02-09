@@ -30,13 +30,13 @@
     },
     "SECRET_KEY_BASE": {
       "required": true
+    },
+    "IMGUR_CLIENT_ID": {
+      "required": true
     }
   },
-  "formation": {
-  },
-  "addons": [
-    "heroku-postgresql"
-  ],
+  "formation": {},
+  "addons": ["heroku-postgresql"],
   "buildpacks": [
     {
       "url": "https://github.com/HashNuke/heroku-buildpack-elixir.git"
