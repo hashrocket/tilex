@@ -26,6 +26,7 @@ export default class PostForm {
     this.$titleCharacterLimitContainer = props.titleCharacterLimitContainer;
     this.titleCharacterLimit = props.titleCharacterLimit;
     this.$previewTitleContainer = props.previewTitleContainer;
+    this.loadingIndicator = props.loadingIndicator;
     this.textConversion = this.textConversion();
   }
 
@@ -61,16 +62,23 @@ export default class PostForm {
       const textarea = this.$postBodyInput.get(0);
       const codeMirror = CodeMirror.fromTextArea(textarea, options);
 
-      const that = this;
+      // const that = this;
       codeMirror.on('changes', instance => {
         const value = instance.getValue();
-        that.$postBodyInput.val(value).trigger('change');
+        this.$postBodyInput.val(value).trigger('change');
       });
 
       codeMirror.on('paste', (instance, ev) => {
-        this.handleEditorPaste(ev, url => {
+        const handleImageUploadSuccess = url => {
           instance.replaceSelection(this.urlToMarkdownImage(url));
-        });
+          this.hideLoadingIndicator();
+        };
+
+        this.handleEditorPaste(
+          ev,
+          handleImageUploadSuccess,
+          this.handleImageUploadError
+        );
       });
     }
   }
@@ -121,7 +129,7 @@ export default class PostForm {
       .text(amount + ' ' + noun + plural + ' available');
   }
 
-  handleEditorPaste = (ev, onSuccess) => {
+  handleEditorPaste = (ev, onSuccess, onError) => {
     const clipboard = ev.clipboardData
       ? ev.clipboardData
       : ev.originalEvent.clipboardData;
@@ -130,8 +138,22 @@ export default class PostForm {
     const isImage = file && !!file.type.match('image');
 
     if (isImage) {
-      uploadImage(file, onSuccess);
+      this.showLoadingIndicator();
+      uploadImage(file, onSuccess, onError);
     }
+  };
+
+  showLoadingIndicator() {
+    this.loadingIndicator.style.display = 'flex';
+  }
+
+  hideLoadingIndicator() {
+    this.loadingIndicator.style.display = 'none';
+  }
+
+  handleImageUploadError = ({ showAlert = true }) => {
+    if (showAlert) alert(`Failed to upload image to Imgur`);
+    this.hideLoadingIndicator();
   };
 
   handlePostBodyPreview = html => {
@@ -139,10 +161,17 @@ export default class PostForm {
   };
 
   observeImagePaste() {
+    const handleImageUploadSuccess = url => {
+      this.replaceSelection(ev.target, this.urlToMarkdownImage(url));
+      this.hideLoadingIndicator();
+    };
+
     this.$postBodyInput.on('paste', ev =>
-      this.handleEditorPaste(ev, url => {
-        this.replaceSelection(ev.target, this.urlToMarkdownImage(url));
-      })
+      this.handleEditorPaste(
+        ev,
+        handleImageUploadSuccess,
+        this.handleImageUploadError
+      )
     );
   }
 

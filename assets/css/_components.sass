@@ -332,6 +332,32 @@ form
     padding: 1em 0 .1em 3vw
     font-size: .9em
 
+.loading-indicator
+  align-items: center
+  background: rgba(0, 0, 0, 0.6)
+  color: $light
+  display: none
+  height: 100%
+  justify-content: center
+  left: 0
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 100
+
+  svg path,
+  svg rect
+    fill: $blue
+
+  .content
+    align-items: center
+    background: rgba(0,0,0,0.7)
+    border-radius: 1rem
+    display: flex
+    flex-direction: column
+    padding: 3rem
+
+
 .more-info
   margin: 3vw auto
   text-align: center
