@@ -22,7 +22,6 @@ jobs:
       - run: mix deps.get
       - run: MIX_ENV=test mix ecto.create
       - run: MIX_ENV=test mix ecto.migrate
-      - run: sudo npm install -g webpack
       - run: cd assets && npm install
       - run: cd assets && node node_modules/webpack/bin/webpack.js --mode production
       - run: mix phx.digest
