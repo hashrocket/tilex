@@ -1,6 +1,4 @@
 defmodule Tilex.Notifications do
-  @timezone Application.get_env(:tilex, :date_display_tz, "America/Chicago")
-
   use GenServer
 
   alias Ecto.{Changeset, DateTime}
@@ -89,14 +87,11 @@ defmodule Tilex.Notifications do
   end
 
   defp schedule_report do
-    timezone =
-      case Timex.Timezone.get(@timezone) do
-        {:error, _} -> "America/Chicago"
-        zone -> zone
-      end
+    timezone = Application.get_env(:tilex, :date_display_tz)
 
     milliseconds_until_next_monday_nine_am =
       timezone
+      |> Timex.Timezone.get()
       |> Timex.now()
       |> Timex.shift(days: 7)
       |> Timex.beginning_of_week()
