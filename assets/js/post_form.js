@@ -161,18 +161,18 @@ export default class PostForm {
   };
 
   observeImagePaste() {
-    const handleImageUploadSuccess = url => {
-      this.replaceSelection(ev.target, this.urlToMarkdownImage(url));
-      this.hideLoadingIndicator();
-    };
+    this.$postBodyInput.on('paste', ev => {
+      const handleImageUploadSuccess = url => {
+        this.replaceSelection(ev.target, this.urlToMarkdownImage(url));
+        this.hideLoadingIndicator();
+      };
 
-    this.$postBodyInput.on('paste', ev =>
       this.handleEditorPaste(
         ev,
         handleImageUploadSuccess,
         this.handleImageUploadError
-      )
-    );
+      );
+    });
   }
 
   observePostBodyInputChange() {
