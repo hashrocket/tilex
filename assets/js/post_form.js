@@ -160,11 +160,18 @@ export default class PostForm {
     Prism.highlightAll(this.$postBodyPreview.html(html));
   };
 
+  handlePostBodyChanged = ({ target: { value } }) => {
+    this.updateWordCount();
+    this.updateWordLimit();
+    this.textConversion.convert(value, 'markdown');
+  };
+
   observeImagePaste() {
     this.$postBodyInput.on('paste', ev => {
       const handleImageUploadSuccess = url => {
-        this.replaceSelection(ev.target, this.urlToMarkdownImage(url));
         this.hideLoadingIndicator();
+        this.replaceSelection(ev.target, this.urlToMarkdownImage(url));
+        this.handlePostBodyChanged(ev);
       };
 
       this.handleEditorPaste(
@@ -176,17 +183,8 @@ export default class PostForm {
   }
 
   observePostBodyInputChange() {
-    this.$postBodyInput.on('keyup', e => {
-      this.updateWordCount();
-      this.updateWordLimit();
-      this.textConversion.convert(e.target.value, 'markdown');
-    });
-
-    this.$postBodyInput.on('change', e => {
-      this.updateWordCount();
-      this.updateWordLimit();
-      this.textConversion.convert(e.target.value, 'markdown');
-    });
+    this.$postBodyInput.on('keyup', this.handlePostBodyChanged);
+    this.$postBodyInput.on('change', this.handlePostBodyChanged);
   }
 
   observeTitleInputChange() {
@@ -200,16 +198,16 @@ export default class PostForm {
     return `![image](${url})`;
   }
 
-  replaceSelection(myField, myValue) {
-    if (myField.selectionStart || myField.selectionStart == '0') {
-      var startPos = myField.selectionStart;
-      var endPos = myField.selectionEnd;
-      myField.value =
-        myField.value.substring(0, startPos) +
+  replaceSelection(field, myValue) {
+    if (field.selectionStart || field.selectionStart == '0') {
+      var startPos = field.selectionStart;
+      var endPos = field.selectionEnd;
+      field.value =
+        field.value.substring(0, startPos) +
         myValue +
-        myField.value.substring(endPos, myField.value.length);
+        field.value.substring(endPos, field.value.length);
     } else {
-      myField.value += myValue;
+      field.value += myValue;
     }
   }
 
