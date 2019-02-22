@@ -34,7 +34,19 @@ defmodule Tilex.Notifications do
   ### Server API
 
   def init(_) do
+    schedule_report()
     {:ok, :nostate}
+  end
+
+  def handle_info(:generate_page_views_report, :nostate) do
+    schedule_report()
+
+    with {:ok, report} <- Tilex.PageViewsReport.report() do
+      notifiers()
+      |> Enum.each(& &1.page_views_report(report))
+    end
+
+    {:noreply, :nostate}
   end
 
   def handle_cast({:post_created, %Post{} = post}, :nostate) do
@@ -72,5 +84,27 @@ defmodule Tilex.Notifications do
 
   def notifiers(notifiers_supervisor \\ NotifiersSupervisor) do
     notifiers_supervisor.children()
+  end
+
+  defp schedule_report do
+    timezone = Application.get_env(:tilex, :date_display_tz)
+
+    milliseconds_until_next_monday_nine_am =
+      timezone
+      |> Timex.Timezone.get()
+      |> Timex.now()
+      |> Timex.shift(days: 7)
+      |> Timex.beginning_of_week()
+      |> Timex.shift(hours: 9)
+      |> Timex.diff(
+        Timex.now(timezone),
+        :milliseconds
+      )
+
+    Process.send_after(
+      __MODULE__,
+      :generate_page_views_report,
+      milliseconds_until_next_monday_nine_am
+    )
   end
 end
