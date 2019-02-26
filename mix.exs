@@ -55,7 +55,7 @@ defmodule Tilex.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"},
       {:ueberauth_google, "~> 0.5"},
-      {:wallaby, "~> 0.19.1", only: :test}
+      {:wallaby, "~> 0.22.0", [runtime: false, only: :test]}
     ]
   end
 
