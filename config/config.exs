@@ -8,6 +8,9 @@ use Mix.Config
 # General application configuration
 config :tilex, ecto_repos: [Tilex.Repo]
 
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
 # Configures the endpoint
 config :tilex, TilexWeb.Endpoint,
   url: [host: "localhost"],

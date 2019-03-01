@@ -2,7 +2,7 @@ defmodule Mix.Tasks.Ecto.Twiki do
   use Mix.Task
 
   alias Ecto.{Migrator}
-  alias Mix.{Ecto, Project}
+  alias Mix.{Ecto, Project, EctoSQL}
 
   @shortdoc "Ecto Migration: Up, Down, Up"
 
@@ -23,7 +23,7 @@ defmodule Mix.Tasks.Ecto.Twiki do
   defp twiki(repo) when is_atom(repo) do
     migration_dir =
       repo
-      |> Ecto.source_repo_priv()
+      |> EctoSQL.source_repo_priv()
       |> Path.absname()
       |> Path.join("migrations")
 

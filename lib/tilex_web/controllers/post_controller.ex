@@ -90,7 +90,7 @@ defmodule TilexWeb.PostController do
 
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, Poison.encode!(%{likes: likes}))
+    |> send_resp(200, Jason.encode!(%{likes: likes}))
   end
 
   def unlike(conn, %{"slug" => slug}) do
@@ -98,7 +98,7 @@ defmodule TilexWeb.PostController do
 
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, Poison.encode!(%{likes: likes}))
+    |> send_resp(200, Jason.encode!(%{likes: likes}))
   end
 
   def create(conn, %{"post" => post_params}) do
@@ -193,7 +193,8 @@ defmodule TilexWeb.PostController do
       :error ->
         conn
         |> put_status(404)
-        |> render(TilexWeb.ErrorView, "404.html")
+        |> put_view(TilexWeb.ErrorView)
+        |> render("404.html")
         |> halt()
     end
   end

@@ -1,7 +1,7 @@
 defmodule Tilex.Notifications do
   use GenServer
 
-  alias Ecto.{Changeset, DateTime}
+  alias Ecto.Changeset
   alias Tilex.{Post, Repo}
   alias TilexWeb.Endpoint
   alias TilexWeb.Router.Helpers
@@ -57,7 +57,10 @@ defmodule Tilex.Notifications do
     notifiers()
     |> Enum.each(& &1.post_created(post, developer, channel, url))
 
-    post_changeset = Changeset.change(post, %{tweeted_at: DateTime.utc()})
+    post_changeset =
+      post
+      |> Changeset.change(%{tweeted_at: DateTime.truncate(DateTime.utc_now(), :second)})
+
     Repo.update!(post_changeset)
 
     {:noreply, :nostate}

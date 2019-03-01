@@ -7,7 +7,7 @@ defmodule TilexWeb.Endpoint do
     plug(Phoenix.Ecto.SQL.Sandbox)
   end
 
-  socket("/socket", TilexWeb.UserSocket)
+  socket("/socket", TilexWeb.UserSocket, websocket: true)
 
   if @cors_origin do
     origin =
@@ -50,7 +50,7 @@ defmodule TilexWeb.Endpoint do
     Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Jason
   )
 
   plug(Plug.MethodOverride)
