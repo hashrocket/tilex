@@ -26,7 +26,7 @@ defmodule Tilex.Post do
     belongs_to(:channel, Channel)
     belongs_to(:developer, Developer)
 
-    timestamps()
+    timestamps(type: :utc_datetime)
   end
 
   def changeset(struct, params \\ %{}) do

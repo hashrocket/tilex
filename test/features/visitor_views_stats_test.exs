@@ -66,7 +66,9 @@ defmodule Features.VisitorViewsStatsTest do
 
   test "sees til activity", %{session: session} do
     dt = fn {_y, _m, _d} = date ->
-      Ecto.DateTime.cast!({date, {12, 0, 0}})
+      {date, {12, 0, 0}}
+      |> NaiveDateTime.from_erl!()
+      |> DateTime.from_naive!("Etc/UTC")
     end
 
     today = Timex.today()
