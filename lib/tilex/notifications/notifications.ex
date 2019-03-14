@@ -111,7 +111,8 @@ defmodule Tilex.Notifications do
   end
 
   defp parsed_time_zone do
-    Application.get_env(:tilex, :date_display_tz)
+    :tilex
+    |> Application.get_env(:date_display_tz)
     |> Timex.Timezone.get()
     |> case do
       {:error, _error} ->
