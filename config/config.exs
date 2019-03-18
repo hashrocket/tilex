@@ -53,7 +53,7 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
 
-config :tilex, Tilex.Guardian,
+config :tilex, Tilex.Auth.Guardian,
   issuer: "tilex",
   ttl: {30, :days},
   allowed_drift: 2000,

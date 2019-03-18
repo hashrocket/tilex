@@ -1,4 +1,4 @@
-defmodule Tilex.Guardian do
+defmodule Tilex.Auth.Guardian do
   use Guardian, otp_app: :tilex
 
   alias Tilex.{Developer, Repo}
