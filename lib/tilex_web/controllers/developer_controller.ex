@@ -1,8 +1,7 @@
 defmodule TilexWeb.DeveloperController do
   use TilexWeb, :controller
 
-  alias Guardian.Plug
-  alias Tilex.{Developer, Posts, Repo}
+  alias Tilex.{Developer, Posts, Repo, Auth}
 
   def show(conn, %{"name" => username} = params) do
     page =
@@ -23,14 +22,14 @@ defmodule TilexWeb.DeveloperController do
   end
 
   def edit(conn, _params) do
-    developer = Plug.current_resource(conn)
+    developer = Auth.Guardian.Plug.current_resource(conn)
     changeset = Developer.changeset(developer)
 
     render(conn, "edit.html", developer: developer, changeset: changeset)
   end
 
   def update(conn, %{"developer" => developer_params}) do
-    developer = Plug.current_resource(conn)
+    developer = Auth.Guardian.Plug.current_resource(conn)
 
     changeset = Developer.changeset(developer, developer_params)
 

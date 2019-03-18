@@ -7,8 +7,8 @@ defmodule TilexWeb.StatsController do
 
   plug(
     Guardian.EnsureAuthenticated,
-    [handler: __MODULE__]
-    when action in ~w(admin)
+    [error_handler: __MODULE__]
+    when action in ~w(developer)a
   )
 
   def auth_error(conn, {_failure_type, _reason}, _opts) do
