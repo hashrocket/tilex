@@ -15,7 +15,8 @@ defmodule TilexWeb.Router do
 
   pipeline :browser_auth do
     plug(Guardian.Plug.Pipeline,
-      module: Tilex.Auth.Guardian
+      module: Tilex.Auth.Guardian,
+      error_handler: Tilex.Auth.ErrorHandler
     )
 
     plug(Guardian.Plug.VerifySession)
