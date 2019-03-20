@@ -42,7 +42,7 @@ defmodule Tilex.Mixfile do
       {:floki, "~> 0.18.0"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 1.0"},
-      {:hackney, "1.8.0"},
+      {:hackney, "1.8.6"},
       {:html_sanitize_ex, "~> 1.2"},
       {:httpoison, "0.13.0"},
       {:jason, "~> 1.0"},
