@@ -39,7 +39,7 @@ defmodule Tilex.Mixfile do
       {:earmark, github: "pragdave/earmark", ref: "2bc9051"},
       {:ecto_sql, "~> 3.0"},
       {:extwitter, "~> 0.8"},
-      {:floki, "~> 0.18.0"},
+      {:floki, "~> 0.20.4"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 1.0"},
       {:hackney, "1.15.1"},
