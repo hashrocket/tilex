@@ -33,7 +33,7 @@ defmodule Tilex.Mixfile do
     [
       {:appsignal, "~> 1.0"},
       {:basic_auth, "~> 2.1"},
-      {:cachex, "~> 2.1"},
+      {:cachex, "~> 3.1"},
       {:cors_plug, "~> 2.0"},
       {:credo, "~> 1.0.3", only: [:dev, :test], runtime: false},
       {:earmark, github: "pragdave/earmark", ref: "2bc9051"},
