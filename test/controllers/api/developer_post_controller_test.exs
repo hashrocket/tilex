@@ -12,8 +12,14 @@ defmodule Tilex.Api.DeveloperPostControllerTest do
       "Get It Together, Lemon"
     ]
 
-    Enum.each(jack_post_titles, fn title ->
-      Factory.insert!(:post, title: title, developer: jackdonaughy)
+    jack_post_titles
+    |> Enum.with_index()
+    |> Enum.map(fn {title, index} ->
+      Factory.insert!(:post,
+        title: title,
+        developer: jackdonaughy,
+        inserted_at: Timex.to_datetime({{2018, 1, 1}, {1, 1, index}}, "Etc/UTC")
+      )
     end)
 
     lizlemon = Factory.insert!(:developer, username: "lizlemon")
