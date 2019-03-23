@@ -5,11 +5,11 @@ defmodule Tilex.Cache do
     |> process_cache(key, value_block)
   end
 
-  defp process_cache({:ok, value}, _, _), do: value
-
-  defp process_cache({:missing, _}, key, value_block) do
+  defp process_cache({:ok, nil}, key, value_block) do
     value = value_block.()
-    Cachex.set!(:tilex_cache, key, value)
+    Cachex.put!(:tilex_cache, key, value)
     value
   end
+
+  defp process_cache({:ok, value}, _, _), do: value
 end
