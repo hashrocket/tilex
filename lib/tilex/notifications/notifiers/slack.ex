@@ -34,7 +34,14 @@ defmodule Tilex.Notifications.Notifiers.Slack do
   end
 
   defp send_slack_message(message) do
-    endpoint = System.get_env("slack_post_endpoint")
-    HTTPoison.post("https://hooks.slack.com" <> endpoint, "{\"text\": \"#{message}\"}")
+    endpoint =
+      String.to_charlist("https://hooks.slack.com" <> System.get_env("slack_post_endpoint"))
+
+    :httpc.request(
+      :post,
+      {endpoint, [], 'application/json', "{\"text\": \"#{message}\"}"},
+      [],
+      []
+    )
   end
 end
