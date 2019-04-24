@@ -23,7 +23,7 @@
     "compression-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^4.5.0",
     "css-loader": "^0.28.10",
-    "mini-css-extract-plugin": "^0.4.0",
+    "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "sass-loader": "^7.1.0",
