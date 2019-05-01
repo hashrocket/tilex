@@ -9,6 +9,7 @@ jobs:
           POSTGRES_USER: postgres
           ASYNC_FEATURE_TEST: yes
           DATE_DISPLAY_TZ: America/Chicago
+
     steps:
       - checkout
       - run: sudo apt-get update
