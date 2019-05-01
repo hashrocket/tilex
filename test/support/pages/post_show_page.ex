@@ -26,7 +26,7 @@ defmodule Tilex.Integration.Pages.PostShowPage do
     expected_title = Map.fetch!(attrs, :title)
     expected_body = Map.fetch!(attrs, :body)
     expected_channel = Map.fetch!(attrs, :channel)
-    expected_likes_count = Map.fetch!(attrs, :likes_count) |> to_string()
+    expected_likes_count = attrs |> Map.fetch!(:likes_count) |> to_string()
 
     session
     |> Browser.find(Query.css(".post h1", text: expected_title))
