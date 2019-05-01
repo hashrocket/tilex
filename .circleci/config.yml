@@ -28,7 +28,7 @@ jobs:
       - run: cd assets && node node_modules/webpack/bin/webpack.js --mode production
       - run: mix phx.digest
       - run: mix format --check-formatted
-      - run: mix test
       - run: mix credo
+      - run: mix test
       - store_artifacts:
           path: /home/circleci/tilex/screenshots
