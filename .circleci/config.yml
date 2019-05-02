@@ -9,15 +9,11 @@ jobs:
           POSTGRES_USER: postgres
           ASYNC_FEATURE_TEST: yes
           DATE_DISPLAY_TZ: America/Chicago
+
     steps:
       - checkout
       - run: sudo apt-get update
-      - run: sudo apt-get install build-essential
-      - run: sudo apt-get install libnss3 libgconf-2-4
-      - run: sudo apt-get install libxss1 libappindicator1 libindicator7
-      - run: sudo apt-get install libasound2 libgtk-3-0 libxtst6 fonts-liberation lsb-release xdg-utils libappindicator3-1
-      - run: sudo apt-get install -f
-      - run: elixir -v
+      - run: sudo apt-get install build-essential libnss3 libgconf-2-4 libxss1 libappindicator1 libindicator7 libasound2 libgtk-3-0 libxtst6 fonts-liberation lsb-release xdg-utils libappindicator3-1
       - run: mix local.hex --force
       - run: mix local.rebar --force
       - run: mix deps.get
@@ -27,7 +23,7 @@ jobs:
       - run: cd assets && node node_modules/webpack/bin/webpack.js --mode production
       - run: mix phx.digest
       - run: mix format --check-formatted
-      - run: mix test
       - run: mix credo
+      - run: mix test
       - store_artifacts:
           path: /home/circleci/tilex/screenshots
