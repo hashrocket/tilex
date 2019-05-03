@@ -27,7 +27,7 @@ defmodule Tilex.Factory do
   end
 
   def build(factory_name, attributes) do
-    build(factory_name) |> struct(attributes)
+    factory_name |> build() |> struct(attributes)
   end
 
   def insert!(factory_name, attributes \\ []) do
