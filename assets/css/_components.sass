@@ -1,3 +1,19 @@
+@keyframes heartbeat
+  0%
+    transform: scale(1)
+  100%
+    transform: scale(1.15)
+
+@keyframes jiggle
+  5%, 25%
+    transform: scale(1.0, 1.0)
+  10%
+    transform: scale(1.1, 0.9)
+  15%
+    transform: scale(0.9, 1.1) translate(0, -5px)
+  20%
+    transform: scale(1.0, 1.0) translate(0, -5px)
+
 a
   text-decoration: none
   color: $red
@@ -139,6 +155,7 @@ nav.pagination
             margin-right: 1rem
             background: svg-url(heart, darken($light, 10%)) center no-repeat
             background-size: contain
+            animation: jiggle 2s ease-in
           span.post__like-label
             display: none
           &.liked
@@ -146,6 +163,9 @@ nav.pagination
             border-color: $red
             &:before
               background-image: svg-url(heart, $red)
+        &.post__like-link:not(.liked)
+          &:before
+            animation: heartbeat 0.5s infinite ease-out alternate
 
 ul.post_list
   li
