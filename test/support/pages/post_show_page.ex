@@ -26,7 +26,6 @@ defmodule Tilex.Integration.Pages.PostShowPage do
     expected_title = Map.fetch!(attrs, :title)
     expected_body = Map.fetch!(attrs, :body)
     expected_channel = Map.fetch!(attrs, :channel)
-    expected_likes_count = attrs |> Map.fetch!(:likes_count) |> to_string()
 
     session
     |> Browser.find(Query.css(".post h1", text: expected_title))
@@ -43,9 +42,6 @@ defmodule Tilex.Integration.Pages.PostShowPage do
       channel_name =~ ~r/#{expected_channel}/i,
       "Unable to find text channel #{expected_channel}, instead found #{channel_name}"
     )
-
-    session
-    |> Browser.find(Query.css(".js-like-action", text: expected_likes_count))
 
     session
   end

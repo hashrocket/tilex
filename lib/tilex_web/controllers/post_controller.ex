@@ -3,7 +3,7 @@ defmodule TilexWeb.PostController do
   import Ecto.Query
 
   alias Guardian.Plug
-  alias Tilex.{Channel, Notifications, Liking, Post, Posts}
+  alias Tilex.{Channel, Notifications, Post, Posts}
 
   plug(:load_channels when action in [:new, :create, :edit, :update])
   plug(:extract_slug when action in [:show, :edit, :update])
@@ -83,22 +83,6 @@ defmodule TilexWeb.PostController do
     |> assign(:changeset, changeset)
     |> assign(:current_user, current_user)
     |> render("new.html")
-  end
-
-  def like(conn, %{"slug" => slug}) do
-    likes = Liking.like(slug)
-
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{likes: likes}))
-  end
-
-  def unlike(conn, %{"slug" => slug}) do
-    likes = Liking.unlike(slug)
-
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{likes: likes}))
   end
 
   def create(conn, %{"post" => post_params}) do
