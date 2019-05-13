@@ -86,19 +86,31 @@ defmodule TilexWeb.PostController do
   end
 
   def like(conn, %{"slug" => slug}) do
-    likes = Liking.like(slug)
+    body =
+      if blocked_ip?(conn) do
+        %{}
+      else
+        likes = Liking.like(slug)
+        %{likes: likes}
+      end
 
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{likes: likes}))
+    |> send_resp(200, Jason.encode!(body))
   end
 
   def unlike(conn, %{"slug" => slug}) do
-    likes = Liking.unlike(slug)
+    body =
+      if blocked_ip?(conn) do
+        %{}
+      else
+        likes = Liking.unlike(slug)
+        %{likes: likes}
+      end
 
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{likes: likes}))
+    |> send_resp(200, Jason.encode!(body))
   end
 
   def create(conn, %{"post" => post_params}) do
@@ -221,4 +233,17 @@ defmodule TilexWeb.PostController do
   end
 
   defp robust_page(_params), do: 1
+
+  defp blocked_ip?(conn) do
+    case Application.get_env(:tilex, :blocked_ips) do
+      nil ->
+        false
+
+      blocked_ips ->
+        blocked_list = String.split(blocked_ips, ",")
+        user_ip = Enum.join(Tuple.to_list(conn.remote_ip), ".")
+
+        Enum.member?(blocked_list, user_ip)
+    end
+  end
 end
