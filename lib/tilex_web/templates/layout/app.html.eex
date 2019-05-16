@@ -85,7 +85,7 @@
           <%= link("search", to: "#", class: "site_nav__link") %>
           <div class="site_nav__toggle">
             <%= form_tag post_path(@conn, :index), method: :get do %>
-              <input type="search" name="q" id="q">
+              <input type="search" name="q" id="q" aria-label="Search">
               <%= submit "Search" %>
             <% end %>
           </div>
