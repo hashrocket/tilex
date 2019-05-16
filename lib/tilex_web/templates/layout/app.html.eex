@@ -91,7 +91,7 @@
           </div>
         </li>
         <li class="site_nav__about">
-          <%= link("?", to: "#", class: "site_nav__link") %>
+          <%= link("?", to: "#", class: "site_nav__link", aria_label: "About TIL") %>
           <div class="site_nav__toggle">
             <div class="copy">
               Today I Learned is an open-source project by
