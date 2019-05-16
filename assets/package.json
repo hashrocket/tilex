@@ -19,7 +19,7 @@
     "@babel/core": "^7.4.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.0.6",
     "compression-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.1.1",
