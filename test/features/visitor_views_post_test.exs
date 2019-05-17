@@ -154,6 +154,38 @@ defmodule VisitorViewsPostTest do
     refute twitter_description =~ "Another sentence"
   end
 
+  test "and clicks 'like' for that post", %{session: session} do
+    developer = Factory.insert!(:developer)
+    post = Factory.insert!(:post, title: "A special post", developer: developer, likes: 1)
+
+    session
+    |> visit(post_path(Endpoint, :show, post))
+    |> find(Query.css("header[data-likes-loaded=true]"))
+
+    link = find(session, Query.css(".post .js-like-action"))
+
+    Element.click(link)
+
+    session
+    |> assert_has(Query.css("header[data-likes-loaded=true]"))
+    |> assert_has(Query.css(".post .js-like-action.liked"))
+
+    post = Repo.get(Post, post.id)
+    assert post.likes == 2
+    assert post.max_likes == 2
+
+    Element.click(link)
+
+    session
+    |> assert_has(Query.css("header[data-likes-loaded=true]"))
+    |> assert_has(Query.css(".post .js-like-action"))
+    |> refute_has(Query.css(".post .js-like-action.liked"))
+
+    post = Repo.get(Post, post.id)
+    assert post.likes == 1
+    assert post.max_likes == 2
+  end
+
   test "sees raw markdown version", %{session: session} do
     title = "A special post"
 
