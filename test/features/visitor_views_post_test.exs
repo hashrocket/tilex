@@ -155,6 +155,7 @@ defmodule VisitorViewsPostTest do
   end
 
   test "and clicks 'like' for that post", %{session: session} do
+    Tilex.DateTimeMock.start_link([])
     developer = Factory.insert!(:developer)
     post = Factory.insert!(:post, title: "A special post", developer: developer, likes: 1)
 
