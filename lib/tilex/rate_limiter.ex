@@ -13,7 +13,7 @@ defmodule Tilex.RateLimiter do
   end
 
   def check(ip: ip) do
-    GenServer.call(pid(), {:check_ip, ip})
+    GenServer.call(@name, {:check_ip, ip})
   end
 
   # Server ----------------------------------------------
@@ -38,9 +38,5 @@ defmodule Tilex.RateLimiter do
     new_state = Map.put(state, ip, current_requests)
 
     {:reply, length(current_requests) <= @limit, new_state}
-  end
-
-  defp pid do
-    Process.whereis(@name)
   end
 end
