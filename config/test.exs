@@ -27,6 +27,7 @@ config :tilex, :hosted_domain, "hashrocket.com"
 config :tilex, :auth_controller, Test.AuthController
 config :tilex, :slack_notifier, Test.Notifications.Notifiers.Slack
 config :tilex, :twitter_notifier, Test.Notifications.Notifiers.Twitter
+config :tilex, :date_time_module, Tilex.DateTimeMock
 
 config :tilex, :async_feature_test, System.get_env("ASYNC_FEATURE_TEST") == "yes"
 

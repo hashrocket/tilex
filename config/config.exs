@@ -33,6 +33,16 @@ config :tilex, :guest_author_whitelist, System.get_env("GUEST_AUTHOR_WHITELIST")
 config :tilex, :date_display_tz, System.get_env("DATE_DISPLAY_TZ")
 config :tilex, :imgur_client_id, System.get_env("IMGUR_CLIENT_ID")
 
+config :tilex,
+       :rate_limiter_requests_per_time_period,
+       System.get_env("RATE_LIMIT_REQUESTS_PER_TIME_PERIOD") || 5
+
+config :tilex,
+       :rate_limiter_time_period_minutes,
+       System.get_env("RATE_LIMIT_TIME_PERIOD_MINUTES") || 1
+
+config :tilex, :date_time_module, DateTime
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

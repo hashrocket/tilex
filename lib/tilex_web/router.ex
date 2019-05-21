@@ -27,6 +27,10 @@ defmodule TilexWeb.Router do
     plug(:accepts, ["json"])
   end
 
+  pipeline :rate_limit do
+    plug(Tilex.Plug.RateLimiter)
+  end
+
   scope "/api", TilexWeb do
     pipe_through([:api])
 
@@ -35,6 +39,13 @@ defmodule TilexWeb.Router do
 
   get("/rss", TilexWeb.FeedController, :index)
   get("/pixel", TilexWeb.PixelController, :index)
+
+  scope "/", TilexWeb do
+    pipe_through([:browser, :rate_limit])
+
+    post("/posts/:slug/like.json", PostController, :like)
+    post("/posts/:slug/unlike.json", PostController, :unlike)
+  end
 
   scope "/", TilexWeb do
     pipe_through([:browser, :browser_auth])
@@ -57,7 +68,6 @@ defmodule TilexWeb.Router do
 
     get("/", PostController, :index)
     resources("/posts", PostController, param: "titled_slug")
-
     # catch-any route should be last
     get("/:name", ChannelController, :show)
   end

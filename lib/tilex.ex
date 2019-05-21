@@ -14,6 +14,7 @@ defmodule Tilex do
       supervisor(TilexWeb.Endpoint, []),
       worker(Cachex, [:tilex_cache, []]),
       worker(Tilex.Notifications, []),
+      worker(Tilex.RateLimiter, []),
       supervisor(Tilex.Notifications.NotifiersSupervisor, [])
     ]
 

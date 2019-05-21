@@ -23,5 +23,6 @@ import css from "../css/app.sass"
 
 // import socket from "./socket"
 import tilex from './tilex';
+import like from './like';
 import twitter from './twitter_button';
 import prism from './prism';
