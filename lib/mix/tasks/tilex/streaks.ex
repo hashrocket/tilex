@@ -1,7 +1,6 @@
 defmodule Mix.Tasks.Tilex.Streaks do
   use Mix.Task
   import Mix.Ecto, only: [parse_repo: 1]
-  import Mix.EctoSQL, only: [ensure_started: 2]
 
   @shortdoc "Tilex Stats: Days in a row a til was posted"
 
@@ -55,7 +54,7 @@ defmodule Mix.Tasks.Tilex.Streaks do
       select * from streaks;
     """
 
-    ensure_started(repo, [])
+    Mix.Task.run("app.start")
 
     {:ok, result} = repo.query(streaks_sql, [username], log: false)
 
