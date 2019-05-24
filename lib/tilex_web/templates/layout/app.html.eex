@@ -23,8 +23,8 @@
     <meta name="twitter:description" content="<%= twitter_description(assigns[:post]) %>">
     <meta name="twitter:image" content=<%= twitter_image_url(assigns[:post]) %>>
 
-    <link href='//fonts.googleapis.com/css?family=Raleway:700,900' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Raleway:700,900&display=swap' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic&display=swap' rel='stylesheet' type='text/css'>
     <link rel="alternate feed" type="application/rss+xml" title="Today I Learned" href="<%= feed_path(@conn, :index) %>">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
