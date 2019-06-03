@@ -11,7 +11,6 @@ defmodule TilexWeb.SharedView do
           post.inserted_at
 
         tz ->
-          tz = Timezone.get(tz)
           Timezone.convert(post.inserted_at, tz)
       end
 
