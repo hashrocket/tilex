@@ -15,18 +15,6 @@
         </ul>
       <% end %>
     </article>
-    <article>
-      <header>
-        <h1>Last 30 days</h1>
-      </header>
-      <ul class="activity_chart" id="activity">
-        <%= for [date, count] <- @posts_for_days do %>
-          <li data-amount="<%= count %>" data-date="<%= Timex.format!(date, "%a, %b %-e", :strftime)%>">
-            <div class="activity_chart_bar" style="height: <%= (count * 100) / @max_count %>%;"></div>
-          </li>
-        <% end %>
-      </ul>
-    </article>
     <article class="hottest_posts">
       <header>
         <h1>Hottest posts</h1>

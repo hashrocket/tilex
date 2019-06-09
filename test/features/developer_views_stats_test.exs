@@ -59,4 +59,12 @@ defmodule Features.DeveloperViewsStatsTest do
 
     assert text_without_newlines(other_channel) =~ "#other 3 posts"
   end
+
+  test "does not see sees til activity chart", %{session: session, developer: developer} do
+    session
+    |> sign_in(developer)
+    |> visit("/developer/statistics")
+
+    refute_has(session, Query.css("ul#activity"))
+  end
 end
