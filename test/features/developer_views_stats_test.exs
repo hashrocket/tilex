@@ -1,5 +1,4 @@
 defmodule Features.DeveloperViewsStatsTest do
-  require IEx
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   test "sees total number of posts by channel", %{session: session} do
