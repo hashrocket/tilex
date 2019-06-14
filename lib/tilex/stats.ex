@@ -32,8 +32,6 @@ defmodule Tilex.Stats do
       )
     end
 
-    posts_for_days = query_posts_for_days!(start_time, end_time)
-
     [
       start_date: format_date(start_date),
       end_date: format_date(end_date),
@@ -42,7 +40,6 @@ defmodule Tilex.Stats do
       developers_count: Repo.one(developers_count() |> posts_where.()),
       most_liked_posts: Repo.all(most_liked_posts() |> posts_where.()),
       hottest_posts: Repo.all(hottest_posts() |> posts_where.()),
-      posts_for_days: posts_for_days,
       posts_count: Repo.one(posts_count() |> posts_where.()),
       channels_count:
         Repo.one(
@@ -50,10 +47,7 @@ defmodule Tilex.Stats do
           |> join(:inner, [c], p in assoc(c, :posts))
           |> select([c, p], fragment("count(distinct(c0.id))"))
           |> where([c, p], p.inserted_at < ^end_time and p.inserted_at > ^start_time)
-        ),
-      max_count:
-        ([1] ++ Enum.map(posts_for_days, fn [_, count] -> count end))
-        |> Enum.max()
+        )
     ]
   end
 

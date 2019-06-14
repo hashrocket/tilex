@@ -1,10 +1,8 @@
 defmodule Features.DeveloperViewsStatsTest do
-  require IEx
   use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
 
   test "sees total number of posts by channel", %{session: session} do
     developer = Factory.insert!(:developer)
-
     phoenix_channel = Factory.insert!(:channel, name: "phoenix")
     other_channel = Factory.insert!(:channel, name: "other")
 
@@ -56,5 +54,15 @@ defmodule Features.DeveloperViewsStatsTest do
     [other_channel] = all(channels, Query.css("li"))
 
     assert text_without_newlines(other_channel) =~ "#other 3 posts"
+  end
+
+  test "does not see sees til activity chart", %{session: session} do
+    developer = Factory.insert!(:developer)
+
+    session
+    |> sign_in(developer)
+    |> visit("/developer/statistics")
+
+    refute_has(session, Query.css("ul#activity"))
   end
 end
