@@ -35,7 +35,7 @@ defmodule Tilex.Mixfile do
       {:basic_auth, "~> 2.1"},
       {:cachex, "~> 3.1"},
       {:cors_plug, "~> 2.0"},
-      {:credo, "~> 1.0.3", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:earmark, "~> 1.3.2"},
       {:ecto_sql, "~> 3.0"},
       {:extwitter, "~> 0.8"},
