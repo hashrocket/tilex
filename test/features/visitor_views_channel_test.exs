@@ -25,12 +25,15 @@ defmodule Features.VisitorViewsChannelTest do
   test "the page has a list of paginated posts", %{session: session} do
     channel = Factory.insert!(:channel, name: "smalltalk")
 
+    {:ok, inserted_at} = DateTime.from_naive(~N[2019-06-28 16:05:47], "Etc/UTC")
+
     Enum.each(1..6, fn x ->
       Factory.insert!(
         :post,
         title: "Title#{x}",
         body: "It starts with Rails and ends with Elixir",
-        channel: channel
+        channel: channel,
+        inserted_at: DateTime.add(inserted_at, x)
       )
     end)
 
