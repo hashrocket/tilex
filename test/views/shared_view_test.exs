@@ -1,5 +1,5 @@
 defmodule Tilex.SharedViewTest do
-  use TilexWeb.ConnCase
+  use TilexWeb.ConnCase, async: true
 
   import TilexWeb.SharedView
 
