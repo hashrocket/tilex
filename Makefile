@@ -38,4 +38,4 @@ test: ## Tests the project.
 	mix format
 	mix credo
 	rm -f screenshots/*
-	mix test --trace
+	mix test

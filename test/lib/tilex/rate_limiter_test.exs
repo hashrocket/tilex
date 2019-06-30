@@ -1,5 +1,5 @@
 defmodule Tilex.RateLimiterTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case, async: false
 
   alias Tilex.RateLimiter
   alias Tilex.DateTimeMock

@@ -1,5 +1,5 @@
 defmodule DeveloperCreatesPostTest do
-  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: false
 
   alias Tilex.Integration.Pages.{
     Navigation,

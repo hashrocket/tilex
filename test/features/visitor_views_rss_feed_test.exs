@@ -1,5 +1,5 @@
 defmodule VisitorViewsRSSFeed do
-  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: true
 
   test "via the legacy atom query parameter", %{session: session} do
     visit(session, "/?format=atom")

@@ -1,5 +1,5 @@
 defmodule Features.VisitorViewsChannelTest do
-  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: true
 
   test "sees associated posts", %{session: session} do
     target_channel = Factory.insert!(:channel, name: "phoenix")

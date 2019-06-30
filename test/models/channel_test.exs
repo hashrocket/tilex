@@ -1,5 +1,5 @@
 defmodule Tilex.ChannelTest do
-  use Tilex.ModelCase, async: true
+  use Tilex.ModelCase, async: false
 
   alias Tilex.{Channel, Factory}
 
