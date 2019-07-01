@@ -1,5 +1,5 @@
 defmodule VisiorSearchesPosts do
-  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: true
 
   def fill_in_search(session, query) do
     session

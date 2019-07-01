@@ -18,6 +18,7 @@ config :tilex, Tilex.Repo,
   hostname: "localhost",
   username: "postgres",
   pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: 50,
   timeout: 30_000
 
 config :tilex, :organization_name, "Hashrocket"
@@ -42,3 +43,5 @@ config :wallaby,
   screenshot_on_failure: true
 
 config :tilex, :request_tracking, true
+
+config :appsignal, :config, active: false

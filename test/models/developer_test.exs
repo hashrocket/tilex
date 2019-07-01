@@ -1,5 +1,5 @@
 defmodule Tilex.DeveloperTest do
-  use Tilex.ModelCase
+  use Tilex.ModelCase, async: true
 
   alias Tilex.Developer
 

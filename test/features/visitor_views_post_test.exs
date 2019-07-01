@@ -36,13 +36,16 @@ defmodule VisitorViewsPostTest do
 
     assert page_title(session) == "A special post - Today I Learned"
 
-    assert %{rows: [[path | _]]} =
-             Ecto.Adapters.SQL.query!(
-               Repo,
-               "select page, request_time from requests"
-             )
+    last_request_query =
+      from(r in "requests",
+        select: %{page: r.page},
+        order_by: [desc: r.request_time],
+        limit: 1
+      )
 
-    assert Regex.match?(~r"#{post.slug}", path)
+    assert %{page: path} = Repo.one(last_request_query)
+
+    assert path =~ post.slug
   end
 
   test "the page shows a post with the correct timezone if given", %{session: session} do

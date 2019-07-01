@@ -1,5 +1,5 @@
 defmodule Features.DeveloperSignsOutTest do
-  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: true
 
   test 'signs out and sees a flash message', %{:session => session} do
     developer = Factory.insert!(:developer)

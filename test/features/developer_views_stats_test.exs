@@ -1,5 +1,5 @@
 defmodule Features.DeveloperViewsStatsTest do
-  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: true
 
   test "sees total number of posts by channel", %{session: session} do
     developer = Factory.insert!(:developer)
