@@ -18,6 +18,13 @@ defmodule Tilex do
       supervisor(Tilex.Notifications.NotifiersSupervisor, [])
     ]
 
+    :telemetry.attach(
+      "appsignal-ecto",
+      [:tilex, :repo, :query],
+      &Appsignal.Ecto.handle_event/4,
+      nil
+    )
+
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Tilex.Supervisor]
