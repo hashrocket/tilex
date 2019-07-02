@@ -1,21 +1,23 @@
 defmodule Tilex.Markdown do
   alias Tilex.Cache
 
+  @base_url Application.get_env(:tilex, :canonical_domain)
+
   def to_html_live(markdown) do
     markdown
     |> Earmark.as_html!(%Earmark.Options{code_class_prefix: "language-"})
     |> HtmlSanitizeEx.markdown_html()
+    |> expand_relative_links(@base_url)
     |> String.trim()
   end
 
   def to_html(markdown) do
     Cache.cache(markdown, fn ->
       to_html_live(markdown)
-      # |> expand_relative_links("https://til.hashrocket.com")
     end)
   end
 
-  def expand_relative_links(dom, url) do
+  defp expand_relative_links(dom, url) do
     dom
     |> Floki.parse()
     |> Floki.map(fn tuple -> expand_relative_link(tuple, url) end)
