@@ -8,7 +8,7 @@ defmodule Tilex.Auth.ErrorHandler do
   @impl Guardian.Plug.ErrorHandler
   def auth_error(conn, {_failure_type, _reason}, _opts) do
     conn
-    |> put_status(302)
+    |> Tilex.Auth.Guardian.Plug.sign_out()
     |> put_flash(:info, "Authentication required")
     |> redirect(to: post_path(conn, :index))
   end
