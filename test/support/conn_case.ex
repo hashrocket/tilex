@@ -27,6 +27,8 @@ defmodule TilexWeb.ConnCase do
 
       import TilexWeb.Router.Helpers
 
+      alias TilexWeb.Router.Helpers, as: Routes
+
       # The default endpoint for testing
       @endpoint TilexWeb.Endpoint
     end

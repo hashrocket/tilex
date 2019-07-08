@@ -2,6 +2,17 @@ defmodule Tilex.Factory do
   alias Tilex.{Channel, Developer, Post, Repo}
   import Ecto.Query
 
+  @type factory_name :: atom()
+
+  def build(Channel) do
+    name = channel_name()
+
+    %Channel{
+      name: name,
+      twitter_hashtag: String.downcase(name)
+    }
+  end
+
   def build(:channel) do
     %Channel{
       name: "phoenix",
@@ -41,6 +52,11 @@ defmodule Tilex.Factory do
     end)
   end
 
+  @spec attrs(factory_name) :: %{}
+  def attrs(factory_name, attributes \\ []) do
+    factory_name |> build(attributes) |> Map.from_struct()
+  end
+
   defp find_first_or_build(:channel) do
     Repo.one(from(Channel, limit: 1)) || build(:channel)
   end
@@ -48,4 +64,6 @@ defmodule Tilex.Factory do
   defp find_first_or_build(:developer) do
     Repo.one(from(Developer, limit: 1)) || build(:developer)
   end
+
+  defp channel_name, do: Enum.random(~w(Elixir Erlang Phoenix Ruby Rails React ReactNative))
 end

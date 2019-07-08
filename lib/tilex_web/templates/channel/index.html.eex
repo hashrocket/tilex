@@ -1,0 +1,26 @@
+<h1>Listing Channels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Twitter hashtag</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for channel <- @channels do %>
+    <tr>
+      <td><%= channel.name %></td>
+      <td><%= channel.twitter_hashtag %></td>
+
+      <td>
+        <%= link "Edit", to: channel_path(@conn, :edit, channel) %>
+        <%= link "Delete", to: channel_path(@conn, :delete, channel), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Channel", to: channel_path(@conn, :new) %></span>

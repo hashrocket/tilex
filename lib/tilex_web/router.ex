@@ -69,6 +69,7 @@ defmodule TilexWeb.Router do
     get("/", PostController, :index)
     resources("/posts", PostController, param: "titled_slug")
     # catch-any route should be last
+    resources("/channels", ChannelController, only: ~w(index new create edit update delete)a)
     get("/:name", ChannelController, :show)
   end
 end
