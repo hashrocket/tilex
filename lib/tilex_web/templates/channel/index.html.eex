@@ -10,14 +10,16 @@
         <tr>
           <th>Name</th>
           <th>Twitter hashtag</th>
+          <th>Posts Count</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <%= for channel <- @channels do %>
+        <%= for {channel, posts_count} <- @channels do %>
           <tr>
             <td><%= channel.name %></td>
             <td><%= channel.twitter_hashtag %></td>
+            <td><%= posts_count %></td>
 
             <td>
               <%= link "Edit", to: channel_path(@conn, :edit, channel) %>

@@ -37,7 +37,15 @@ defmodule TilexWeb.ChannelController do
   end
 
   def index(conn, _params) do
-    channels = Repo.all(Channel)
+    query =
+      from(c in Channel,
+        left_join: p in assoc(c, :posts),
+        group_by: c.id,
+        select: {c, count(p.channel_id)}
+      )
+
+    channels = Repo.all(query)
+
     render(conn, "index.html", channels: channels)
   end
 
