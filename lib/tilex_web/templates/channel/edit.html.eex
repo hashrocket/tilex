@@ -1,5 +1,6 @@
-<h1>Edit Channel</h1>
-
-<%= render "form.html", Map.put(assigns, :action, channel_path(@conn, :update, @channel)) %>
-
-<span><%= link "Back", to: channel_path(@conn, :index) %></span>
+<section id="channel_index">
+  <header class="page_head">
+    <h1>Edit Channel</h1>
+  </header>
+  <%= render "form.html", Map.put(assigns, :action, channel_path(@conn, :update, @channel)) %>
+</section>

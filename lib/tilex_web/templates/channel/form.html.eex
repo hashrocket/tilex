@@ -5,15 +5,19 @@
     </div>
   <% end %>
 
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
+  <dl>
+    <dt><%= label f, :name %></dt>
+    <dd>
+      <%= text_input f, :name %>
+      <%= error_tag f, :name %>
+    </dd>
+    <dt><%= label f, :twitter_hashtag %></dt>
+    <dd>
+      <%= text_input f, :twitter_hashtag %>
+      <%= error_tag f, :twitter_hashtag %>
+    </dd>
+  </dl>
 
-  <%= label f, :twitter_hashtag %>
-  <%= text_input f, :twitter_hashtag %>
-  <%= error_tag f, :twitter_hashtag %>
-
-  <div>
-    <%= submit "Save" %>
-  </div>
+  <%= submit "Save" %>
+  <span><%= link "cancel", to: channel_path(@conn, :index) %></span>
 <% end %>
