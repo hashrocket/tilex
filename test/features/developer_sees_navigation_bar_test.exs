@@ -23,7 +23,7 @@ defmodule DeveloperSeesNavigationBarTest do
         |> visit("/")
         |> get_texts(Navigation.item_query())
 
-      assert link_texts == ["Rock Teer", "Sign Out", "Create Post", "Profile"]
+      assert link_texts == ["Rock Teer", "Sign Out", "Create Post", "Channels", "Profile"]
     end
   end
 end
