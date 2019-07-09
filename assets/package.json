@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/preset-env": "^7.5.2",
     "babel-loader": "^8.0.6",
     "compression-webpack-plugin": "^2.0.0",
