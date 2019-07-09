@@ -37,6 +37,22 @@ defmodule Tilex.WallabyTestHelpers do
     [headers | rows]
   end
 
+  @spec get_form_errors(Session.t(), Query.t()) :: [{String.t(), String.t()}]
+  def get_form_errors(session, query) do
+    session
+    |> find(query)
+    |> all(Query.css(".help-block"))
+    |> Enum.map(fn error ->
+      {Element.attr(error, "data-field"), Element.text(error)}
+    end)
+  end
+
+  @spec click_and_accept(Session.t(), Query.t()) :: [{String.t(), String.t()}]
+  def click_and_accept(session, query) do
+    accept_alert(session, &click(&1, query))
+    session
+  end
+
   def text_without_newlines(element) do
     String.replace(Element.text(element), "\n", " ")
   end
