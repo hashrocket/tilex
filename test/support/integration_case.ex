@@ -14,10 +14,15 @@ defmodule Tilex.IntegrationCase do
       import Ecto.Query
 
       import TilexWeb.Router.Helpers
-      import Tilex.TestHelpers
+      import Tilex.WallabyTestHelpers
 
       def sign_in(session, developer) do
         visit(session, "/admin?id=#{developer.id}")
+      end
+
+      def authenticated_developer(%{session: session}) do
+        developer = Factory.insert!(:developer, admin: true, username: "Rock Teer")
+        [session: sign_in(session, developer), developer: developer]
       end
     end
   end

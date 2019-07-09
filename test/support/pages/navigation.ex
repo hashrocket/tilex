@@ -15,4 +15,7 @@ defmodule Tilex.Integration.Pages.Navigation do
   def click_create_post(session) do
     click(session, Query.link("Create Post"))
   end
+
+  @spec item_query() :: Query.t()
+  def item_query(), do: Query.css("nav.admin_panel a")
 end
