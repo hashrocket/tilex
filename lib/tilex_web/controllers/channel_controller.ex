@@ -41,7 +41,8 @@ defmodule TilexWeb.ChannelController do
       from(c in Channel,
         left_join: p in assoc(c, :posts),
         group_by: c.id,
-        select: {c, count(p.channel_id)}
+        select: {c, count(p.channel_id)},
+        order_by: [asc: c.name]
       )
 
     channels = Repo.all(query)

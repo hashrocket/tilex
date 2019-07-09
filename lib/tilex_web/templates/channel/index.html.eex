@@ -5,7 +5,7 @@
   </header>
 
   <div class="center">
-    <table class="table">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
