@@ -1,3 +1,8 @@
+@font-face
+  font-family: notosans
+  src: url("https://webfonts.zohowebstatic.com/notosans/font.eot?#iefix") format("embedded-opentype"), url("https://webfonts.zohowebstatic.com/notosans/font.woff2") format("woff2"), url("https://webfonts.zohowebstatic.com/notosans/font.woff") format("woff"), url("https://webfonts.zohowebstatic.com/notosans/font.ttf") format("truetype")
+  font-weight: 400
+
 html
   font-size: 62.5%
 
@@ -53,6 +58,30 @@ header.site_head
         background: svg-url(twitter, $twitter-color) center left no-repeat
         background-size: 1.7rem auto
         margin: 0 0 0 1rem
+  &.has-banner
+    padding: 0 0 2vw
+  .banner
+    align-items: center
+    background-color: #ffecec
+    display: flex
+    justify-content: center
+    margin-bottom: 1.65rem
+    padding: 2rem
+    width: 100%
+    +mobile
+      display: none
+    a
+      color: #c64e3a
+      display: inline-block
+      font-family: notosans
+      font-size: 1.5rem
+    .message
+      color: #333333
+      display: inline-block
+      font-family: notosans
+      font-size: 1.75rem
+      margin: 0 auto
+
   +mobile
     z-index: 100
     background: #fff
