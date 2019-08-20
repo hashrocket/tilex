@@ -22,7 +22,13 @@ defmodule TilexWeb.Endpoint do
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
-  plug(Plug.Static, at: "/", from: :tilex, gzip: true, only: ~w(assets
+  plug(Plug.Static,
+    at: "/",
+    from: :tilex,
+    gzip: true,
+    headers: [{"access-control-allow-origin", "*"}],
+    only: ~w(
+      assets
       apple-touch-icon-120x120.png
       apple-touch-icon.png
       apple-touch-icon-precomposed.png
@@ -34,7 +40,8 @@ defmodule TilexWeb.Endpoint do
       images
       js
       robots.txt
-    ))
+    )
+  )
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

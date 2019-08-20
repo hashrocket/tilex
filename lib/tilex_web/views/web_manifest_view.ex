@@ -17,12 +17,12 @@ defmodule TilexWeb.WebManifestView do
           sizes: "120x120"
         },
         %{
-          src: static_path(conn, "/images/til-logo-144x144.png"),
+          src: static_url(conn, "/images/til-logo-144x144.png"),
           type: "image/png",
           sizes: "144x144"
         },
         %{
-          src: static_path(conn, "/images/til-logo-512x512.png"),
+          src: static_url(conn, "/images/til-logo-512x512.png"),
           type: "image/png",
           sizes: "512x512"
         }

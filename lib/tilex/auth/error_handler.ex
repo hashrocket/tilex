@@ -1,5 +1,4 @@
 defmodule Tilex.Auth.ErrorHandler do
-  import Plug.Conn
   import TilexWeb.Router.Helpers
   import Phoenix.Controller, only: [put_flash: 3, redirect: 2]
 
