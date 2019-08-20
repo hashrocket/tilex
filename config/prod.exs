@@ -14,9 +14,10 @@ use Mix.Config
 config :tilex, TilexWeb.Endpoint,
   instrumenters: [Appsignal.Phoenix.Instrumenter],
   http: [port: {:system, "PORT"}, compress: true],
-  url: [host: System.get_env("HOST"), port: 80],
+  url: [scheme: "https", host: System.get_env("HOST"), port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -45,7 +46,6 @@ config :tilex, Tilex.Repo,
 #
 # We also recommend setting `force_ssl`, ensuring no data is
 # ever sent via http, always redirecting to https:
-config :tilex, TilexWeb.Endpoint, force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
 # Check `Plug.SSL` for all available options in `force_ssl`.
 
