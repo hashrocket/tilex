@@ -55,6 +55,7 @@ defmodule Tilex.Mixfile do
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"},
+      {:tzdata, "~> 1.0.1"},
       {:ueberauth_google, "~> 0.5"},
       {:wallaby, "~> 0.23.0", [runtime: false, only: :test]}
     ]
