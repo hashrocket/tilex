@@ -39,7 +39,7 @@ defmodule Tilex.Mixfile do
       {:earmark, "~> 1.3.2"},
       {:ecto_sql, "~> 3.0"},
       {:extwitter, "~> 0.8"},
-      {:floki, "~> 0.21.0"},
+      {:floki, "~> 0.22.0"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 2.0"},
       {:hackney, "1.15.1"},
