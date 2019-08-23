@@ -8,7 +8,7 @@ defmodule Tilex.Tracking do
     spawn(fn ->
       if @request_tracking do
         with [referer | _] <- Plug.Conn.get_req_header(conn, "referer") do
-          page = String.replace(referer, Endpoint.static_url(), "")
+          page = String.replace(referer, Endpoint.url(), "")
           Ecto.Adapters.SQL.query!(Repo, "insert into requests (page) values ($1);", [page])
         end
       end
