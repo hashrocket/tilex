@@ -5,7 +5,7 @@ defmodule Tilex.Mixfile do
     [
       app: :tilex,
       version: "0.0.1",
-      elixir: "~> 1.8",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
@@ -55,6 +55,7 @@ defmodule Tilex.Mixfile do
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"},
+      {:tzdata, "~> 1.0.1"},
       {:ueberauth_google, "~> 0.5"},
       {:wallaby, "~> 0.23.0", [runtime: false, only: :test]}
     ]

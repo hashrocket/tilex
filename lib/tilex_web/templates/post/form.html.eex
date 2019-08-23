@@ -1,8 +1,7 @@
 <%= form_for @changeset, @action, fn f -> %>
   <dl>
     <dt>
-      <%= label f, :title %>
-      <%= error_tag f, :title %>
+      <%= label f, :title %> <%= error_tag f, :title %>
       <small class="character_limit" data-limit="<%= Tilex.Post.title_max_chars %>"></small>
     </dt>
     <dd>
@@ -11,8 +10,7 @@
   </dl>
   <dl>
     <dt>
-      <%= label f, :body %>
-      <%= error_tag f, :body %>
+      <%= label f, :body %> <%= error_tag f, :body %>
       <small class="word_limit" data-limit="<%= Tilex.Post.body_max_words %>"></small>
     </dt>
     <dd>
@@ -23,8 +21,7 @@
       %>
     </dd>
     <dt>
-      <%= label f, :channel_id, "Channel" %>
-      <%= error_tag f, :channel_id %>
+      <%= label f, :channel_id, "Channel" %> <%= error_tag f, :channel_id %>
     </dt>
     <dd>
       <%= select f, :channel_id, @channels, prompt: "" %>
