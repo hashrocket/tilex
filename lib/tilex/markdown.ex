@@ -4,8 +4,13 @@ defmodule Tilex.Markdown do
   @base_url Application.get_env(:tilex, :canonical_domain)
 
   def to_html_live(markdown) do
+    earmark_options = %Earmark.Options{
+      code_class_prefix: "language-",
+      pure_links: false
+    }
+
     markdown
-    |> Earmark.as_html!(%Earmark.Options{code_class_prefix: "language-"})
+    |> Earmark.as_html!(earmark_options)
     |> HtmlSanitizeEx.markdown_html()
     |> expand_relative_links(@base_url)
     |> String.trim()
