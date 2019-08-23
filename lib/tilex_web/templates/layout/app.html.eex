@@ -171,5 +171,13 @@
         ga('send', 'pageview');
       </script>
     <% end %>
+
+    <script>
+      if('serviceWorker' in navigator) {
+        navigator
+          .serviceWorker
+          .register('<%= static_path(@conn, "/js/service_worker.js") %>');
+      }
+    </script>
   </body>
 </html>

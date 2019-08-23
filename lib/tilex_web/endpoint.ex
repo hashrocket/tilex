@@ -30,8 +30,9 @@ defmodule TilexWeb.Endpoint do
     only: ~w(
       assets
       apple-touch-icon-120x120.png
-      apple-touch-icon.png
       apple-touch-icon-precomposed.png
+      apple-touch-icon.png
+      cache_manifest.json
       css
       favicon.ico
       favicon.png
