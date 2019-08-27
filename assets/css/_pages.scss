@@ -43,7 +43,8 @@
     }
 
     @include mobile {
-      &, &.right {
+      &,
+      &.right {
         width: auto;
         float: none;
         padding: 0;
@@ -60,6 +61,11 @@
 
       margin-top: 20px;
     }
+  }
+
+  .summary_label {
+    font-weight: bold;
+    margin-right: 1rem;
   }
 
   article {
@@ -121,11 +127,11 @@
       &:after {
         margin-top: 0.5rem;
         top: 100%;
-        content: attr(data-amount) " posts";
+        content: attr(data-amount) ' posts';
       }
 
       &.singular:after {
-        content: attr(data-amount) " post";
+        content: attr(data-amount) ' post';
       }
 
       &:before {
@@ -134,7 +140,7 @@
         content: attr(data-date);
       }
 
-      &:nth-child(-n+5) {
+      &:nth-child(-n + 5) {
         &:after,
         &:before {
           left: 0;
@@ -143,7 +149,7 @@
         }
       }
 
-      &:nth-child(n+25) {
+      &:nth-child(n + 25) {
         &:after,
         &:before {
           text-align: right;

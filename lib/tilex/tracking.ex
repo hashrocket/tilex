@@ -36,18 +36,29 @@ defmodule Tilex.Tracking do
 
     query =
       from(
-        request in subquery(requests),
+        req in subquery(requests),
         join: post in Tilex.Post,
-        on: [slug: request.url_slug],
-        order_by: [desc: request.view_count],
+        on: [slug: req.url_slug],
+        order_by: [desc: req.view_count],
         limit: 10,
         select: %{
           title: post.title,
-          url: request.url,
-          view_count: request.view_count
+          url: req.url,
+          view_count: req.view_count
         }
       )
 
     Repo.all(query)
+  end
+
+  def total_page_views(start_date, end_date) do
+    query =
+      from(
+        req in Request,
+        where: between(req.request_time, ^start_date, ^end_date),
+        select: count(req.page)
+      )
+
+    Repo.one(query)
   end
 end

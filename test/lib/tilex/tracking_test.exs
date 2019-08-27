@@ -89,4 +89,33 @@ defmodule Tilex.TrackingTest do
       assert Tracking.most_viewed_posts(start_date, end_date) == stats
     end
   end
+
+  describe ".total_page_views" do
+    test "returns the total page views for a date range" do
+      start_date = DateTime.utc_now() |> Timex.beginning_of_week()
+      end_date = DateTime.utc_now() |> Timex.end_of_week()
+
+      Repo.delete_all(Tilex.Request)
+
+      1..12
+      |> Enum.each(fn _ ->
+        Factory.insert!(
+          :request,
+          request_time: start_date |> DateTime.truncate(:second)
+        )
+      end)
+
+      outside_request_time =
+        end_date
+        |> Timex.add(Timex.Duration.from_days(1))
+        |> DateTime.truncate(:second)
+
+      Factory.insert!(
+        :request,
+        request_time: outside_request_time
+      )
+
+      assert Tracking.total_page_views(start_date, end_date) == 12
+    end
+  end
 end

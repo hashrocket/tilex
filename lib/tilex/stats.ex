@@ -25,7 +25,8 @@ defmodule Tilex.Stats do
       hottest_posts: Repo.all(hottest_posts() |> posts_where.()),
       posts_count: Repo.one(posts_count() |> posts_where.()),
       channels_count: Repo.one(channels_count(start_time, end_time)),
-      most_viewed_posts: Tilex.Tracking.most_viewed_posts(start_time, end_time)
+      most_viewed_posts: Tilex.Tracking.most_viewed_posts(start_time, end_time),
+      total_page_views: Tilex.Tracking.total_page_views(start_time, end_time)
     ]
   end
 
