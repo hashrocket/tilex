@@ -1,0 +1,13 @@
+{
+  "skip_files": [
+    "lib/mix/tasks",
+    "lib/test",
+    "lib/tilex/repo.ex",
+    "lib/tilex_web.ex",
+    "lib/tilex_web/channels/user_socket.ex",
+    "lib/tilex_web/endpoint.ex",
+    "lib/tilex_web/gettext.ex",
+    "lib/tilex_web/router.ex",
+    "test/support"
+  ]
+}
