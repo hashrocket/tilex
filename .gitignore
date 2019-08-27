@@ -30,5 +30,8 @@ erl_crash.dump
 
 /tmp
 
+# coveralls output
+/cover
+
 /priv/static/js/app.js
 /priv/static/js/app.js.map

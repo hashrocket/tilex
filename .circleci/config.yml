@@ -24,6 +24,6 @@ jobs:
       - run: mix phx.digest
       - run: mix format --check-formatted
       - run: mix credo
-      - run: mix test
+      - run: mix coveralls.circle
       - store_artifacts:
           path: /home/circleci/tilex/screenshots
