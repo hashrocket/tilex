@@ -34,6 +34,9 @@
           </li>
         <% end %>
       </ul>
+      <div>
+        <span class="summary_label">Total Page Views:</span><span><%= @total_page_views %></span>
+      </div>
     </article>
     <article class="hottest_posts">
       <header>
