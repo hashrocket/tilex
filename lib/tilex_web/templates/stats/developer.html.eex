@@ -15,6 +15,26 @@
         </ul>
       <% end %>
     </article>
+    <article class="most_viewed_posts">
+      <header>
+        <h1>Most Viewed Posts</h1>
+      </header>
+      <ul class="post_list">
+        <%= for %{title: title, url: url, view_count: view_count} <- @most_viewed_posts do %>
+          <li>
+            <%= link(to: url) do %>
+              <b>
+                <%= title %>
+              </b>
+              <small>
+                <span>•</span>
+                <%= view_count %> views
+              </small>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </article>
     <article class="hottest_posts">
       <header>
         <h1>Hottest posts</h1>
