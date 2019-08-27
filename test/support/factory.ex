@@ -1,5 +1,10 @@
 defmodule Tilex.Factory do
-  alias Tilex.{Channel, Developer, Post, Repo}
+  alias Tilex.Channel
+  alias Tilex.Developer
+  alias Tilex.Post
+  alias Tilex.Repo
+  alias Tilex.Request
+
   import Ecto.Query
 
   def build(:channel) do
@@ -23,6 +28,13 @@ defmodule Tilex.Factory do
     %Developer{
       email: "developer@hashrocket.com",
       username: "Ricky Rocketeer"
+    }
+  end
+
+  def build(:request) do
+    %Request{
+      page: "/posts/159-default",
+      request_time: Timex.now() |> DateTime.truncate(:second)
     }
   end
 

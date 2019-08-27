@@ -1,24 +1,10 @@
 defmodule Tilex.Stats do
   import Ecto.Query
+  import Tilex.QueryHelpers, only: [between: 3, greatest: 2, hours_since: 1]
 
   alias Ecto.Adapters.SQL
   alias Tilex.Repo
   alias Tilex.Channel
-
-  defmacro greatest(value1, value2) do
-    quote do
-      fragment("greatest(?, ?)", unquote(value1), unquote(value2))
-    end
-  end
-
-  defmacro hours_since(timestamp) do
-    quote do
-      fragment(
-        "extract(epoch from (current_timestamp - ?)) / 3600",
-        unquote(timestamp)
-      )
-    end
-  end
 
   def developer(%{start_date: start_date, end_date: end_date}) do
     start_time = Timex.to_datetime(start_date)
@@ -26,10 +12,7 @@ defmodule Tilex.Stats do
 
     posts_where = fn query ->
       query
-      |> where(
-        [p],
-        p.inserted_at > ^start_time and p.inserted_at < ^end_time
-      )
+      |> where([p], between(p.inserted_at, ^start_time, ^end_time))
     end
 
     [
@@ -41,13 +24,8 @@ defmodule Tilex.Stats do
       most_liked_posts: Repo.all(most_liked_posts() |> posts_where.()),
       hottest_posts: Repo.all(hottest_posts() |> posts_where.()),
       posts_count: Repo.one(posts_count() |> posts_where.()),
-      channels_count:
-        Repo.one(
-          Channel
-          |> join(:inner, [c], p in assoc(c, :posts))
-          |> select([c, p], fragment("count(distinct(c0.id))"))
-          |> where([c, p], p.inserted_at < ^end_time and p.inserted_at > ^start_time)
-        )
+      channels_count: Repo.one(channels_count(start_time, end_time)),
+      most_viewed_posts: Tilex.Tracking.most_viewed_posts(start_time, end_time)
     ]
   end
 
@@ -102,52 +80,60 @@ defmodule Tilex.Stats do
     result.rows
   end
 
+  defp channels_count(start_time, end_time) do
+    Channel
+    |> join(:inner, [c], p in assoc(c, :posts))
+    |> select([c, p], fragment("count(distinct(c0.id))"))
+    |> where([c, p], between(p.inserted_at, ^start_time, ^end_time))
+  end
+
   defp channels_count, do: from(c in "channels", select: fragment("count(*)"))
+
   defp developers_count, do: from(p in "posts", select: fragment("count(distinct(developer_id))"))
   defp posts_count, do: from(p in "posts", select: fragment("count(*)"))
 
-  defp posts_and_channels,
-    do:
-      from(
-        p in "posts",
-        join: c in "channels",
-        on: p.channel_id == c.id
-      )
+  defp posts_and_channels do
+    from(
+      p in "posts",
+      join: c in "channels",
+      on: p.channel_id == c.id
+    )
+  end
 
-  defp posts_and_developers,
-    do:
-      from(
-        p in "posts",
-        join: d in "developers",
-        on: p.developer_id == d.id
-      )
+  defp posts_and_developers do
+    from(
+      p in "posts",
+      join: d in "developers",
+      on: p.developer_id == d.id
+    )
+  end
 
-  defp posts_by_channels_count,
-    do:
-      from(
-        [p, c] in posts_and_channels(),
-        group_by: c.name,
-        order_by: [desc: count(p.id)],
-        select: {count(p.id), c.name}
-      )
+  defp posts_by_channels_count do
+    from(
+      [p, c] in posts_and_channels(),
+      group_by: c.name,
+      order_by: [desc: count(p.id)],
+      select: {count(p.id), c.name}
+    )
+  end
 
-  defp posts_by_developers_count,
-    do:
-      from(
-        [p, d] in posts_and_developers(),
-        group_by: d.username,
-        order_by: [desc: count(p.id)],
-        select: {count(p.id), d.username}
-      )
+  defp posts_by_developers_count do
+    from(
+      [p, d] in posts_and_developers(),
+      group_by: d.username,
+      order_by: [desc: count(p.id)],
+      select: {count(p.id), d.username}
+    )
+  end
 
-  defp most_liked_posts,
-    do:
-      from(
-        [p, c] in posts_and_channels(),
-        order_by: [desc: p.likes],
-        limit: 10,
-        select: {p.title, p.likes, p.slug, c.name}
-      )
+  defp most_liked_posts do
+    from(
+      [p, c] in posts_and_channels(),
+      order_by: [desc: p.likes],
+      limit: 10,
+      select: {p.title, p.likes, p.slug, c.name}
+    )
+  end
 
   defp hottest_posts do
     posts_with_age_in_hours =
