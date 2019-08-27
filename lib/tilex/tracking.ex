@@ -25,6 +25,7 @@ defmodule Tilex.Tracking do
         req in Request,
         group_by: req.page,
         where: matches?(req.page, "/posts/"),
+        where: not matches?(req.page, "/posts/.+/edit$"),
         where: between(req.request_time, ^start_date, ^end_date),
         order_by: [desc: count(req.page)],
         select: %{
