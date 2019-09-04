@@ -73,7 +73,7 @@ config :tilex, TilexWeb.Endpoint, force_ssl: [rewrite_on: [:x_forwarded_proto]]
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 
-if System.get_env("ENABLE_BASIC_AUTH") do
+if String.equivalent?(System.get_env("ENABLE_BASIC_AUTH"), "true") do
   config :tilex, :basic_auth,
     realm: "tilex",
     username: System.get_env("BASIC_AUTH_USERNAME"),
