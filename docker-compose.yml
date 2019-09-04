@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    env_file: .env
+    image: postgres:11.5-alpine
+
+  app:
+    build:
+      context: .
+    image: tilex:0.0.1
+    tmpfs: /tmp
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db

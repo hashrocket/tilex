@@ -39,3 +39,6 @@ test: ## Tests the project.
 	mix credo
 	rm -f screenshots/*
 	mix test
+
+docker:
+	docker-compose run --rm app /bin/sh -lc 'source tilex.env && MIX_ENV=prod npm run deploy --prefix assets && MIX_ENV=prod mix phx.digest && MIX_ENV=prod mix ecto.setup'

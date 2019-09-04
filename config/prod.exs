@@ -21,7 +21,7 @@ static_url =
 config :tilex, TilexWeb.Endpoint,
   instrumenters: [Appsignal.Phoenix.Instrumenter],
   http: [port: {:system, "PORT"}, compress: true],
-  url: [host: System.get_env("HOST"), port: 80],
+  url: [host: System.get_env("HOST"), port: System.get_env("PORT")],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   static_url: static_url
@@ -33,7 +33,7 @@ config :tilex, Tilex.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  ssl: true
+  ssl: false
 
 # ## SSL Support
 #
