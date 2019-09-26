@@ -36,6 +36,11 @@
     },
     "DATE_DISPLAY_TZ": {
       "required": true
+    },
+    "OTP_COOKIE": {
+      "description": "A cookie used for remote node connections",
+      "generator": "secret",
+      "required": true
     }
   },
   "formation": {},
