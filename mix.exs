@@ -50,7 +50,7 @@ defmodule Tilex.Mixfile do
       {:floki, "~> 0.21.0"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 2.0"},
-      {:hackney, "1.15.1"},
+      {:hackney, "1.15.2"},
       {:html_sanitize_ex, "~> 1.2"},
       {:jason, "~> 1.0"},
       {:optimus, "~> 0.1.0"},
