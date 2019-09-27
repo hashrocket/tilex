@@ -41,6 +41,11 @@ config :tilex,
        :rate_limiter_time_period_minutes,
        System.get_env("RATE_LIMIT_TIME_PERIOD_MINUTES") || 1
 
+config :tilex,
+       :rate_limiter_cleanup_interval,
+       # every 10 hours
+       System.get_env("RATE_LIMIT_CLEANUP_INTERVAL") || 10 * 60 * 60_000
+
 config :tilex, :date_time_module, DateTime
 
 # Configures Elixir's Logger
