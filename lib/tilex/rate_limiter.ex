@@ -7,6 +7,7 @@ defmodule Tilex.RateLimiter do
   @time_period_minutes Application.get_env(:tilex, :rate_limiter_time_period_minutes)
                        |> Timex.Duration.from_minutes()
   @table_name :rate_limiter_lookup
+  @cleanup_interval Application.get_env(:tilex, :rate_limiter_cleanup_interval)
 
   def start_link do
     GenServer.start_link(__MODULE__, [], name: @name)
@@ -27,7 +28,15 @@ defmodule Tilex.RateLimiter do
   @impl true
   def init(_) do
     create_table()
+    schedule_cleanup()
     {:ok, %{}}
+  end
+
+  @impl true
+  def handle_info(:cleanup, state) do
+    :ets.delete_all_objects(@table_name)
+    schedule_cleanup()
+    {:noreply, state}
   end
 
   defp create_table do
@@ -53,5 +62,9 @@ defmodule Tilex.RateLimiter do
     Enum.filter(request_times, fn time ->
       Timex.between?(time, end_time, current_time, inclusive: true)
     end)
+  end
+
+  defp schedule_cleanup do
+    Process.send_after(self(), :cleanup, @cleanup_interval)
   end
 end
