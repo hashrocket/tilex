@@ -43,7 +43,7 @@ defmodule Tilex.Mixfile do
       {:cachex, "~> 3.1"},
       {:cors_plug, "~> 2.0"},
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
-      {:earmark, "~> 1.3.2"},
+      {:earmark, "~> 1.4.1"},
       {:ecto_sql, "~> 3.0"},
       {:excoveralls, "~> 0.10", only: :test},
       {:extwitter, "~> 0.8"},
