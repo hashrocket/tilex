@@ -26,7 +26,7 @@ defmodule Lib.Tilex.MarkdownTest do
     },
     %{
       input: "Some http://link.com?foo=bar",
-      expected: "<p>Some http://link.com?foo=bar</p>"
+      expected: "<p>Some <a href=\"http://link.com?foo=bar\">http://link.com?foo=bar</a></p>"
     },
     %{
       input: "Some /link.com?foo=bar",
