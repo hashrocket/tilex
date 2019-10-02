@@ -6,7 +6,7 @@ defmodule Tilex.Markdown do
   def to_html_live(markdown) do
     earmark_options = %Earmark.Options{
       code_class_prefix: "language-",
-      pure_links: false
+      pure_links: true
     }
 
     markdown
