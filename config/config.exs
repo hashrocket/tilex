@@ -25,6 +25,7 @@ config :tilex, :auth_controller, AuthController
 config :tilex, :slack_notifier, Tilex.Notifications.Notifiers.Slack
 config :tilex, :twitter_notifier, Tilex.Notifications.Notifiers.Twitter
 
+config :tilex, :banner, System.get_env("BANNER")
 config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
 config :tilex, :cors_origin, System.get_env("CORS_ORIGIN")
 config :tilex, :date_display_tz, System.get_env("DATE_DISPLAY_TZ")

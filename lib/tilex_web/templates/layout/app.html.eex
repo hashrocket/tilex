@@ -55,8 +55,8 @@
       </nav>
     <% end %>
 
-    <header class="site_head <%= if System.get_env("BANNER"), do: "has-banner" %>">
-      <%= if (System.get_env("BANNER")) do %>
+    <header class="site_head <%= if Application.get_env(:tilex, :banner), do: "has-banner" %>">
+      <%= if (Application.get_env(:tilex, :banner)) do %>
         <div class="banner">
           <div class="message">
             Hashrocket is hosting a <strong>Ruby</strong>, <strong>Rails</strong>, and <strong>React</strong> conference. Buy your tickets for <a href="https://www.ancientcityruby.com/">ACR</a> today!
