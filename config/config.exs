@@ -81,10 +81,10 @@ config :tilex, Tilex.Auth.Guardian,
   }
 
 config :extwitter, :oauth,
-  consumer_key: System.get_env("twitter_consumer_key"),
-  consumer_secret: System.get_env("twitter_consumer_secret"),
-  access_token: System.get_env("twitter_access_token"),
-  access_token_secret: System.get_env("twitter_access_token_secret")
+  access_token: System.get_env("TWITTER_ACCESS_TOKEN"),
+  access_token_secret: System.get_env("TWITTER_ACCESS_TOKEN_SECRET"),
+  consumer_key: System.get_env("TWITTER_CONSUMER_KEY"),
+  consumer_secret: System.get_env("TWITTER_CONSUMER_SECRET")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
