@@ -33,6 +33,7 @@ config :tilex, :guest_author_whitelist, System.get_env("GUEST_AUTHOR_WHITELIST")
 config :tilex, :hosted_domain, System.get_env("HOSTED_DOMAIN")
 config :tilex, :imgur_client_id, System.get_env("IMGUR_CLIENT_ID")
 config :tilex, :organization_name, System.get_env("ORGANIZATION_NAME")
+config :tilex, :slack_post_endpoint, System.get_env("SLACK_POST_ENDPOINT")
 
 config :tilex,
        :rate_limiter_requests_per_time_period,
