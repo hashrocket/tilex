@@ -1,6 +1,15 @@
 import PostForm from './post_form';
 
 $(function() {
+  $('#flash p').on(
+    'load',
+    (function() {
+      setTimeout(function() {
+        $('#flash p').fadeOut(200);
+      }, 10000);
+    })()
+  );
+
   $(document.body).on('click', '#flash p', function(e) {
     e.preventDefault();
     $(this).fadeOut(200);
