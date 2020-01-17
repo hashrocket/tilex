@@ -12,12 +12,7 @@ defmodule Tilex.Post do
   def title_max_chars, do: @title_max_chars
 
   @params ~w(title body developer_id channel_id likes max_likes)a
-  @user_editable_params ~w(title body channel_id)a
   def permitted_params, do: @params
-  def required_create_params, do: @user_editable_params
-  def required_update_params, do: @user_editable_params
-  def permitted_update_params, do: @user_editable_params
-  def permitted_create_params, do: @user_editable_params
   def required_params, do: @params
 
   schema "posts" do
@@ -85,25 +80,25 @@ defmodule Tilex.Post do
     |> hd
   end
 
-  def create_changeset(params, changes) do
+  def create_changeset(params, developer_id: developer_id) do
     %__MODULE__{}
-    |> cast(params, permitted_create_params())
-    |> validate_required(required_create_params())
+    |> cast(params, ~w(title body channel_id)a)
+    |> change(developer_id: developer_id)
+    |> add_slug
+    |> validate_required(~w(title body channel_id developer_id)a)
     |> validate_length(:title, max: title_max_chars())
     |> validate_length_of_body
     |> validate_number(:likes, greater_than: 0)
-    |> add_slug
-    |> change(changes)
   end
 
-  def update_changeset(struct, params \\ %{}) do
+  def update_changeset(struct, params) do
     struct
-    |> cast(params, permitted_update_params())
-    |> validate_required(required_update_params())
+    |> cast(params, ~w(title body channel_id)a)
+    |> add_slug
+    |> validate_required(~w(title body channel_id)a)
     |> validate_length(:title, max: title_max_chars())
     |> validate_length_of_body
     |> validate_number(:likes, greater_than: 0)
-    |> add_slug
   end
 
   defp add_slug(changeset) do
