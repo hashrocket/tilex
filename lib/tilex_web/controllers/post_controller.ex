@@ -108,9 +108,8 @@ defmodule TilexWeb.PostController do
     developer = Plug.current_resource(conn)
 
     changeset =
-      %Post{}
-      |> Map.put(:developer_id, developer.id)
-      |> Post.changeset(post_params)
+      post_params
+      |> Post.create_changeset(developer_id: developer.id)
 
     case Repo.insert(changeset) do
       {:ok, post} ->
@@ -165,7 +164,9 @@ defmodule TilexWeb.PostController do
           Repo.get_by!(Post, slug: conn.assigns.slug)
       end
 
-    changeset = Post.changeset(post, post_params)
+    changeset =
+      post
+      |> Post.update_changeset(post_params)
 
     case Repo.update(changeset) do
       {:ok, post} ->
