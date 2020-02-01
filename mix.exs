@@ -56,7 +56,7 @@ defmodule Tilex.Mixfile do
       {:optimus, "~> 0.1.0"},
       {:phoenix, "~> 1.4.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_html, "~> 2.13.1"},
+      {:phoenix_html, "~> 2.14.0"},
       {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
       {:plug, "~> 1.7"},
