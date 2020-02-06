@@ -107,9 +107,12 @@ defmodule TilexWeb.PostController do
   def create(conn, %{"post" => post_params}) do
     developer = Plug.current_resource(conn)
 
-    changeset =
+    strong_params =
       post_params
-      |> Post.create_changeset(developer_id: developer.id)
+      |> sanitize_params()
+      |> Map.merge(%{"developer_id" => developer.id})
+
+    changeset = Post.changeset(%Post{}, strong_params)
 
     case Repo.insert(changeset) do
       {:ok, post} ->
@@ -164,9 +167,9 @@ defmodule TilexWeb.PostController do
           Repo.get_by!(Post, slug: conn.assigns.slug)
       end
 
-    changeset =
-      post
-      |> Post.update_changeset(post_params)
+    strong_params = sanitize_params(post_params)
+
+    changeset = Post.changeset(post, strong_params)
 
     case Repo.update(changeset) do
       {:ok, post} ->
@@ -225,4 +228,8 @@ defmodule TilexWeb.PostController do
   end
 
   defp robust_page(_params), do: 1
+
+  defp sanitize_params(params) do
+    Map.take(params, ["body", "channel_id", "title"])
+  end
 end
