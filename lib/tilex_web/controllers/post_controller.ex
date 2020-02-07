@@ -104,15 +104,15 @@ defmodule TilexWeb.PostController do
     |> send_resp(200, Jason.encode!(%{likes: likes}))
   end
 
-  def create(conn, %{"post" => post_params}) do
+  def create(conn, %{"post" => params}) do
     developer = Plug.current_resource(conn)
 
-    strong_params =
-      post_params
-      |> sanitize_params()
+    sanitized_params =
+      params
+      |> post_params()
       |> Map.merge(%{"developer_id" => developer.id})
 
-    changeset = Post.changeset(%Post{}, strong_params)
+    changeset = Post.changeset(%Post{}, sanitized_params)
 
     case Repo.insert(changeset) do
       {:ok, post} ->
@@ -153,7 +153,7 @@ defmodule TilexWeb.PostController do
     |> render("edit.html")
   end
 
-  def update(conn, %{"post" => post_params}) do
+  def update(conn, %{"post" => params}) do
     current_user = Plug.current_resource(conn)
 
     post =
@@ -167,9 +167,9 @@ defmodule TilexWeb.PostController do
           Repo.get_by!(Post, slug: conn.assigns.slug)
       end
 
-    strong_params = sanitize_params(post_params)
+    sanitized_params = post_params(params)
 
-    changeset = Post.changeset(post, strong_params)
+    changeset = Post.changeset(post, sanitized_params)
 
     case Repo.update(changeset) do
       {:ok, post} ->
@@ -229,7 +229,7 @@ defmodule TilexWeb.PostController do
 
   defp robust_page(_params), do: 1
 
-  defp sanitize_params(params) do
+  defp post_params(params) do
     Map.take(params, ["body", "channel_id", "title"])
   end
 end
