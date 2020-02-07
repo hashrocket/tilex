@@ -11,9 +11,8 @@ defmodule Tilex.Post do
   @title_max_chars 50
   def title_max_chars, do: @title_max_chars
 
-  @params ~w(title body developer_id channel_id likes max_likes)a
-  def permitted_params, do: @params
-  def required_params, do: @params
+  @required_params ~w(body channel_id developer_id title)a
+  @permitted_params @required_params ++ ~w(developer_id likes max_likes)a
 
   schema "posts" do
     field(:title, :string)
@@ -27,16 +26,6 @@ defmodule Tilex.Post do
     belongs_to(:developer, Developer)
 
     timestamps(type: :utc_datetime)
-  end
-
-  def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, permitted_params())
-    |> validate_required(required_params())
-    |> validate_length(:title, max: title_max_chars())
-    |> validate_length_of_body
-    |> validate_number(:likes, greater_than: 0)
-    |> add_slug
   end
 
   def slugified_title(title) do
@@ -80,25 +69,16 @@ defmodule Tilex.Post do
     |> hd
   end
 
-  def create_changeset(params, developer_id: developer_id) do
-    %__MODULE__{}
-    |> cast(params, ~w(title body channel_id)a)
-    |> change(developer_id: developer_id)
+  def changeset(post, params \\ %{}) do
+    post
+    |> cast(params, @permitted_params)
     |> add_slug
-    |> validate_required(~w(title body channel_id developer_id)a)
+    |> validate_required(@required_params)
     |> validate_length(:title, max: title_max_chars())
     |> validate_length_of_body
     |> validate_number(:likes, greater_than: 0)
-  end
-
-  def update_changeset(struct, params) do
-    struct
-    |> cast(params, ~w(title body channel_id)a)
-    |> add_slug
-    |> validate_required(~w(title body channel_id)a)
-    |> validate_length(:title, max: title_max_chars())
-    |> validate_length_of_body
-    |> validate_number(:likes, greater_than: 0)
+    |> foreign_key_constraint(:channel_id)
+    |> foreign_key_constraint(:developer_id)
   end
 
   defp add_slug(changeset) do
