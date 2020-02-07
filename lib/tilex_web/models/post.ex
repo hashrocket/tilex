@@ -11,8 +11,8 @@ defmodule Tilex.Post do
   @title_max_chars 50
   def title_max_chars, do: @title_max_chars
 
-  def permitted_params, do: ~w(body channel_id developer_id likes max_likes title)a
-  def required_params, do: ~w(body channel_id developer_id title)a
+  @required_params ~w(body channel_id developer_id title)a
+  @permitted_params @required_params ++ ~w(developer_id likes max_likes)a
 
   schema "posts" do
     field(:title, :string)
@@ -71,9 +71,9 @@ defmodule Tilex.Post do
 
   def changeset(post, params \\ %{}) do
     post
-    |> cast(params, permitted_params())
+    |> cast(params, @permitted_params)
     |> add_slug
-    |> validate_required(required_params())
+    |> validate_required(@required_params)
     |> validate_length(:title, max: title_max_chars())
     |> validate_length_of_body
     |> validate_number(:likes, greater_than: 0)
