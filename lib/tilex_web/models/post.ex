@@ -77,6 +77,8 @@ defmodule Tilex.Post do
     |> validate_length(:title, max: title_max_chars())
     |> validate_length_of_body
     |> validate_number(:likes, greater_than: 0)
+    |> foreign_key_constraint(:channel_id)
+    |> foreign_key_constraint(:developer_id)
   end
 
   defp add_slug(changeset) do
