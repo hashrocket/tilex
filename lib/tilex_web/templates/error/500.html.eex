@@ -491,15 +491,13 @@
     </header>
     <main>
       <section id="home">
-        <section>
-          <article class="post">
-            <section>
-              <div class="post__content copy">
-                <h1>&hellip;that something is broken!</h1>
-              </div>
-            </section>
-          </article>
-        </section>
+        <article class="post">
+          <section>
+            <div class="post__content copy">
+              <h1>&hellip;that something is broken!</h1>
+            </div>
+          </section>
+        </article>
       </section>
     </main>
     <iframe src="/phoenix/live_reload/frame" style="display: none;"></iframe>
