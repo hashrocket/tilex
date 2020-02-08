@@ -13,15 +13,17 @@
            data-via= "<%= Tilex.Developer.twitter_handle(@post.developer) %>"
            data-hashtags= "<%= @post.channel.twitter_hashtag %>"
            data-url= "<%= post_url(@conn, :show, @post) %>">
-          Tweet
+           Tweet
         </a>
       <% end %>
 
       <footer>
-        <p>
+        <p class="byline">
           <%= link(@post.developer.username, to: developer_path(@conn, :show, @post.developer)) %>
           <br/>
-          <%= link(display_date(@post), to: post_path(@conn, :show, @post), class: "post__permalink") %>
+          <time datetime="<%= @post.inserted_at %>">
+            <%= link(display_date(@post), to: post_path(@conn, :show, @post), class: "post__permalink") %>
+          </time>
         </p>
       </footer>
     </div>
