@@ -60,4 +60,18 @@ defmodule Tilex.PostTest do
     result = "hacking-your-shower"
     assert Post.slugified_title(title) == result
   end
+
+  test "generate_slug/0" do
+    slug_regex = ~r/[a-z0-9]/
+    slug = Post.generate_slug()
+
+    assert String.length(slug) == 10
+    assert String.match?(slug, slug_regex)
+
+    another_slug = Post.generate_slug()
+
+    assert String.length(another_slug) == 10
+    assert String.match?(another_slug, slug_regex)
+    refute slug == another_slug
+  end
 end
