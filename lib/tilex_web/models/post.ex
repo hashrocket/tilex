@@ -54,9 +54,9 @@ defmodule Tilex.Post do
     16
     |> :crypto.strong_rand_bytes()
     |> :base64.encode()
-    |> String.replace(~r/[^A-Za-z0-9]/, "")
-    |> String.slice(0, 10)
     |> String.downcase()
+    |> String.replace(~r/[^a-z0-9]/, "")
+    |> String.slice(0, 10)
   end
 
   def twitter_title(post) do
