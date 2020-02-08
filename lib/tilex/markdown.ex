@@ -23,8 +23,9 @@ defmodule Tilex.Markdown do
   end
 
   defp expand_relative_links(dom, url) do
-    dom
-    |> Floki.parse()
+    {:ok, fragment} = Floki.parse_fragment(dom)
+
+    fragment
     |> Floki.map(fn tuple -> expand_relative_link(tuple, url) end)
     |> Floki.raw_html()
   end
