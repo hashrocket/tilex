@@ -123,7 +123,8 @@ $ mix deploy <environment>
 
 ### Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for more information.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for more information. Thank you to
+all of our [contributors][contrib].
 
 ### Code of Conduct
 
@@ -152,3 +153,5 @@ Tilex is supported by the team at [Hashrocket, a multidisciplinary design and
 development consultancy](https://hashrocket.com). If you'd like to [work with
 us](https://hashrocket.com/contact-us/hire-us) or [join our
 team](https://hashrocket.com/contact-us/jobs), don't hesitate to get in touch.
+
+[contrib]: https://github.com/hashrocket/tilex/graphs/contributors
