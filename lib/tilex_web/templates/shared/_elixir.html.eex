@@ -1,11 +1,7 @@
-Looking for help? Elixir is quickly gaining momentum for web applications that
-need concurrency, performance, and the ability to connect to many different
-clients. The developers at
-<a href="https://hashrocket.com/elixir">Hashrocket</a>
-are learning along with the rest of the development community that Elixir and
-Phoenix are viable Rails alternatives for the right application.
-Check out the
-<a href="https://github.com/hashrocket/tilex">source code</a>
-for Today I Learned, written in Elixir, and
-<a href="https://hashrocket.com/contact-us">contact us</a>
-if you need help with your Elixir project.
+Looking for help? At <a href="https://hashrocket.com/elixir">Hashrocket</a>, we
+<span style="font-style: normal">💜</span> Elixir! From our many Elixir client
+projects, to sponsoring the <a href="http://chicagoelixir.com/">Chicago Elixir
+Meetup</a>, to the source code for <a
+href="https://github.com/hashrocket/tilex">this application</a>, we are
+invested in this community. <a href="https://hashrocket.com/contact-us">Contact
+us</a> today to talk about your Elixir project.
