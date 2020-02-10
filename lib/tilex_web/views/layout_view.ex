@@ -63,9 +63,9 @@ defmodule TilexWeb.LayoutView do
 
     earmark_options = %Earmark.Options{pure_links: false}
 
-    with {:ok, html, _} <- Earmark.as_html(markdown, earmark_options),
-         text <- Floki.text(html) do
-      text
+    with {:ok, html, _errors} <- Earmark.as_html(markdown, earmark_options),
+         {:ok, fragment} <- Floki.parse_fragment(html) do
+      Floki.text(fragment)
     else
       _error ->
         markdown
