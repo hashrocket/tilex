@@ -136,7 +136,7 @@
       </ul>
     </nav>
 
-    <script type="text/javascript">
+    <script>
       window.Tilex = window.Tilex || {};
       window.Tilex.clientConfig = {
         editor: '<%= editor_preference(@conn) %>',
@@ -147,7 +147,7 @@
     <script src="<%= static_url(@conn, "/js/app.js") %>"></script>
 
     <%= if ga_identifier() do %>
-      <script type="text/javascript">
+      <script>
         (function(i, s, o, g, r, a, m) {
           i['GoogleAnalyticsObject'] = r;
           (i[r] =
