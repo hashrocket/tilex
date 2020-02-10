@@ -1,7 +1,7 @@
 # Usage
 
-We love seeing forks of Today I Learned in production! Here's a basic guide
-for customizing your own version of the site.
+We love seeing forks of Today I Learned in production! Here's a basic guide for
+customizing your version of the site.
 
 ### Style
 
