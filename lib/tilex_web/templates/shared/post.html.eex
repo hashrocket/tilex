@@ -13,7 +13,7 @@
            data-via= "<%= Tilex.Developer.twitter_handle(@post.developer) %>"
            data-hashtags= "<%= @post.channel.twitter_hashtag %>"
            data-url= "<%= post_url(@conn, :show, @post) %>">
-           Tweet
+          Tweet
         </a>
       <% end %>
 
