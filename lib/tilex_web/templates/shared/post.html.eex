@@ -18,10 +18,12 @@
       <% end %>
 
       <footer>
-        <p>
+        <p class="byline">
           <%= link(@post.developer.username, to: developer_path(@conn, :show, @post.developer)) %>
           <br/>
-          <%= link(display_date(@post), to: post_path(@conn, :show, @post), class: "post__permalink") %>
+          <time datetime="<%= @post.inserted_at %>">
+            <%= link(display_date(@post), to: post_path(@conn, :show, @post), class: "post__permalink") %>
+          </time>
         </p>
       </footer>
     </div>
