@@ -8,7 +8,7 @@ defmodule TilexWeb.Endpoint do
     plug(Phoenix.Ecto.SQL.Sandbox)
   end
 
-  socket("/socket", TilexWeb.UserSocket, websocket: true)
+  socket("/socket", TilexWeb.UserSocket, websocket: [timeout: 45_000, longpoll: false])
 
   if @cors_origin do
     origin =

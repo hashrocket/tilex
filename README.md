@@ -101,11 +101,9 @@ $ mix test
 
 ### Deployment
 
-Hashrocket's Tilex is deployed to Heroku. These are Hashrocket's deployed
-instances:
+Tilex is deployed to Heroku.
 
-- Staging: https://tilex-staging.herokuapp.com
-- Production: https://til.hashrocket.com
+Follow the official [Phoenix Heroku deployment guide](https://hexdocs.pm/phoenix/heroku.html) for setup instructions.
 
 This project contains Mix tasks to deploy our instances; use as follows:
 
