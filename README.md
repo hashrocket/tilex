@@ -3,50 +3,46 @@
 [![CircleCI](https://circleci.com/gh/hashrocket/tilex.svg?style=svg)](https://circleci.com/gh/hashrocket/tilex) [![Coverage Status](https://coveralls.io/repos/github/hashrocket/tilex/badge.svg?branch=master)](https://coveralls.io/github/hashrocket/tilex?branch=master)
 
 > Today I Learned is an open-source project by the team at
-> [Hashrocket](https://hashrocket.com/) that catalogues the sharing &
-> accumulation of knowledge as it happens day-to-day. Posts have a 200-word
-> limit, and posting is open to any Rocketeer as well as select friends of the
-> team. We hope you enjoy learning along with us.
+> [Hashrocket][hashrocket] that catalogues the sharing & accumulation of
+> knowledge as it happens day-to-day. Posts have a 200-word limit, and posting
+> is open to any Rocketeer as well as select friends of the team. We hope you
+> enjoy learning along with us.
 
-This site was open-sourced as a window into our development process, as well as
+This site was open-sourced in as a window into our development process, as well as
 to allow people to experiment with the site on their own and contribute to the
 project.
 
-We originally implemented Tilex as
-[_hr-til_](https://github.com/hashrocket/hr-til), a Ruby on Rails app.
+We originally implemented Tilex as [_hr-til_][hr-til], a Ruby on Rails app.
 
 ### Installation
 
-If you are creating your own version of the site,
-[fork](https://help.github.com/articles/fork-a-repo/) the repository.
-
-Then, install [Erlang](https://www.erlang.org/),
-[Elixir](https://elixir-lang.org/),
-[Phoenix](http://www.phoenixframework.org/docs/installation), and PostgreSQL.
-
-Next, follow these setup steps:
+If you are creating your own version of the site, [fork][fork] the repository
+and clone your fork:
 
 ```shell
-$ git clone https://github.com/hashrocket/tilex
+$ git clone https://github.com/<your_github>/tilex
 $ cd tilex
 ```
 
-At this point you can use `make` for development commands. To access make help just type: `make` or `make help`. Then you can run make with target(s) such as: `make setup server` and so on. Environment variables will automatically loaded from `.env` file in case you need to change it.
+Then, install [Erlang][erlang], [Elixir][elixir], Node, and PostgreSQL.
+[asdf][asdf] can do this in a single command:
+
+```shell
+$ asdf install
+```
+
+From here, we recommend using `make`:
 
 ```shell
 $ make
 $ make setup server
 ```
 
-Or run commands manually. To set environmental variables, copy the example file:
+To do everything by hand, source your environment variables, install
+dependencies, and start the server:
 
 ```shell
 $ cp .env{.example,}
-```
-
-For setting up the project and start the server manually run:
-
-```shell
 $ source .env
 $ mix deps.get
 $ mix ecto.setup
@@ -54,12 +50,12 @@ $ npm install --prefix assets
 $ mix phx.server
 ```
 
-If you'd like to skip the database seeds, run `mix ecto.create && mix
+Want to start with an empty database? Skip the seeds by running `mix ecto.create && mix
 ecto.migrate` in place of `mix ecto.setup`.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Now you can visit http://localhost:4000 from your browser.
 
-To serve the app at a different port, include the `PORT` environment
+To serve the application at a different port, include the `PORT` environment
 variable when starting the server:
 
 ```shell
@@ -68,11 +64,10 @@ $ PORT=4444 mix phx.server
 
 ### Authentication
 
-Authentication is managed by Ueberauth and Google. See the
-[ueberauth_google README](https://github.com/ueberauth/ueberauth_google)
-and [Google Oauth 2 docs](https://developers.google.com/identity/protocols/OAuth2WebServer) for
-setup instructions. To allow users from a domain and/or comma separated whitelist, set those configurations in
-your environment:
+Authentication is managed by Ueberauth and Google. See the [ueberauth_google
+README][ueberauth_google] and [Google Oauth 2 docs][oauth_google] for
+instructions. To allow users from a domain and/or comma-separated whitelist,
+set those configurations in your environment:
 
 ```shell
 # .env
@@ -83,19 +78,16 @@ export HOSTED_DOMAIN="your-domain.com"
 export GUEST_AUTHOR_WHITELIST="joedeveloper@otherdomain.com, suziedeveloper@freelancer.com"
 ```
 
-Once set, visit [`localhost:4000/admin`](http://localhost:4000/admin) and log
-in with an email address from your permitted domain.
+Once set, visit http://localhost:4000/admin and log in with an email address
+from your permitted domain.
 
 Tilex creates a new user on the first authentication, and then finds that same
 user on subsequent authentications.
 
 ### Testing
 
-Wallaby relies on
-[ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/); install
-it via your method of choice.
-
-Run the tests with:
+Wallaby relies on [ChromeDriver][chromedriver]; install it via your method of
+choice.  Then, run tests with:
 
 ```shell
 $ make test
@@ -109,8 +101,8 @@ $ mix test
 
 ### Deployment
 
-Hashrocket's Tilex is deployed to [Heroku](https://www.heroku.com/). These are
-Hashrocket's deployed instances:
+Hashrocket's Tilex is deployed to Heroku. These are Hashrocket's deployed
+instances:
 
 - Staging: https://tilex-staging.herokuapp.com
 - Production: https://til.hashrocket.com
@@ -123,14 +115,14 @@ $ mix deploy <environment>
 
 ### Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for more information.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for more information. Thank you to
+all of our [contributors][contrib].
 
 ### Code of Conduct
 
 This project is intended to be a safe, welcoming space for collaboration, and
-contributors are expected to adhere to the [Contributor
-Covenant](http://contributor-covenant.org) code of conduct. Please see [CODE OF
-CONDUCT](CODE_OF_CONDUCT.md) for more information.
+contributors are expected to adhere to the [Contributor Covenant][cc] code of
+conduct. Please see [CODE OF CONDUCT](CODE_OF_CONDUCT.md) for more information.
 
 ### Usage
 
@@ -139,16 +131,30 @@ We love seeing forks of Today I Learned in production! Please consult
 
 ### License
 
-Tilex is released under the [MIT License](http://www.opensource.org/licenses/MIT). Please
+Tilex is released under the [MIT License][mit].opensource.org/licenses/MIT). Please
 see [LICENSE](LICENSE.md) for more information.
 
 ---
 
 ### About
 
-[![Hashrocket logo](https://hashrocket.com/hashrocket_logo.svg)](https://hashrocket.com)
+[![Hashrocket logo](https://hashrocket.com/hashrocket_logo.svg)][hashrocket]
 
 Tilex is supported by the team at [Hashrocket, a multidisciplinary design and
-development consultancy](https://hashrocket.com). If you'd like to [work with
-us](https://hashrocket.com/contact-us/hire-us) or [join our
-team](https://hashrocket.com/contact-us/jobs), don't hesitate to get in touch.
+development consultancy][hashrocket] If you'd like to [work with us][hire-us]
+or [join our team][join-us], don't hesitate to get in touch.
+
+[asdf]: https://github.com/asdf-vm/asdf
+[cc]: http://contributor-covenant.org
+[chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/
+[contrib]: https://github.com/hashrocket/tilex/graphs/contributors
+[elixir]: https://elixir-lang.org/
+[erlang]: https://www.erlang.org/
+[fork]: https://help.github.com/articles/fork-a-repo/
+[hashrocket]: https://hashrocket.com/
+[hire-us]: https://hashrocket.com/contact-us/hire-us
+[hr-til]: https://github.com/hashrocket/hr-til
+[join-us]: https://hashrocket.com/contact-us/jobs
+[mit]: http://www.opensource.org/licenses/MIT
+[oauth_google]: https://developers.google.com/identity/protocols/OAuth2WebServer
+[ueberauth_google]: https://github.com/ueberauth/ueberauth_google

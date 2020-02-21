@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8">
     <title>
       Not Found - Today I Learned
     </title>
 
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900&display=swap' rel='stylesheet' type='text/css'>
@@ -491,15 +491,13 @@
     </header>
     <main>
       <section id="home">
-        <section>
-          <article class="post">
-            <section>
-              <div class="post__content copy">
-                <h1>&hellip;that there is no page at this URL!</h1>
-              </div>
-            </section>
-          </article>
-        </section>
+        <article class="post">
+          <section>
+            <div class="post__content copy">
+              <h1>&hellip;that there is no page at this URL!</h1>
+            </div>
+          </section>
+        </article>
       </section>
     </main>
     <iframe src="/phoenix/live_reload/frame" style="display: none;"></iframe>

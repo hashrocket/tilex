@@ -1,55 +1,55 @@
-<section>
-  <article class="post">
-    <section>
-      <div class="post__content copy">
-        <h1>
-          <%= link(@post.title, to: post_path(@conn, :show, @post)) %>
-        </h1>
-        <%= raw Tilex.Markdown.to_html(@post.body) %>
+<article class="post">
+  <section>
+    <div class="post__content copy">
+      <h1>
+        <%= link(@post.title, to: post_path(@conn, :show, @post)) %>
+      </h1>
+      <%= raw Tilex.Markdown.to_html(@post.body) %>
 
-        <%= if assigns[:twitter_shareable] && Mix.env != :test do %>
-          <a href='http://twitter.com/share'
-             class='twitter-share-button'
-             data-text= "Today I learned: <%= @post.title %>"
-             data-via= "<%= Tilex.Developer.twitter_handle(@post.developer) %>"
-             data-hashtags= "<%= @post.channel.twitter_hashtag %>"
-             data-url= "<%= post_url(@conn, :show, @post) %>">
-            Tweet
-          </a>
-        <% end %>
+      <%= if assigns[:twitter_shareable] && Mix.env != :test do %>
+        <a href='http://twitter.com/share'
+           class='twitter-share-button'
+           data-text= "Today I learned: <%= @post.title %>"
+           data-via= "<%= Tilex.Developer.twitter_handle(@post.developer) %>"
+           data-hashtags= "<%= @post.channel.twitter_hashtag %>"
+           data-url= "<%= post_url(@conn, :show, @post) %>">
+          Tweet
+        </a>
+      <% end %>
 
-        <footer>
-          <p>
-            <%= link(@post.developer.username, to: developer_path(@conn, :show, @post.developer)) %>
-            <br/>
+      <footer>
+        <p class="byline">
+          <%= link(@post.developer.username, to: developer_path(@conn, :show, @post.developer)) %>
+          <br/>
+          <time datetime="<%= @post.inserted_at %>">
             <%= link(display_date(@post), to: post_path(@conn, :show, @post), class: "post__permalink") %>
-          </p>
-        </footer>
-      </div>
-      <aside>
-        <ul>
+          </time>
+        </p>
+      </footer>
+    </div>
+    <aside>
+      <ul>
+        <li>
+          <%= link("##{@post.channel.name}", to: channel_path(@conn, :show, @post.channel.name), class: "post__tag-link") %>
+        </li>
+        <li>
+          <%= link("permalink", to: post_path(@conn, :show, @post), class: "post__permalink") %>
+        </li>
+        <li>
+          <%= link("raw", to: "#{post_path(@conn, :show, @post)}.md", class: "post__raw-link") %>
+        </li>
+        <%= if TilexWeb.SharedView.post_creator_or_admin?(@conn, @post) do %>
           <li>
-            <%= link("##{@post.channel.name}", to: channel_path(@conn, :show, @post.channel.name), class: "post__tag-link") %>
+            <%= link("edit", to: post_path(@conn, :edit, @post), class: "post__permalink") %>
           </li>
-          <li>
-            <%= link("permalink", to: post_path(@conn, :show, @post), class: "post__permalink") %>
-          </li>
-          <li>
-            <%= link("raw", to: "#{post_path(@conn, :show, @post)}.md", class: "post__raw-link") %>
-          </li>
-          <%= if TilexWeb.SharedView.post_creator_or_admin?(@conn, @post) do %>
-            <li>
-              <%= link("edit", to: post_path(@conn, :edit, @post), class: "post__permalink") %>
-            </li>
+        <% end %>
+        <li>
+          <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>
+            <span class="post__like-count"><%= @post.likes %></span>
+            <span class="post__like-label">likes</span>
           <% end %>
-          <li>
-            <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>
-              <span class="post__like-count"><%= @post.likes %></span>
-              <span class="post__like-label">likes</span>
-            <% end %>
-          </li>
-        </ul>
-      </aside>
-    </section>
-  </article>
-</section>
+        </li>
+      </ul>
+    </aside>
+  </section>
+</article>

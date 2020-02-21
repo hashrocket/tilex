@@ -24,6 +24,12 @@ jobs:
       - run: mix phx.digest
       - run: mix format --check-formatted
       - run: mix credo
-      - run: mix coveralls.circle
+      - run:
+          name: "Setup environment variables"
+          command: |
+            echo 'export DATE_DISPLAY_TZ=America/Chicago' >> $BASH_ENV
+            echo 'export MIX_ENV=test' >> $BASH_ENV
+            echo 'export TZ=America/Chicago' >> $BASH_ENV
+      - run: if [ "$COVERALLS_REPO_TOKEN" ]; then mix coveralls.circle; else mix test; fi
       - store_artifacts:
           path: /home/circleci/tilex/screenshots

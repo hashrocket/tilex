@@ -11,9 +11,8 @@ defmodule Tilex.Post do
   @title_max_chars 50
   def title_max_chars, do: @title_max_chars
 
-  @params ~w(title body developer_id channel_id likes max_likes)a
-  def permitted_params, do: @params
-  def required_params, do: @params
+  @required_params ~w(body channel_id developer_id title)a
+  @permitted_params @required_params ++ ~w(developer_id likes max_likes)a
 
   schema "posts" do
     field(:title, :string)
@@ -27,16 +26,6 @@ defmodule Tilex.Post do
     belongs_to(:developer, Developer)
 
     timestamps(type: :utc_datetime)
-  end
-
-  def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, permitted_params())
-    |> validate_required(required_params())
-    |> validate_length(:title, max: title_max_chars())
-    |> validate_length_of_body
-    |> validate_number(:likes, greater_than: 0)
-    |> add_slug
   end
 
   def slugified_title(title) do
@@ -65,9 +54,9 @@ defmodule Tilex.Post do
     16
     |> :crypto.strong_rand_bytes()
     |> :base64.encode()
-    |> String.replace(~r/[^A-Za-z0-9]/, "")
-    |> String.slice(0, 10)
     |> String.downcase()
+    |> String.replace(~r/[^a-z0-9]/, "")
+    |> String.slice(0, 10)
   end
 
   def twitter_title(post) do
@@ -78,6 +67,18 @@ defmodule Tilex.Post do
     post.body
     |> String.split("\n")
     |> hd
+  end
+
+  def changeset(post, params \\ %{}) do
+    post
+    |> cast(params, @permitted_params)
+    |> add_slug
+    |> validate_required(@required_params)
+    |> validate_length(:title, max: title_max_chars())
+    |> validate_length_of_body
+    |> validate_number(:likes, greater_than: 0)
+    |> foreign_key_constraint(:channel_id)
+    |> foreign_key_constraint(:developer_id)
   end
 
   defp add_slug(changeset) do
