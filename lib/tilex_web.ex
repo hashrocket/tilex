@@ -36,6 +36,7 @@ defmodule TilexWeb do
 
       import TilexWeb.Router.Helpers
       import TilexWeb.Gettext
+      alias TilexWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -54,6 +55,7 @@ defmodule TilexWeb do
       import TilexWeb.Router.Helpers
       import TilexWeb.ErrorHelpers
       import TilexWeb.Gettext
+      alias TilexWeb.Router.Helpers, as: Routes
     end
   end
 
