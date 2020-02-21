@@ -44,5 +44,3 @@ config :wallaby,
   screenshot_on_failure: true
 
 config :tilex, :request_tracking, true
-
-config :appsignal, :config, active: false

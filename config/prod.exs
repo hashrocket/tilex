@@ -17,7 +17,6 @@ static_url =
   |> Map.from_struct()
 
 config :tilex, TilexWeb.Endpoint,
-  instrumenters: [Appsignal.Phoenix.Instrumenter],
   http: [port: {:system, "PORT"}, compress: true],
   url: [host: System.get_env("HOST"), port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
@@ -80,8 +79,4 @@ end
 
 config :tilex, :page_size, 50
 config :tilex, :ga_identifier, System.get_env("GA_IDENTIFIER")
-
-config :appsignal, :config, active: true
-
-config :tilex, :page_size, 50
 config :tilex, :request_tracking, System.get_env("REQUEST_TRACKING")

@@ -1,6 +1,5 @@
 defmodule TilexWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :tilex
-  use Appsignal.Phoenix
 
   @cors_origin Application.get_env(:tilex, :cors_origin)
 
@@ -74,6 +73,5 @@ defmodule TilexWeb.Endpoint do
     signing_salt: "PSNTTaPr"
   )
 
-  use Appsignal.Phoenix
   plug(TilexWeb.Router)
 end
