@@ -29,7 +29,7 @@ config :tilex, :auth_controller, Test.AuthController
 config :tilex, :slack_notifier, Test.Notifications.Notifiers.Slack
 config :tilex, :twitter_notifier, Test.Notifications.Notifiers.Twitter
 config :tilex, :date_time_module, Tilex.DateTimeMock
-config :tilex, :date_display_tz, "America/Chicago"
+config :tilex, :date_display_tz, "America/New_York"
 
 config :tilex, :async_feature_test, System.get_env("ASYNC_FEATURE_TEST") == "yes"
 
