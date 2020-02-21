@@ -31,23 +31,23 @@ Then, install [Erlang][erlang], [Elixir][elixir], Node, and PostgreSQL.
 $ asdf install
 ```
 
-From here, we recommend using `make`:
+We recommend installing [forego](https://github.com/ddollar/forego) to make loading the `.env` file painless when starting the server.
+Another nice option for this is [direnv](https://direnv.net/)
 
 ```shell
-$ make
-$ make setup server
+$ curl -O https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-darwin-amd64.zip
+$ unzip forego-stable-darwin-amd64.zip -d /usr/local/bin
 ```
 
-To do everything by hand, source your environment variables, install
-dependencies, and start the server:
+Install dependencies and start the server:
 
 ```shell
 $ cp .env{.example,}
-$ source .env
 $ mix deps.get
 $ mix ecto.setup
 $ npm install --prefix assets
-$ mix phx.server
+$ mix phx.digest
+$ forego run mix phx.server
 ```
 
 Want to start with an empty database? Skip the seeds by running `mix ecto.create && mix
