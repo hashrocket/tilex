@@ -26,8 +26,8 @@ defmodule Tilex.Factory do
 
   def build(:developer) do
     %Developer{
-      email: "developer@hashrocket.com",
-      username: "Ricky Rocketeer"
+      email: "developer@orequals.com",
+      username: "Rick Ross"
     }
   end
 
