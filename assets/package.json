@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "autosize": "^4.0.2",
-    "codemirror": "^5.49.2",
+    "codemirror": "^5.52.0",
     "codemirror-mode-elixir": "^1.1.1",
     "jquery": "^3.4.1",
     "jquery.cookie": "^1.4.1",
@@ -16,19 +16,19 @@
     "phoenix_html": "file:../deps/phoenix_html"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "babel-loader": "^8.0.6",
-    "compression-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^5.0.4",
-    "css-loader": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.13.0",
+    "compression-webpack-plugin": "^3.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.2",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "sass-loader": "^7.3.1",
+    "sass-loader": "^8.0.2",
     "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack": "4.41.6",
+    "webpack-cli": "^3.3.11"
   }
 }
