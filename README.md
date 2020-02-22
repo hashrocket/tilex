@@ -46,6 +46,7 @@ $ cp .env{.example,}
 $ mix deps.get
 $ mix ecto.setup
 $ npm install --prefix assets
+$ npm run deploy --prefix ./assets
 $ mix phx.digest
 $ forego run mix phx.server
 ```
