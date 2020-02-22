@@ -5,6 +5,10 @@ on: push
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
     name: OTP ${{ matrix.otp }} | Elixir ${{ matrix.elixir }} | Node ${{ matrix.node }} | OS ${{ matrix.os }}
     strategy:
       matrix:
