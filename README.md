@@ -90,12 +90,6 @@ Wallaby relies on [ChromeDriver][chromedriver]; install it via your method of
 choice.  Then, run tests with:
 
 ```shell
-$ make test
-```
-
-or:
-
-```shell
 $ mix test
 ```
 
