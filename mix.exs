@@ -47,7 +47,7 @@ defmodule Tilex.Mixfile do
       {:ecto_sql, "~> 3.0"},
       {:excoveralls, "~> 0.10", only: :test},
       {:extwitter, "~> 0.8"},
-      {:floki, "~> 0.24.0"},
+      {:floki, "~> 0.26.0"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 2.0"},
       {:hackney, "1.15.2"},
