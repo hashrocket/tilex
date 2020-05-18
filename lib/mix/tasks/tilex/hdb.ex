@@ -6,7 +6,7 @@ defmodule Mix.Tasks.Tilex.Hdb do
   @shortdoc "Replace development PostgreSQL DB with dump from a Heroku app's DB."
 
   @moduledoc """
-  Run `mix tilex.hdb` to copy all data from the production database to the
+  Run `mix tilex.hdb -a tilex` to copy all data from the production database to the
   development database.
   """
 
@@ -43,7 +43,7 @@ defmodule Mix.Tasks.Tilex.Hdb do
   end
 
   defp confirm(prompt) do
-    input = IO.gets("#{prompt} [YyNn] ")
+    input = IO.gets("#{prompt} [y/n] ")
     "y" == input |> String.trim() |> String.downcase()
   end
 
