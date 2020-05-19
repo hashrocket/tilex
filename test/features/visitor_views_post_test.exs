@@ -216,9 +216,12 @@ defmodule VisitorViewsPostTest do
              String.trim("""
              #{title}
 
+
              #{body}
 
+
              #{developer.username}
+
              #{TilexWeb.SharedView.display_date(post)}
              """)
   end
