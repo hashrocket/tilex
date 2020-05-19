@@ -15,7 +15,8 @@ defmodule Tilex do
       worker(Cachex, [:tilex_cache, []]),
       worker(Tilex.Notifications, []),
       worker(Tilex.RateLimiter, []),
-      supervisor(Tilex.Notifications.NotifiersSupervisor, [])
+      supervisor(Tilex.Notifications.NotifiersSupervisor, []),
+      {Phoenix.PubSub, [name: Tilex.PubSub, adapter: Phoenix.PubSub.PG2]}
     ]
 
     :telemetry.attach(
