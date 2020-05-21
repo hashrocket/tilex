@@ -101,17 +101,29 @@ $ mix test
 
 ### Deployment
 
-Hashrocket's Tilex is deployed to Heroku. These are Hashrocket's deployed
-instances:
+Hashrocket's Tilex is deployed to a combination of Gigalixir and Heroku.
+
+For all of our staging and workflow needs we use Heroku. For HTTP/2 and the
+ability to have long running processes we use Gigalixir.
+
+These are Hashrocket's deployed instances on Heroku:
 
 - Staging: https://tilex-staging.herokuapp.com
+
+Staging deploys automatically deploy master to `tilex-staging` when a commit is merged into master.
+
+These are Hashrocket's deployed instances on Gigalixir:
+
 - Production: https://til.hashrocket.com
 
-This project contains Mix tasks to deploy our instances; use as follows:
+This project contains a Mix task to deploy to production; use as follows:
 
 ```shell
-$ mix deploy <environment>
+$ mix deploy gigalixir
 ```
+
+Wait until there are only "Healthy" instances when you run `gigalixir ps` and then run `gigalixir ps:migrate`.
+
 
 ### Contributing
 
