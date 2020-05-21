@@ -66,14 +66,14 @@ defmodule Tilex.TrackingTest do
       stats = [
         %{title: "The Enderman Returns", url: "/posts/101-the-enderman-returns", view_count: 4},
         %{title: "Subnautica", url: "/posts/102-subnautica", view_count: 3},
-        %{title: "Spiderman", url: "/posts/103-spiderman", view_count: 2},
-        %{title: "Witcher 3", url: "/posts/104-witcher-3", view_count: 2},
+        %{title: "Castle Wolfenstein", url: "/posts/108-castle-wolfenstein", view_count: 2},
         %{title: "Doom", url: "/posts/105-doom", view_count: 2},
         %{title: "Doom 2", url: "/posts/106-doom 2", view_count: 2},
         %{title: "Doom 3", url: "/posts/107-doom 3", view_count: 2},
-        %{title: "Castle Wolfenstein", url: "/posts/108-castle-wolfenstein", view_count: 2},
         %{title: "Minecraft", url: "/posts/109-minecraft", view_count: 2},
-        %{title: "Red Dead Redemption", url: "/posts/110-red-dead-redemption", view_count: 2}
+        %{title: "Red Dead Redemption", url: "/posts/110-red-dead-redemption", view_count: 2},
+        %{title: "Spiderman", url: "/posts/103-spiderman", view_count: 2},
+        %{title: "Witcher 3", url: "/posts/104-witcher-3", view_count: 2}
       ]
 
       create_requests_from_stats(stats)

@@ -40,7 +40,7 @@ defmodule Tilex.Tracking do
         req in subquery(requests),
         join: post in Tilex.Post,
         on: [slug: req.url_slug],
-        order_by: [desc: req.view_count],
+        order_by: [desc: req.view_count, asc: post.title],
         limit: 10,
         select: %{
           title: post.title,
