@@ -23,7 +23,6 @@ config :tilex, TilexWeb.Endpoint,
   http: [port: {:system, "PORT"}, compress: true],
   url: [host: System.get_env("HOST"), port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   static_url: static_url
 
 # Do not print debug messages in production
@@ -87,3 +86,4 @@ config :appsignal, :config, active: true
 
 config :tilex, :page_size, 50
 config :tilex, :request_tracking, System.get_env("REQUEST_TRACKING")
+config :tilex, :twitter_share, true

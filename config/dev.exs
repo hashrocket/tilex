@@ -52,3 +52,4 @@ config :tilex, :cors_origin, "http://localhost:3000"
 config :tilex, :default_twitter_handle, "hashrocket"
 
 config :tilex, :request_tracking, true
+config :tilex, :twitter_share, true

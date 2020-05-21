@@ -29,7 +29,7 @@ defmodule Tilex.RateLimiterTest do
       assert RateLimiter.check(ip: ip)
     end)
 
-    assert RateLimiter.check(ip: ip) == false
+    refute RateLimiter.check(ip: ip)
   end
 
   test "it responds with true if requests are spread over more than 1 minute" do
