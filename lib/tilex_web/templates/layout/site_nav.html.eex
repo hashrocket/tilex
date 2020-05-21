@@ -39,8 +39,8 @@
         <%= link("Statistics", to: stats_path(@conn, :index), class: "site_nav__link") %>
       <% end %>
     </li>
-    <li class="site_nav__twitter">
-      <%= link("Twitter", to: "https://twitter.com/#{Application.get_env(:tilex, :default_twitter_handle)}", class: "site_nav__link") %>
+    <li class="site_nav__newsletter">
+      <%= link("Newsletter", to: "https://www.getrevue.co/profile/til/", class: "site_nav__link") %>
     </li>
     <li class="site_nav__surprise_me">
       <%= link("Surprise Me", to: post_path(@conn, :random), class: "site_nav__link", rel: "nofollow") %>
