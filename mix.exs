@@ -65,7 +65,7 @@ defmodule Tilex.Mixfile do
       {:timex, "~> 3.1"},
       {:tzdata, "~> 1.0.1"},
       {:ueberauth_google, "~> 0.5"},
-      {:wallaby, "~> 0.23.0", [runtime: false, only: :test]}
+      {:wallaby, "~> 0.25.0", [runtime: false, only: :test]}
     ]
   end
 
