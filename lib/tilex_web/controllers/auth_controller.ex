@@ -51,17 +51,17 @@ defmodule TilexWeb.AuthController do
   defp authorized(email) do
     cond do
       String.match?(email, ~r/@#{hosted_domain()}$/) -> {:ok, email}
-      email in guest_whitelist() -> {:ok, email}
+      email in guest_allowlist() -> {:ok, email}
       true -> {:error, email}
     end
   end
 
   defp hosted_domain, do: Application.get_env(:tilex, :hosted_domain)
 
-  defp guest_whitelist do
-    with emails when is_binary(emails) <- Application.get_env(:tilex, :guest_author_whitelist),
-         whitelist <- String.split(emails, [",", " "], trim: true) do
-      whitelist
+  defp guest_allowlist do
+    with emails when is_binary(emails) <- Application.get_env(:tilex, :guest_author_allowlist),
+         allowlist <- String.split(emails, [",", " "], trim: true) do
+      allowlist
     else
       _ -> []
     end
