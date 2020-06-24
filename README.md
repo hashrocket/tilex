@@ -69,7 +69,7 @@ $ PORT=4444 mix phx.server
 
 Authentication is managed by Ueberauth and Google. See the [ueberauth_google
 README][ueberauth_google] and [Google Oauth 2 docs][oauth_google] for
-instructions. To allow users from a domain and/or comma-separated whitelist,
+instructions. To allow users from a domain and/or comma-separated allowlist,
 set those configurations in your environment:
 
 ```shell
@@ -78,7 +78,7 @@ set those configurations in your environment:
 export GOOGLE_CLIENT_ID="your-key.apps.googleusercontent.com"
 export GOOGLE_CLIENT_SECRET="yoursecret"
 export HOSTED_DOMAIN="your-domain.com"
-export GUEST_AUTHOR_WHITELIST="joedeveloper@otherdomain.com, suziedeveloper@freelancer.com"
+export GUEST_AUTHOR_ALLOWLIST="joedeveloper@otherdomain.com, suziedeveloper@freelancer.com"
 ```
 
 Once set, visit http://localhost:4000/admin and log in with an email address
