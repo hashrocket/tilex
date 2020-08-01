@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "autosize": "^4.0.2",
-    "codemirror": "^5.49.2",
+    "codemirror": "^5.56.0",
     "codemirror-mode-elixir": "^1.1.1",
     "jquery": "^3.4.1",
     "jquery.cookie": "^1.4.1",
