@@ -10,6 +10,8 @@ defmodule Tilex do
     children = [
       # Start the Ecto repository
       supervisor(Tilex.Repo, []),
+      # Start the PubSub system
+      {Phoenix.PubSub, name: Tilex.PubSub},
       # Start the endpoint when the application starts
       supervisor(TilexWeb.Endpoint, []),
       worker(Cachex, [:tilex_cache, []]),
