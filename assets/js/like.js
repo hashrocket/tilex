@@ -1,7 +1,7 @@
 $(function(){
 
 
-  var csrf = document.querySelector("meta[name=csrf]").content;
+  var csrf = document.querySelector('meta[name=csrf-token]').content;
 
   function LikeButton(el) {
     this.id = el.id;

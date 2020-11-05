@@ -13,8 +13,8 @@
     <meta itemprop="brand" content="Today I Learned">
     <meta itemprop="description" content="<%= description %>">
 
+    <%= csrf_meta_tag() %>
     <meta name="author" content="<%= Application.get_env(:tilex, :organization_name)%>">
-    <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
     <meta name="description" content="<%= description %>">
     <meta name="format-detection" content="telephone=no">
     <meta name="image" property="og:image" content="<%= image %>">
