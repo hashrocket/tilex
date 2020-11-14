@@ -40,7 +40,7 @@ defmodule Tilex.Mixfile do
     [
       {:appsignal, "~> 1.0"},
       {:basic_auth, "~> 2.1"},
-      {:cachex, "~> 3.1"},
+      {:cachex, "~> 3.3"},
       {:cors_plug, "~> 2.0"},
       {:credo, "~> 1.4.0", only: [:dev, :test], runtime: false},
       {:earmark, "~> 1.4.1"},

@@ -4,18 +4,16 @@ defmodule Tilex do
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
-    import Supervisor.Spec
-
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      supervisor(Tilex.Repo, []),
+      Tilex.Repo,
       # Start the endpoint when the application starts
-      supervisor(TilexWeb.Endpoint, []),
-      worker(Cachex, [:tilex_cache, []]),
-      worker(Tilex.Notifications, []),
-      worker(Tilex.RateLimiter, []),
-      supervisor(Tilex.Notifications.NotifiersSupervisor, [])
+      TilexWeb.Endpoint,
+      {Cachex, name: :tilex_cache},
+      Tilex.Notifications,
+      Tilex.RateLimiter,
+      Tilex.Notifications.NotifiersSupervisor
     ]
 
     :telemetry.attach(

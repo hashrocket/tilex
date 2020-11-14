@@ -9,7 +9,7 @@ defmodule Tilex.RateLimiter do
   @table_name :rate_limiter_lookup
   @cleanup_interval Application.get_env(:tilex, :rate_limiter_cleanup_interval)
 
-  def start_link do
+  def start_link([]) do
     GenServer.start_link(__MODULE__, [], name: @name)
   end
 

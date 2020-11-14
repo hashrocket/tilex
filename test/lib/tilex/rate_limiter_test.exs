@@ -5,7 +5,7 @@ defmodule Tilex.RateLimiterTest do
   alias Tilex.DateTimeMock
 
   setup do
-    RateLimiter.start_link()
+    RateLimiter.start_link([])
     :ok
   end
 
