@@ -62,6 +62,8 @@
       </nav>
     <% end %>
 
+    <%= render "site_nav.html", conn: @conn %>
+
     <header class="site_head <%= if System.get_env("BANNER"), do: "has-banner" %>">
       <%= if (System.get_env("BANNER")) do %>
         <div class="banner">
@@ -92,8 +94,6 @@
     <main>
       <%= render @view_module, @view_template, assigns %>
     </main>
-
-    <%= render "site_nav.html", conn: @conn %>
 
     <script>
       window.Tilex = window.Tilex || {};

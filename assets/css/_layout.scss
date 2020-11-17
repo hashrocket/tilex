@@ -177,6 +177,7 @@ header.site_head {
         }
 
         .site_nav__toggle {
+          display: block;
           width: auto;
           opacity: 1;
           box-shadow: 0 0 3rem transparentize($navy, 0.8);
@@ -211,6 +212,7 @@ header.site_head {
   left: 100%;
   bottom: 0;
   width: 0;
+  display: none;
   overflow: hidden;
   transition: opacity 0.2s;
   opacity: 0;
