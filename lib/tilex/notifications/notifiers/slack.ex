@@ -10,6 +10,16 @@ defmodule Tilex.Notifications.Notifiers.Slack do
     :mortar_board:
     :trophy:
     :100:
+    :fire:
+    :zap:
+    :rocket:
+    :saxophone:
+    :mega:
+    :crystal_ball:
+    :beers:
+    :revolving_hearts:
+    :heart_eyes_cat:
+    :scream_cat:
   )
 
   use Tilex.Notifications.Notifier

@@ -14,6 +14,9 @@ project.
 
 We originally implemented Tilex as [_hr-til_][hr-til], a Ruby on Rails app.
 
+For updates, follow us on [Twitter][twitter] and subscribe to our monthly
+[newsletter][newsletter].
+
 ### Installation
 
 If you are creating your own version of the site, [fork][fork] the repository
@@ -67,7 +70,7 @@ $ PORT=4444 mix phx.server
 
 Authentication is managed by Ueberauth and Google. See the [ueberauth_google
 README][ueberauth_google] and [Google Oauth 2 docs][oauth_google] for
-instructions. To allow users from a domain and/or comma-separated whitelist,
+instructions. To allow users from a domain and/or comma-separated allowlist,
 set those configurations in your environment:
 
 ```shell
@@ -76,7 +79,7 @@ set those configurations in your environment:
 export GOOGLE_CLIENT_ID="your-key.apps.googleusercontent.com"
 export GOOGLE_CLIENT_SECRET="yoursecret"
 export HOSTED_DOMAIN="your-domain.com"
-export GUEST_AUTHOR_WHITELIST="joedeveloper@otherdomain.com, suziedeveloper@freelancer.com"
+export GUEST_AUTHOR_ALLOWLIST="joedeveloper@otherdomain.com, suziedeveloper@freelancer.com"
 ```
 
 Once set, visit http://localhost:4000/admin and log in with an email address
@@ -149,5 +152,7 @@ or [join our team][join-us], don't hesitate to get in touch.
 [hr-til]: https://github.com/hashrocket/hr-til
 [join-us]: https://hashrocket.com/contact-us/jobs
 [mit]: http://www.opensource.org/licenses/MIT
+[newsletter]: https://www.getrevue.co/profile/til
 [oauth_google]: https://developers.google.com/identity/protocols/OAuth2WebServer
+[twitter]: https://twitter.com/hashrockettil
 [ueberauth_google]: https://github.com/ueberauth/ueberauth_google

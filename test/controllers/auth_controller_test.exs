@@ -63,8 +63,8 @@ defmodule Tilex.AuthControllerTest do
     assert get_flash(conn, :info) == "oauth2 profile is missing a valid name"
   end
 
-  test "GET /auth/google/callback with whitelisted email", %{conn: conn} do
-    Application.put_env(:tilex, :guest_author_whitelist, "david@byrne.com, bell@thecat.com")
+  test "GET /auth/google/callback with allowlisted email", %{conn: conn} do
+    Application.put_env(:tilex, :guest_author_allowlist, "david@byrne.com, bell@thecat.com")
 
     ueberauth_auth =
       ueberauth_struct("bell@thecat.com", "Archibald Douglas", "186823978541230597895")

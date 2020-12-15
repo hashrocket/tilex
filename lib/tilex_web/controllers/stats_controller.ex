@@ -39,8 +39,8 @@ defmodule TilexWeb.StatsController do
 
   defp developer_params(params) do
     %{
-      start_date: date_param(params, "start_date", Timex.to_date({2008, 1, 1})),
-      end_date: date_param(params, "end_date", Timex.today())
+      start_date: date_param(params, "start_date", Date.add(Date.utc_today(), -7)),
+      end_date: date_param(params, "end_date", Date.utc_today())
     }
   end
 

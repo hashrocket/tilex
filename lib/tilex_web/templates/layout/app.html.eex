@@ -6,26 +6,33 @@
       <%= page_title(assigns) %> - Today I Learned
     </title>
 
-    <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
-
-    <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day.">
+    <% description = "TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day." %>
+    <% image = twitter_image_url(assigns[:post]) %>
 
     <meta itemprop="name" content="Today I Learned">
     <meta itemprop="brand" content="Today I Learned">
-    <meta itemprop="description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day.">
+    <meta itemprop="description" content="<%= description %>">
 
+    <meta name="author" content="<%= Application.get_env(:tilex, :organization_name)%>">
+    <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
+    <meta name="description" content="<%= description %>">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="image" property="og:image" content="<%= image %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:title" content="Today I Learned">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://til.hashrocket.com">
+
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
     <meta name="twitter:creator" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
-    <meta name="twitter:title" content="<%= twitter_title(assigns[:post]) %>">
     <meta name="twitter:description" content="<%= twitter_description(assigns[:post]) %>">
-    <meta name="twitter:image" content=<%= twitter_image_url(assigns[:post]) %>>
+    <meta name="twitter:image" content="<%= image %>">
+    <meta name="twitter:site" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
+    <meta name="twitter:title" content="<%= twitter_title(assigns[:post]) %>">
 
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900&display=swap' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Lora:400,700italic,700,400italic&display=swap' rel='stylesheet' type='text/css'>
     <link rel="alternate feed" type="application/rss+xml" title="Today I Learned" href="<%= feed_path(@conn, :index) %>">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
@@ -54,6 +61,8 @@
         </ul>
       </nav>
     <% end %>
+
+    <%= render "site_nav.html", conn: @conn %>
 
     <header class="site_head <%= if System.get_env("BANNER"), do: "has-banner" %>">
       <%= if (System.get_env("BANNER")) do %>
@@ -85,56 +94,6 @@
     <main>
       <%= render @view_module, @view_template, assigns %>
     </main>
-
-    <nav class="site_nav">
-      <ul>
-        <li class="site_nav__search">
-          <%= link("search", to: "#", class: "site_nav__link") %>
-          <div class="site_nav__toggle">
-            <%= form_tag post_path(@conn, :index), method: :get do %>
-              <input type="search" name="q" id="q" aria-label="Search">
-              <%= submit "Search" %>
-            <% end %>
-          </div>
-        </li>
-        <li class="site_nav__about">
-          <%= link("?", to: "#", class: "site_nav__link", aria_label: "About TIL") %>
-          <div class="site_nav__toggle">
-            <div class="copy">
-              Today I Learned is an open-source project by
-              <a href="https://hashrocket.com">
-                Hashrocket
-              </a>
-              that exists to catalogue the sharing & accumulation of knowledge
-              as it happens day-to-day. Posts have a 200-word limit, and
-              posting is open to any Rocketeer as well as selected friends of
-              Hashrocket. We hope you enjoy learning along with us.
-              <ul class="social">
-                <li>
-                  <%= link("/#{Application.get_env(:tilex, :default_twitter_handle)}", to: "https://twitter.com/#{Application.get_env(:tilex, :default_twitter_handle)}", class: "social_twitter") %>
-                </li>
-                <li>
-                  <%= link("/hashrocket/tilex", to: "https://github.com/hashrocket/tilex", class: "social_github") %>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="site_nav__statistics">
-          <%= if current_user(@conn) do %>
-            <%= link("Statistics", to: stats_path(@conn, :developer), class: "site_nav__link") %>
-          <% else %>
-            <%= link("Statistics", to: stats_path(@conn, :index), class: "site_nav__link") %>
-          <% end %>
-        </li>
-        <li class="site_nav__twitter">
-            <%= link("Twitter", to: "https://twitter.com/#{Application.get_env(:tilex, :default_twitter_handle)}", class: "site_nav__link") %>
-        </li>
-        <li class="site_nav__surprise_me">
-            <%= link("Surprise Me", to: post_path(@conn, :random), class: "site_nav__link", rel: "nofollow") %>
-        </li>
-      </ul>
-    </nav>
 
     <script>
       window.Tilex = window.Tilex || {};
