@@ -1,0 +1,97 @@
+.hiring-banner {
+  background-color: #AF1E23;
+  color: white;
+  font-family: $secondary-typeface;
+  line-height: 1;
+  margin: 0 auto 3vw auto;
+  text-transform: uppercase;
+  width: 65vw;
+
+  @include tablet {
+    width: unset;
+  }
+
+  a {
+    color: white;
+  }
+
+  .hiring-banner-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hiring-banner-image-container {
+    align-items: center;
+    background-color: white;
+    display: flex;
+    position: relative;
+
+    @include tablet {
+      display: none;
+    }
+
+    .hiring-banner-image {
+      height: 10vw;
+      padding: 1rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .right-arrow {
+      background-color: #AF1E23;
+      color: white;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      width: 5rem;
+      z-index: 1;
+    }
+  }
+
+  .hiring-banner-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 4rem;
+
+    @include mobile {
+      padding: 3rem;
+    }
+  }
+
+  .hiring-banner-title {
+    font-size: 5vw;
+    font-weight: 800;
+    letter-spacing: 0.1rem;
+
+    @include tablet {
+      font-size: 5.5vw;
+      text-align: center;
+    }
+
+    @include mobile {
+      font-size: 8vw;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .hiring-banner-text {
+    font-size: 1.8rem;
+    line-height: 2.3rem;
+    margin-top: 1rem;
+
+    @include tablet {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    @include mobile {
+      font-size: 1.2rem;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}
