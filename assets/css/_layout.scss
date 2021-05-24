@@ -478,3 +478,65 @@ header.page_head {
     }
   }
 }
+
+.hiring-banner {
+  color: white;
+  background-color: #AF1E23;
+  font-family: $secondary-typeface;
+  text-transform: uppercase;
+  line-height: 1;
+  width: 60vw;
+  margin: 0 auto;
+  margin-bottom: 3vw;
+
+  @include mobile {
+    width: unset;
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+
+  .hiring-banner-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 8rem;
+
+    @include tablet {
+      padding: 6rem;
+    }
+
+    @include mobile {
+      padding: 4rem;
+    }
+  }
+
+  .hiring-banner-title {
+    font-size: 5vw;
+    letter-spacing: 0.1rem;
+    font-weight: 800;
+
+    @include tablet {
+      font-size: 5.5vw;
+    }
+
+    @include mobile {
+      font-size: 8vw;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .hiring-banner-text {
+    font-size: 1.8rem;
+
+    @include tablet {
+      font-size: 1.5rem;
+    }
+
+    @include mobile {
+      font-size: 1.2rem;
+    }
+  }
+}

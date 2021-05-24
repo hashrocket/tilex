@@ -1,3 +1,5 @@
+<%= render TilexWeb.SharedView, "_hiring_banner.html", conn: @conn %>
+
 <section id="author">
   <header class="page_head">
     <h1>
