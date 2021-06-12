@@ -35,6 +35,7 @@ defmodule TilexWeb.Router do
     pipe_through([:api])
 
     get("/developer_posts.json", Api.DeveloperPostController, :index)
+    get("/posts.json", Api.PostController, :index)
   end
 
   get("/rss", TilexWeb.FeedController, :index)
