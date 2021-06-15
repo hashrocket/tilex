@@ -414,16 +414,15 @@ header.site_head {
 main {
   position: relative;
   min-height: 60vh;
-  margin: 17vw 0 7rem 0;
+  margin: 15vw 0 7rem 0;
   z-index: 2;
 
   @include tablet {
-    margin-top: 20vw;
+    margin-top: 18vw;
   }
 
-
   @include mobile {
-    margin-top: 40vw;
+    margin-top: 25vw;
   }
 }
 
