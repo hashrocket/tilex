@@ -1,17 +1,31 @@
-version: 2
+version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.1.3
+
 jobs:
   build:
     working_directory: ~/tilex
     docker:
-      - image: circleci/elixir:1.9.4-node-browsers
+      - image: cimg/elixir:1.12.1-browsers
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          DATE_DISPLAY_TZ: America/Chicago
       - image: postgres:13.3
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           ASYNC_FEATURE_TEST: yes
-          DATE_DISPLAY_TZ: America/Chicago
 
     steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - run: mix --version
+      - run: node --version
+      - run: npm --version
+      - run: google-chrome --version
+      - run: chromedriver --version
       - checkout
       - run: sudo apt-get update
       - run: sudo apt-get install build-essential libnss3 libgconf-2-4 libxss1 libappindicator1 libindicator7 libasound2 libgtk-3-0 libxtst6 fonts-liberation lsb-release xdg-utils libappindicator3-1
@@ -25,12 +39,6 @@ jobs:
       - run: mix phx.digest
       - run: mix format --check-formatted
       - run: mix credo
-      - run:
-          name: "Setup environment variables"
-          command: |
-            echo 'export DATE_DISPLAY_TZ=America/Chicago' >> $BASH_ENV
-            echo 'export MIX_ENV=test' >> $BASH_ENV
-            echo 'export TZ=America/Chicago' >> $BASH_ENV
       - run: if [ "$COVERALLS_REPO_TOKEN" ]; then mix coveralls.circle; else mix test; fi
       - store_artifacts:
           path: /home/circleci/tilex/screenshots
