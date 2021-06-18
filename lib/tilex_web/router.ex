@@ -1,7 +1,9 @@
 defmodule TilexWeb.Router do
   use TilexWeb, :router
+  import Plug.BasicAuth
 
   @auth_controller Application.compile_env(:tilex, :auth_controller)
+  @basic_auth Application.compile_env(:tilex, :basic_auth)
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -9,7 +11,9 @@ defmodule TilexWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-    plug(Tilex.Plug.BasicAuth)
+    if @basic_auth do
+      plug(:basic_auth, @basic_auth)
+    end
     plug(Tilex.Plug.FormatInjector)
   end
 
