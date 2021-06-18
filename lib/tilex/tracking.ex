@@ -6,11 +6,9 @@ defmodule Tilex.Tracking do
   import Ecto.Query, only: [from: 2, subquery: 1]
   import Tilex.QueryHelpers, only: [between: 3, matches?: 2]
 
-  @request_tracking Application.get_env(:tilex, :request_tracking, false)
-
   def track(conn) do
     spawn(fn ->
-      if @request_tracking do
+      if request_tracking() do
         with [referer | _] <- Plug.Conn.get_req_header(conn, "referer") do
           page = String.replace(referer, Endpoint.url(), "")
           Ecto.Adapters.SQL.query!(Repo, "insert into requests (page) values ($1);", [page])
@@ -62,4 +60,6 @@ defmodule Tilex.Tracking do
 
     Repo.one(query)
   end
+
+  defp request_tracking(), do: Application.get_env(:tilex, :request_tracking, false)
 end

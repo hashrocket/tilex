@@ -1,8 +1,6 @@
 defmodule Tilex.Markdown do
   alias Tilex.Cache
 
-  @base_url Application.get_env(:tilex, :canonical_domain)
-
   def to_html_live(markdown) do
     earmark_options = %Earmark.Options{
       code_class_prefix: "language-",
@@ -12,7 +10,7 @@ defmodule Tilex.Markdown do
     markdown
     |> Earmark.as_html!(earmark_options)
     |> HtmlSanitizeEx.markdown_html()
-    |> expand_relative_links(@base_url)
+    |> expand_relative_links(base_url())
     |> String.trim()
   end
 
@@ -47,4 +45,6 @@ defmodule Tilex.Markdown do
   end
 
   defp expand_relative_link({tag_name, attributes}, _), do: {tag_name, attributes}
+
+  defp base_url(), do: Application.get_env(:tilex, :canonical_domain)
 end

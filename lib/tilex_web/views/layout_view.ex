@@ -1,8 +1,6 @@
 defmodule TilexWeb.LayoutView do
   use TilexWeb, :view
 
-  @request_tracking Application.get_env(:tilex, :request_tracking)
-
   def current_user(conn) do
     Guardian.Plug.current_resource(conn)
   end
@@ -78,7 +76,5 @@ defmodule TilexWeb.LayoutView do
     """
   end
 
-  def request_tracking() do
-    @request_tracking
-  end
+  def request_tracking(), do: Application.get_env(:tilex, :request_tracking)
 end

@@ -93,27 +93,21 @@ defmodule Features.VisitorViewsStatsTest do
     find(
       activity_tag,
       Query.css(
-        "li[data-amount='1'][data-date='Mon, #{
-          Timex.format!(previous_monday, "%b %-e", :strftime)
-        }']"
+        "li[data-amount='1'][data-date='Mon, #{Timex.format!(previous_monday, "%b %-e", :strftime)}']"
       )
     )
 
     find(
       activity_tag,
       Query.css(
-        "li[data-amount='2'][data-date='Tue, #{
-          Timex.format!(previous_tuesday, "%b %-e", :strftime)
-        }']"
+        "li[data-amount='2'][data-date='Tue, #{Timex.format!(previous_tuesday, "%b %-e", :strftime)}']"
       )
     )
 
     find(
       activity_tag,
       Query.css(
-        "li[data-amount='3'][data-date='Wed, #{
-          Timex.format!(previous_wednesday, "%b %-e", :strftime)
-        }']"
+        "li[data-amount='3'][data-date='Wed, #{Timex.format!(previous_wednesday, "%b %-e", :strftime)}']"
       )
     )
   end

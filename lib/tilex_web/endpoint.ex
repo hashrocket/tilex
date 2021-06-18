@@ -2,7 +2,7 @@ defmodule TilexWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :tilex
   use Appsignal.Phoenix
 
-  @cors_origin Application.get_env(:tilex, :cors_origin)
+  @cors_origin Application.compile_env(:tilex, :cors_origin)
 
   if Application.get_env(:tilex, :sql_sandbox) do
     plug(Phoenix.Ecto.SQL.Sandbox)
