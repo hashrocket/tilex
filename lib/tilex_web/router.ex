@@ -1,7 +1,7 @@
 defmodule TilexWeb.Router do
   use TilexWeb, :router
 
-  @auth_controller Application.get_env(:tilex, :auth_controller)
+  @auth_controller Application.compile_env(:tilex, :auth_controller)
 
   pipeline :browser do
     plug(:accepts, ["html"])
