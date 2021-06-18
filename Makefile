@@ -1,7 +1,7 @@
 #!make
 include .env
 
-.PHONY: help outdated console setup server test
+.PHONY: help outdated console setup server test update
 
 .env:
 	cp .env.example .env
@@ -21,10 +21,14 @@ outdated: ## Shows outdated packages.
 	mix hex.outdated
 	npm outdated --prefix assets/
 
+update: ## Bump all hex packages.
+	mix deps.updated --all
+
 console:
 	iex -S mix
 
 setup: ## Runs the project setup.
+	mix local.hex --force
 	mix deps.get
 	mix compile
 	mix ecto.setup
