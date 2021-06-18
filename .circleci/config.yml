@@ -4,9 +4,10 @@ jobs:
     working_directory: ~/tilex
     docker:
       - image: circleci/elixir:1.9.4-node-browsers
-      - image: postgres:9.6.5
+      - image: postgres:13.3
         environment:
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           ASYNC_FEATURE_TEST: yes
           DATE_DISPLAY_TZ: America/Chicago
 
