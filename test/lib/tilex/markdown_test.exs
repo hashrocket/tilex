@@ -22,7 +22,7 @@ defmodule Lib.Tilex.MarkdownTest do
     },
     %{
       input: "<script>alert('A great grasshopper!')</script>",
-      expected: "<p>alert(‘A great grasshopper!’)</p>"
+      expected: "<p>alert(&#39;A great grasshopper!&#39;)</p>"
     },
     %{
       input: "Some http://link.com?foo=bar",

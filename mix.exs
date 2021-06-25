@@ -41,34 +41,33 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:appsignal, "~> 1.0"},
-      {:basic_auth, "~> 2.1"},
+      {:appsignal_phoenix, "~> 2.0"},
       {:cachex, "~> 3.1"},
       {:cors_plug, "~> 2.0"},
-      {:credo, "~> 1.4.0", only: [:dev, :test], runtime: false},
-      {:earmark, "~> 1.4.1"},
-      {:ecto_sql, "~> 3.0"},
-      {:excoveralls, "~> 0.10", only: :test},
+      {:credo, "~> 1.5.6", only: [:dev, :test], runtime: false},
+      {:earmark, "1.4.4"},
+      {:ecto_sql, "~> 3.4"},
+      {:excoveralls, "~> 0.14.1", only: :test},
       {:extwitter, "~> 0.8"},
-      {:floki, "~> 0.24.0"},
+      {:floki, "~> 0.31.0"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 2.0"},
-      {:hackney, "1.15.2"},
+      {:hackney, "1.17.4"},
       {:html_sanitize_ex, "~> 1.2"},
       {:jason, "~> 1.0"},
-      {:optimus, "~> 0.1.0"},
-      {:phoenix, "~> 1.5.6"},
-      {:phoenix_ecto, "~> 4.0"},
-      {:phoenix_html, "~> 2.13.1"},
+      {:optimus, "~> 0.2.0"},
+      {:phoenix, "~> 1.5.9"},
+      {:phoenix_ecto, "~> 4.3.0"},
+      {:phoenix_html, "~> 2.14.3"},
       {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:phoenix_pubsub, "~> 2.0"},
       {:plug, "~> 1.7"},
       {:plug_cowboy, "~> 2.1"},
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"},
-      {:tzdata, "~> 1.0.1"},
+      {:tzdata, "~> 1.1.0"},
       {:ueberauth_google, "~> 0.5"},
-      {:wallaby, "~> 0.23.0", [runtime: false, only: :test]}
+      {:wallaby, "~> 0.28.0", [runtime: false, only: :test]}
     ]
   end
 

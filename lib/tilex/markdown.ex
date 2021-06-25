@@ -4,13 +4,14 @@ defmodule Tilex.Markdown do
   def to_html_live(markdown) do
     earmark_options = %Earmark.Options{
       code_class_prefix: "language-",
-      pure_links: true
+      pure_links: true,
+      smartypants: false
     }
 
     markdown
-    |> Earmark.as_html!(earmark_options)
     |> HtmlSanitizeEx.markdown_html()
-    |> expand_relative_links(base_url())
+    |> Earmark.as_html!(earmark_options)
+    |> expand_relative_links()
     |> String.trim()
   end
 
@@ -20,31 +21,20 @@ defmodule Tilex.Markdown do
     end)
   end
 
-  defp expand_relative_links(dom, url) do
+  defp expand_relative_links(dom) do
     {:ok, fragment} = Floki.parse_fragment(dom)
 
     fragment
-    |> Floki.map(fn tuple -> expand_relative_link(tuple, url) end)
+    |> Floki.find_and_update("a", &expand_relative_link/1)
     |> Floki.raw_html()
   end
 
-  defp expand_relative_link({"a", attributes}, url) do
-    result_attributes =
-      Enum.map(attributes, fn
-        attr = {"href", "http" <> _rest} ->
-          attr
+  defp expand_relative_link({"a", attrs}), do: {"a", Enum.map(attrs, &expand_link_attribute/1)}
+  defp expand_relative_link({tag_name, attrs}), do: {tag_name, attrs}
 
-        {"href", value} ->
-          {"href", url <> value}
-
-        attr ->
-          attr
-      end)
-
-    {"a", result_attributes}
-  end
-
-  defp expand_relative_link({tag_name, attributes}, _), do: {tag_name, attributes}
+  defp expand_link_attribute({"href", "http" <> _rest} = attr), do: attr
+  defp expand_link_attribute({"href", value}), do: {"href", base_url() <> value}
+  defp expand_link_attribute(attr), do: attr
 
   defp base_url(), do: Application.get_env(:tilex, :canonical_domain)
 end

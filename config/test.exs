@@ -6,7 +6,7 @@ config :tilex, TilexWeb.Endpoint,
   http: [port: 4001],
   server: true
 
-config :tilex, :sql_sandbox, true
+config :tilex, :sandbox, Ecto.Adapters.SQL.Sandbox
 
 # Print only warnings and errors during test
 config :logger, level: :warn
@@ -37,11 +37,12 @@ config :tilex, :async_feature_test, System.get_env("ASYNC_FEATURE_TEST") == "yes
 config :httpoison, timeout: 6000
 
 config :wallaby,
-  driver: Wallaby.Experimental.Chrome,
+  driver: Wallaby.Chrome,
   hackney_options: [timeout: :infinity, recv_timeout: :infinity],
   chrome: [
     headless: true
   ],
+  otp_app: :tilex,
   screenshot_on_failure: true
 
 config :tilex, :request_tracking, true

@@ -11,9 +11,11 @@ defmodule TilexWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
+
     if @basic_auth do
       plug(:basic_auth, @basic_auth)
     end
+
     plug(Tilex.Plug.FormatInjector)
   end
 

@@ -4,8 +4,8 @@ defmodule TilexWeb.Endpoint do
 
   @cors_origin Application.compile_env(:tilex, :cors_origin)
 
-  if Application.get_env(:tilex, :sql_sandbox) do
-    plug(Phoenix.Ecto.SQL.Sandbox)
+  if sandbox = Application.get_env(:tilex, :sandbox) do
+    plug(Phoenix.Ecto.SQL.Sandbox, sandbox: sandbox)
   end
 
   socket("/socket", TilexWeb.UserSocket, websocket: true)
@@ -74,6 +74,5 @@ defmodule TilexWeb.Endpoint do
     signing_salt: "PSNTTaPr"
   )
 
-  use Appsignal.Phoenix
   plug(TilexWeb.Router)
 end
