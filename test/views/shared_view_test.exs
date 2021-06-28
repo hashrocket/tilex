@@ -3,7 +3,7 @@ defmodule Tilex.SharedViewTest do
 
   import TilexWeb.SharedView
 
-  @insert_time %{inserted_at: ~N[2016-11-18 03:34:08.142287]}
+  @insert_time %{inserted_at: ~U[2016-11-18 03:34:08.142287Z]}
 
   describe "display_date/1" do
     test "it produces a human-readable date in server's timezone" do
