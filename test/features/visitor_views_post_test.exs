@@ -219,6 +219,7 @@ defmodule VisitorViewsPostTest do
              #{body}
 
              #{developer.username}
+
              #{TilexWeb.SharedView.display_date(post)}
              """)
   end

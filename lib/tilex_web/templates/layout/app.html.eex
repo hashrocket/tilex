@@ -13,8 +13,8 @@
     <meta itemprop="brand" content="Today I Learned">
     <meta itemprop="description" content="<%= description %>">
 
+    <%= csrf_meta_tag() %>
     <meta name="author" content="<%= Application.get_env(:tilex, :organization_name)%>">
-    <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
     <meta name="description" content="<%= description %>">
     <meta name="format-detection" content="telephone=no">
     <meta name="image" property="og:image" content="<%= image %>">
@@ -62,6 +62,8 @@
       </nav>
     <% end %>
 
+    <%= render "site_nav.html", conn: @conn %>
+
     <header class="site_head <%= if System.get_env("BANNER"), do: "has-banner" %>">
       <%= if (System.get_env("BANNER")) do %>
         <div class="banner">
@@ -90,10 +92,8 @@
     </div>
 
     <main>
-      <%= render @view_module, @view_template, assigns %>
+      <%= @inner_content %>
     </main>
-
-    <%= render "site_nav.html", conn: @conn %>
 
     <script>
       window.Tilex = window.Tilex || {};

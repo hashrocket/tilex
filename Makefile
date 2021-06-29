@@ -31,6 +31,7 @@ setup: ## Runs the project setup.
 	npm install --prefix assets/
 
 server: ## Starts the server.
+	sh .env
 	(sleep 3 && open http://localhost:4000/) &
 	mix phx.server
 

@@ -1,0 +1,19 @@
+<%= if Application.get_env(:tilex, :hiring_url) do %>
+  <div class="hiring-banner">
+    <div class="hiring-banner-image-container">
+      <img class="hiring-banner-image" src="<%= static_path(@conn, "/images/astronaut-on-computer.png") %>">
+    </div>
+    <%= svg_tag("assets/static/images/right-arrow.svg") %>
+    <div class="hiring-banner-content">
+      <div class="hiring-banner-title">
+        <a href="<%= Application.get_env(:tilex, :hiring_url) %>">
+          We&apos;re Hiring!
+        </a>
+      </div>
+      <div class="hiring-banner-text">
+        Ready to join <%= Application.get_env(:tilex, :organization_name) %>?
+        Find Openings <a href="<%= Application.get_env(:tilex, :hiring_url) %>">here</a> and apply today.
+      </div>
+    </div>
+  </div>
+<% end %>

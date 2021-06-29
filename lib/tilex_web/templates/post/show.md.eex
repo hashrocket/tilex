@@ -1,8 +1,6 @@
 <%= @post.title %>
 
-
 <%= @post.body %>
-
 
 <%= @post.developer.username %>
 

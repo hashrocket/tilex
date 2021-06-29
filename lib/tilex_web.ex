@@ -52,6 +52,7 @@ defmodule TilexWeb do
       use Phoenix.HTML
 
       import TilexWeb.Router.Helpers
+      import TilexWeb.HTMLHelpers
       import TilexWeb.ErrorHelpers
       import TilexWeb.Gettext
     end

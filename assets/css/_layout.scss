@@ -177,6 +177,7 @@ header.site_head {
         }
 
         .site_nav__toggle {
+          display: block;
           width: auto;
           opacity: 1;
           box-shadow: 0 0 3rem transparentize($navy, 0.8);
@@ -211,6 +212,7 @@ header.site_head {
   left: 100%;
   bottom: 0;
   width: 0;
+  display: none;
   overflow: hidden;
   transition: opacity 0.2s;
   opacity: 0;
@@ -412,16 +414,15 @@ header.site_head {
 main {
   position: relative;
   min-height: 60vh;
-  margin: 17vw 0 7rem 0;
+  margin: 15vw 0 7rem 0;
   z-index: 2;
 
   @include tablet {
-    margin-top: 20vw;
+    margin-top: 18vw;
   }
 
-
   @include mobile {
-    margin-top: 40vw;
+    margin-top: 25vw;
   }
 }
 

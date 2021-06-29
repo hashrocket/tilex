@@ -20,6 +20,15 @@ $(function() {
     '.site_nav__link',
     function(e) {
       e.preventDefault();
+
+      // Close all OTHER links to prevent overlap
+      const site_nav_links = document.getElementsByClassName('site_nav__link')
+      for (let i = 0; i < site_nav_links.length; i++) {
+        if ($(this).parent()[0] != $(site_nav_links[i]).parent()[0]) {
+          $(site_nav_links[i]).closest('li').removeClass('site_nav--open')
+        }
+      }
+
       $(this)
         .closest('li')
         .toggleClass('site_nav--open')

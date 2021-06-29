@@ -1,0 +1,79 @@
+.hiring-banner {
+  background-color: #af1e23;
+  color: white;
+  display: flex;
+  font-family: $secondary-typeface;
+  justify-content: center;
+  line-height: 1;
+  margin: 0 auto 3vw auto;
+  max-width: 70rem;
+  text-transform: uppercase;
+
+  @include tablet {
+    max-width: unset;
+  }
+
+  a {
+    color: white;
+  }
+
+  .hiring-banner-image-container {
+    align-items: center;
+    background-color: white;
+    display: flex;
+    position: relative;
+    width: 15rem;
+
+    @include tablet {
+      display: none;
+    }
+
+    .hiring-banner-image {
+      padding-left: 2rem;
+      position: absolute;
+      width: 14rem;
+      z-index: 2;
+    }
+  }
+
+  .right-arrow {
+    width: 5rem;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  .hiring-banner-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 4rem;
+
+    @include tablet {
+      padding: 3rem;
+      text-align: center;
+    }
+
+    @include mobile {
+      padding: 2rem;
+    }
+  }
+
+  .hiring-banner-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 0.1rem;
+  }
+
+  .hiring-banner-text {
+    font-size: 1.5rem;
+    line-height: 2.3rem;
+    margin-top: 1rem;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}

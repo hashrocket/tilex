@@ -1,0 +1,5 @@
+<svg class="right-arrow" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+	<polygon points="0 0 0 100 100 50" fill="white" />
+	<polygon points="0 0 100 0 100 50" fill="#af1e23" />
+	<polygon points="100 100 0 100 100 50" fill="#af1e23" />
+</svg>
