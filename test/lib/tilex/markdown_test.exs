@@ -25,8 +25,13 @@ defmodule Lib.Tilex.MarkdownTest do
       expected: "<pre><code class=\"elixir language-elixir\">defmodule Foo do\nend</code></pre>"
     },
     %{
+      input: "```elixir\niex> IO.inspect(\"Hello World!\")\n```",
+      expected:
+        "<pre><code class=\"elixir language-elixir\">iex&gt; IO.inspect(&quot;Hello World!&quot;)</code></pre>"
+    },
+    %{
       input: "<script>alert('A great grasshopper!')</script>",
-      expected: "<p>alert(&#39;A great grasshopper!&#39;)</p>"
+      expected: "<p>alert(‘A great grasshopper!’)</p>"
     },
     %{
       input: "Some http://link.com?foo=bar",
@@ -47,11 +52,11 @@ defmodule Lib.Tilex.MarkdownTest do
     },
     %{
       input: "Here's [my-link]\n\n[my-link]: http://foo/bar",
-      expected: "<p>Here&#39;s <a href=\"http://foo/bar\" title=\"\">my-link</a></p>"
+      expected: "<p>Here’s <a href=\"http://foo/bar\" title=\"\">my-link</a></p>"
     },
     %{
       input: "Here's [my-link]\n\n[my-link]: http://foo/bar \"With Title\"",
-      expected: "<p>Here&#39;s <a href=\"http://foo/bar\" title=\"With Title\">my-link</a></p>"
+      expected: "<p>Here’s <a href=\"http://foo/bar\" title=\"With Title\">my-link</a></p>"
     },
     %{
       input: "some <a href=\"http://link.com?foo=bar\">Link</a>",

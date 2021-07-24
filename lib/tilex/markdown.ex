@@ -4,13 +4,12 @@ defmodule Tilex.Markdown do
   def to_html_live(markdown) do
     earmark_options = %Earmark.Options{
       code_class_prefix: "language-",
-      pure_links: true,
-      smartypants: false
+      pure_links: true
     }
 
     markdown
-    |> HtmlSanitizeEx.markdown_html()
     |> Earmark.as_html!(earmark_options)
+    |> HtmlSanitizeEx.markdown_html()
     |> expand_relative_links()
     |> String.trim()
   end
