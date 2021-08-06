@@ -55,6 +55,8 @@ defmodule Tilex.Mixfile do
       {:hackney, "1.17.4"},
       {:html_sanitize_ex, "~> 1.2"},
       {:jason, "~> 1.0"},
+      {:oauther,
+       git: "https://github.com/tobstarr/oauther.git", branch: "master", override: true},
       {:optimus, "~> 0.2.0"},
       {:phoenix, "~> 1.5.9"},
       {:phoenix_ecto, "~> 4.3.0"},
