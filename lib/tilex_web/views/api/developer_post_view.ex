@@ -4,7 +4,7 @@ defmodule TilexWeb.Api.DeveloperPostView do
   def render("index.json", %{posts: posts}) do
     %{
       data: %{
-        posts: render_many(posts, Tilex.Api.PostView, "post.json")
+        posts: render_many(posts, TilexWeb.Api.PostView, "post.json")
       }
     }
   end
