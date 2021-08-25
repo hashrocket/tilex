@@ -4,8 +4,17 @@ defmodule TilexWeb.Api.PostView do
   def render("index.json", %{posts: posts}) do
     %{
       data: %{
-        posts: render_many(posts, TilexWeb.Api.PostView, "post.json")
+        posts: render_many(posts, TilexWeb.Api.PostView, "post_with_developer.json")
       }
+    }
+  end
+
+  def render("post_with_developer.json", %{post: post}) do
+    %{
+      slug: post.slug,
+      title: post.title,
+      developer_username: post.developer.username,
+      channel_name: post.channel.name
     }
   end
 
