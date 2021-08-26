@@ -4,13 +4,15 @@ defmodule TilexWeb.Api.PostController do
   "
 
   use TilexWeb, :controller
+  use Tilex.Pageable
   alias Tilex.{Posts}
 
   @doc """
   This functions allows external requesters to retrieve the feed of til in json format
   """
   def index(conn, params) do
-    posts = Posts.by_count(limit: params["limit"] || 10)
+    page = robust_page(params)
+    posts = Posts.all(page)
 
     render(conn, "index.json", posts: posts)
   end
