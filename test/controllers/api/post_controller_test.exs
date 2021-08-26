@@ -5,6 +5,7 @@ defmodule Tilex.Api.PostControllerTest do
 
   test "returns the entries", %{conn: conn} do
     lizlemon = Factory.insert!(:developer, username: "lizlemon")
+
     Factory.insert!(:post,
       title: "Eye-rolling Is My Life",
       developer: lizlemon,
