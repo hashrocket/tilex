@@ -12,10 +12,11 @@ defmodule Tilex.Api.PostControllerTest do
     )
 
     jackdonaughy = Factory.insert!(:developer, username: "jackdonaughy")
+
     jack_post_titles = [
       "30 Rock Is Awesome",
       "I'm a Big Meanie",
-      "Get It Together, Lemon",
+      "Get It Together, Lemon"
     ]
 
     jack_post_titles
