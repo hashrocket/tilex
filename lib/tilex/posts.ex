@@ -93,16 +93,10 @@ defmodule Tilex.Posts do
       |> Repo.preload(:developer)
       |> Repo.preload(:channel)
 
-    offset = (page - 1) * Application.get_env(:tilex, :page_size)
-    limit = Application.get_env(:tilex, :page_size) + 1
-
-    {Enum.slice(posts, offset..(offset + limit)), Enum.count(posts)}
+    {Enum.slice(posts, offset(page)..(offset(page) + limit)), Enum.count(posts)}
   end
 
   defp posts(page) do
-    offset = (page - 1) * Application.get_env(:tilex, :page_size)
-    limit = Application.get_env(:tilex, :page_size) + 1
-
     from(
       p in Post,
       order_by: [desc: p.inserted_at],
@@ -110,7 +104,16 @@ defmodule Tilex.Posts do
       join: d in assoc(p, :developer),
       preload: [channel: c, developer: d],
       limit: ^limit,
-      offset: ^offset
+      offset: ^offset(page)
     )
+  end
+
+  defp offset(page) do
+    page = (page > 1 && page) || 1
+    (page - 1) * Application.get_env(:tilex, :page_size)
+  end
+
+  defp limit do
+    Application.get_env(:tilex, :page_size) + 1
   end
 end
