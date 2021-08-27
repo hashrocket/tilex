@@ -6,6 +6,7 @@ defmodule TilexWeb.Router do
   @basic_auth Application.compile_env(:tilex, :basic_auth)
 
   pipeline :browser do
+    plug(Tilex.Plug.RequestRejector)
     plug(:accepts, ["html"])
     plug(:fetch_session)
     plug(:fetch_flash)
@@ -30,6 +31,7 @@ defmodule TilexWeb.Router do
   end
 
   pipeline :api do
+    plug(Tilex.Plug.RequestRejector)
     plug(:accepts, ["json"])
   end
 
