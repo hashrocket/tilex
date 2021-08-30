@@ -1,5 +1,6 @@
 defmodule TilexWeb.PostController do
   use TilexWeb, :controller
+  use Tilex.Pageable
   import Ecto.Query
 
   alias Guardian.Plug
@@ -219,15 +220,6 @@ defmodule TilexWeb.PostController do
     conn
     |> assign(:canonical_url, canonical_post)
   end
-
-  defp robust_page(%{"page" => page}) do
-    case Integer.parse(page) do
-      :error -> 1
-      {integer, _remainder} -> integer
-    end
-  end
-
-  defp robust_page(_params), do: 1
 
   defp post_params(params) do
     Map.take(params, ["body", "channel_id", "title"])
