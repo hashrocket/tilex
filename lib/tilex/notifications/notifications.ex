@@ -89,40 +89,21 @@ defmodule Tilex.Notifications do
     notifiers_supervisor.children()
   end
 
-  defp schedule_report do
-    timezone = parsed_time_zone()
+  def next_report_time(now \\ now!()) do
+    dt = now |> Timex.beginning_of_week(:monday) |> Timex.shift(hours: 9)
 
-    milliseconds_until_next_monday_nine_am =
-      timezone
-      |> Timex.now()
-      |> Timex.shift(days: 7)
-      |> Timex.beginning_of_week()
-      |> Timex.shift(hours: 9)
-      |> Timex.diff(
-        Timex.now(timezone),
-        :milliseconds
-      )
-
-    Process.send_after(
-      __MODULE__,
-      :generate_page_views_report,
-      milliseconds_until_next_monday_nine_am
-    )
-  end
-
-  defp parsed_time_zone do
-    :tilex
-    |> Application.get_env(:date_display_tz)
-    |> Timex.Timezone.get()
-    |> case do
-      {:error, _error} ->
-        raise(~s(
-        There was an error parsing your time zone.
-        Perhaps you forgot to set Environment Variable DATE_DISPLAY_TZ?
-        ))
-
-      zone ->
-        zone
+    case DateTime.compare(dt, now) do
+      :gt -> dt
+      _ -> Timex.shift(dt, days: 7)
     end
   end
+
+  defp schedule_report do
+    next_report_in_ms = Timex.diff(next_report_time(), now!(), :milliseconds)
+    Process.send_after(__MODULE__, :generate_page_views_report, next_report_in_ms)
+  end
+
+  defp now!(time_zone \\ get_time_zone()), do: DateTime.now!(time_zone)
+
+  defp get_time_zone, do: Application.get_env(:tilex, :date_display_tz)
 end
