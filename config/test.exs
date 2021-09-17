@@ -31,6 +31,7 @@ config :tilex, :slack_notifier, Test.Notifications.Notifiers.Slack
 config :tilex, :twitter_notifier, Test.Notifications.Notifiers.Twitter
 config :tilex, :date_time_module, Tilex.DateTimeMock
 config :tilex, :date_display_tz, "America/Chicago"
+config :tilex, :slack_endpoint, "https://slack.test.com/abc/123"
 
 config :tilex, :async_feature_test, System.get_env("ASYNC_FEATURE_TEST") == "yes"
 

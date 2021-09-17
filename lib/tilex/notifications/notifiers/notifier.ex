@@ -27,7 +27,7 @@ defmodule Tilex.Notifications.Notifier do
 
   @callback handle_post_created(Post.t(), Developer.t(), Channel.t(), url :: String.t()) :: any
   @callback handle_post_liked(Post.t(), Developer.t(), url :: String.t()) :: any
-  @callback handle_page_views_report(pid) :: any
+  @callback handle_page_views_report(String.t()) :: any
 
   defmacro __using__(_) do
     quote location: :keep do

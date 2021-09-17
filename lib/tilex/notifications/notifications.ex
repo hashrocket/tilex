@@ -78,9 +78,9 @@ defmodule Tilex.Notifications do
     {:noreply, :nostate}
   end
 
-  def handle_call({:page_views_report, string_pid}, from, :nostate) do
+  def handle_call({:page_views_report, report}, from, :nostate) do
     notifiers()
-    |> Enum.each(& &1.page_views_report(string_pid))
+    |> Enum.each(& &1.page_views_report(report))
 
     {:reply, from, true}
   end
