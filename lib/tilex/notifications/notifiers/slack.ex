@@ -1,4 +1,8 @@
 defmodule Tilex.Notifications.Notifiers.Slack do
+  use Tilex.Notifications.Notifier
+
+  alias Tilex.Post
+
   @emoji ~w(
     :tada:
     :birthday:
@@ -22,36 +26,30 @@ defmodule Tilex.Notifications.Notifiers.Slack do
     :scream_cat:
   )
 
-  use Tilex.Notifications.Notifier
-
-  def handle_post_created(post, developer, channel, url) do
-    "#{developer.username} created a new post <#{url}|#{post.title}> ##{channel.name}"
-    |> send_slack_message
+  def handle_post_created(post, developer, channel, url, http \\ :httpc) do
+    "#{developer.username} created a new post #{link(url, post.title)} in ##{channel.name}"
+    |> send_slack_message(http)
   end
 
-  def handle_post_liked(%Tilex.Post{max_likes: max_likes, title: title}, developer, url) do
-    appropriate_emoji =
-      @emoji
-      |> Enum.at(round(max_likes / 10 - 1), ":smile:")
+  def handle_post_liked(%Post{max_likes: max_likes, title: title}, developer, url, http \\ :httpc) do
+    appropriate_emoji = Enum.at(@emoji, round(max_likes / 10 - 1), ":smile:")
 
-    "#{developer.username}'s post has #{max_likes} likes! #{appropriate_emoji} - <#{url}|#{title}>"
-    |> send_slack_message
+    "#{developer.username}'s post has #{max_likes} likes! #{appropriate_emoji} - #{link(url, title)}"
+    |> send_slack_message(http)
   end
 
-  def handle_page_views_report(report) do
-    report
-    |> send_slack_message
+  def handle_page_views_report(report, http \\ :httpc) do
+    send_slack_message(report, http)
   end
 
-  defp send_slack_message(message) do
-    endpoint =
-      String.to_charlist("https://hooks.slack.com" <> System.get_env("slack_post_endpoint"))
-
-    :httpc.request(
-      :post,
-      {endpoint, [], 'application/json', "{\"text\": \"#{message}\"}"},
-      [],
-      []
-    )
+  defp send_slack_message(message, http) do
+    message = String.replace(message, "\"", "'")
+    endpoint = slack_endpoint() |> String.to_charlist()
+    request = {endpoint, [], 'application/json', "{\"text\": \"#{message}\"}"}
+    http.request(:post, request, [], [])
   end
+
+  defp link(url, text), do: "<#{url}|#{text}>"
+
+  defp slack_endpoint, do: Application.get_env(:tilex, :slack_endpoint)
 end

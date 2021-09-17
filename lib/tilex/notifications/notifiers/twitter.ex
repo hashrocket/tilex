@@ -12,7 +12,7 @@ defmodule Tilex.Notifications.Notifiers.Twitter do
     :ok
   end
 
-  def handle_page_views_report(_pid) do
+  def handle_page_views_report(_report) do
     :ok
   end
 

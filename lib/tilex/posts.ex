@@ -93,7 +93,7 @@ defmodule Tilex.Posts do
       |> Repo.preload(:developer)
       |> Repo.preload(:channel)
 
-    {Enum.slice(posts, offset(page)..(offset(page) + limit)), Enum.count(posts)}
+    {Enum.slice(posts, offset(page)..(offset(page) + limit())), Enum.count(posts)}
   end
 
   defp posts(page) do
@@ -103,7 +103,7 @@ defmodule Tilex.Posts do
       join: c in assoc(p, :channel),
       join: d in assoc(p, :developer),
       preload: [channel: c, developer: d],
-      limit: ^limit,
+      limit: ^limit(),
       offset: ^offset(page)
     )
   end
