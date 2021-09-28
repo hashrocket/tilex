@@ -30,7 +30,6 @@ erl_crash.dump
 
 /tmp
 
-# coveralls output
 /cover
 
 # elixir langugage server artifacts

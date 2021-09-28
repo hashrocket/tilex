@@ -11,14 +11,7 @@ defmodule Tilex.Mixfile do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps(),
-      test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [
-        coveralls: :test,
-        "coveralls.detail": :test,
-        "coveralls.post": :test,
-        "coveralls.html": :test
-      ]
+      deps: deps()
     ]
   end
 
@@ -47,7 +40,6 @@ defmodule Tilex.Mixfile do
       {:credo, "~> 1.5.6", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.4"},
       {:ecto_sql, "~> 3.4"},
-      {:excoveralls, "~> 0.14.1", only: :test},
       {:extwitter, "~> 0.8"},
       {:floki, "~> 0.31.0"},
       {:gettext, "~> 0.13"},
