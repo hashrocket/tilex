@@ -33,11 +33,7 @@
       </div>
     </li>
     <li class="site_nav__statistics">
-      <%= if current_user(@conn) do %>
-        <%= link("Statistics", to: stats_path(@conn, :developer), class: "site_nav__link") %>
-      <% else %>
-        <%= link("Statistics", to: stats_path(@conn, :index), class: "site_nav__link") %>
-      <% end %>
+      <%= link("Statistics", to: stats_path(@conn, :index), class: "site_nav__link") %>
     </li>
     <li class="site_nav__newsletter">
       <%= link("Newsletter", to: "https://www.getrevue.co/profile/til/", class: "site_nav__link") %>
@@ -45,5 +41,10 @@
     <li class="site_nav__surprise_me">
       <%= link("Surprise Me", to: post_path(@conn, :random), class: "site_nav__link", rel: "nofollow") %>
     </li>
+    <%= if current_user(@conn) do %>
+    <li class="site_nav__admin_statistics">
+        <%= link("Statistics", to: stats_path(@conn, :developer), class: "site_nav__link") %>
+    </li>
+    <% end %>
   </ul>
 </nav>

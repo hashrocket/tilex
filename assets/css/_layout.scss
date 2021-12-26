@@ -230,6 +230,12 @@ header.site_head {
   }
 }
 
+.site_nav__admin_statistics {
+  a.site_nav__link {
+    background-image: svg-url(stats, $red);
+  }
+}
+
 .site_nav__about {
   position: relative;
 
