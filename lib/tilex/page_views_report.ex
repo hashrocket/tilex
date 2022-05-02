@@ -1,12 +1,31 @@
 defmodule Tilex.PageViewsReport do
   def report(repo \\ Tilex.Repo) do
-    sql = """
-    ((select count(*), date_trunc('day', request_time at time zone 'america/chicago'), 'day' as period from requests  where request_time at time zone 'america/chicago' between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('day', request_time at time zone 'america/chicago') order by date_trunc desc)
+    report_sql = """
+    select
+      count(*),
+      date_trunc('day', request_time at time zone $1),
+      'day' as period from requests
+    where request_time at time zone $1
+      between date_trunc('week', now() at time zone $1) - '2 weeks'::interval
+      and date_trunc('week', now() at time zone $1)
+    group by date_trunc('day', request_time at time zone $1)
     union
-    (select count(*), date_trunc('week', request_time at time zone 'america/chicago'), 'week' as period from requests  where request_time at time zone 'america/chicago' between date_trunc('week', now() at time zone 'america/chicago') - '2 weeks'::interval and date_trunc('week', now() at time zone 'america/chicago') group by date_trunc('week', request_time at time zone 'america/chicago') order by date_trunc desc)) order by date_trunc desc;
+    select
+      count(*),
+      date_trunc('week', request_time at time zone $1),
+      'week' as period from requests
+    where request_time at time zone $1
+      between date_trunc('week', now() at time zone $1) - '2 weeks'::interval
+      and date_trunc('week', now() at time zone $1)
+    group by date_trunc('week', request_time at time zone $1)
+    order by date_trunc desc;
     """
 
-    {:ok, result} = repo.query(sql, [], log: false)
+    application_timezone =
+      Application.get_env(:tilex, :date_display_tz, "america/chicago")
+      |> String.downcase()
+
+    {:ok, result} = repo.query(report_sql, [application_timezone], log: false)
 
     create_report(result.rows)
   end
