@@ -74,7 +74,7 @@ defmodule TilexWeb.Router do
     get("/authors/:name", DeveloperController, :show)
     get("/profile/edit", DeveloperController, :edit)
     put("/profile/edit", DeveloperController, :update)
-    
+
     get("/", PostController, :index)
     resources("/posts", PostController, param: "titled_slug")
     # catch-any route should be last
