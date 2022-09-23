@@ -243,7 +243,7 @@ defmodule VisitorViewsPostTest do
     post = Factory.insert!(:post)
 
     session
-    |> visit(post_path(Endpoint, :random_by_channel, post.channel.name))
+    |> visit(channel_path(Endpoint, :random_by_channel, post.channel.name))
     |> PostShowPage.expect_post_attributes(%{
       title: post.title,
       body: post.body,
