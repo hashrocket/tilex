@@ -79,25 +79,6 @@ defmodule TilexWeb.PostController do
     |> render("show.html", post: post)
   end
 
-  def random_by_channel(conn, params) do
-    query =
-      from(
-        post in Post,
-        order_by: fragment("random()"),
-        join: channel in assoc(post, :channel),
-        where: channel.name == ^params["channel"],
-        limit: 1,
-        preload: [:channel, :developer]
-      )
-
-    post = Repo.one(query)
-
-    conn
-    |> assign_post_canonical_url(post)
-    |> assign(:twitter_shareable, true)
-    |> render("show.html", post: post)
-  end
-
   def new(conn, _params) do
     current_user = Plug.current_resource(conn)
     changeset = Post.changeset(%Post{})
