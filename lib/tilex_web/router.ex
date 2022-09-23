@@ -71,14 +71,14 @@ defmodule TilexWeb.Router do
     get("/sitemap.xml", SitemapController, :index)
     get("/manifest.json", WebManifestController, :index)
     get("/random", PostController, :random)
-    get("/:channel/random", PostController, :random_by_channel)
     get("/authors/:name", DeveloperController, :show)
     get("/profile/edit", DeveloperController, :edit)
     put("/profile/edit", DeveloperController, :update)
-
+    
     get("/", PostController, :index)
     resources("/posts", PostController, param: "titled_slug")
     # catch-any route should be last
+    get("/:channel/random", ChannelController, :random_by_channel)
     get("/:name", ChannelController, :show)
   end
 end
