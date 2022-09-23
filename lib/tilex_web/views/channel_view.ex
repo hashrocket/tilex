@@ -3,7 +3,7 @@ defmodule TilexWeb.ChannelView do
 
   alias TilexWeb.SharedView
 
-  def channel_header(posts_count, channel) do
-    "#{SharedView.pluralize(posts_count, "post")} about ##{channel.name}"
+  def channel_header(posts_count, channel, random) do
+    " #{if random, do: "Random post", else: SharedView.pluralize(posts_count, "post")} about ##{channel.name}"
   end
 end
