@@ -23,11 +23,6 @@ defmodule TilexWeb.ChannelController do
   end
 
   def random_by_channel(conn, %{"channel" => channel_name} = params) do
-    page =
-      params
-      |> Map.get("page", "1")
-      |> String.to_integer()
-
     {posts, posts_count, channel} = Posts.random_post_by_channel(channel_name)
 
     render(
