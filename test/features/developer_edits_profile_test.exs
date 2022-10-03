@@ -1,5 +1,5 @@
 defmodule DeveloperEditsProfileTest do
-  use Tilex.IntegrationCase, async: Application.get_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: Application.compile_env(:tilex, :async_feature_test)
 
   test "fills out form and updates post from post show", %{session: session} do
     developer = Factory.insert!(:developer, email: "fine@sixdollareggs.com")

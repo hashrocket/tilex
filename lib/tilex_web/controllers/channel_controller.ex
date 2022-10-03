@@ -1,7 +1,7 @@
 defmodule TilexWeb.ChannelController do
   use TilexWeb, :controller
 
-  alias Tilex.{Post, Posts}
+  alias Tilex.Posts
 
   def show(conn, %{"name" => channel_name} = params) do
     page =
@@ -22,7 +22,7 @@ defmodule TilexWeb.ChannelController do
     )
   end
 
-  def random_by_channel(conn, %{"channel" => channel_name} = params) do
+  def random_by_channel(conn, %{"channel" => channel_name}) do
     {posts, posts_count, channel} = Posts.random_post_by_channel(channel_name)
 
     render(
