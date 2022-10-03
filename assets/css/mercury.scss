@@ -73,7 +73,7 @@ $svg-rendering: 'geometricPrecision' !default;
 // SVG background support
 // (string encoding functions via http://codepen.io/jakob-e/pen/doMoML)
 
-$svg-images: () !global;
+$svg-images: ();
 
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
