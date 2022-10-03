@@ -1,0 +1,137 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  DATE_DISPLAY_TZ: America/Chicago
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        elixir: [1.14.0]
+        otp: [25.1.1]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Elixir
+      id: setup-elixir
+      uses: erlef/setup-beam@v1.11
+      with:
+        elixir-version: ${{ matrix.elixir }}
+        otp-version: ${{ matrix.otp }}
+    - name: Check Versions
+      run: echo "Elixir => ${{ steps.setup-elixir.outputs.elixir-version }}, Erlang => ${{ steps.setup-elixir.outputs.otp-version }}"
+    - name: Install Rebar
+      run: mix local.rebar --force
+    - name: Install Hex
+      run: mix local.hex --force
+    - name: Restore dependencies cache
+      uses: actions/cache@v3
+      with:
+        path: deps/
+        key: ${{ runner.os }}-${{ steps.setup-elixir.outputs.elixir-version }}-${{ steps.setup-elixir.outputs.otp-version }}-mix-${{ hashFiles('**/mix.lock') }}
+    - name: Clear deps and build to avoid flackey CI
+      if: github.run_attempt != '1'
+      run: |
+        mix do deps.clean --all, clean --deps
+        rm -rf deps/ _build/
+    - name: Install dependencies
+      run: mix deps.get
+    - name: Check unused deps
+      run: mix deps.unlock --check-unused
+
+  test:
+    name: Testing
+    needs: [build]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        elixir: [1.14.0]
+        otp: [25.1.1]
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Elixir
+      id: setup-elixir
+      uses: erlef/setup-beam@v1.11
+      with:
+        elixir-version: ${{ matrix.elixir }}
+        otp-version: ${{ matrix.otp }}
+    - name: Check Versions
+      run: echo "Elixir => ${{ steps.setup-elixir.outputs.elixir-version }}, Erlang => ${{ steps.setup-elixir.outputs.otp-version }}"
+    - name: Restore dependencies cache
+      uses: actions/cache@v3
+      with:
+        path: deps/
+        key: ${{ runner.os }}-${{ steps.setup-elixir.outputs.elixir-version }}-${{ steps.setup-elixir.outputs.otp-version }}-mix-${{ hashFiles('**/mix.lock') }}
+    - name: Compile Test
+      run: MIX_ENV=test mix compile
+    - name: NPM Install
+      run: cd assets && npm install
+    - name: Build assets
+      run: cd assets && node node_modules/webpack/bin/webpack.js --mode production
+    - name: Digest assets
+      run: mix phx.digest
+    - name: Run tests
+      run: mix test --trace
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: screenshots
+        path: screenshots/
+
+  linting:
+    name: Code Linting
+    needs: [build]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        elixir: [1.14.0]
+        otp: [25.1.1]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Elixir
+      id: setup-elixir
+      uses: erlef/setup-beam@v1.11
+      with:
+        elixir-version: ${{ matrix.elixir }}
+        otp-version: ${{ matrix.otp }}
+    - name: Check Versions
+      run: echo "Elixir => ${{ steps.setup-elixir.outputs.elixir-version }}, Erlang => ${{ steps.setup-elixir.outputs.otp-version }}"
+    - name: Restore dependencies cache
+      uses: actions/cache@v3
+      with:
+        path: deps/
+        key: ${{ runner.os }}-${{ steps.setup-elixir.outputs.elixir-version }}-${{ steps.setup-elixir.outputs.otp-version }}-mix-${{ hashFiles('**/mix.lock') }}
+    - name: Compile Dev
+      run: mix compile
+    - name: Check Formatting
+      run: mix format --check-formatted
+    - name: Run Credo
+      run: mix credo
