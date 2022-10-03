@@ -7,7 +7,7 @@ defmodule Tilex.Mixfile do
       version: "0.0.1",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:phoenix] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -36,23 +36,23 @@ defmodule Tilex.Mixfile do
     [
       {:appsignal_phoenix, "~> 2.0"},
       {:cachex, "~> 3.1"},
-      {:cors_plug, "~> 2.0"},
+      {:cors_plug, "~> 3.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.4"},
       {:ecto_sql, "~> 3.4"},
       {:extwitter, "~> 0.13"},
-      {:floki, "~> 0.31.0"},
+      {:floki, "~>0.33.1"},
       {:gettext, "~> 0.13"},
       {:guardian, "~> 2.0"},
-      {:hackney, "1.17.4"},
+      {:hackney, "~>1.18.1"},
       {:html_sanitize_ex, "~> 1.2"},
       {:jason, "~> 1.0"},
       {:oauther,
        git: "https://github.com/tobstarr/oauther.git", branch: "master", override: true},
-      {:optimus, "~> 0.2.0"},
-      {:phoenix, "~> 1.5.9"},
-      {:phoenix_ecto, "~> 4.3.0"},
-      {:phoenix_html, "~> 2.14.3"},
+      {:optimus, "~>0.3.0"},
+      {:phoenix, "1.5.9"},
+      {:phoenix_ecto, "4.3.0"},
+      {:phoenix_html, "2.14.3"},
       {:phoenix_live_reload, "~> 1.1", only: :dev},
       {:phoenix_pubsub, "~> 2.0"},
       {:plug, "~> 1.7"},
@@ -61,7 +61,7 @@ defmodule Tilex.Mixfile do
       {:timex, "~> 3.1"},
       {:tzdata, "~> 1.1.0"},
       {:ueberauth_google, "~> 0.5"},
-      {:wallaby, "~> 0.28.0", [runtime: false, only: :test]}
+      {:wallaby, "~>0.30.1", [runtime: false, only: :test]}
     ]
   end
 

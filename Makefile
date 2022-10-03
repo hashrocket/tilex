@@ -22,7 +22,7 @@ outdated: ## Shows outdated packages.
 	npm outdated --prefix assets/
 
 update: ## Bump all hex packages.
-	mix deps.updated --all
+	mix deps.update --all
 
 console:
 	iex -S mix
@@ -33,6 +33,7 @@ setup: ## Runs the project setup.
 	mix compile
 	mix ecto.setup
 	npm install --prefix assets/
+	(cd assets && node node_modules/webpack/bin/webpack.js --mode production)
 
 server: ## Starts the server.
 	sh .env
