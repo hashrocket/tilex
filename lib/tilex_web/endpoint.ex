@@ -4,7 +4,7 @@ defmodule TilexWeb.Endpoint do
 
   @cors_origin Application.compile_env(:tilex, :cors_origin)
 
-  if sandbox = Application.get_env(:tilex, :sandbox) do
+  if sandbox = Application.compile_env(:tilex, :sandbox) do
     plug(Phoenix.Ecto.SQL.Sandbox, sandbox: sandbox)
   end
 
