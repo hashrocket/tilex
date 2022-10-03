@@ -7,7 +7,7 @@ jobs:
   build:
     working_directory: ~/tilex
     docker:
-      - image: cimg/elixir:1.12.1-browsers
+      - image: cimg/elixir:1.14.0-browsers
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
