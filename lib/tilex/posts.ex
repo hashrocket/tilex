@@ -30,6 +30,24 @@ defmodule Tilex.Posts do
     {Repo.all(query), posts_count, channel}
   end
 
+  def random_post_by_channel(channel_name) do
+    channel = Repo.get_by!(Channel, name: channel_name)
+
+    posts_count = 1
+
+    query =
+      from(
+        post in Post,
+        order_by: fragment("random()"),
+        join: channel in assoc(post, :channel),
+        where: channel.name == ^channel_name,
+        limit: 1,
+        preload: [:channel, :developer]
+      )
+
+    {Repo.all(query), posts_count, channel}
+  end
+
   def by_developer(username, limit: limit) do
     query =
       from(

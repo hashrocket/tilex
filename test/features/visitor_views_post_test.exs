@@ -239,6 +239,20 @@ defmodule VisitorViewsPostTest do
     assert page_title(session) == "#{post.title} - Today I Learned"
   end
 
+  test "via the random by channel url", %{session: session} do
+    post = Factory.insert!(:post)
+
+    session
+    |> visit(channel_path(Endpoint, :random_by_channel, post.channel.name))
+    |> PostShowPage.expect_post_attributes(%{
+      title: post.title,
+      body: post.body,
+      channel: post.channel.name,
+      likes_count: 1
+    })
+    |> assert_text(Query.css(".post__tag-link"), "##{String.upcase(post.channel.name)}")
+  end
+
   defp post_date(session) do
     session
     |> find(Query.css("footer .post__permalink"))

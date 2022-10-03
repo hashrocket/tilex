@@ -78,6 +78,7 @@ defmodule TilexWeb.Router do
     get("/", PostController, :index)
     resources("/posts", PostController, param: "titled_slug")
     # catch-any route should be last
+    get("/:channel/random", ChannelController, :random_by_channel)
     get("/:name", ChannelController, :show)
   end
 end
