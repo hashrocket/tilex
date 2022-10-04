@@ -1,5 +1,3 @@
-<%= render TilexWeb.SharedView, "_hiring_banner.html", conn: @conn %>
-
 <section id="home">
   <%= render TilexWeb.SharedView, "_posts_list.html", conn: @conn, posts: @posts %>
 </section>
