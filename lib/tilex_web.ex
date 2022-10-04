@@ -56,6 +56,7 @@ defmodule TilexWeb do
       import TilexWeb.Router.Helpers
       import TilexWeb.HTMLHelpers
       import TilexWeb.ErrorHelpers
+      import TilexWeb.Icon
       import TilexWeb.Gettext
     end
   end

@@ -266,57 +266,37 @@ header.site_head {
   }
 
   ul.social {
-    list-style-type: none;
     margin: 0;
     padding: 0;
-
-    @include clearfix;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     li {
-      width: 50%;
-      float: left;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        line-height: 3rem;
+        font-family: $secondary-typeface;
+        font-weight: 700;
+        font-style: normal;
+        color: $base;
 
-      @include mobile {
-        width: auto;
-        float: none;
+        @include mobile {
+          font-size: 0.9em;
+        }
       }
-    }
 
-    a.social_twitter,
-    a.social_github {
-      display: block;
-      padding-left: 3rem;
-      line-height: 3rem;
-      background: left center no-repeat;
-      background-size: 2.5rem auto;
-      font-family: $secondary-typeface;
-      font-weight: 700;
-      font-style: normal;
-      color: $base;
-
-      @include mobile {
-        font-size: 0.9em;
+      a.social_twitter:hover {
+        color: $twitter-color;
       }
-    }
 
-    a.social_twitter {
-      background-image: svg-url(twitter, $accent);
-
-      &:hover {
-        background-image: svg-url(twitter, $twitter-color);
-        color: #006da3;
-      }
-    }
-
-    a.social_github {
-      background-image: svg-url(github, $accent);
-
-      &:hover {
-        background-image: svg-url(github, $github-color);
-        color: #4b4b4b;
+      a.social_github:hover {
+        color: $github-color;
       }
     }
   }
@@ -461,15 +441,7 @@ header.page_head {
   }
 
   a.author_twitter {
-    @include hide-text;
-
-    display: inline-block;
-    margin-left: 0.2em;
-    width: 0.8em;
-    height: 0.8em;
-    background: svg-url(twitter, $twitter-color) center no-repeat;
-    background-size: contain;
-    vertical-align: baseline;
+    color: $twitter-color;
   }
 }
 
