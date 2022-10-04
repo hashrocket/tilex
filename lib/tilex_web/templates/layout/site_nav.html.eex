@@ -23,10 +23,16 @@
           Hashrocket. We hope you enjoy learning along with us.
           <ul class="social">
             <li>
-              <%= link("/#{Application.get_env(:tilex, :default_twitter_handle)}", to: "https://twitter.com/#{Application.get_env(:tilex, :default_twitter_handle)}", class: "social_twitter") %>
+              <%= link(to: "https://twitter.com/#{Application.get_env(:tilex, :default_twitter_handle)}", class: "social_twitter") do %>
+                <%= icon("twitter") %>
+                <%= "/#{Application.get_env(:tilex, :default_twitter_handle)}" %>
+              <% end %>
             </li>
             <li>
-              <%= link("/hashrocket/tilex", to: "https://github.com/hashrocket/tilex", class: "social_github") %>
+              <%= link(to: "https://github.com/hashrocket/tilex", class: "social_github") do %>
+                <%= icon("github") %>
+                /hashrocket/tilex
+              <% end %>
             </li>
           </ul>
         </div>
