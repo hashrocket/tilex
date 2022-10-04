@@ -18,6 +18,7 @@ defmodule TilexWeb.Icon do
     end
   end
 
+  defp get_size(:small), do: 18
   defp get_size(:regular), do: 24
   defp get_size(:large), do: 32
 

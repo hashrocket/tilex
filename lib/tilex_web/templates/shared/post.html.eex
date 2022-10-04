@@ -45,6 +45,7 @@
         <% end %>
         <li>
           <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>
+            <span class="post__like-heart"><%= icon("heart", :small) %></span>
             <span class="post__like-count"><%= @post.likes %></span>
             <span class="post__like-label">likes</span>
           <% end %>

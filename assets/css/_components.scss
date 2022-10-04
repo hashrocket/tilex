@@ -215,17 +215,17 @@ nav.pagination {
         &.post__like-link {
           border-color: $pink;
           color: $pink;
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
 
-          &:before {
-            content: "";
-            display: inline-block;
-            vertical-align: middle;
-            height: 1.5rem;
-            width: 1.5rem;
-            margin-right: 1rem;
-            background: svg-url(heart, darken($light, 10%)) center no-repeat;
-            background-size: contain;
+          .post__like-heart {
+            color: darken($light, 10%);
             animation: jiggle 2s ease-in;
+          }
+
+          &.liked .post__like-heart {
+            color: $red;
           }
 
           span.post__like-label {
@@ -235,15 +235,11 @@ nav.pagination {
           &.liked {
             color: $red;
             border-color: $red;
-
-            &:before {
-              background-image: svg-url(heart, $red);
-            }
           }
         }
 
         &.post__like-link:not(.liked) {
-          &:before {
+          .post__like-heart {
             animation: heartbeat 0.5s infinite ease-out alternate;
           }
         }
