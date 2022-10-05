@@ -82,8 +82,14 @@ end
 
 config :tilex, :page_size, 50
 config :tilex, :ga_identifier, System.get_env("GA_IDENTIFIER")
+config :tilex, :request_tracking, System.get_env("REQUEST_TRACKING")
 
 config :appsignal, :config, active: true
 
-config :tilex, :page_size, 50
-config :tilex, :request_tracking, System.get_env("REQUEST_TRACKING")
+config :sentry,
+  dsn: System.get_env("SENTRY_DSN"),
+  environment_name: :prod,
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!(),
+  tags: %{env: "production"},
+  included_environments: [:prod]

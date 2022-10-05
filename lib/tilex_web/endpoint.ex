@@ -1,4 +1,5 @@
 defmodule TilexWeb.Endpoint do
+  use Sentry.PlugCapture
   use Phoenix.Endpoint, otp_app: :tilex
   use Appsignal.Phoenix
 
@@ -60,6 +61,8 @@ defmodule TilexWeb.Endpoint do
     pass: ["*/*"],
     json_decoder: Jason
   )
+
+  plug(Sentry.PlugContext)
 
   plug(Plug.MethodOverride)
   plug(Plug.Head)

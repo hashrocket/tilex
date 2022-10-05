@@ -2,6 +2,8 @@ defmodule Tilex.Application do
   use Application
 
   def start(_type, _args) do
+    Logger.add_backend(Sentry.LoggerBackend)
+
     children = [
       Tilex.Repo,
       TilexWeb.Endpoint,
