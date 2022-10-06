@@ -3,8 +3,7 @@
     <h1 class="channel_header">
       <%= channel_header(@posts_count, @channel, @random) %>
       <%= link to: channel_path(@conn, :random_by_channel, @channel.name) do %>
-        <div class="random">
-        </div>
+        <%= icon("surprise") %>
       <% end %>
     </h1>
   </header>
