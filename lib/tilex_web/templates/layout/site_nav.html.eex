@@ -1,7 +1,9 @@
 <nav class="site_nav">
   <ul>
     <li class="site_nav__search">
-      <%= link("search", to: "#", class: "site_nav__link") %>
+      <%= link(to: "#", class: "site_nav__link") do %>
+        <%= icon("search", :large, "Search") %>
+      <% end %>
       <div class="site_nav__toggle">
         <%= form_tag post_path(@conn, :index), method: :get do %>
           <input type="search" name="q" id="q" aria-label="Search">
@@ -10,7 +12,9 @@
       </div>
     </li>
     <li class="site_nav__about">
-      <%= link("?", to: "#", class: "site_nav__link", aria_label: "About TIL") %>
+      <%= link(to: "#", class: "site_nav__link", aria_label: "About TIL") do %>
+        <%= icon("help", :large, "About TIL") %>
+      <% end %>
       <div class="site_nav__toggle">
         <div class="copy">
           Today I Learned is an open-source project by
@@ -38,18 +42,24 @@
         </div>
       </div>
     </li>
-    <li class="site_nav__statistics">
-      <%= link("Statistics", to: stats_path(@conn, :index), class: "site_nav__link") %>
+    <li>
+      <%= link(to: stats_path(@conn, :index), class: "site_nav__link") do %>
+        <%= icon("stats", :large, "Statistics") %>
+      <% end %>
     </li>
-    <li class="site_nav__newsletter">
-      <%= link("Newsletter", to: "https://www.getrevue.co/profile/til/", class: "site_nav__link") %>
+    <li>
+      <%= link(to: "https://www.getrevue.co/profile/til/", class: "site_nav__link") do %>
+        <%= icon("newsletter", :large, "Newsletter") %>
+      <% end %>
     </li>
-    <li class="site_nav__surprise_me">
-      <%= link("Surprise Me", to: post_path(@conn, :random), class: "site_nav__link", rel: "nofollow") %>
+    <li>
+      <%= link(to: post_path(@conn, :random), class: "site_nav__link", rel: "nofollow") do %>
+        <%= icon("surprise", :large, "Surprise Me") %>
+      <% end %>
     </li>
     <%= if current_user(@conn) do %>
     <li class="site_nav__admin_statistics">
-        <%= link("Statistics", to: stats_path(@conn, :developer), class: "site_nav__link") %>
+      <%= link("Statistics", to: stats_path(@conn, :developer), class: "site_nav__link") %>
     </li>
     <% end %>
   </ul>
