@@ -8,6 +8,7 @@
     @include mobile {
       background: transparentize(#fff, 0.2);
       border-top: 2px solid transparentize(#fff, 0.1);
+      display: flex;
     }
 
     > li {
