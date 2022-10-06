@@ -153,17 +153,10 @@ header.site_head {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  a {
-    display: flex;
-  }
-}
 
-.random {
-  display: inline-block;
-  height: 4rem;
-  width: 4rem;
-  background-size: contain;
-  background-image: svg-url(surprise, $accent);
+  a {
+    color: $navy;
+  }
 }
 
 .admin_panel {
