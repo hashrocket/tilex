@@ -1,6 +1,6 @@
 # Tilex - Today I Learned in Elixir
 
-[![CircleCI](https://circleci.com/gh/hashrocket/tilex.svg?style=svg)](https://circleci.com/gh/hashrocket/tilex)
+[![CI](https://github.com/hashrocket/tilex/actions/workflows/ci.yml/badge.svg)](https://github.com/hashrocket/tilex/actions/workflows/ci.yml)
 
 > Today I Learned is an open-source project by the team at
 > [Hashrocket][hashrocket] that catalogues the sharing & accumulation of
