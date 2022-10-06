@@ -76,9 +76,10 @@
         <h1><%= link("Today I Learned", to: post_path(@conn, :index)) %></h1>
         <h2>
           <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
-          <span>
-            <a href="https://twitter.com/<%= Application.get_env(:tilex, :default_twitter_handle)%>" class="twitter">Follow on Twitter</a>
-          </span>
+          <a href="https://twitter.com/<%= Application.get_env(:tilex, :default_twitter_handle)%>" class="twitter">
+            <%= icon("twitter", :small) %>
+            Follow on Twitter
+          </a>
         </h2>
       </div>
     </header>
