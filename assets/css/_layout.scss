@@ -95,40 +95,6 @@ header.site_head {
     }
   }
 
-  &.has-banner {
-    padding: 0 0 2vw;
-  }
-
-  .banner {
-    align-items: center;
-    background-color: #ffecec;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.65rem;
-    padding: 2rem;
-    width: 100%;
-
-    @include mobile {
-      display: none;
-    }
-
-
-    a {
-      color: #c64e3a;
-      display: inline-block;
-      font-family: notosans;
-      font-size: 1.5rem;
-    }
-
-    .message {
-      color: #333333;
-      display: inline-block;
-      font-family: notosans;
-      font-size: 1.75rem;
-      margin: 0 auto;
-    }
-  }
-
   @include mobile {
     z-index: 100;
     background: #fff;
