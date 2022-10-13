@@ -5,8 +5,10 @@ defmodule Tilex.Repo.Migrations.AddRequestTimeInApplicationTimezoneIndexToReques
   @disable_migration_lock true
 
   def up do
-    application_timezone = Application.get_env(:tilex, :date_display_tz, "america/chicago")
-                           |> String.downcase()
+    application_timezone =
+      Application.get_env(:tilex, :date_display_tz, "america/chicago")
+      |> String.downcase()
+
     execute """
       drop index concurrently if exists index_requests_on_request_time_in_chicago
     """

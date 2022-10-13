@@ -7,8 +7,7 @@ defmodule Tilex.Mixfile do
       version: "0.0.1",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix] ++ Mix.compilers(),
-      build_embedded: Mix.env() == :prod,
+      compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -21,7 +20,7 @@ defmodule Tilex.Mixfile do
   def application do
     [
       mod: {Tilex.Application, []},
-      extra_applications: [:logger, :appsignal]
+      extra_applications: [:logger, :runtime_tools, :appsignal]
     ]
   end
 
@@ -39,25 +38,29 @@ defmodule Tilex.Mixfile do
       {:cors_plug, "~> 3.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.4"},
-      {:ecto_sql, "~> 3.4"},
+      {:ecto_sql, "~> 3.6"},
+      # {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:extwitter, "~> 0.13"},
       {:floki, "~>0.33.1"},
-      {:gettext, "~> 0.13"},
+      {:gettext, "~> 0.18"},
       {:guardian, "~> 2.0"},
       {:hackney, "~>1.18.1"},
       {:html_sanitize_ex, "~> 1.2"},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.2"},
       {:oauther,
        git: "https://github.com/tobstarr/oauther.git", branch: "master", override: true},
       {:optimus, "~>0.3.0"},
-      {:phoenix, "1.6.14"},
-      {:phoenix_ecto, "4.4.0"},
-      {:phoenix_html, "3.2.0"},
-      {:phoenix_live_reload, "~> 1.1", only: :dev},
-      {:phoenix_pubsub, "~> 2.0"},
-      {:plug, "~> 1.7"},
-      {:plug_cowboy, "~> 2.1"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix_html, "~> 3.0"},
+      {:phoenix_live_dashboard, "~> 0.6"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_view, "~> 0.17.5"},
+      {:phoenix, "~> 1.6.14"},
+      {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
+      {:swoosh, "~> 1.3"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"},
       {:timex, "~> 3.1"},
       {:tzdata, "~> 1.1.0"},
       {:ueberauth_google, "~> 0.5"},
@@ -73,9 +76,11 @@ defmodule Tilex.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
+      setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      # "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
   end
 end
