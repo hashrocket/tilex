@@ -5,7 +5,7 @@ defmodule Tilex.Notifications do
   alias Tilex.Post
   alias Tilex.Repo
   alias TilexWeb.Endpoint
-  alias TilexWeb.Router.Helpers
+  alias TilexWeb.Router.Helpers, as: Routes
   alias Tilex.Notifications.NotifiersSupervisor
 
   ### Client API
@@ -53,7 +53,7 @@ defmodule Tilex.Notifications do
   def handle_cast({:post_created, %Post{} = post}, :nostate) do
     developer = Repo.one(Ecto.assoc(post, :developer))
     channel = Repo.one(Ecto.assoc(post, :channel))
-    url = Helpers.post_url(Endpoint, :show, post)
+    url = Routes.post_url(Endpoint, :show, post)
 
     notifiers()
     |> Enum.each(& &1.post_created(post, developer, channel, url))
@@ -70,7 +70,7 @@ defmodule Tilex.Notifications do
   def handle_cast({:post_liked, %Post{max_likes: max_likes} = post, max_likes_changed}, :nostate) do
     if rem(max_likes, 10) == 0 and max_likes_changed do
       developer = Repo.one(Ecto.assoc(post, :developer))
-      url = Helpers.post_url(Endpoint, :show, post)
+      url = Routes.post_url(Endpoint, :show, post)
 
       notifiers()
       |> Enum.each(& &1.post_liked(post, developer, url))

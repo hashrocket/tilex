@@ -16,7 +16,7 @@ defmodule TilexWeb.StatsController do
     conn
     |> put_status(302)
     |> put_flash(:info, "Authentication required")
-    |> redirect(to: stats_path(conn, :index))
+    |> redirect(to: Routes.stats_path(conn, :index))
   end
 
   def index(conn, _) do

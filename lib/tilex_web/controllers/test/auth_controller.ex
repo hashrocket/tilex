@@ -7,6 +7,6 @@ defmodule TilexWeb.Test.AuthController do
     developer = Repo.get_by!(Developer, id: params["id"])
     conn = Auth.Guardian.Plug.sign_in(conn, developer)
 
-    redirect(conn, to: post_path(conn, :index))
+    redirect(conn, to: Routes.post_path(conn, :index))
   end
 end

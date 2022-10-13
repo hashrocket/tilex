@@ -2,7 +2,9 @@ defmodule TilexWeb.AuthController do
   use TilexWeb, :controller
   plug(Ueberauth)
 
-  alias Tilex.{Developer, Repo, Auth}
+  alias Tilex.Developer
+  alias Tilex.Repo
+  alias Tilex.Auth
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     case authenticate(auth) do
@@ -11,24 +13,24 @@ defmodule TilexWeb.AuthController do
 
         conn
         |> put_flash(:info, "Signed in with #{developer.email}")
-        |> redirect(to: post_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :index))
 
       {:error, reason} ->
         conn
         |> put_flash(:info, reason)
-        |> redirect(to: post_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :index))
     end
   end
 
   def index(conn, _params) do
-    redirect(conn, to: auth_path(conn, :request, "google"))
+    redirect(conn, to: Routes.auth_path(conn, :request, "google"))
   end
 
   def delete(conn, _params) do
     conn
     |> Auth.Guardian.Plug.sign_out()
     |> put_flash(:info, "Signed out")
-    |> redirect(to: post_path(conn, :index))
+    |> redirect(to: Routes.post_path(conn, :index))
   end
 
   defp authenticate(%{info: %{email: email, name: name}}) when is_binary(name) do

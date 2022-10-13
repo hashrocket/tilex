@@ -22,7 +22,7 @@ defmodule TilexWeb.PostController do
     conn
     |> put_status(302)
     |> put_flash(:info, "Authentication required")
-    |> redirect(to: post_path(conn, :index))
+    |> redirect(to: Routes.post_path(conn, :index))
   end
 
   def index(conn, %{"q" => search_query} = params) do
@@ -40,7 +40,7 @@ defmodule TilexWeb.PostController do
   end
 
   def index(conn, %{"format" => format}) when format in ~w(rss atom),
-    do: redirect(conn, to: feed_path(conn, :index))
+    do: redirect(conn, to: Routes.feed_path(conn, :index))
 
   def index(conn, params) do
     page = robust_page(params)
@@ -121,7 +121,7 @@ defmodule TilexWeb.PostController do
 
         conn
         |> put_flash(:info, "Post created")
-        |> redirect(to: post_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :index))
 
       {:error, changeset} ->
         conn
@@ -176,7 +176,7 @@ defmodule TilexWeb.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post Updated")
-        |> redirect(to: post_path(conn, :show, post))
+        |> redirect(to: Routes.post_path(conn, :show, post))
 
       {:error, changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset, current_user: current_user)
@@ -214,7 +214,7 @@ defmodule TilexWeb.PostController do
     canonical_post =
       :tilex
       |> Application.get_env(:canonical_domain)
-      |> URI.merge(post_path(conn, :show, post))
+      |> URI.merge(Routes.post_path(conn, :show, post))
       |> URI.to_string()
 
     conn

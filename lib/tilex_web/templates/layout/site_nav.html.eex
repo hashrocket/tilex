@@ -5,7 +5,7 @@
         <%= icon("search", :large, "Search") %>
       <% end %>
       <div class="site_nav__toggle">
-        <%= form_tag post_path(@conn, :index), method: :get do %>
+        <%= form_tag Routes.post_path(@conn, :index), method: :get do %>
           <input type="search" name="q" id="q" aria-label="Search">
           <%= submit "Search" %>
         <% end %>
@@ -43,7 +43,7 @@
       </div>
     </li>
     <li>
-      <%= link(to: stats_path(@conn, :index), class: "site_nav__link") do %>
+      <%= link(to: Routes.stats_path(@conn, :index), class: "site_nav__link") do %>
         <%= icon("stats", :large, "Statistics") %>
       <% end %>
     </li>
@@ -53,13 +53,13 @@
       <% end %>
     </li>
     <li>
-      <%= link(to: post_path(@conn, :random), class: "site_nav__link", rel: "nofollow") do %>
+      <%= link(to: Routes.post_path(@conn, :random), class: "site_nav__link", rel: "nofollow") do %>
         <%= icon("surprise", :large, "Surprise Me") %>
       <% end %>
     </li>
     <%= if current_user(@conn) do %>
     <li class="site_nav__admin_statistics">
-      <%= link("Statistics", to: stats_path(@conn, :developer), class: "site_nav__link") %>
+      <%= link("Statistics", to: Routes.stats_path(@conn, :developer), class: "site_nav__link") %>
     </li>
     <% end %>
   </ul>
