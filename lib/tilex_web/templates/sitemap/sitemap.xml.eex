@@ -8,7 +8,7 @@
 
 <%= for post <- @posts do %>
 <url>
-<loc><%= post_url(@conn, :show, post) %></loc>
+<loc><%= Routes.post_url(@conn, :show, post) %></loc>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>

@@ -33,20 +33,20 @@
     <meta name="twitter:title" content="<%= twitter_title(assigns[:post]) %>">
 
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900&display=swap' rel='stylesheet' type='text/css'>
-    <link rel="alternate" type="application/rss+xml" title="Today I Learned" href="<%= feed_path(@conn, :index) %>">
+    <link rel="alternate" type="application/rss+xml" title="Today I Learned" href="<%= Routes.feed_path(@conn, :index) %>">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="stylesheet" href="<%= static_url(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= Routes.static_url(@conn, "/css/app.css") %>">
     <%= if assigns[:canonical_url] do %>
       <link rel="canonical" href="<%= @canonical_url %>">
     <% end %>
-    <link rel="manifest" href="<%= web_manifest_path(@conn, :index) %>">
+    <link rel="manifest" href="<%= Routes.web_manifest_path(@conn, :index) %>">
 
     <%= if request_tracking() do %>
-      <script async src="<%= pixel_path(@conn, :index) %>"></script>
+      <script async src="<%= Routes.pixel_path(@conn, :index) %>"></script>
     <% end %>
   </head>
 
@@ -54,10 +54,10 @@
     <%= if developer = current_user(@conn) do %>
       <nav class="admin_panel">
         <ul>
-          <li> <%= link(developer.username, to: developer_path(@conn, :show, developer)) %> </li>
-          <li> <%= link("Sign Out", to: auth_path(@conn, :delete), method: :delete) %> </li>
-          <li> <%= link("Create Post", to: post_path(@conn, :new)) %> </li>
-          <li> <%= link("Profile", to: developer_path(@conn, :edit)) %> </li>
+          <li> <%= link(developer.username, to: Routes.developer_path(@conn, :show, developer)) %> </li>
+          <li> <%= link("Sign Out", to: Routes.auth_path(@conn, :delete), method: :delete) %> </li>
+          <li> <%= link("Create Post", to: Routes.post_path(@conn, :new)) %> </li>
+          <li> <%= link("Profile", to: Routes.developer_path(@conn, :edit)) %> </li>
         </ul>
       </nav>
     <% end %>
@@ -66,7 +66,7 @@
 
     <header class="site_head">
       <div>
-        <h1><%= link("Today I Learned", to: post_path(@conn, :index)) %></h1>
+        <h1><%= link("Today I Learned", to: Routes.post_path(@conn, :index)) %></h1>
         <h2>
           <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
           <a href="https://twitter.com/<%= Application.get_env(:tilex, :default_twitter_handle)%>" class="twitter">
@@ -97,7 +97,7 @@
       };
     </script>
 
-    <script src="<%= static_url(@conn, "/js/app.js") %>"></script>
+    <script src="<%= Routes.static_url(@conn, "/js/app.js") %>"></script>
 
     <%= if ga_identifier() do %>
       <script>

@@ -1,5 +1,5 @@
 defmodule Tilex.Post do
-  use TilexWeb, :model
+  use TilexWeb, :schema
 
   @type t :: module
 

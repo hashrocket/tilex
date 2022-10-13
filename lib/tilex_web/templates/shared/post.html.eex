@@ -2,7 +2,7 @@
   <section>
     <div class="post__content copy">
       <h1>
-        <%= link(@post.title, to: post_path(@conn, :show, @post)) %>
+        <%= link(@post.title, to: Routes.post_path(@conn, :show, @post)) %>
       </h1>
       <%= raw Tilex.Markdown.to_html(@post.body) %>
 
@@ -12,17 +12,17 @@
            data-text= "Today I learned: <%= @post.title %>"
            data-via= "<%= Tilex.Developer.twitter_handle(@post.developer) %>"
            data-hashtags= "<%= @post.channel.twitter_hashtag %>"
-           data-url= "<%= post_url(@conn, :show, @post) %>">
+           data-url= "<%= Routes.post_url(@conn, :show, @post) %>">
           Tweet
         </a>
       <% end %>
 
       <footer>
         <p class="byline">
-          <%= link(@post.developer.username, to: developer_path(@conn, :show, @post.developer)) %>
+          <%= link(@post.developer.username, to: Routes.developer_path(@conn, :show, @post.developer)) %>
           <br/>
           <time datetime="<%= @post.inserted_at %>">
-            <%= link(display_date(@post), to: post_path(@conn, :show, @post), class: "post__permalink") %>
+            <%= link(display_date(@post), to: Routes.post_path(@conn, :show, @post), class: "post__permalink") %>
           </time>
         </p>
       </footer>
@@ -30,17 +30,17 @@
     <aside>
       <ul>
         <li>
-          <%= link("##{@post.channel.name}", to: channel_path(@conn, :show, @post.channel.name), class: "post__tag-link") %>
+          <%= link("##{@post.channel.name}", to: Routes.channel_path(@conn, :show, @post.channel.name), class: "post__tag-link") %>
         </li>
         <li>
-          <%= link("permalink", to: post_path(@conn, :show, @post), class: "post__permalink") %>
+          <%= link("permalink", to: Routes.post_path(@conn, :show, @post), class: "post__permalink") %>
         </li>
         <li>
-          <%= link("raw", to: "#{post_path(@conn, :show, @post)}.md", class: "post__raw-link") %>
+          <%= link("raw", to: "#{Routes.post_path(@conn, :show, @post)}.md", class: "post__raw-link") %>
         </li>
         <%= if TilexWeb.SharedView.post_creator_or_admin?(@conn, @post) do %>
           <li>
-            <%= link("edit", to: post_path(@conn, :edit, @post), class: "post__permalink") %>
+            <%= link("edit", to: Routes.post_path(@conn, :edit, @post), class: "post__permalink") %>
           </li>
         <% end %>
         <li>

@@ -37,7 +37,7 @@ defmodule TilexWeb.DeveloperController do
       {:ok, _developer} ->
         conn
         |> put_flash(:info, "Developer Updated")
-        |> redirect(to: post_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :index))
 
       {:error, changeset} ->
         render(conn, "edit.html", developer: developer, changeset: changeset)

@@ -4,20 +4,20 @@
     <title>Today I Learned</title>
     <description>TIL is an open-source project by Hashrocket that exists to catalogue the sharing and accumulation of knowledge as it happens day-to-day.
     </description>
-    <link><%= post_url(@conn, :index) %></link>
-    <atom:link href="<%= feed_url(@conn, :index) %>" rel="self" type="application/rss+xml" />
+    <link><%= Routes.post_url(@conn, :index) %></link>
+    <atom:link href="<%= Routes.feed_url(@conn, :index) %>" rel="self" type="application/rss+xml" />
     <%= for post <- @items do %>
       <item>
         <title>
           <![CDATA[<%= post.title %> - #<%= post.channel.name %>]]>
         </title>
-        <link><%= post_url(@conn, :show, post) %></link>
+        <link><%= Routes.post_url(@conn, :show, post) %></link>
         <description>
           <![CDATA[<%= Tilex.Markdown.to_html(post.body) %>]]>
         </description>
         <dc:creator><%= post.developer.username %></dc:creator>
         <pubDate><%= TilexWeb.SharedView.rss_date(post) %></pubDate>
-        <guid isPermaLink="true"><%= post_url(@conn, :show, post) %></guid>
+        <guid isPermaLink="true"><%= Routes.post_url(@conn, :show, post) %></guid>
       </item>
     <% end %>
   </channel>

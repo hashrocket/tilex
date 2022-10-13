@@ -1,41 +1,33 @@
 defmodule TilexWeb do
   @moduledoc """
-  A module that keeps using definitions for controllers,
-  views and so on.
+  The entrypoint for defining your web interface, such
+  as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use Tilex.Web, :controller
-      use Tilex.Web, :view
+      use TilexWeb, :controller
+      use TilexWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
   on imports, uses and aliases.
 
   Do NOT define functions inside the quoted expressions
-  below.
+  below. Instead, define any helper function in modules
+  and import those modules here.
   """
-
-  def model do
-    quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-    end
-  end
 
   def controller do
     quote do
       use Phoenix.Controller, namespace: TilexWeb
 
+      import Plug.Conn
+      import TilexWeb.Gettext
+      alias TilexWeb.Router.Helpers, as: Routes
+
       alias Tilex.Repo
       import Ecto
       import Ecto.Query
-
-      import TilexWeb.Router.Helpers
-      import TilexWeb.Gettext
     end
   end
 
@@ -45,36 +37,84 @@ defmodule TilexWeb do
         root: "lib/tilex_web/templates",
         namespace: TilexWeb
 
-      use Appsignal.Phoenix.View
-
       # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
+      import Phoenix.Controller,
+        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
-      # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
+    end
+  end
 
-      import TilexWeb.Router.Helpers
-      import TilexWeb.HTMLHelpers
-      import TilexWeb.ErrorHelpers
-      import TilexWeb.Icon
-      import TilexWeb.Gettext
+  def live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {TilexWeb.LayoutView, "live.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(view_helpers())
+    end
+  end
+
+  def component do
+    quote do
+      use Phoenix.Component
+
+      unquote(view_helpers())
     end
   end
 
   def router do
     quote do
       use Phoenix.Router
+
+      import Plug.Conn
+      import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
   def channel do
     quote do
       use Phoenix.Channel
-
-      alias Tilex.Repo
-      import Ecto
-      import Ecto.Query
       import TilexWeb.Gettext
+    end
+  end
+
+  def schema do
+    quote do
+      use Ecto.Schema
+      import Ecto.Changeset
+      import Ecto.Query
+    end
+  end
+
+  defp view_helpers do
+    quote do
+      # Use all HTML functionality (forms, tags, etc)
+      use Phoenix.HTML
+
+      # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
+      import Phoenix.LiveView.Helpers
+
+      # Import basic rendering functionality (render, render_layout, etc)
+      import Phoenix.View
+
+      import TilexWeb.ErrorHelpers
+      import TilexWeb.Gettext
+      alias TilexWeb.Router.Helpers, as: Routes
+
+      use Appsignal.Phoenix.View
+
+      import TilexWeb.HTMLHelpers
+      import TilexWeb.Icon
     end
   end
 

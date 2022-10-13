@@ -1,5 +1,5 @@
 defmodule Tilex.Channel do
-  use TilexWeb, :model
+  use TilexWeb, :schema
 
   @type t :: module
 

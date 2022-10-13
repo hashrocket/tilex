@@ -1,5 +1,5 @@
 defmodule Tilex.Developer do
-  use TilexWeb, :model
+  use TilexWeb, :schema
 
   @type t :: module
 

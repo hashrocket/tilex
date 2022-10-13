@@ -3,7 +3,7 @@
     <header class="page_head">
       <h1>My Profile</h1>
     </header>
-    <%= form_for @changeset, developer_path(@conn, :update), fn f -> %>
+    <%= form_for @changeset, Routes.developer_path(@conn, :update), fn f -> %>
       <dl>
         <dt>
           <%= label f, :email %>
@@ -28,7 +28,7 @@
         </dd>
       </dl>
       <%= submit "Submit" %>
-      <%= link("cancel", to: post_path(@conn, :index)) %>
+      <%= link("cancel", to: Routes.post_path(@conn, :index)) %>
     <% end %>
   </div>
 </main>

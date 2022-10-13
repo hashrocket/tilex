@@ -22,7 +22,7 @@
       <ul class="post_list">
         <%= for {post_title, post_likes, post_slug, channel_name, _score} <- @hottest_posts do %>
           <li>
-            <%= link(to: post_path(@conn, :show, %Tilex.Post{slug: post_slug, title: post_title})) do %>
+            <%= link(to: Routes.post_path(@conn, :show, %Tilex.Post{slug: post_slug, title: post_title})) do %>
               <b>
                 <%= post_title %>
               </b>
@@ -43,7 +43,7 @@
       <ul class="post_list">
         <%= for {post_title, post_likes, post_slug, channel_name} <- @most_liked_posts do %>
           <li>
-            <%= link(to: post_path(@conn, :show, %Tilex.Post{slug: post_slug, title: post_title})) do %>
+            <%= link(to: Routes.post_path(@conn, :show, %Tilex.Post{slug: post_slug, title: post_title})) do %>
               <b>
                 <%= post_title %>
               </b>
@@ -69,7 +69,7 @@
 
           <%= for {count, channel} <- @channels do %>
             <li>
-              <a href="<%= channel_path(@conn, :show, channel) %>"><b>#<%= channel %></b>
+              <a href="<%= Routes.channel_path(@conn, :show, channel) %>"><b>#<%= channel %></b>
                 <small><%= count %> posts</small>
               </a>
             </li>
@@ -87,7 +87,7 @@
         <ul class="post_list" id="authors">
           <%= for {count, developer} <- @developers do %>
             <li>
-              <a href="<%= developer_path(@conn, :show, developer) %>"><b><%= developer %></b>
+              <a href="<%= Routes.developer_path(@conn, :show, developer) %>"><b><%= developer %></b>
                 <small><%= count %> posts</small>
               </a>
             </li>

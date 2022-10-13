@@ -2,5 +2,5 @@
   <header class='page_head'>
     <h1>Create Post</h1>
   </header>
-  <%= render TilexWeb.PostView, "form.html", channels: @channels, changeset: @changeset, current_user: @current_user, action: post_path(@conn, :create) %>
+  <%= render TilexWeb.PostView, "form.html", channels: @channels, changeset: @changeset, current_user: @current_user, action: Routes.post_path(@conn, :create) %>
 </section>
