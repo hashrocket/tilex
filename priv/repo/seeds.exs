@@ -25,27 +25,27 @@ developer =
 
 1..100
 |> Enum.each(fn _i ->
-     Repo.insert!(%Post{
-       title: "Observing Change",
-       body: "A Gold Master Test in Practice",
-       channel: phoenix_channel,
-       developer: developer,
-       slug: Post.generate_slug()
-     })
+  Repo.insert!(%Post{
+    title: "Observing Change",
+    body: "A Gold Master Test in Practice",
+    channel: phoenix_channel,
+    developer: developer,
+    slug: Post.generate_slug()
+  })
 
-     Repo.insert!(%Post{
-       title: "Controlling Your Test Environment",
-       body: "Slow browser integration tests are a hard problem",
-       channel: elixir_channel,
-       developer: developer,
-       slug: Post.generate_slug()
-     })
+  Repo.insert!(%Post{
+    title: "Controlling Your Test Environment",
+    body: "Slow browser integration tests are a hard problem",
+    channel: elixir_channel,
+    developer: developer,
+    slug: Post.generate_slug()
+  })
 
-     Repo.insert!(%Post{
-       title: "Testing Elixir",
-       body: "A Rubyist's Journey",
-       channel: erlang_channel,
-       developer: developer,
-       slug: Post.generate_slug()
-     })
-   end)
+  Repo.insert!(%Post{
+    title: "Testing Elixir",
+    body: "A Rubyist's Journey",
+    channel: erlang_channel,
+    developer: developer,
+    slug: Post.generate_slug()
+  })
+end)

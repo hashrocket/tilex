@@ -1,5 +1,5 @@
 defmodule VisitorViewsPostTest do
-  use Tilex.IntegrationCase, async: Application.compile_env(:tilex, :async_feature_test)
+  use Tilex.IntegrationCase, async: false
 
   alias TilexWeb.Endpoint
 

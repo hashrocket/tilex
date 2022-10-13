@@ -1,26 +1,36 @@
 import Config
 
+# Configure your database
+#
+# The MIX_TEST_PARTITION environment variable can be used
+# to provide built-in test partitioning in CI environment.
+# Run `mix help test` for more information.
+config :tilex, Tilex.Repo,
+  username: System.get_env("POSTGRES_USER", "postgres"),
+  password: System.get_env("POSTGRES_PASSWORD", ""),
+  hostname: "localhost",
+  database: "tilex_test#{System.get_env("MIX_TEST_PARTITION")}",
+  pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: 50,
+  timeout: 30_000
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :tilex, TilexWeb.Endpoint,
-  http: [port: 4001],
+  http: [ip: {127, 0, 0, 1}, port: 4002],
+  secret_key_base: "Wu16BxBM2nOO3e0YEIcPs14fVuVXRZPew1CpIBVoG59QvlDRNKmuR/Pjh2LYE7bf",
   server: true
 
-config :tilex, :sandbox, Ecto.Adapters.SQL.Sandbox
+# In test we don't send emails.
+config :tilex, Tilex.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-# Configure your database
-config :tilex, Tilex.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  database: "tilex_test",
-  hostname: "localhost",
-  username: System.get_env("POSTGRES_USER", "postgres"),
-  password: System.get_env("POSTGRES_PASSWORD", ""),
-  pool: Ecto.Adapters.SQL.Sandbox,
-  pool_size: 50,
-  timeout: 30_000
+# Initialize plugs at runtime for faster test compilation
+config :phoenix, :plug_init_mode, :runtime
+
+config :tilex, :sandbox, Ecto.Adapters.SQL.Sandbox
 
 config :tilex, :organization_name, "Hashrocket"
 config :tilex, :canonical_domain, "https://til.hashrocket.com"
@@ -32,8 +42,6 @@ config :tilex, :twitter_notifier, Test.Notifications.Notifiers.Twitter
 config :tilex, :date_time_module, Tilex.DateTimeMock
 config :tilex, :date_display_tz, "America/Chicago"
 config :tilex, :slack_endpoint, "https://slack.test.com/abc/123"
-
-config :tilex, :async_feature_test, System.get_env("ASYNC_FEATURE_TEST") == "yes"
 
 config :httpoison, timeout: 6000
 
