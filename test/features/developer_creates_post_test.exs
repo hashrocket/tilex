@@ -1,13 +1,11 @@
 defmodule DeveloperCreatesPostTest do
   use Tilex.IntegrationCase, async: false
 
-  alias Tilex.Integration.Pages.{
-    Navigation,
-    IndexPage,
-    CreatePostPage,
-    PostShowPage,
-    PostForm
-  }
+  alias Tilex.Integration.Pages.Navigation
+  alias Tilex.Integration.Pages.IndexPage
+  alias Tilex.Integration.Pages.CreatePostPage
+  alias Tilex.Integration.Pages.PostShowPage
+  alias Tilex.Integration.Pages.PostForm
 
   test "fills out form and submits", %{session: session} do
     Ecto.Adapters.SQL.Sandbox.allow(Tilex.Repo, self(), Process.whereis(Tilex.Notifications))

@@ -1,10 +1,8 @@
 defmodule DeveloperEditsPostTest do
   use Tilex.IntegrationCase, async: true
 
-  alias Tilex.Integration.Pages.{
-    PostForm,
-    PostShowPage
-  }
+  alias Tilex.Integration.Pages.PostForm
+  alias Tilex.Integration.Pages.PostShowPage
 
   test "fills out form and updates post from post show", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")

@@ -30,7 +30,7 @@ defmodule Tilex.Api.PostControllerTest do
       )
     end)
 
-    conn = get(conn, api_post_path(conn, :index))
+    conn = get(conn, Routes.api_post_path(conn, :index))
 
     expected_post_titles = ["Eye-rolling Is My Life"] ++ jack_post_titles
 
