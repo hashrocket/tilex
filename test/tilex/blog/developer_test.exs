@@ -1,7 +1,7 @@
-defmodule Tilex.DeveloperTest do
+defmodule Tilex.Blog.DeveloperTest do
   use Tilex.DataCase, async: true
 
-  alias Tilex.Developer
+  alias Tilex.Blog.Developer
 
   test "can format its username" do
     username = "Johnny Appleseed"

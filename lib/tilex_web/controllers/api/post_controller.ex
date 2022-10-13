@@ -5,7 +5,7 @@ defmodule TilexWeb.Api.PostController do
 
   use TilexWeb, :controller
   use Tilex.Pageable
-  alias Tilex.{Posts}
+  alias Tilex.Posts
 
   @doc """
   This functions allows external requesters to retrieve the feed of til in json format

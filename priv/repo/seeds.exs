@@ -5,14 +5,14 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     Tilex.Repo.insert!(%Tilex.SomeModel{})
+#     Tilex.Repo.insert!(%Tilex.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Tilex.Channel
-alias Tilex.Developer
-alias Tilex.Post
+alias Tilex.Blog.Channel
+alias Tilex.Blog.Developer
+alias Tilex.Blog.Post
 alias Tilex.Repo
 
 Repo.delete_all(Post)

@@ -2,7 +2,7 @@ defmodule TilexWeb.AuthController do
   use TilexWeb, :controller
   plug(Ueberauth)
 
-  alias Tilex.Developer
+  alias Tilex.Blog.Developer
   alias Tilex.Repo
   alias Tilex.Auth
 

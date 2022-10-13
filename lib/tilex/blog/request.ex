@@ -1,5 +1,5 @@
-defmodule Tilex.Request do
-  use TilexWeb, :schema
+defmodule Tilex.Blog.Request do
+  use Ecto.Schema
 
   @type t :: module
 

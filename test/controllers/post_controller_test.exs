@@ -55,7 +55,7 @@ defmodule Tilex.PostControllerTest do
       post(conn, Routes.post_path(conn, :create, params))
 
       til =
-        Tilex.Post
+        Tilex.Blog.Post
         |> Tilex.Repo.all()
         |> List.first()
 
@@ -79,7 +79,7 @@ defmodule Tilex.PostControllerTest do
       post(conn, Routes.post_path(conn, :create, params))
 
       til =
-        Tilex.Post
+        Tilex.Blog.Post
         |> Tilex.Repo.all()
         |> List.first()
 
@@ -102,7 +102,7 @@ defmodule Tilex.PostControllerTest do
       post(conn, Routes.post_path(conn, :create, params))
 
       til =
-        Tilex.Post
+        Tilex.Blog.Post
         |> Tilex.Repo.all()
         |> List.first()
 
@@ -133,7 +133,7 @@ defmodule Tilex.PostControllerTest do
       put(conn, Routes.post_path(conn, :update, til.slug, params))
 
       til =
-        Tilex.Post
+        Tilex.Blog.Post
         |> Tilex.Repo.get(til.id)
 
       assert til.title == "New Title"
@@ -162,7 +162,7 @@ defmodule Tilex.PostControllerTest do
       put(conn, Routes.post_path(conn, :update, til.slug, params))
 
       til =
-        Tilex.Post
+        Tilex.Blog.Post
         |> Tilex.Repo.get(til.id)
 
       assert til.title == "New Title"
@@ -190,7 +190,7 @@ defmodule Tilex.PostControllerTest do
       put(conn, Routes.post_path(conn, :update, til.slug, params))
 
       til =
-        Tilex.Post
+        Tilex.Blog.Post
         |> Tilex.Repo.get(til.id)
 
       assert til.title == "New Title"

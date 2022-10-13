@@ -1,9 +1,12 @@
-defmodule Tilex.Post do
-  use TilexWeb, :schema
+defmodule Tilex.Blog.Post do
+  use Ecto.Schema
+  import Ecto.Changeset
 
   @type t :: module
 
-  alias Tilex.{Developer, Channel, Post}
+  alias Tilex.Blog.Developer
+  alias Tilex.Blog.Channel
+  alias Tilex.Blog.Post
 
   @body_max_words 200
   def body_max_words, do: @body_max_words

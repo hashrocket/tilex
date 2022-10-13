@@ -4,7 +4,11 @@ defmodule TilexWeb.PostController do
   import Ecto.Query
 
   alias Guardian.Plug
-  alias Tilex.{Channel, Notifications, Liking, Post, Posts}
+  alias Tilex.Blog.Channel
+  alias Tilex.Notifications
+  alias Tilex.Liking
+  alias Tilex.Blog.Post
+  alias Tilex.Posts
 
   plug(:load_channels when action in [:new, :create, :edit, :update])
   plug(:extract_slug when action in [:show, :edit, :update])

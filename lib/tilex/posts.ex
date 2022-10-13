@@ -2,7 +2,10 @@ defmodule Tilex.Posts do
   import Ecto.Query
 
   alias Ecto.Adapters.SQL
-  alias Tilex.{Channel, Developer, Post, Repo}
+  alias Tilex.Blog.Channel
+  alias Tilex.Blog.Developer
+  alias Tilex.Blog.Post
+  alias Tilex.Repo
 
   def all(page) do
     page

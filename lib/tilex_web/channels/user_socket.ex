@@ -2,7 +2,7 @@ defmodule TilexWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel("post:search", Tilex.PostChannel)
+  channel("post:search", Tilex.Blog.PostChannel)
   channel("text_converter", Tilex.TextConverterChannel)
 
   # Socket params are passed from the client and can

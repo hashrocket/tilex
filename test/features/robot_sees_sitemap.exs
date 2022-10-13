@@ -6,6 +6,6 @@ defmodule RobotSeesSitemap do
 
     visit(session, "/sitemap.xml")
 
-    assert find(session, Query.css("loc", text: Tilex.Post.slugified_title(post.title)))
+    assert find(session, Query.css("loc", text: Tilex.Blog.Post.slugified_title(post.title)))
   end
 end

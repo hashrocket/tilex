@@ -14,7 +14,7 @@ defmodule Tilex.AuthControllerTest do
     assert redirected_to(conn) == "/"
     assert get_flash(conn, :info) == "Signed in with developer@hashrocket.com"
 
-    new_developer = Tilex.Repo.get_by!(Tilex.Developer, email: "developer@hashrocket.com")
+    new_developer = Tilex.Repo.get_by!(Tilex.Blog.Developer, email: "developer@hashrocket.com")
     assert new_developer.email == "developer@hashrocket.com"
     assert new_developer.username == "rickyrocketeer"
   end
@@ -26,7 +26,7 @@ defmodule Tilex.AuthControllerTest do
       name: "Rebecca Rocketeer"
     )
 
-    existing_developer = Tilex.Repo.get_by!(Tilex.Developer, email: "rebecca@hashrocket.com")
+    existing_developer = Tilex.Repo.get_by!(Tilex.Blog.Developer, email: "rebecca@hashrocket.com")
     assert existing_developer.email == "rebecca@hashrocket.com"
 
     ueberauth_auth =

@@ -23,7 +23,9 @@ defmodule Tilex.Notifications.Notifier do
   Tilex.Notifications.NotifiersSupervisor.children/1
   """
 
-  alias Tilex.{Post, Developer, Channel}
+  alias Tilex.Blog.Post
+  alias Tilex.Blog.Developer
+  alias Tilex.Blog.Channel
 
   @callback handle_post_created(Post.t(), Developer.t(), Channel.t(), url :: String.t()) :: any
   @callback handle_post_liked(Post.t(), Developer.t(), url :: String.t()) :: any

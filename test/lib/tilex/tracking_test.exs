@@ -3,7 +3,7 @@ defmodule Tilex.TrackingTest do
 
   alias Tilex.Factory
   alias Tilex.Repo
-  alias Tilex.Request
+  alias Tilex.Blog.Request
   alias Tilex.Tracking
 
   defp create_requests_from_stats(stats) do
@@ -95,7 +95,7 @@ defmodule Tilex.TrackingTest do
       start_date = DateTime.utc_now() |> Timex.beginning_of_week()
       end_date = DateTime.utc_now() |> Timex.end_of_week()
 
-      Repo.delete_all(Tilex.Request)
+      Repo.delete_all(Tilex.Blog.Request)
 
       1..12
       |> Enum.each(fn _ ->

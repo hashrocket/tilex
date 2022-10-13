@@ -3,7 +3,7 @@ defmodule TilexWeb.SitemapController do
 
   def index(conn, _) do
     conn
-    |> assign(:posts, Repo.all(Tilex.Post))
+    |> assign(:posts, Repo.all(Tilex.Blog.Post))
     |> put_layout(false)
     |> render("sitemap.xml")
   end

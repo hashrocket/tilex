@@ -1,9 +1,11 @@
-defmodule Tilex.Channel do
-  use TilexWeb, :schema
+defmodule Tilex.Blog.Channel do
+  use Ecto.Schema
+  import Ecto.Changeset
+  import Ecto.Query
 
   @type t :: module
 
-  alias Tilex.Post
+  alias Tilex.Blog.Post
 
   schema "channels" do
     field(:name, :string)

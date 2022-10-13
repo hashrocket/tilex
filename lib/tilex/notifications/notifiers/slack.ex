@@ -1,7 +1,7 @@
 defmodule Tilex.Notifications.Notifiers.Slack do
   use Tilex.Notifications.Notifier
 
-  alias Tilex.Post
+  alias Tilex.Blog.Post
 
   @emoji ~w(
     :tada:

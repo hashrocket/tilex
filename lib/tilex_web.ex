@@ -88,14 +88,6 @@ defmodule TilexWeb do
     end
   end
 
-  def schema do
-    quote do
-      use Ecto.Schema
-      import Ecto.Changeset
-      import Ecto.Query
-    end
-  end
-
   defp view_helpers do
     quote do
       # Use all HTML functionality (forms, tags, etc)

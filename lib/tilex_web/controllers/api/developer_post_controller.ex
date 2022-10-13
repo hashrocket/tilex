@@ -4,7 +4,7 @@ defmodule TilexWeb.Api.DeveloperPostController do
   """
 
   use TilexWeb, :controller
-  alias Tilex.{Posts}
+  alias Tilex.Posts
 
   @doc """
   This function allows external requesters to retrieve a developer's three most

@@ -1,7 +1,7 @@
-defmodule Tilex.PostTest do
+defmodule Tilex.Blog.PostTest do
   use Tilex.DataCase, async: true
 
-  alias Tilex.Post
+  alias Tilex.Blog.Post
 
   @valid_attrs %{
     body: "some content",

@@ -34,7 +34,7 @@ defmodule DeveloperEditsProfileTest do
     assert info_flash == "Developer Updated"
 
     developer =
-      Tilex.Developer
+      Tilex.Blog.Developer
       |> Tilex.Repo.all()
       |> Enum.reverse()
       |> hd

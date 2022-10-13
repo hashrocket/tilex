@@ -1,7 +1,10 @@
 defmodule TilexWeb.DeveloperController do
   use TilexWeb, :controller
 
-  alias Tilex.{Developer, Posts, Repo, Auth}
+  alias Tilex.Blog.Developer
+  alias Tilex.Posts
+  alias Tilex.Repo
+  alias Tilex.Auth
 
   def show(conn, %{"name" => username} = params) do
     page =

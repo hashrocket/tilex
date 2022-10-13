@@ -1,5 +1,7 @@
 defmodule Tilex.Liking do
-  alias Tilex.{Notifications, Post, Repo}
+  alias Tilex.Notifications
+  alias Tilex.Blog.Post
+  alias Tilex.Repo
 
   def like(slug) do
     post = Repo.get_by!(Post, slug: slug)
