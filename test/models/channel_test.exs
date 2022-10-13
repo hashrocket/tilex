@@ -1,7 +1,8 @@
 defmodule Tilex.ChannelTest do
-  use Tilex.ModelCase, async: false
+  use Tilex.DataCase, async: false
 
-  alias Tilex.{Channel, Factory}
+  alias Tilex.Channel
+  alias Tilex.Factory
 
   @valid_attrs %{name: "phoenix", twitter_hashtag: "phoenix"}
   @invalid_attrs %{}

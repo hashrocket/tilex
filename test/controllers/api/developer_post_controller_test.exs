@@ -25,7 +25,7 @@ defmodule Tilex.Api.DeveloperPostControllerTest do
     lizlemon = Factory.insert!(:developer, username: "lizlemon")
     Factory.insert!(:post, title: "Eye-rolling Is My Life", developer: lizlemon)
 
-    conn = get(conn, developer_post_path(conn, :index, username: "jackdonaughy"))
+    conn = get(conn, Routes.developer_post_path(conn, :index, username: "jackdonaughy"))
 
     json_response(conn, 200)["data"]["posts"]
     |> Enum.reverse()

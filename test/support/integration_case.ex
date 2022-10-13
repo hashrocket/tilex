@@ -7,7 +7,10 @@ defmodule Tilex.IntegrationCase do
       alias Wallaby.Query
       alias Wallaby.Element
 
-      alias Tilex.{Channel, Factory, Post, Repo}
+      alias Tilex.Channel
+      alias Tilex.Factory
+      alias Tilex.Post
+      alias Tilex.Repo
       alias TilexWeb.Endpoint
       import Ecto
       import Ecto.Changeset
@@ -28,12 +31,7 @@ defmodule Tilex.IntegrationCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tilex.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Tilex.Repo, {:shared, self()})
-    end
-
+    Tilex.DataCase.setup_sandbox(tags)
     metadata = Phoenix.Ecto.SQL.Sandbox.metadata_for(Tilex.Repo, self())
     {:ok, session} = Wallaby.start_session(metadata: metadata)
     {:ok, session: session}

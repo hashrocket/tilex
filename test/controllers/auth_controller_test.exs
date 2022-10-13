@@ -9,7 +9,7 @@ defmodule Tilex.AuthControllerTest do
 
     conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
-    conn = get(conn, auth_path(conn, :callback, "google"))
+    conn = get(conn, Routes.auth_path(conn, :callback, "google"))
 
     assert redirected_to(conn) == "/"
     assert get_flash(conn, :info) == "Signed in with developer@hashrocket.com"
@@ -34,7 +34,7 @@ defmodule Tilex.AuthControllerTest do
 
     conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
-    conn = get(conn, auth_path(conn, :callback, "google"))
+    conn = get(conn, Routes.auth_path(conn, :callback, "google"))
 
     assert redirected_to(conn) == "/"
     assert get_flash(conn, :info) == "Signed in with rebecca@hashrocket.com"
@@ -46,7 +46,7 @@ defmodule Tilex.AuthControllerTest do
 
     conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
-    conn = get(conn, auth_path(conn, :callback, "google"))
+    conn = get(conn, Routes.auth_path(conn, :callback, "google"))
 
     assert redirected_to(conn) == "/"
     assert get_flash(conn, :info) == "developer@gmail.com is not a valid email address"
@@ -57,7 +57,7 @@ defmodule Tilex.AuthControllerTest do
 
     conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
-    conn = get(conn, auth_path(conn, :callback, "google"))
+    conn = get(conn, Routes.auth_path(conn, :callback, "google"))
 
     assert redirected_to(conn) == "/"
     assert get_flash(conn, :info) == "oauth2 profile is missing a valid name"
@@ -71,7 +71,7 @@ defmodule Tilex.AuthControllerTest do
 
     conn = assign(conn, :ueberauth_auth, ueberauth_auth)
 
-    conn = get(conn, auth_path(conn, :callback, "google"))
+    conn = get(conn, Routes.auth_path(conn, :callback, "google"))
 
     assert redirected_to(conn) == "/"
     assert get_flash(conn, :info) == "Signed in with bell@thecat.com"

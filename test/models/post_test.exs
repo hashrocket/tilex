@@ -1,5 +1,5 @@
 defmodule Tilex.PostTest do
-  use Tilex.ModelCase, async: true
+  use Tilex.DataCase, async: true
 
   alias Tilex.Post
 

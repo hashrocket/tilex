@@ -1,12 +1,10 @@
 import_file_if_available("~/.iex.exs")
 
-alias Tilex.{
-  Channel,
-  Developer,
-  Liking,
-  Post,
-  Repo
-}
+alias Tilex.Channel
+alias Tilex.Developer
+alias Tilex.Liking
+alias Tilex.Post
+alias Tilex.Rep
 
 # Allow developer to reload IEx session with `R.reload!`.
 defmodule R do

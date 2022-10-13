@@ -1,5 +1,5 @@
 defmodule Tilex.TrackingTest do
-  use Tilex.ModelCase, async: true
+  use Tilex.DataCase, async: true
 
   alias Tilex.Factory
   alias Tilex.Repo

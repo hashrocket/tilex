@@ -2,10 +2,7 @@ defmodule VisitorViewsPostTest do
   use Tilex.IntegrationCase, async: false
 
   alias TilexWeb.Endpoint
-
-  alias Tilex.Integration.Pages.{
-    PostShowPage
-  }
+  alias Tilex.Integration.Pages.PostShowPage
 
   test "the page shows a post", %{session: session} do
     Application.put_env(:tilex, :date_display_tz, "")
