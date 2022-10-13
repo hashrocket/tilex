@@ -5,7 +5,7 @@ defmodule TilexWeb.FeedController do
     posts =
       Repo.all(
         from(
-          p in Tilex.Post,
+          p in Tilex.Blog.Post,
           order_by: [desc: p.inserted_at],
           preload: [:channel, :developer],
           limit: 25

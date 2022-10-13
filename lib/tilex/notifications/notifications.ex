@@ -2,7 +2,7 @@ defmodule Tilex.Notifications do
   use GenServer
 
   alias Ecto.Changeset
-  alias Tilex.Post
+  alias Tilex.Blog.Post
   alias Tilex.Repo
   alias TilexWeb.Endpoint
   alias TilexWeb.Router.Helpers, as: Routes

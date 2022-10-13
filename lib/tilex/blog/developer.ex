@@ -1,9 +1,11 @@
-defmodule Tilex.Developer do
-  use TilexWeb, :schema
+defmodule Tilex.Blog.Developer do
+  use Ecto.Schema
+  import Ecto.Changeset
 
   @type t :: module
 
-  alias Tilex.{Developer, Post}
+  alias Tilex.Blog.Developer
+  alias Tilex.Blog.Post
 
   schema "developers" do
     field(:email, :string)

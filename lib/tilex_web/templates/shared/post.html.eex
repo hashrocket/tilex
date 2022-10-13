@@ -10,7 +10,7 @@
         <a href='http://twitter.com/share'
            class='twitter-share-button'
            data-text= "Today I learned: <%= @post.title %>"
-           data-via= "<%= Tilex.Developer.twitter_handle(@post.developer) %>"
+           data-via= "<%= Tilex.Blog.Developer.twitter_handle(@post.developer) %>"
            data-hashtags= "<%= @post.channel.twitter_hashtag %>"
            data-url= "<%= Routes.post_url(@conn, :show, @post) %>">
           Tweet

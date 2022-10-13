@@ -7,9 +7,9 @@ defmodule Tilex.IntegrationCase do
       alias Wallaby.Query
       alias Wallaby.Element
 
-      alias Tilex.Channel
+      alias Tilex.Blog.Channel
       alias Tilex.Factory
-      alias Tilex.Post
+      alias Tilex.Blog.Post
       alias Tilex.Repo
       alias TilexWeb.Endpoint
       import Ecto

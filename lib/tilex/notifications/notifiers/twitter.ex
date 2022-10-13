@@ -1,5 +1,5 @@
 defmodule Tilex.Notifications.Notifiers.Twitter do
-  alias Tilex.Developer
+  alias Tilex.Blog.Developer
 
   use Tilex.Notifications.Notifier
 

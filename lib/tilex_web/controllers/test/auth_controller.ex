@@ -1,7 +1,9 @@
 defmodule TilexWeb.Test.AuthController do
   use TilexWeb, :controller
 
-  alias Tilex.{Developer, Repo, Auth}
+  alias Tilex.Blog.Developer
+  alias Tilex.Repo
+  alias Tilex.Auth
 
   def index(conn, params) do
     developer = Repo.get_by!(Developer, id: params["id"])

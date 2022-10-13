@@ -4,7 +4,7 @@ defmodule Tilex.Stats do
 
   alias Ecto.Adapters.SQL
   alias Tilex.Repo
-  alias Tilex.Channel
+  alias Tilex.Blog.Channel
 
   def developer(%{start_date: start_date, end_date: end_date}) do
     start_time = Timex.to_datetime(start_date)

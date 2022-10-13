@@ -24,7 +24,7 @@ defmodule TilexWeb.LayoutView do
   def page_title(%{page_title: page_title}), do: page_title
   def page_title(_), do: Application.get_env(:tilex, :organization_name)
 
-  def twitter_image_url(%Tilex.Post{} = post) do
+  def twitter_image_url(%Tilex.Blog.Post{} = post) do
     channel_name = channel_name(post)
 
     case File.exists?("assets/static/assets/#{channel_name}_twitter_card.png") do
@@ -48,16 +48,16 @@ defmodule TilexWeb.LayoutView do
     end
   end
 
-  def twitter_title(%Tilex.Post{} = post) do
-    Tilex.Post.twitter_title(post)
+  def twitter_title(%Tilex.Blog.Post{} = post) do
+    Tilex.Blog.Post.twitter_title(post)
   end
 
   def twitter_title(_post) do
     "Today I Learned: a Hashrocket Project"
   end
 
-  def twitter_description(%Tilex.Post{} = post) do
-    markdown = Tilex.Post.twitter_description(post)
+  def twitter_description(%Tilex.Blog.Post{} = post) do
+    markdown = Tilex.Blog.Post.twitter_description(post)
 
     earmark_options = %Earmark.Options{pure_links: false}
 

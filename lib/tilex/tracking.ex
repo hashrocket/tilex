@@ -1,6 +1,6 @@
 defmodule Tilex.Tracking do
   alias Tilex.Repo
-  alias Tilex.Request
+  alias Tilex.Blog.Request
   alias TilexWeb.Endpoint
 
   import Ecto.Query, only: [from: 2, subquery: 1]
@@ -36,7 +36,7 @@ defmodule Tilex.Tracking do
     query =
       from(
         req in subquery(requests),
-        join: post in Tilex.Post,
+        join: post in Tilex.Blog.Post,
         on: [slug: req.url_slug],
         order_by: [desc: req.view_count],
         limit: 10,

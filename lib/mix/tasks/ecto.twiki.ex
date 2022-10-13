@@ -1,8 +1,10 @@
 defmodule Mix.Tasks.Ecto.Twiki do
   use Mix.Task
 
-  alias Ecto.{Migrator}
-  alias Mix.{Ecto, Project, EctoSQL}
+  alias Ecto.Migrator
+  alias Mix.Ecto
+  alias Mix.Project
+  alias Mix.EctoSQL
 
   @shortdoc "Ecto Migration: Up, Down, Up"
 

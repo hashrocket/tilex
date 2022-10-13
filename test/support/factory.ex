@@ -1,9 +1,9 @@
 defmodule Tilex.Factory do
-  alias Tilex.Channel
-  alias Tilex.Developer
-  alias Tilex.Post
+  alias Tilex.Blog.Channel
+  alias Tilex.Blog.Developer
+  alias Tilex.Blog.Post
   alias Tilex.Repo
-  alias Tilex.Request
+  alias Tilex.Blog.Request
 
   import Ecto.Query
 

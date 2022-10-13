@@ -2,9 +2,9 @@ defmodule Tilex.Notifications.Notifiers.SlackTest do
   use ExUnit.Case, async: true
 
   alias Tilex.Notifications.Notifiers.Slack
-  alias Tilex.Channel
-  alias Tilex.Developer
-  alias Tilex.Post
+  alias Tilex.Blog.Channel
+  alias Tilex.Blog.Developer
+  alias Tilex.Blog.Post
 
   defmodule HTTPMock do
     def request(
