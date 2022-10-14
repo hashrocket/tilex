@@ -1,0 +1,9 @@
+<main class="container">
+  <div id="flash">
+    <%= if message = get_flash(@conn, :info) do %>
+      <p class="alert alert-info" role="alert"><%= message %></p>
+    <% end %>
+  </div>
+  <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+  <%= @inner_content %>
+</main>
