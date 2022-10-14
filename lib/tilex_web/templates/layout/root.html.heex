@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>
-      <%= page_title(assigns) %> - Today I Learned
-    </title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content={csrf_token_value()}>
+
+    <%= live_title_tag page_title(assigns) || "Tilex", suffix: " - Today I Learned" %>
+
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/css/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/js/app.js")}></script>
 
     <% description = "TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day." %>
     <% image = twitter_image_url(assigns[:post]) %>
 
     <meta itemprop="name" content="Today I Learned">
     <meta itemprop="brand" content="Today I Learned">
-    <meta itemprop="description" content="<%= description %>">
+    <meta itemprop="description" content={description} />
 
-    <%= csrf_meta_tag() %>
-    <meta name="author" content="<%= Application.get_env(:tilex, :organization_name)%>">
-    <meta name="description" content="<%= description %>">
+    <meta name="author" content={Application.get_env(:tilex, :organization_name)}>
+    <meta name="description" content={description}>
     <meta name="format-detection" content="telephone=no">
-    <meta name="image" property="og:image" content="<%= image %>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="image" property="og:image" content={image}>
 
-    <meta property="og:description" content="<%= description %>">
+    <meta property="og:description" content={description}>
     <meta property="og:title" content="Today I Learned">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://til.hashrocket.com">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:creator" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
-    <meta name="twitter:description" content="<%= twitter_description(assigns[:post]) %>">
-    <meta name="twitter:image" content="<%= image %>">
-    <meta name="twitter:site" content="@<%= Application.get_env(:tilex, :default_twitter_handle)%>">
-    <meta name="twitter:title" content="<%= twitter_title(assigns[:post]) %>">
+    <meta name="twitter:creator" content={"@#{Application.get_env(:tilex, :default_twitter_handle)}"}>
+    <meta name="twitter:description" content={twitter_description(assigns[:post])}>
+    <meta name="twitter:image" content={image}>
+    <meta name="twitter:site" content={"@#{Application.get_env(:tilex, :default_twitter_handle)}"}>
+    <meta name="twitter:title" content={twitter_title(assigns[:post])}>
 
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900&display=swap' rel='stylesheet' type='text/css'>
-    <link rel="alternate" type="application/rss+xml" title="Today I Learned" href="<%= Routes.feed_path(@conn, :index) %>">
+    <link rel="alternate" type="application/rss+xml" title="Today I Learned" href={Routes.feed_path(@conn, :index)}>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <link rel="stylesheet" href="<%= Routes.static_url(@conn, "/css/app.css") %>">
     <%= if assigns[:canonical_url] do %>
-      <link rel="canonical" href="<%= @canonical_url %>">
+      <link rel="canonical" href={@canonical_url}>
     <% end %>
-    <link rel="manifest" href="<%= Routes.web_manifest_path(@conn, :index) %>">
+    <link rel="manifest" href={Routes.web_manifest_path(@conn, :index)}>
 
     <%= if request_tracking() do %>
-      <script async src="<%= Routes.pixel_path(@conn, :index) %>"></script>
+      <script async src={Routes.pixel_path(@conn, :index)}></script>
     <% end %>
   </head>
 
@@ -69,7 +69,7 @@
         <h1><%= link("Today I Learned", to: Routes.post_path(@conn, :index)) %></h1>
         <h2>
           <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
-          <a href="https://twitter.com/<%= Application.get_env(:tilex, :default_twitter_handle)%>" class="twitter">
+          <a href={"https://twitter.com/#{Application.get_env(:tilex, :default_twitter_handle)}"} class="twitter">
             <%= icon("twitter", :small) %>
             Follow on Twitter
           </a>
@@ -77,17 +77,7 @@
       </div>
     </header>
 
-    <div id="flash">
-      <%= if message = get_flash(@conn, :info) do %>
-        <p class="alert alert-info" role="alert">
-          <%= message %>
-        </p>
-      <% end %>
-    </div>
-
-    <main>
-      <%= @inner_content %>
-    </main>
+    <%= @inner_content %>
 
     <script>
       window.Tilex = window.Tilex || {};
@@ -96,8 +86,6 @@
         imgurApiKey: '<%= imgur_api_key(@conn) %>',
       };
     </script>
-
-    <script src="<%= Routes.static_url(@conn, "/js/app.js") %>"></script>
 
     <%= if ga_identifier() do %>
       <script>
