@@ -2,18 +2,21 @@
   --primary-typeface: "Lora", "Helvetica Neue", Helvetica, sans-serif;
   --secondary-typeface: "Raleway", "Helvetica Neue", Helvetica, sans-serif;
   --news-typeface: "Limelight", sans-serif;
-  
+
   --light: #d5e9f5;
+  --light-ish: #acd3eb;
   --med: #92c4d1;
   --dark: #414347;
-  
+
   --navy: #082736;
+  --navy-light: rgba(8, 39, 54, 0.2);
   --red: #ae1f23;
   --purple: #7b185d;
   --pink: #ee7567;
   --green: #008800;
   --blue: #007dae;
-  
+  --blue-light: #00a2e1;
+
   --twitter-color: #006da3;
   --github-color: #4b4b4b;
 }

@@ -1,0 +1,218 @@
+@font-face {
+  font-family: notosans;
+  src: url("https://webfonts.zohowebstatic.com/notosans/font.eot?#iefix") format("embedded-opentype"), url("https://webfonts.zohowebstatic.com/notosans/font.woff2") format("woff2"), url("https://webfonts.zohowebstatic.com/notosans/font.woff") format("woff"), url("https://webfonts.zohowebstatic.com/notosans/font.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Lora";
+  src: url("/fonts/Lora-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U0-0FF, U131, U152-153, U2BB-2BC, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2122, U2191, U2193, U2212, U2215, UFEFF, UFFFD;
+}
+@font-face {
+  font-family: "Lora";
+  src: url("/fonts/Lora-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U0-0FF, U131, U152-153, U2BB-2BC, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2122, U2191, U2193, U2212, U2215, UFEFF, UFFFD;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  background: var(--light);
+  color: var(--dark);
+  font-family: var(--primary-typeface);
+  font-size: 1.6em;
+}
+header.site_head {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  padding: 2vw 6vw;
+  text-align: center;
+}
+header.site_head div {
+  display: inline-block;
+  position: relative;
+}
+header.site_head a {
+  display: block;
+  font-family: var(--secondary-typeface);
+  text-transform: uppercase;
+  color: var(--navy);
+  letter-spacing: 0.1em;
+  font-weight: 900;
+  font-size: 7vw;
+  line-height: 1;
+}
+header.site_head h2 {
+  position: absolute;
+  top: 90%;
+  right: 0;
+  margin-right: 1vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  gap: 0.5rem 1.5rem;
+}
+header.site_head h2 a {
+  text-align: right;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+header.site_head h2 a.hr {
+  color: var(--red);
+  background: left 55% no-repeat url("/images/hashrocket-logo.png");
+  background-size: 1.8rem auto;
+  padding-left: 2.5rem;
+}
+header.site_head h2 a.twitter {
+  color: var(--twitter-color);
+}
+@media screen and (max-width: 480px) {
+  header.site_head {
+    z-index: 100;
+    background: #fff;
+    text-align: right;
+    background: rgba(255, 255, 255, 0.9);
+    border: 0.2rem solid rgba(255, 255, 255, 0.9);
+    padding-right: 1rem;
+    padding-bottom: 0;
+ }
+  header.site_head h2 {
+    position: static;
+ }
+}
+.channel_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.channel_header a {
+  color: var(--navy);
+}
+.admin_panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-family: var(--secondary-typeface);
+  font-weight: 700;
+  font-size: 0.8em;
+  text-align: center;
+  z-index: 999;
+}
+.admin_panel ul {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.9);
+  border: 0.2rem solid rgba(255, 255, 255, 0.9);
+  border-top: none;
+}
+@media screen and (max-width: 480px) {
+  .admin_panel ul {
+    display: block;
+ }
+}
+.admin_panel li {
+  display: inline-block;
+}
+.admin_panel li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--blue);
+  line-height: 1.5rem;
+}
+.admin_panel li a:hover {
+  color: var(--red);
+}
+.admin_panel + .site_head {
+  margin-top: 2.5rem;
+}
+.admin_panel + .site_head + main {
+  padding-top: 2.5rem;
+}
+main {
+  position: relative;
+  min-height: 60vh;
+  margin: 15vw 0 7rem 0;
+  z-index: 2;
+}
+@media screen and (max-width: 800px) {
+  main {
+    margin-top: 18vw;
+ }
+}
+@media screen and (max-width: 480px) {
+  main {
+    margin-top: 25vw;
+ }
+}
+header.page_head {
+  text-align: center;
+}
+header.page_head h1 {
+  font-size: 3rem;
+  margin-bottom: 1em;
+  color: var(--navy);
+}
+@media screen and (max-width: 800px) {
+  header.page_head h1 {
+    font-size: 2rem;
+ }
+}
+header.page_head a.author_twitter {
+  color: var(--twitter-color);
+}
+#flash {
+  position: fixed;
+  top: 0;
+  left: 15vw;
+  right: 15vw;
+  z-index: 1000;
+  text-align: center;
+}
+@media screen and (max-width: 480px) {
+  #flash {
+    left: 5vw;
+    right: 5vw;
+ }
+}
+#flash p {
+  background: #fff;
+  border: 5px solid var(--navy);
+  border-top: 0;
+  color: var(--navy);
+  padding: 2vw;
+  font-size: 1.4em;
+  cursor: pointer;
+  opacity: 0.9;
+}
+@media screen and (max-width: 800px) {
+  #flash p {
+    font-size: 1.2em;
+ }
+}
+@media screen and (max-width: 480px) {
+  #flash p {
+    font-size: 1em;
+ }
+}
+#flash p.error {
+  border-color: var(--red);
+  color: var(--red);
+}

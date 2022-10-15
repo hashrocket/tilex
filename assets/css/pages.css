@@ -1,0 +1,149 @@
+#profile_edit form, #post_edit form {
+  max-width: 70rem;
+  margin: 0 auto 5rem auto;
+  padding: 0 1rem;
+}
+#profile_edit .post .content_preview, #post_edit .post .content_preview {
+  min-height: 5rem;
+}
+#profile_edit .post footer, #post_edit .post footer {
+  font-size: 1em;
+}
+#profile_edit .post footer .negative, #post_edit .post footer .negative {
+  color: var(--red);
+}
+#statistics {
+  margin-bottom: 3rem;
+}
+#statistics:after {
+  content: "";
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+#statistics .wrapper {
+  max-width: 82rem;
+  padding: 0 6vw;
+  margin: 0 auto 2vw auto;
+}
+@media screen and (max-width: 800px) {
+  #statistics .wrapper {
+    padding: 0 3vw;
+ }
+}
+@media screen and (max-width: 480px) {
+  #statistics .wrapper {
+    display: block;
+ }
+}
+#statistics .stats_column {
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  padding-right: 1vw;
+}
+#statistics .stats_column.right {
+  float: right;
+  padding-right: 0;
+  padding-left: 1vw;
+}
+@media screen and (max-width: 480px) {
+  #statistics .stats_column, #statistics .stats_column.right {
+    width: auto;
+    float: none;
+    padding: 0;
+ }
+}
+#statistics #filter li {
+  margin-top: 20px;
+}
+#statistics #filter li label {
+  display: inline-block;
+  width: 90px;
+}
+#statistics .summary_label {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+#statistics article {
+  margin-bottom: 3vw;
+}
+#statistics article header {
+  margin: 1em 0;
+}
+#statistics article header h1 {
+  text-align: center;
+  font-size: 1em;
+  color: var(--navy);
+}
+#statistics ul.activity_chart {
+  background: rgba(255, 255, 255, 0.9);
+  border: 0.2rem solid rgba(255, 255, 255, 0.9);
+  padding: 3rem 3vw;
+  display: flex;
+  height: 10vw;
+  min-height: 10rem;
+  align-items: stretch;
+}
+#statistics ul.activity_chart li {
+  flex: 1 1;
+  position: relative;
+}
+#statistics ul.activity_chart li:nth-of-type(2n) .activity_chart_bar {
+  background: var(--blue-light);
+}
+#statistics ul.activity_chart li .activity_chart_bar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--blue);
+  transition: background-color, 0.1s;
+}
+#statistics ul.activity_chart li:after, #statistics ul.activity_chart li:before {
+  display: none;
+  position: absolute;
+  color: var(--navy);
+  font-style: italic;
+  font-weight: bold;
+  font-size: 0.8em;
+  left: 50%;
+  margin-left: -5rem;
+  width: 10rem;
+  text-align: center;
+}
+#statistics ul.activity_chart li:after {
+  margin-top: 0.5rem;
+  top: 100%;
+  content: attr(data-amount) ' posts';
+}
+#statistics ul.activity_chart li.singular:after {
+  content: attr(data-amount) ' post';
+}
+#statistics ul.activity_chart li:before {
+  bottom: 100%;
+  margin-bottom: 0.5rem;
+  content: attr(data-date);
+}
+#statistics ul.activity_chart li:nth-child(-n + 5):after, #statistics ul.activity_chart li:nth-child(-n + 5):before {
+  left: 0;
+  margin-left: 0;
+  text-align: left;
+}
+#statistics ul.activity_chart li:nth-child(n + 25):after, #statistics ul.activity_chart li:nth-child(n + 25):before {
+  text-align: right;
+  margin-left: 0;
+  right: 0;
+  left: auto;
+}
+#statistics ul.activity_chart li:hover {
+  background: #fff;
+}
+#statistics ul.activity_chart li:hover .activity_chart_bar {
+  background: var(--navy);
+}
+#statistics ul.activity_chart li:hover:after, #statistics ul.activity_chart li:hover:before {
+  display: block;
+}
