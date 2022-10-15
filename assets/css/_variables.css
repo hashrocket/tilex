@@ -1,0 +1,19 @@
+:root {
+  --primary-typeface: "Lora", "Helvetica Neue", Helvetica, sans-serif;
+  --secondary-typeface: "Raleway", "Helvetica Neue", Helvetica, sans-serif;
+  --news-typeface: "Limelight", sans-serif;
+  
+  --light: #d5e9f5;
+  --med: #92c4d1;
+  --dark: #414347;
+  
+  --navy: #082736;
+  --red: #ae1f23;
+  --purple: #7b185d;
+  --pink: #ee7567;
+  --green: #008800;
+  --blue: #007dae;
+  
+  --twitter-color: #006da3;
+  --github-color: #4b4b4b;
+}

@@ -28,13 +28,13 @@
 
 a {
   text-decoration: none;
-  color: $red;
+  color: var(--red);
 }
 
 .sticker {
   color: #f31aae;
   font-size: 2.3rem;
-  font-family: $news-typeface;
+  font-family: var(--news-typeface);
   text-align: center;
   padding: 2.5em 1em 1em 3.5em;
   box-sizing: border-box;
@@ -71,12 +71,12 @@ nav.pagination {
     display: inline-block;
     padding: 0.8rem 2rem;
     margin: 0 0.5rem;
-    font-family: $secondary-typeface;
+    font-family: var(--secondary-typeface);
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.8em;
     transition: opacity 0.2s, color 0.2s;
-    color: $blue;
+    color: var(--blue);
 
     &:hover {
       background: #fff;
@@ -126,7 +126,7 @@ nav.pagination {
         transition: color 0.1s;
 
         &:hover {
-          color: $red;
+          color: var(--red);
         }
       }
     }
@@ -180,9 +180,9 @@ nav.pagination {
         text-transform: uppercase;
         font-weight: 700;
         font-size: 1.3rem;
-        font-family: $secondary-typeface;
+        font-family: var(--secondary-typeface);
         transition: padding-left 0.1s;
-        border-top: 0.2rem solid $med;
+        border-top: 0.2rem solid var(--med);
         text-align: center;
         line-height: 2rem;
         background: transparent;
@@ -193,18 +193,18 @@ nav.pagination {
         }
 
         &.post__raw-link {
-          border-color: $purple;
-          color: $purple;
+          border-color: var(--purple);
+          color: var(--purple);
         }
 
         &.post__tag-link {
-          border-color: $green;
-          color: $green;
+          border-color: var(--green);
+          color: var(--green);
         }
 
         &.post__permalink {
-          border-color: $blue;
-          color: $blue;
+          border-color: var(--blue);
+          color: var(--blue);
         }
 
         &.post__edit-link {
@@ -213,24 +213,24 @@ nav.pagination {
         }
 
         &.post__like-link {
-          border-color: $pink;
-          color: $pink;
+          border-color: var(--pink);
+          color: var(--pink);
           display: flex;
           gap: 1rem;
           justify-content: center;
 
           .post__like-heart {
-            color: darken($light, 10%);
+            color: darken(var(--light), 10%);
             animation: jiggle 2s ease-in;
           }
 
           &.liked .post__like-heart {
-            color: $red;
+            color: var(--red);
           }
 
           &.liked {
-            color: $red;
-            border-color: $red;
+            color: var(--red);
+            border-color: var(--red);
           }
         }
 
@@ -256,7 +256,7 @@ ul.post_list {
       position: relative;
       align-items: center;
       padding: 0.5rem;
-      color: $dark;
+      color: var(--dark);
       font-weight: bold;
       z-index: 1;
       justify-content: space-between;
@@ -272,7 +272,7 @@ ul.post_list {
         text-align: right;
         white-space: nowrap;
         padding-left: 1rem;
-        color: $blue;
+        color: var(--blue);
 
         span {
           opacity: 0.5;
@@ -306,7 +306,7 @@ form {
 
   .formError {
     display: inline;
-    color: $error;
+    color: var(--red);
     font-size: 0.85em;
   }
 
@@ -337,10 +337,10 @@ form {
         float: right;
         font-weight: bold;
         font-size: 0.85em;
-        color: $accent;
+        color: var(--navy);
 
         &.negative {
-          color: $error;
+          color: var(--red);
         }
       }
     }
@@ -361,15 +361,15 @@ form {
     vertical-align: middle;
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid $light;
-    font-family: $primary-typeface;
+    border: 1px solid var(--light);
+    font-family: var(--primary-typeface);
     box-sizing: border-box;
     border-radius: 0;
     height: 4rem;
     line-height: 3rem;
 
     &:focus {
-      border-color: $blue;
+      border-color: var(--blue);
       outline: none;
     }
   }
@@ -395,10 +395,10 @@ form {
 
     border: none;
     border-radius: 0;
-    background: $accent;
+    background: var(--navy);
     height: 4rem;
     font-weight: 700;
-    font-family: $secondary-typeface;
+    font-family: var(--secondary-typeface);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     transform: background 0.1s;
@@ -407,7 +407,7 @@ form {
     &:active,
     &:focus,
     &:hover {
-      background: $red;
+      background: var(--red);
       outline: none;
     }
   }
@@ -456,13 +456,13 @@ form {
   }
 
   code {
-    background: $light;
+    background: var(--light);
     padding: 0 0.4em;
     margin: 0 0.2em;
   }
 
   pre {
-    background: $base;
+    background: var(--dark);
   }
 
   pre {
@@ -478,7 +478,7 @@ form {
       box-sizing: border-box;
       line-height: 1.6;
       overflow: auto;
-      background: $base;
+      background: var(--dark);
 
       @include mobile {
         padding: 0.5em;
@@ -498,7 +498,7 @@ form {
         padding: 0.2rem 0.5rem;
         text-align: right;
         color: #aaa;
-        font-family: $secondary-typeface;
+        font-family: var(--secondary-typeface);
       }
     }
   }
@@ -516,7 +516,7 @@ form {
   blockquote {
     @include responsive(margin-bottom, 1.4em, 1.1em);
 
-    border-left: 0.4rem solid $light;
+    border-left: 0.4rem solid var(--light);
     padding: 1em 0 0.1em 3vw;
     font-size: 0.9em;
   }
@@ -525,7 +525,7 @@ form {
 .loading-indicator {
   align-items: center;
   background: rgba(0, 0, 0, 0.6);
-  color: $light;
+  color: var(--light);
   display: none;
   height: 100%;
   justify-content: center;
@@ -537,7 +537,7 @@ form {
 
   svg path,
   svg rect {
-    fill: $blue;
+    fill: var(--blue);
   }
 
   .content {
@@ -560,6 +560,6 @@ form {
   font-size: 0.9em;
 
   a {
-    color: $red;
+    color: var(--red);
   }
 }

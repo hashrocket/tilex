@@ -17,10 +17,3 @@
   background: transparentize(#fff, 0.1);
   border: 0.2rem solid transparentize(#fff, 0.1);
 }
-
-@mixin header-text {
-  font-family: $secondary-typeface;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-weight: 900;
-}
