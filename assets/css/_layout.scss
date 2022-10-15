@@ -30,9 +30,9 @@ html {
 body {
   -webkit-text-size-adjust: none;
   -webkit-font-smoothing: antialiased;
-  background: $light;
-  color: $dark;
-  font-family: $primary-typeface;
+  background: var(--light);
+  color: var(--dark);
+  font-family: var(--primary-typeface);
   font-size: 1.6em;
 }
 
@@ -52,9 +52,9 @@ header.site_head {
 
   a {
     display: block;
-    font-family: $secondary-typeface;
+    font-family: var(--secondary-typeface);
     text-transform: uppercase;
-    color: $navy;
+    color: var(--navy);
     letter-spacing: 0.1em;
     font-weight: 900;
     font-size: 7vw;
@@ -83,14 +83,14 @@ header.site_head {
       padding-bottom: 0.3rem;
 
       &.hr {
-        color: $red;
+        color: var(--red);
         background: left 55% no-repeat url("/images/hashrocket-logo.png");
         background-size: 1.8rem auto;
         padding-left: 2.5rem;
       }
 
       &.twitter {
-        color: $twitter-color;
+        color: var(--twitter-color);
       }
     }
   }
@@ -118,7 +118,7 @@ header.site_head {
   gap: 1rem;
 
   a {
-    color: $navy;
+    color: var(--navy);
   }
 }
 
@@ -127,7 +127,7 @@ header.site_head {
   top: 0;
   left: 0;
   right: 0;
-  font-family: $secondary-typeface;
+  font-family: var(--secondary-typeface);
   font-weight: 700;
   font-size: 0.8em;
   text-align: center;
@@ -151,11 +151,11 @@ header.site_head {
     a {
       display: block;
       padding: 0.5rem 1rem;
-      color: $blue;
+      color: var(--blue);
       line-height: 1.5rem;
 
       &:hover {
-        color: $red;
+        color: var(--red);
       }
     }
   }
@@ -191,11 +191,11 @@ header.page_head {
     @include responsive(font-size, 3rem, 2rem);
 
     margin-bottom: 1em;
-    color: $navy;
+    color: var(--navy);
   }
 
   a.author_twitter {
-    color: $twitter-color;
+    color: var(--twitter-color);
   }
 }
 
@@ -211,9 +211,9 @@ header.page_head {
 
   p {
     background: #fff;
-    border: 5px solid $accent;
+    border: 5px solid var(--navy);
     border-top: 0;
-    color: $accent;
+    color: var(--navy);
     padding: 2vw;
 
     @include responsive(font-size, 1.4em, 1.2em, 1em);
@@ -222,8 +222,8 @@ header.page_head {
     opacity: 0.9;
 
     &.error {
-      border-color: $error;
-      color: $error;
+      border-color: var(--red);
+      color: var(--red);
     }
   }
 }

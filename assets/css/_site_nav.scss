@@ -21,7 +21,7 @@
           display: block;
           width: auto;
           opacity: 1;
-          box-shadow: 0 0 3rem transparentize($navy, 0.8);
+          box-shadow: 0 0 3rem transparentize(var(--navy), 0.8);
         }
       }
     }
@@ -31,7 +31,7 @@
     transition: opacity 0.2s;
     border: none;
     opacity: 0.7;
-    color: $accent;
+    color: var(--navy);
     display: block;
     padding: 0.8rem;
     margin: 0.2rem;
@@ -60,7 +60,7 @@
 
   .site_nav__admin_statistics {
     a.site_nav__link {
-      color: $red;
+      color: var(--red);
     }
   }
 
@@ -105,10 +105,10 @@
           align-items: center;
           gap: 0.3rem;
           line-height: 3rem;
-          font-family: $secondary-typeface;
+          font-family: var(--secondary-typeface);
           font-weight: 700;
           font-style: normal;
-          color: $base;
+          color: var(--dark);
 
           @include mobile {
             font-size: 0.9em;
@@ -116,11 +116,11 @@
         }
 
         a.social_twitter:hover {
-          color: $twitter-color;
+          color: var(--twitter-color);
         }
 
         a.social_github:hover {
-          color: $github-color;
+          color: var(--github-color);
         }
       }
     }
