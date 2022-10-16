@@ -1,5 +1,6 @@
 defmodule TilexWeb.LayoutView do
   use TilexWeb, :view
+  import TilexWeb.Router.Helpers, only: [static_path: 2]
 
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.
@@ -28,21 +29,26 @@ defmodule TilexWeb.LayoutView do
   def page_title(%{page_title: page_title}), do: page_title
   def page_title(_), do: Application.get_env(:tilex, :organization_name)
 
+  @images_folder "priv/static/images"
+  @external_resource @images_folder
+
+  @twitter_card_files Path.wildcard("#{@images_folder}/*_twitter_card.png")
+  for file <- @twitter_card_files, do: @external_resource(file)
+  @twitter_cards Enum.map(@twitter_card_files, &Path.basename/1)
+
+  @default_twitter_card "til_twitter_card.png"
+  @external_resource @default_twitter_card
+
   def twitter_image_url(%Tilex.Blog.Post{} = post) do
-    channel_name = channel_name(post)
-
-    case File.exists?("assets/static/assets/#{channel_name}_twitter_card.png") do
-      true -> twitter_image_url(channel_name)
-      false -> twitter_image_url(nil)
-    end
+    twitter_image_url("#{channel_name(post)}_twitter_card.png")
   end
 
-  def twitter_image_url(name) when is_binary(name) do
-    TilexWeb.Endpoint.static_url() <> "/assets/#{name}_twitter_card.png"
+  def twitter_image_url(card) when card in @twitter_cards do
+    static_path(TilexWeb.Endpoint, "/images/#{card}")
   end
 
-  def twitter_image_url(name) when is_nil(name) do
-    TilexWeb.Endpoint.static_url() <> "/assets/til_twittercard.png"
+  def twitter_image_url(_card) do
+    static_path(TilexWeb.Endpoint, "/images/#{@default_twitter_card}")
   end
 
   defp channel_name(post) do

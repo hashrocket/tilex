@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 $(function() {
   !(function(d, s, id) {
     var js,

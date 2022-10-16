@@ -39,7 +39,7 @@ defmodule Tilex.Mixfile do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:earmark, "1.4.4"},
       {:ecto_sql, "~> 3.6"},
-      # {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:extwitter, "~> 0.13"},
       {:floki, "~>0.33.1"},
       {:gettext, "~> 0.18"},
@@ -79,8 +79,8 @@ defmodule Tilex.Mixfile do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
-      # "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
   end
 end

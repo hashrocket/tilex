@@ -25,15 +25,8 @@ config :tilex, TilexWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "1oclGLYDynPdlBdmLiD7BAhVnr9rzsN/MuIkdAzoORECpsLXwCxzIICtxRg+AiS0",
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
-    ]
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    # esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
   ]
 
 # ## SSL Support

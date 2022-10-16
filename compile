@@ -1,8 +1,0 @@
-if [ -f "$assets_dir/yarn.lock" ]; then
-  yarn deploy
-else
-  npm run deploy
-fi
-
-cd $phoenix_dir
-mix "${phoenix_ex}.digest"

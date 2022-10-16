@@ -13,6 +13,3 @@
 erl_crash.dump
 npm-debug.log
 tilex-*.tar
-
-# webpack
-/priv/static/
