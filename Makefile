@@ -25,15 +25,11 @@ server: ## Start the App server.
 
 test: ## Run the test suite.
 	mix format
-	mix credo #--strict
+	mix credo
 	echo "chromedriver => `chromedriver --version`"
 	echo "chrome => `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version`"
 	rm -f screenshots/*
 	mix test --trace
-	# mix sobelow
-	# mkdir -p priv/plts
-	# mix dialyzer --plt
-	# mix dialyzer --no-check
 
 update: ## Update dependencies.
 	mix deps.update --all

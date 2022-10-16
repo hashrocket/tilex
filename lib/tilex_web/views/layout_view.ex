@@ -1,6 +1,7 @@
 defmodule TilexWeb.LayoutView do
   use TilexWeb, :view
   import TilexWeb.Router.Helpers, only: [static_path: 2]
+  import Phoenix.Component, only: [live_flash: 2]
 
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.
