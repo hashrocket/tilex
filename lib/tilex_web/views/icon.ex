@@ -3,7 +3,7 @@ defmodule TilexWeb.Icon do
   import TilexWeb.Router.Helpers, only: [static_path: 2]
 
   @icons_svg_file "images/icons.svg"
-  @external_resource "assets/static/#{@icons_svg_file}"
+  @external_resource "priv/static/#{@icons_svg_file}"
   @icons_svg_content File.read!(@external_resource)
 
   @icon_names ~r/id="([\w-]+)"/

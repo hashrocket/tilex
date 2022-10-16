@@ -1,6 +1,7 @@
+import $ from 'jquery';
+import 'jquery.cookie';
+
 $(function(){
-
-
   var csrf = document.querySelector('meta[name=csrf-token]').content;
 
   function LikeButton(el) {

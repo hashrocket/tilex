@@ -95,7 +95,7 @@ jobs:
     - name: NPM Install
       run: cd assets && npm install
     - name: Build assets
-      run: cd assets && node node_modules/webpack/bin/webpack.js --mode production
+      run: mix assets.deploy
     - name: Digest assets
       run: mix phx.digest
     - name: Run tests

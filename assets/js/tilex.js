@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import PostForm from './post_form';
 
 $(function() {
