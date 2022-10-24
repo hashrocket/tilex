@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="csrf-token" content={csrf_token_value()}>
 
-    <%= live_title_tag page_title(assigns) || "Tilex", suffix: " - Today I Learned" %>
+    <%= live_title_tag(page_title(assigns) || "Tilex", suffix: " - Today I Learned") %>
 
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
@@ -68,7 +68,10 @@
       <div>
         <h1><%= link("Today I Learned", to: Routes.post_path(@conn, :index)) %></h1>
         <h2>
-          <a href="https://hashrocket.com" class="hr">A Hashrocket project</a>
+          <a href="https://hashrocket.com" class="hr">
+            <%= icon("hashrocket", :small) %>
+            A Hashrocket project
+          </a>
           <a href={"https://twitter.com/#{Application.get_env(:tilex, :default_twitter_handle)}"} class="twitter">
             <%= icon("twitter", :small) %>
             Follow on Twitter

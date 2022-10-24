@@ -54,9 +54,6 @@ header.site_head a {
   line-height: 1;
 }
 header.site_head h2 {
-  position: absolute;
-  top: 90%;
-  right: 0;
   margin-right: 1vw;
   display: flex;
   flex-wrap: wrap;
@@ -76,9 +73,6 @@ header.site_head h2 a {
 }
 header.site_head h2 a.hr {
   color: var(--red);
-  background: left 55% no-repeat url("/images/hashrocket-logo.png");
-  background-size: 1.8rem auto;
-  padding-left: 2.5rem;
 }
 header.site_head h2 a.twitter {
   color: var(--twitter-color);
@@ -159,7 +153,7 @@ main {
 }
 @media screen and (max-width: 480px) {
   main {
-    margin-top: 25vw;
+    margin-top: 30vw;
  }
 }
 header.page_head {
