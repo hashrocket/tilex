@@ -203,11 +203,7 @@ defmodule TilexWeb.PostController do
         assign(conn, :slug, slug)
 
       :error ->
-        conn
-        |> put_status(404)
-        |> put_view(TilexWeb.ErrorView)
-        |> render("404.html")
-        |> halt()
+        TilexWeb.ErrorView.render_error_page(conn, 404)
     end
   end
 
