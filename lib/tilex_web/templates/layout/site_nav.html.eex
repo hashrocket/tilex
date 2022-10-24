@@ -58,9 +58,11 @@
       <% end %>
     </li>
     <%= if current_user(@conn) do %>
-    <li class="site_nav__admin_statistics">
-      <%= link("Statistics", to: Routes.stats_path(@conn, :developer), class: "site_nav__link") %>
-    </li>
+      <li class="site_nav__admin_statistics">
+        <%= link(to: Routes.stats_path(@conn, :developer), class: "site_nav__link") do %>
+          <%= icon("stats", :large, "Statistics") %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 </nav>
