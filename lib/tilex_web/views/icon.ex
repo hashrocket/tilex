@@ -10,26 +10,16 @@ defmodule TilexWeb.Icon do
               |> Regex.scan(@icons_svg_content)
               |> Enum.map(&List.last/1)
 
-  def icon(name, size \\ :regular, title \\ nil) do
-    size_value = get_size(size)
-    title = title || name
+  @sizes [:small, :regular, :large]
 
-    content_tag(:svg,
-      class: "icon icon-#{name}",
-      width: size_value,
-      height: size_value,
-      aria_labelledby: "title"
-    ) do
+  def icon(name, size \\ :regular, title \\ nil) when size in @sizes do
+    content_tag(:svg, class: "icon icon-#{name} icon-#{size}", aria_labelledby: "title") do
       [
-        content_tag(:title, title, lang: "en"),
+        content_tag(:title, title || name, lang: "en"),
         content_tag(:use, "", href: icon_path(name))
       ]
     end
   end
-
-  defp get_size(:small), do: "1.8rem"
-  defp get_size(:regular), do: "2.4rem"
-  defp get_size(:large), do: "3.2rem"
 
   defp icon_path(name) when name in @icon_names do
     static_path(TilexWeb.Endpoint, "/#{@icons_svg_file}") <> "##{name}"
