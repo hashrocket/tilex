@@ -11,7 +11,12 @@ config :tilex, ecto_repos: [Tilex.Repo]
 # Configures the endpoint
 config :tilex, TilexWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: TilexWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [
+    view: TilexWeb.ErrorView,
+    accepts: ~w(html json),
+    root_layout: {TilexWeb.LayoutView, :error},
+    layout: false
+  ],
   pubsub_server: Tilex.PubSub,
   live_view: [signing_salt: "by2pBeEk"]
 
