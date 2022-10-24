@@ -95,9 +95,7 @@ jobs:
     - name: NPM Install
       run: cd assets && npm install
     - name: Build assets
-      run: mix assets.deploy
-    - name: Digest assets
-      run: mix phx.digest
+      run: MIX_ENV=test mix assets.deploy
     - name: Run tests
       run: mix test --trace
     - uses: actions/upload-artifact@v3
