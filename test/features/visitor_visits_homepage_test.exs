@@ -15,6 +15,8 @@ defmodule VisitorVisitsHomepageTest do
       |> Element.text()
 
     assert header_text =~ ~r/Today I Learned/i
+
+    assert page_title(session) == "Hashrocket - Today I Learned"
   end
 
   test "the page has a list of posts", %{session: session} do
