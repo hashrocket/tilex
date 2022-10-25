@@ -29,7 +29,7 @@ defmodule TilexWeb.LayoutView do
   def page_title(%{developer: developer}), do: developer.username
   def page_title(%{page_title: page_title}), do: page_title
   def page_title(%{conn: %{status: 404}}), do: "Not Found"
-  def page_title(%{conn: %{status: status}}) when status > 400, do: "Server Error"
+  def page_title(%{conn: %{status: s}}) when is_integer(s) and s > 400, do: "Server Error"
   def page_title(_), do: Application.get_env(:tilex, :organization_name)
 
   @images_folder "priv/static/images"
