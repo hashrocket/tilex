@@ -46,13 +46,10 @@ config :tilex, :slack_endpoint, "https://slack.test.com/abc/123"
 config :httpoison, timeout: 6000
 
 config :wallaby,
-  driver: Wallaby.Chrome,
-  hackney_options: [timeout: :infinity, recv_timeout: :infinity],
-  chrome: [
-    headless: true
-  ],
   otp_app: :tilex,
-  screenshot_on_failure: true
+  screenshot_dir: "/screenshots",
+  screenshot_on_failure: true,
+  chromedriver: [headless: System.get_env("HEADLESS", "true") == "true"]
 
 config :tilex, :request_tracking, true
 

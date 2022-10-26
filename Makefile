@@ -21,6 +21,7 @@ setup: ## Setup the App.
 	mix gettext.extract --merge --no-fuzzy
 
 server: ## Start the App server.
+	npm install --prefix assets/
 	mix phx.server
 
 test: ## Run the test suite.
@@ -29,6 +30,7 @@ test: ## Run the test suite.
 	echo "chromedriver => `chromedriver --version`"
 	echo "chrome => `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version`"
 	rm -f screenshots/*
+	mkdir -p screenshots/
 	mix test --trace
 
 update: ## Update dependencies.
