@@ -106,13 +106,9 @@ defmodule VisitorViewsPostTest do
     session: session
   } do
     popular_channel = Factory.insert!(:channel, name: "command-line")
-
-    post =
-      Factory.insert!(
-        :post,
-        channel: popular_channel,
-        body: "One sentence that sets up the post.\nAnother sentence that is more informative"
-      )
+    title = "Some Title"
+    body = "One sentence that sets up the post.\nAnother sentence"
+    post = Factory.insert!(:post, channel: popular_channel, title: title, body: body)
 
     image_url =
       session
@@ -121,6 +117,10 @@ defmodule VisitorViewsPostTest do
       |> Element.attr("content")
 
     assert image_url =~ "command_line_twitter_card.png"
+
+    assert session
+           |> find(Query.css("meta[name='twitter:title']", visible: false))
+           |> Element.attr("content") == "Today I Learned: Some Title"
 
     twitter_description =
       session
@@ -135,18 +135,18 @@ defmodule VisitorViewsPostTest do
     session: session
   } do
     popular_channel = Factory.insert!(:channel, name: "command-line")
+    title = "Some Title"
+    body = "One [sentence](http://www.example.com) that is a link. \nAnother sentence"
+    post = Factory.insert!(:post, channel: popular_channel, title: title, body: body)
 
-    post =
-      Factory.insert!(
-        :post,
-        channel: popular_channel,
-        body:
-          "One [sentence](http://www.example.com) that is a link. \nAnother sentence that is more informative"
-      )
+    session = visit(session, post_path(Endpoint, :show, post))
+
+    assert session
+           |> find(Query.css("meta[name='twitter:title']", visible: false))
+           |> Element.attr("content") == "Today I Learned: Some Title"
 
     twitter_description =
       session
-      |> visit(post_path(Endpoint, :show, post))
       |> find(Query.css("meta[name='twitter:description']", visible: false))
       |> Element.attr("content")
 

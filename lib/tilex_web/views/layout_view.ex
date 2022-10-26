@@ -62,17 +62,11 @@ defmodule TilexWeb.LayoutView do
     end
   end
 
-  def twitter_title(%Post{} = post) do
-    Post.twitter_title(post)
-  end
+  def twitter_title(%Post{title: title}), do: "Today I Learned: " <> title
+  def twitter_title(_post), do: "Today I Learned: a Hashrocket Project"
 
-  def twitter_title(_post) do
-    "Today I Learned: a Hashrocket Project"
-  end
-
-  def twitter_description(%Post{} = post) do
-    markdown = Post.twitter_description(post)
-
+  def twitter_description(%Post{body: body}) do
+    markdown = body |> String.split("\n") |> hd
     earmark_options = %Earmark.Options{pure_links: false}
 
     with {:ok, html, _errors} <- Earmark.as_html(markdown, earmark_options),
