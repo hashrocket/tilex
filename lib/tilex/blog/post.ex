@@ -62,16 +62,6 @@ defmodule Tilex.Blog.Post do
     |> String.slice(0, 10)
   end
 
-  def twitter_title(post) do
-    "Today I Learned: " <> post.title
-  end
-
-  def twitter_description(post) do
-    post.body
-    |> String.split("\n")
-    |> hd
-  end
-
   def changeset(post, params \\ %{}) do
     post
     |> cast(params, @permitted_params)
