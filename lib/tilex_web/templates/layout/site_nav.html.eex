@@ -22,7 +22,7 @@
             Hashrocket
           </a>
           that exists to catalogue the sharing & accumulation of knowledge
-          as it happens day-to-day. Posts have a 200-word limit, and
+          as it happens day-to-day. Posts have a <%= Tilex.Blog.Post.body_max_words() %>-word limit, and
           posting is open to any Rocketeer as well as selected friends of
           Hashrocket. We hope you enjoy learning along with us.
           <ul class="social">
