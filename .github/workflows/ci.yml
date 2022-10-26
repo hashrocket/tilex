@@ -65,7 +65,7 @@ jobs:
         otp: [25.1.2]
     services:
       postgres:
-        image: postgres
+        image: postgres:14
         env:
           POSTGRES_PASSWORD: postgres
         ports:
