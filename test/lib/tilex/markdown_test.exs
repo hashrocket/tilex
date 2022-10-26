@@ -13,12 +13,20 @@ defmodule Lib.Tilex.MarkdownTest do
       expected: "<p>Some text</p>"
     },
     %{
+      input: "Some\ntext",
+      expected: "<p>Some\ntext</p>"
+    },
+    %{
+      input: "Some<br />text",
+      expected: "<p>Some<br/>text</p>"
+    },
+    %{
       input: "Some\n\ntext",
       expected: "<p>Some</p><p>text</p>"
     },
     %{
-      input: "```\nsome code block\n```",
-      expected: "<pre><code class=\" language-\">some code block</code></pre>"
+      input: "```\ncode block\n```",
+      expected: "<pre><code class=\" language-\">code block</code></pre>"
     },
     %{
       input: "```elixir\ndefmodule Foo do\nend\n```",
@@ -30,8 +38,8 @@ defmodule Lib.Tilex.MarkdownTest do
         "<pre><code class=\"elixir language-elixir\">iex&gt; IO.inspect(&quot;Hello World!&quot;)</code></pre>"
     },
     %{
-      input: "<script>alert('A great grasshopper!')</script>",
-      expected: "<p>alert(‘A great grasshopper!’)</p>"
+      input: "<script>alert('some attack')</script>",
+      expected: "<p>alert(‘some attack’)</p>"
     },
     %{
       input: "Some http://link.com?foo=bar",
@@ -94,6 +102,56 @@ defmodule Lib.Tilex.MarkdownTest do
 
       test "converts markdown '#{inspect(@input)}' into html" do
         assert Markdown.to_html(@input) == @expected
+      end
+    end
+  end
+
+  @to_content_data [
+    %{
+      input: "",
+      expected: ""
+    },
+    %{
+      input: "Pure content!",
+      expected: "Pure content!"
+    },
+    %{
+      input: "with 😀 emoji",
+      expected: "with 😀 emoji"
+    },
+    %{
+      input: "with <br /> newline",
+      expected: "with \n newline"
+    },
+    %{
+      input: "with *italic* word",
+      expected: "with italic word"
+    },
+    %{
+      input: "with **bold** word",
+      expected: "with bold word"
+    },
+    %{
+      input: "with <div>html</div>",
+      expected: "with html"
+    },
+    %{
+      input: "with [a link](http://www.example.com)",
+      expected: "with a link"
+    },
+    %{
+      input: "with <a href=\"http://www.example.com\">a link</a>",
+      expected: "with a link"
+    }
+  ]
+
+  describe "to_content/1" do
+    for %{input: input, expected: expected} <- @to_content_data do
+      @input input
+      @expected expected
+
+      test "converts markdown '#{inspect(@input)}' into html" do
+        assert Markdown.to_content(@input) == @expected
       end
     end
   end

@@ -66,16 +66,7 @@ defmodule TilexWeb.LayoutView do
   def twitter_title(_post), do: "Today I Learned: a Hashrocket Project"
 
   def twitter_description(%Post{body: body}) do
-    markdown = body |> String.split("\n") |> hd
-    earmark_options = %Earmark.Options{pure_links: false}
-
-    with {:ok, html, _errors} <- Earmark.as_html(markdown, earmark_options),
-         {:ok, fragment} <- Floki.parse_fragment(html) do
-      Floki.text(fragment)
-    else
-      _error ->
-        markdown
-    end
+    body |> String.split("\n") |> hd |> Tilex.Markdown.to_content()
   end
 
   def twitter_description(_post) do

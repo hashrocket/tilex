@@ -1,14 +1,16 @@
 defmodule Tilex.Markdown do
   alias Tilex.Cache
 
-  def to_html_live(markdown) do
-    earmark_options = %Earmark.Options{
-      code_class_prefix: "language-",
-      pure_links: true
-    }
+  @earmark_options %Earmark.Options{
+    code_class_prefix: "language-",
+    pure_links: true
+  }
 
+  @tw_earmark_options %Earmark.Options{pure_links: false}
+
+  def to_html_live(markdown) do
     markdown
-    |> Earmark.as_html!(earmark_options)
+    |> Earmark.as_html!(@earmark_options)
     |> HtmlSanitizeEx.markdown_html()
     |> expand_relative_links()
     |> String.trim()
@@ -18,6 +20,15 @@ defmodule Tilex.Markdown do
     Cache.cache(markdown, fn ->
       to_html_live(markdown)
     end)
+  end
+
+  def to_content(markdown) do
+    with {:ok, html, _errors} <- Earmark.as_html(markdown, @tw_earmark_options),
+         {:ok, fragment} <- Floki.parse_fragment(html) do
+      Floki.text(fragment)
+    else
+      _error -> markdown
+    end
   end
 
   defp expand_relative_links(dom) do
