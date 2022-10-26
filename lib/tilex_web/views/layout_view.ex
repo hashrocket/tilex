@@ -2,6 +2,7 @@ defmodule TilexWeb.LayoutView do
   use TilexWeb, :view
   import TilexWeb.Router.Helpers, only: [static_path: 2]
   import Phoenix.Component, only: [live_flash: 2]
+  alias Tilex.Blog.Post
 
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.
@@ -42,7 +43,7 @@ defmodule TilexWeb.LayoutView do
   @default_twitter_card "til_twitter_card.png"
   @external_resource @default_twitter_card
 
-  def twitter_image_url(%Tilex.Blog.Post{} = post) do
+  def twitter_image_url(%Post{} = post) do
     twitter_image_url("#{channel_name(post)}_twitter_card.png")
   end
 
@@ -61,16 +62,16 @@ defmodule TilexWeb.LayoutView do
     end
   end
 
-  def twitter_title(%Tilex.Blog.Post{} = post) do
-    Tilex.Blog.Post.twitter_title(post)
+  def twitter_title(%Post{} = post) do
+    Post.twitter_title(post)
   end
 
   def twitter_title(_post) do
     "Today I Learned: a Hashrocket Project"
   end
 
-  def twitter_description(%Tilex.Blog.Post{} = post) do
-    markdown = Tilex.Blog.Post.twitter_description(post)
+  def twitter_description(%Post{} = post) do
+    markdown = Post.twitter_description(post)
 
     earmark_options = %Earmark.Options{pure_links: false}
 
@@ -85,7 +86,7 @@ defmodule TilexWeb.LayoutView do
 
   def twitter_description(_post) do
     """
-    TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.
+    TIL is an open-source project by Hashrocket that exists to catalogue the sharing & accumulation of knowledge as it happens day-to-day. Posts have a #{Post.body_max_words()}-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.
     """
   end
 
