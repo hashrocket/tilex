@@ -10,23 +10,23 @@ defmodule Lib.Tilex.MarkdownTest do
     },
     %{
       input: "Some text",
-      expected: "<p>Some text</p>"
+      expected: "<p>\nSome text</p>"
     },
     %{
       input: "Some\ntext",
-      expected: "<p>Some\ntext</p>"
+      expected: "<p>\nSome\ntext</p>"
     },
     %{
       input: "Some<br />text",
-      expected: "<p>Some<br/>text</p>"
+      expected: "<p>\nSome<br/>text</p>"
     },
     %{
       input: "Some\n\ntext",
-      expected: "<p>Some</p><p>text</p>"
+      expected: "<p>\nSome</p><p>\ntext</p>"
     },
     %{
       input: "```\ncode block\n```",
-      expected: "<pre><code class=\" language-\">code block</code></pre>"
+      expected: "<pre><code>code block</code></pre>"
     },
     %{
       input: "```elixir\ndefmodule Foo do\nend\n```",
@@ -39,48 +39,48 @@ defmodule Lib.Tilex.MarkdownTest do
     },
     %{
       input: "<script>alert('some attack')</script>",
-      expected: "<p>alert(‘some attack’)</p>"
+      expected: "<p>\nalert(‘some attack’)</p>"
     },
     %{
       input: "Some http://link.com?foo=bar",
-      expected: "<p>Some <a href=\"http://link.com?foo=bar\">http://link.com?foo=bar</a></p>"
+      expected: "<p>\nSome http://link.com?foo=bar</p>"
     },
     %{
       input: "Some /link.com?foo=bar",
-      expected: "<p>Some /link.com?foo=bar</p>"
+      expected: "<p>\nSome /link.com?foo=bar</p>"
     },
     %{
       input: "some [Link](http://link.com?foo=bar)",
-      expected: "<p>some <a href=\"http://link.com?foo=bar\">Link</a></p>"
+      expected: "<p>\nsome <a href=\"http://link.com?foo=bar\">Link</a></p>"
     },
     %{
       input: "some [Relative Link](/link.com?foo=bar)",
       expected:
-        "<p>some <a href=\"https://til.hashrocket.com/link.com?foo=bar\">Relative Link</a></p>"
+        "<p>\nsome <a href=\"https://til.hashrocket.com/link.com?foo=bar\">Relative Link</a></p>"
     },
     %{
       input: "Here's [my-link]\n\n[my-link]: http://foo/bar",
-      expected: "<p>Here’s <a href=\"http://foo/bar\" title=\"\">my-link</a></p>"
+      expected: "<p>\nHere’s <a href=\"http://foo/bar\" title=\"\">my-link</a></p>"
     },
     %{
       input: "Here's [my-link]\n\n[my-link]: http://foo/bar \"With Title\"",
-      expected: "<p>Here’s <a href=\"http://foo/bar\" title=\"With Title\">my-link</a></p>"
+      expected: "<p>\nHere’s <a href=\"http://foo/bar\" title=\"With Title\">my-link</a></p>"
     },
     %{
       input: "some <a href=\"http://link.com?foo=bar\">Link</a>",
-      expected: "<p>some <a href=\"http://link.com?foo=bar\">Link</a></p>"
+      expected: "<p>\nsome <a href=\"http://link.com?foo=bar\">Link</a></p>"
     },
     %{
       input: "some <a href=\"/link.com?foo=bar\">Link</a>",
-      expected: "<p>some <a href=\"https://til.hashrocket.com/link.com?foo=bar\">Link</a></p>"
+      expected: "<p>\nsome <a href=\"https://til.hashrocket.com/link.com?foo=bar\">Link</a></p>"
     },
     %{
       input: "```\n# some http://link.com?foo=bar\n```",
-      expected: "<pre><code class=\" language-\"># some http://link.com?foo=bar</code></pre>"
+      expected: "<pre><code># some http://link.com?foo=bar</code></pre>"
     },
     %{
       input: "```\n# some /link.com?foo=bar\n```",
-      expected: "<pre><code class=\" language-\"># some /link.com?foo=bar</code></pre>"
+      expected: "<pre><code># some /link.com?foo=bar</code></pre>"
     }
   ]
 
@@ -120,10 +120,6 @@ defmodule Lib.Tilex.MarkdownTest do
       expected: "with 😀 emoji"
     },
     %{
-      input: "with <br /> newline",
-      expected: "with \n newline"
-    },
-    %{
       input: "with *italic* word",
       expected: "with italic word"
     },
@@ -132,8 +128,16 @@ defmodule Lib.Tilex.MarkdownTest do
       expected: "with bold word"
     },
     %{
+      input: "with <br /> newline",
+      expected: "with \n newline"
+    },
+    %{
       input: "with <div>html</div>",
       expected: "with html"
+    },
+    %{
+      input: "<div>only html</div>",
+      expected: "only html"
     },
     %{
       input: "with [a link](http://www.example.com)",

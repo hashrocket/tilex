@@ -3,15 +3,15 @@ defmodule Tilex.Markdown do
 
   @earmark_options %Earmark.Options{
     code_class_prefix: "language-",
-    pure_links: true
+    escape: false,
+    pure_links: false
   }
-
-  @tw_earmark_options %Earmark.Options{pure_links: false}
 
   def to_html_live(markdown) do
     markdown
-    |> Earmark.as_html!(@earmark_options)
     |> HtmlSanitizeEx.markdown_html()
+    |> Earmark.as_html!(@earmark_options)
+    |> String.replace("”", "\"")
     |> expand_relative_links()
     |> String.trim()
   end
@@ -23,10 +23,10 @@ defmodule Tilex.Markdown do
   end
 
   def to_content(markdown) do
-    with {:ok, html, _errors} <- Earmark.as_html(markdown, @tw_earmark_options),
-         {:ok, fragment} <- Floki.parse_fragment(html) do
-      Floki.text(fragment)
-    else
+    html = to_html_live(markdown)
+
+    case Floki.parse_fragment(html) do
+      {:ok, fragment} -> fragment |> Floki.text() |> String.trim()
       _error -> markdown
     end
   end

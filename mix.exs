@@ -37,7 +37,7 @@ defmodule Tilex.Mixfile do
       {:cachex, "~> 3.1"},
       {:cors_plug, "~> 3.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:earmark, "1.4.4"},
+      {:earmark, "~> 1.4.4"},
       {:ecto_sql, "~> 3.6"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:extwitter, "~> 0.13"},
