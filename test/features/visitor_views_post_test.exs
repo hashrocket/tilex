@@ -116,7 +116,8 @@ defmodule VisitorViewsPostTest do
       |> find(Query.css("meta[name='twitter:image']", visible: false))
       |> Element.attr("content")
 
-    assert image_url =~ "command_line_twitter_card.png"
+    assert image_url =~ "http"
+    assert image_url =~ "/images/command_line_twitter_card.png"
 
     assert session
            |> find(Query.css("meta[name='twitter:title']", visible: false))
@@ -140,10 +141,6 @@ defmodule VisitorViewsPostTest do
     post = Factory.insert!(:post, channel: popular_channel, title: title, body: body)
 
     session = visit(session, post_path(Endpoint, :show, post))
-
-    assert session
-           |> find(Query.css("meta[name='twitter:title']", visible: false))
-           |> Element.attr("content") == "Today I Learned: Some Title"
 
     twitter_description =
       session
