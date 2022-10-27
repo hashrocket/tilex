@@ -1,6 +1,6 @@
 defmodule TilexWeb.LayoutView do
   use TilexWeb, :view
-  import TilexWeb.Router.Helpers, only: [static_path: 2]
+  import TilexWeb.Endpoint, only: [static_url: 0]
   import Phoenix.Component, only: [live_flash: 2]
   alias Tilex.Blog.Post
 
@@ -43,17 +43,9 @@ defmodule TilexWeb.LayoutView do
   @default_twitter_card "til_twitter_card.png"
   @external_resource @default_twitter_card
 
-  def twitter_image_url(%Post{} = post) do
-    twitter_image_url("#{channel_name(post)}_twitter_card.png")
-  end
-
-  def twitter_image_url(card) when card in @twitter_cards do
-    static_path(TilexWeb.Endpoint, "/images/#{card}")
-  end
-
-  def twitter_image_url(_card) do
-    static_path(TilexWeb.Endpoint, "/images/#{@default_twitter_card}")
-  end
+  def twitter_image_url(%Post{} = p), do: twitter_image_url("#{channel_name(p)}_twitter_card.png")
+  def twitter_image_url(card) when card in @twitter_cards, do: static_url() <> "/images/#{card}"
+  def twitter_image_url(_card), do: static_url() <> "/images/#{@default_twitter_card}"
 
   defp channel_name(post) do
     case Ecto.assoc_loaded?(post.channel) do
