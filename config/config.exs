@@ -64,9 +64,6 @@ config :tilex, :guest_author_allowlist, System.get_env("GUEST_AUTHOR_ALLOWLIST")
 config :tilex, :date_display_tz, System.get_env("DATE_DISPLAY_TZ")
 config :tilex, :imgur_client_id, System.get_env("IMGUR_CLIENT_ID")
 config :tilex, :slack_endpoint, "https://hooks.slack.com#{System.get_env("slack_post_endpoint")}"
-config :tilex, :banner_image_source, System.get_env("BANNER_IMAGE_SOURCE")
-config :tilex, :banner_image_link, System.get_env("BANNER_IMAGE_LINK")
-config :tilex, :banner_image_alt, System.get_env("BANNER_IMAGE_ALT")
 
 config :tilex,
        :rate_limiter_requests_per_time_period,

@@ -64,15 +64,7 @@
 
     <%= render "site_nav.html", conn: @conn %>
 
-    <header class={"site_head"}>
-      <%= if Application.get_env(:tilex, :banner_image_source) do %>
-        <div class="banner_image">
-          <a href={Application.get_env(:tilex, :banner_image_link)}>
-            <%= img_tag Application.get_env(:tilex, :banner_image_source), alt: Application.get_env(:tilex, :banner_image_alt) %>
-          </a>
-        </div>
-      <% end %>
-
+    <header class="site_head">
       <div>
         <h1><%= link("Today I Learned", to: Routes.post_path(@conn, :index)) %></h1>
         <h2>
