@@ -210,3 +210,43 @@ header.page_head a.author_twitter {
   border-color: var(--red);
   color: var(--red);
 }
+
+/* Banner Image Styles */
+.has-banner {
+  margin-top: 27vh !important;
+}
+@media screen and (min-width: 1201px) {
+  .has-banner {
+    margin-top: 47vh !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .has-banner {
+    margin-top: 37vh !important;
+  }
+}
+@media screen and (max-width: 800px) {
+  .has-banner {
+    margin-top: 35vh !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .has-banner {
+    margin-top: 17vh !important;
+  }
+}
+header.site_head > .banner_image {
+  display: flex;
+  justify-content: center;
+}
+.banner_image > a {
+  width: 650px;
+}
+.banner_image img {
+  width: 100%;
+}
+@media screen and (max-width: 480px) {
+  header.site_head > .banner_image {
+    display: none;
+  }
+}
