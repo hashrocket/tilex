@@ -1,4 +1,4 @@
-<main class="container">
+<main class={"container #{if Application.get_env(:tilex, :banner_image_source), do: 'has-banner'}"}>
   <div id="flash">
     <%= if message = get_flash(@conn, :info) do %>
       <p class="alert alert-info" role="alert"><%= message %></p>
