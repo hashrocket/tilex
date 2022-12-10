@@ -1,4 +1,7 @@
 <%= form_for @changeset, @action, fn f -> %>
+  <header class='page_head'>
+    <h1>Create Post</h1>
+  </header>
   <dl>
     <dt>
       <%= label f, :title %> <%= error_tag f, :title %>
