@@ -38,12 +38,15 @@ defmodule Tilex.Tracking do
         req in subquery(requests),
         join: post in Tilex.Blog.Post,
         on: [slug: req.url_slug],
+        join: channel in Tilex.Blog.Channel,
+        on: [id: post.channel_id],
         order_by: [desc: req.view_count],
         limit: 10,
         select: %{
           title: post.title,
           url: req.url,
-          view_count: req.view_count
+          view_count: req.view_count,
+          channel_name: channel.name
         }
       )
 

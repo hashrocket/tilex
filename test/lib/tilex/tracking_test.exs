@@ -6,21 +6,19 @@ defmodule Tilex.TrackingTest do
   alias Tilex.Blog.Request
   alias Tilex.Tracking
 
-  defp create_requests_from_stats(stats) do
+  defp create_requests_for_post(post, view_count: count) do
     requests =
-      stats
-      |> Enum.flat_map(fn %{title: title, view_count: count, url: url} ->
-        slug = Regex.named_captures(~r[/posts/(?<slug>.+?)-], url)["slug"]
+      1..count
+      |> Enum.map(fn _ ->
+        slugged_title =
+          post.title
+          |> String.downcase()
+          |> String.replace(" ", "-")
 
-        Factory.insert!(:post, title: title, slug: slug)
-
-        1..count
-        |> Enum.map(fn _ ->
-          %{
-            page: url,
-            request_time: DateTime.utc_now() |> DateTime.truncate(:second)
-          }
-        end)
+        %{
+          page: "/posts/" <> "#{post.slug}-#{slugged_title}",
+          request_time: DateTime.utc_now() |> DateTime.truncate(:second)
+        }
       end)
 
     Repo.insert_all(Request, requests)
@@ -31,13 +29,16 @@ defmodule Tilex.TrackingTest do
       start_date = DateTime.utc_now() |> Timex.beginning_of_week()
       end_date = DateTime.utc_now() |> Timex.end_of_week()
 
-      stats = [
-        %{title: "The Enderman Returns", url: "/posts/101-the-enderman-returns", view_count: 4},
-        %{title: "Subnautica", url: "/posts/102-subnautica", view_count: 3},
-        %{title: "Spiderman", url: "/posts/103-spiderman", view_count: 2}
-      ]
+      channel = Factory.insert!(:channel, name: "ruby")
 
-      create_requests_from_stats(stats)
+      Factory.insert!(:post, title: "The Enderman Returns", slug: "101", channel: channel)
+      |> create_requests_for_post(view_count: 4)
+
+      Factory.insert!(:post, title: "Subnautica", slug: "102", channel: channel)
+      |> create_requests_for_post(view_count: 3)
+
+      Factory.insert!(:post, title: "Spiderman", slug: "103", channel: channel)
+      |> create_requests_for_post(view_count: 2)
 
       outside_request_time =
         end_date
@@ -56,27 +57,65 @@ defmodule Tilex.TrackingTest do
         request_time: start_date |> DateTime.truncate(:second)
       )
 
-      assert Tracking.most_viewed_posts(start_date, end_date) == stats
+      expected_stats = [
+        %{
+          title: "The Enderman Returns",
+          url: "/posts/101-the-enderman-returns",
+          view_count: 4,
+          channel_name: "ruby"
+        },
+        %{
+          title: "Subnautica",
+          url: "/posts/102-subnautica",
+          view_count: 3,
+          channel_name: "ruby"
+        },
+        %{
+          title: "Spiderman",
+          url: "/posts/103-spiderman",
+          view_count: 2,
+          channel_name: "ruby"
+        }
+      ]
+
+      assert Tracking.most_viewed_posts(start_date, end_date) == expected_stats
     end
 
     test "returns at most 10 results" do
       start_date = DateTime.utc_now() |> Timex.beginning_of_week()
       end_date = DateTime.utc_now() |> Timex.end_of_week()
 
-      stats = [
-        %{title: "The Enderman Returns", url: "/posts/101-the-enderman-returns", view_count: 4},
-        %{title: "Subnautica", url: "/posts/102-subnautica", view_count: 3},
-        %{title: "Spiderman", url: "/posts/103-spiderman", view_count: 2},
-        %{title: "Witcher 3", url: "/posts/104-witcher-3", view_count: 2},
-        %{title: "Doom", url: "/posts/105-doom", view_count: 2},
-        %{title: "Doom 2", url: "/posts/106-doom 2", view_count: 2},
-        %{title: "Doom 3", url: "/posts/107-doom 3", view_count: 2},
-        %{title: "Castle Wolfenstein", url: "/posts/108-castle-wolfenstein", view_count: 2},
-        %{title: "Minecraft", url: "/posts/109-minecraft", view_count: 2},
-        %{title: "Red Dead Redemption", url: "/posts/110-red-dead-redemption", view_count: 2}
-      ]
+      channel = Factory.insert!(:channel, name: "example-channel")
 
-      create_requests_from_stats(stats)
+      Factory.insert!(:post, title: "The Enderman Returns", slug: "101", channel: channel)
+      |> create_requests_for_post(view_count: 4)
+
+      Factory.insert!(:post, title: "Subnautica", slug: "102", channel: channel)
+      |> create_requests_for_post(view_count: 3)
+
+      Factory.insert!(:post, title: "Spiderman", slug: "103", channel: channel)
+      |> create_requests_for_post(view_count: 2)
+
+      Factory.insert!(:post, title: "Witcher 3", slug: "104", channel: channel)
+      |> create_requests_for_post(view_count: 2)
+
+      Factory.insert!(:post, title: "Doom", slug: "105", channel: channel)
+      |> create_requests_for_post(view_count: 2)
+
+      Factory.insert!(:post, title: "Doom 2", slug: "106", channel: channel)
+      |> create_requests_for_post(view_count: 2)
+
+      Factory.insert!(:post, title: "Doom 3", slug: "107", channel: channel)
+      |> create_requests_for_post(view_count: 2)
+
+      Factory.insert!(:post, title: "Castle Wolfenstein", slug: "108", channel: channel)
+      |> create_requests_for_post(view_count: 2)
+
+      Factory.insert!(:post, title: "Minecraft", slug: "109", channel: channel)
+      |> create_requests_for_post(view_count: 2)
+
+      Factory.insert!(:post, title: "Red Dead Redemption", slug: "110", channel: channel)
+      |> create_requests_for_post(view_count: 2)
 
       Factory.insert!(:post, title: "Halo", slug: "111")
 
@@ -86,7 +125,65 @@ defmodule Tilex.TrackingTest do
         request_time: start_date |> DateTime.truncate(:second)
       )
 
-      assert Tracking.most_viewed_posts(start_date, end_date) == stats
+      expected_stats = [
+        %{
+          channel_name: "example-channel",
+          title: "The Enderman Returns",
+          url: "/posts/101-the-enderman-returns",
+          view_count: 4
+        },
+        %{
+          channel_name: "example-channel",
+          title: "Subnautica",
+          url: "/posts/102-subnautica",
+          view_count: 3
+        },
+        %{
+          channel_name: "example-channel",
+          title: "Spiderman",
+          url: "/posts/103-spiderman",
+          view_count: 2
+        },
+        %{
+          channel_name: "example-channel",
+          title: "Witcher 3",
+          url: "/posts/104-witcher-3",
+          view_count: 2
+        },
+        %{channel_name: "example-channel", title: "Doom", url: "/posts/105-doom", view_count: 2},
+        %{
+          channel_name: "example-channel",
+          title: "Doom 2",
+          url: "/posts/106-doom-2",
+          view_count: 2
+        },
+        %{
+          channel_name: "example-channel",
+          title: "Doom 3",
+          url: "/posts/107-doom-3",
+          view_count: 2
+        },
+        %{
+          channel_name: "example-channel",
+          title: "Castle Wolfenstein",
+          url: "/posts/108-castle-wolfenstein",
+          view_count: 2
+        },
+        %{
+          channel_name: "example-channel",
+          title: "Minecraft",
+          url: "/posts/109-minecraft",
+          view_count: 2
+        },
+        %{
+          channel_name: "example-channel",
+          title: "Red Dead Redemption",
+          url: "/posts/110-red-dead-redemption",
+          view_count: 2
+        }
+      ]
+
+      assert Tracking.most_viewed_posts(start_date, end_date) == expected_stats
     end
   end
 
