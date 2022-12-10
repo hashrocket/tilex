@@ -20,13 +20,14 @@
         <h1>Most Viewed Posts</h1>
       </header>
       <ul class="post_list">
-        <%= for %{title: title, url: url, view_count: view_count} <- @most_viewed_posts do %>
+        <%= for %{title: title, url: url, view_count: view_count, channel_name: channel_name} <- @most_viewed_posts do %>
           <li>
             <%= link(to: url) do %>
               <b>
                 <%= title %>
               </b>
               <small>
+                #<%= channel_name %>
                 <span>•</span>
                 <%= view_count %> views
               </small>
