@@ -189,6 +189,10 @@ nav.pagination a:hover {
 .post aside ul a.post__like-link:not(.liked) .post__like-heart {
   animation: heartbeat 0.5s infinite ease-out alternate;
 }
+.post-cta {
+  display: flex;
+  justify-content: center;
+}
 ul.post_list li {
   padding: 0.2rem;
   margin: 0.2rem 0;

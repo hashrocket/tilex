@@ -4,6 +4,12 @@
   twitter_shareable: assigns[:twitter_shareable]
 %>
 
+<div class="post-cta">
+  <%= link(to: Routes.channel_path(@conn, :show, @post.channel.name)) do %>
+    See More #<%= @post.channel.name %> TILs
+  <% end %>
+</div>
+
 <%= if TilexWeb.PostView.more_info?(@post.channel) do %>
   <div class="more-info">
     <%= render TilexWeb.SharedView, "_#{@post.channel.name}.html" %>
