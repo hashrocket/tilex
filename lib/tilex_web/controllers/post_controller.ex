@@ -30,17 +30,25 @@ defmodule TilexWeb.PostController do
   end
 
   def index(conn, %{"q" => search_query} = params) do
-    page = robust_page(params)
-    {posts, posts_count} = Posts.by_search(search_query, page)
+    case Repo.get_by(Channel, name: String.trim(search_query)) do
+      %Channel{} ->
+        conn
+        |> put_status(301)
+        |> redirect(to: Routes.channel_path(conn, :show, search_query))
 
-    render(
-      conn,
-      "search_results.html",
-      posts: posts,
-      posts_count: posts_count,
-      page: page,
-      query: search_query
-    )
+      nil ->
+        page = robust_page(params)
+        {posts, posts_count} = Posts.by_search(search_query, page)
+
+        render(
+          conn,
+          "search_results.html",
+          posts: posts,
+          posts_count: posts_count,
+          page: page,
+          query: search_query
+        )
+    end
   end
 
   def index(conn, %{"format" => format}) when format in ~w(rss atom),
