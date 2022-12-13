@@ -7,6 +7,7 @@ defmodule TilexWeb.Router do
 
   pipeline :browser do
     plug Tilex.Plug.RequestRejector
+    plug Tilex.Plug.SetCanonicalUrl
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
