@@ -32,8 +32,9 @@ defmodule TilexWeb.PostController do
     page = robust_page(params)
     {posts, posts_count} = Posts.by_search(search_query, page)
 
-    render(
-      conn,
+    conn
+    |> assign(:meta_robots, "noindex")
+    |> render(
       "search_results.html",
       posts: posts,
       posts_count: posts_count,
@@ -48,6 +49,12 @@ defmodule TilexWeb.PostController do
   def index(conn, params) do
     page = robust_page(params)
     posts = Posts.all(page)
+
+    conn =
+      case page do
+        1 -> conn
+        _ -> assign(conn, :meta_robots, "noindex")
+      end
 
     render(conn, "index.html", posts: posts, page: page)
   end
@@ -77,7 +84,7 @@ defmodule TilexWeb.PostController do
     post = Repo.one(query)
 
     conn
-    |> assign_post_canonical_url(post)
+    |> assign(:meta_robots, "noindex")
     |> assign(:twitter_shareable, true)
     |> render("show.html", post: post)
   end
@@ -216,8 +223,7 @@ defmodule TilexWeb.PostController do
       |> URI.merge(Routes.post_path(conn, :show, post))
       |> URI.to_string()
 
-    conn
-    |> assign(:canonical_url, canonical_post)
+    assign(conn, :canonical_url, canonical_post)
   end
 
   defp post_params(params) do

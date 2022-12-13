@@ -7,6 +7,12 @@ defmodule TilexWeb.ChannelController do
     page = robust_page(params)
     {posts, posts_count, channel} = Posts.by_channel(channel_name, page)
 
+    conn =
+      case page do
+        1 -> conn
+        _ -> assign(conn, :meta_robots, "noindex")
+      end
+
     render(
       conn,
       "show.html",
@@ -21,8 +27,9 @@ defmodule TilexWeb.ChannelController do
   def random_by_channel(conn, %{"channel" => channel_name}) do
     {posts, posts_count, channel} = Posts.random_post_by_channel(channel_name)
 
-    render(
-      conn,
+    conn
+    |> assign(:meta_robots, "noindex")
+    |> render(
       "show.html",
       posts: posts,
       posts_count: posts_count,

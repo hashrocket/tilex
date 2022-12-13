@@ -35,6 +35,10 @@
     <meta name="twitter:site" content={"@#{Application.get_env(:tilex, :default_twitter_handle)}"}>
     <meta name="twitter:title" content={twitter_title(assigns[:post])}>
 
+    <%= if assigns[:meta_robots] do %>
+      <meta name="robots" content={assigns[:meta_robots]}>
+    <% end %>
+
     <link href='//fonts.googleapis.com/css?family=Raleway:700,900&display=swap' rel='stylesheet' type='text/css'>
     <link rel="alternate" type="application/rss+xml" title="Today I Learned" href={Routes.feed_path(@conn, :index)}>
 

@@ -10,8 +10,9 @@ defmodule TilexWeb.DeveloperController do
     page = robust_page(params)
     {posts, posts_count, developer} = Posts.by_developer(username, page)
 
-    render(
-      conn,
+    conn
+    |> assign(:meta_robots, "noindex")
+    |> render(
       "show.html",
       posts: posts,
       posts_count: posts_count,
