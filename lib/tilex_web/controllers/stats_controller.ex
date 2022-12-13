@@ -22,6 +22,7 @@ defmodule TilexWeb.StatsController do
   def index(conn, _) do
     conn
     |> assign(:page_title, "Statistics")
+    |> assign(:meta_robots, "noindex")
     |> render("index.html", Stats.all())
   end
 
