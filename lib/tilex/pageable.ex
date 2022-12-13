@@ -1,14 +1,8 @@
 defmodule Tilex.Pageable do
-  defmacro __using__(_params) do
-    quote do
-      import Tilex.Pageable
-    end
-  end
-
   def robust_page(%{"page" => page}) do
     case Integer.parse(page) do
-      :error -> 1
-      {integer, _remainder} -> integer
+      {integer, ""} -> integer
+      _ -> 1
     end
   end
 

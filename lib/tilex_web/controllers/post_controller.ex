@@ -1,9 +1,8 @@
 defmodule TilexWeb.PostController do
   use TilexWeb, :controller
-  use Tilex.Pageable
+  import Tilex.Pageable
   import Ecto.Query
 
-  alias Guardian.Plug
   alias Tilex.Blog.Channel
   alias Tilex.Notifications
   alias Tilex.Liking
@@ -14,7 +13,7 @@ defmodule TilexWeb.PostController do
   plug(:extract_slug when action in [:show, :edit, :update])
 
   plug(
-    Plug.EnsureAuthenticated,
+    Guardian.Plug.EnsureAuthenticated,
     [error_handler: __MODULE__]
     when action in ~w(new create edit update)a
   )
@@ -84,7 +83,7 @@ defmodule TilexWeb.PostController do
   end
 
   def new(conn, _params) do
-    current_user = Plug.current_resource(conn)
+    current_user = Guardian.Plug.current_resource(conn)
     changeset = Post.changeset(%Post{})
 
     conn
@@ -110,7 +109,7 @@ defmodule TilexWeb.PostController do
   end
 
   def create(conn, %{"post" => params}) do
-    developer = Plug.current_resource(conn)
+    developer = Guardian.Plug.current_resource(conn)
 
     sanitized_params =
       params
@@ -136,7 +135,7 @@ defmodule TilexWeb.PostController do
   end
 
   def edit(conn, _params) do
-    current_user = Plug.current_resource(conn)
+    current_user = Guardian.Plug.current_resource(conn)
 
     post =
       case current_user.admin do
@@ -159,7 +158,7 @@ defmodule TilexWeb.PostController do
   end
 
   def update(conn, %{"post" => params}) do
-    current_user = Plug.current_resource(conn)
+    current_user = Guardian.Plug.current_resource(conn)
 
     post =
       case current_user.admin do
