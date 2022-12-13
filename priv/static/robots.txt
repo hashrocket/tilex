@@ -1,5 +1,24 @@
-# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
-#
-# To ban all spiders from the entire site uncomment the next two lines:
-# User-agent: *
-# Disallow: /
+# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+
+sitemap: https://til.hashrocket.com/sitemap.xml
+
+User-agent: *
+Disallow: /*?*page=*
+
+User-agent: *
+Disallow: /*?*q=*
+
+User-agent: *
+Disallow: /statistics*
+
+User-agent: *
+Disallow: /authors/*
+
+User-agent: *
+Disallow: /random*
+
+User-agent: *
+Disallow: /*/random*
+
+User-agent: *
+Disallow: /*.md*
