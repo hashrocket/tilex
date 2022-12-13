@@ -4,7 +4,7 @@ defmodule TilexWeb.Api.PostController do
   "
 
   use TilexWeb, :controller
-  use Tilex.Pageable
+  import Tilex.Pageable
   alias Tilex.Posts
 
   @doc """

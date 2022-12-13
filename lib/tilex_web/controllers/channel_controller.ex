@@ -1,14 +1,10 @@
 defmodule TilexWeb.ChannelController do
   use TilexWeb, :controller
-
+  import Tilex.Pageable
   alias Tilex.Posts
 
   def show(conn, %{"name" => channel_name} = params) do
-    page =
-      params
-      |> Map.get("page", "1")
-      |> String.to_integer()
-
+    page = robust_page(params)
     {posts, posts_count, channel} = Posts.by_channel(channel_name, page)
 
     render(

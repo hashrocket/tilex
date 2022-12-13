@@ -1,17 +1,13 @@
 defmodule TilexWeb.DeveloperController do
   use TilexWeb, :controller
-
+  import Tilex.Pageable
   alias Tilex.Blog.Developer
   alias Tilex.Posts
   alias Tilex.Repo
   alias Tilex.Auth
 
   def show(conn, %{"name" => username} = params) do
-    page =
-      params
-      |> Map.get("page", "1")
-      |> String.to_integer()
-
+    page = robust_page(params)
     {posts, posts_count, developer} = Posts.by_developer(username, page)
 
     render(
