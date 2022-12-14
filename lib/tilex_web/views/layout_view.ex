@@ -2,11 +2,16 @@ defmodule TilexWeb.LayoutView do
   use TilexWeb, :view
   import TilexWeb.Endpoint, only: [static_url: 0]
   import Phoenix.Component, only: [live_flash: 2]
+  import TilexWeb.StructuredDataView, only: [organization_ld: 0]
   alias Tilex.Blog.Post
 
   # Phoenix LiveDashboard is available only in development by default,
   # so we instruct Elixir to not warn if the dashboard route is missing.
   @compile {:no_warn_undefined, {Routes, :live_dashboard_path, 2}}
+
+  def to_json(data) do
+    Phoenix.json_library().encode_to_iodata!(data)
+  end
 
   def current_user(conn) do
     Guardian.Plug.current_resource(conn)

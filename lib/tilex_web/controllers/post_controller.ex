@@ -2,6 +2,7 @@ defmodule TilexWeb.PostController do
   use TilexWeb, :controller
   import Tilex.Pageable
   import Ecto.Query
+  import TilexWeb.StructuredDataView, only: [post_ld: 2]
 
   alias Tilex.Blog.Channel
   alias Tilex.Notifications
@@ -68,6 +69,7 @@ defmodule TilexWeb.PostController do
 
     conn
     |> assign(:twitter_shareable, true)
+    |> assign(:structured_data_ld, post_ld(conn, post))
     |> render(:show, post: post)
   end
 
