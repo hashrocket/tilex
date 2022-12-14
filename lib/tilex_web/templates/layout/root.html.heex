@@ -18,6 +18,10 @@
     <meta itemprop="brand" content="Today I Learned">
     <meta itemprop="description" content={description} />
 
+    <script type="application/ld+json">
+      <%= assigns |> Map.get_lazy(:structured_data_ld, &organization_ld/0) |> to_json() |> raw() %>
+    </script>
+
     <meta name="author" content={Application.get_env(:tilex, :organization_name)}>
     <meta name="description" content={description}>
     <meta name="format-detection" content="telephone=no">
