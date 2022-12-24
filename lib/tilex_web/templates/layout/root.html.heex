@@ -19,7 +19,7 @@
     <meta itemprop="description" content={description} />
 
     <script type="application/ld+json">
-      <%= assigns |> Map.get_lazy(:structured_data_ld, &organization_ld/0) |> to_json() |> raw() %>
+      <%= assigns |> Map.get_lazy(:structured_data_ld, &organization_ld/0) |> to_ld_json() %>
     </script>
 
     <meta name="author" content={Application.get_env(:tilex, :organization_name)}>
