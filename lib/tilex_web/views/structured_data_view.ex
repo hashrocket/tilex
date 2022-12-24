@@ -1,4 +1,5 @@
 defmodule TilexWeb.StructuredDataView do
+  use TilexWeb, :view
   alias TilexWeb.Router.Helpers, as: Routes
   alias Tilex.Blog.Post
 
@@ -46,6 +47,8 @@ defmodule TilexWeb.StructuredDataView do
     ]
   }
 
+  def to_ld_json(data), do: data |> to_json() |> raw()
+
   def organization_ld, do: @organization_ld
 
   def post_ld(conn, %Post{channel: channel, developer: developer} = post) do
@@ -59,7 +62,6 @@ defmodule TilexWeb.StructuredDataView do
       "@context" => "http://schema.org",
       "@type" => "BlogPosting",
       "headline" => post.title,
-      "articleBody" => post.body,
       "articleSection" => channel.name,
       "mainEntityOfPage" => Routes.post_url(conn, :show, post),
       "image" => Routes.static_url(conn, "/images/til-logo-512x512.png"),
@@ -74,4 +76,6 @@ defmodule TilexWeb.StructuredDataView do
       "publisher" => @organization_ld
     }
   end
+
+  defp to_json(data), do: Phoenix.json_library().encode!(data)
 end
