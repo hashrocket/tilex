@@ -41,7 +41,7 @@ defmodule Tilex.Mixfile do
       {:ecto_sql, "~> 3.6"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:extwitter, "~> 0.13"},
-      {:floki, "~>0.33.1"},
+      {:floki, "~>0.34"},
       {:gettext, "~> 0.18"},
       {:guardian, "~> 2.0"},
       {:hackney, "~>1.18.1"},
