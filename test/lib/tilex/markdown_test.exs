@@ -6,156 +6,225 @@ defmodule Lib.Tilex.MarkdownTest do
   @to_html_data [
     %{
       input: "",
-      expected: ""
-    },
-    %{
-      input: "Some text",
-      expected: "<p>\nSome text</p>"
-    },
-    %{
-      input: "Some\ntext",
-      expected: "<p>\nSome\ntext</p>"
-    },
-    %{
-      input: "Some<br />text",
-      expected: "<p>\nSome<br/>text</p>"
-    },
-    %{
-      input: "Some\n\ntext",
-      expected: "<p>\nSome</p><p>\ntext</p>"
-    },
-    %{
-      input: "```\ncode block\n```",
-      expected: "<pre><code>code block</code></pre>"
-    },
-    %{
-      input: "```elixir\ndefmodule Foo do\nend\n```",
-      expected: "<pre><code class=\"elixir language-elixir\">defmodule Foo do\nend</code></pre>"
-    },
-    %{
-      input: "```elixir\niex> IO.inspect(\"Hello World!\")\n```",
-      expected:
-        "<pre><code class=\"elixir language-elixir\">iex&gt; IO.inspect(&quot;Hello World!&quot;)</code></pre>"
-    },
-    %{
-      input: "<script>alert('some attack')</script>",
-      expected: "<p>\nalert(‘some attack’)</p>"
-    },
-    %{
-      input: "Some http://link.com?foo=bar",
-      expected: "<p>\nSome http://link.com?foo=bar</p>"
-    },
-    %{
-      input: "Some /link.com?foo=bar",
-      expected: "<p>\nSome /link.com?foo=bar</p>"
-    },
-    %{
-      input: "some [Link](http://link.com?foo=bar)",
-      expected: "<p>\nsome <a href=\"http://link.com?foo=bar\">Link</a></p>"
-    },
-    %{
-      input: "some [Relative Link](/link.com?foo=bar)",
-      expected:
-        "<p>\nsome <a href=\"https://til.hashrocket.com/link.com?foo=bar\">Relative Link</a></p>"
-    },
-    %{
-      input: "Here's [my-link]\n\n[my-link]: http://foo/bar",
-      expected: "<p>\nHere’s <a href=\"http://foo/bar\" title=\"\">my-link</a></p>"
-    },
-    %{
-      input: "Here's [my-link]\n\n[my-link]: http://foo/bar \"With Title\"",
-      expected: "<p>\nHere’s <a href=\"http://foo/bar\" title=\"With Title\">my-link</a></p>"
-    },
-    %{
-      input: "some <a href=\"http://link.com?foo=bar\">Link</a>",
-      expected: "<p>\nsome <a href=\"http://link.com?foo=bar\">Link</a></p>"
-    },
-    %{
-      input: "some <a href=\"/link.com?foo=bar\">Link</a>",
-      expected: "<p>\nsome <a href=\"https://til.hashrocket.com/link.com?foo=bar\">Link</a></p>"
-    },
-    %{
-      input: "```\n# some http://link.com?foo=bar\n```",
-      expected: "<pre><code># some http://link.com?foo=bar</code></pre>"
-    },
-    %{
-      input: "```\n# some /link.com?foo=bar\n```",
-      expected: "<pre><code># some /link.com?foo=bar</code></pre>"
-    }
-  ]
-
-  describe "to_html_live/1" do
-    for %{input: input, expected: expected} <- @to_html_data do
-      @input input
-      @expected expected
-
-      test "converts markdown '#{inspect(@input)}' into html" do
-        assert Markdown.to_html_live(@input) == @expected
-      end
-    end
-  end
-
-  describe "to_html/1" do
-    for %{input: input, expected: expected} <- @to_html_data do
-      @input input
-      @expected expected
-
-      test "converts markdown '#{inspect(@input)}' into html" do
-        assert Markdown.to_html(@input) == @expected
-      end
-    end
-  end
-
-  @to_content_data [
-    %{
-      input: "",
-      expected: ""
+      html: "",
+      content: ""
     },
     %{
       input: "Pure content!",
-      expected: "Pure content!"
+      html: "<p>\nPure content!</p>",
+      content: "Pure content!"
     },
     %{
       input: "with 😀 emoji",
-      expected: "with 😀 emoji"
+      html: "<p>\nwith 😀 emoji</p>",
+      content: "with 😀 emoji"
     },
     %{
       input: "with *italic* word",
-      expected: "with italic word"
+      html: "<p>\nwith <em>italic</em> word</p>",
+      content: "with italic word"
     },
     %{
       input: "with **bold** word",
-      expected: "with bold word"
+      html: "<p>\nwith <strong>bold</strong> word</p>",
+      content: "with bold word"
     },
     %{
-      input: "with <br /> newline",
-      expected: "with \n newline"
+      input: "html<br />newline",
+      html: "<p>\nhtml&lt;br /&gt;newline</p>",
+      content: "html\nnewline"
     },
     %{
-      input: "with <div>html</div>",
-      expected: "with html"
+      input: "regular\nnewline",
+      html: "<p>\nregular\nnewline</p>",
+      content: "regular\nnewline"
     },
     %{
-      input: "<div>only html</div>",
-      expected: "only html"
+      input: "double\n\nnewline",
+      html: "<p>\ndouble</p>\n<p>\nnewline</p>",
+      content: "double\nnewline"
     },
     %{
-      input: "with [a link](http://www.example.com)",
-      expected: "with a link"
+      input: "<div>html only</div>",
+      html: "<div>\n  html only</div>",
+      content: "html only"
     },
     %{
-      input: "with <a href=\"http://www.example.com\">a link</a>",
-      expected: "with a link"
+      input: "markdown paragraph <div>with html</div>",
+      html: "<p>\nmarkdown paragraph &lt;div&gt;with html&lt;/div&gt;</p>",
+      content: "markdown paragraph with html"
+    },
+    %{
+      input: "<div>nested <span>html</span></div>",
+      html: "<div>\n  nested <span>html</span></div>",
+      content: "nested html"
+    },
+    %{
+      input: "special chars \" ” ' ‘",
+      html: "<p>\nspecial chars \" ” ' ‘</p>",
+      content: "special chars \" ” ' ‘"
+    },
+    %{
+      input: "full [link](http://link.com?foo=bar)",
+      html: "<p>\nfull <a href=\"http://link.com?foo=bar\">link</a></p>",
+      content: "full link"
+    },
+    %{
+      input: "relative [link](/link.com?foo=bar)",
+      html: "<p>\nrelative <a href=\"/link.com?foo=bar\">link</a></p>",
+      content: "relative link"
+    },
+    %{
+      input: "ref [my-link]\n\n[my-link]: http://foo/bar",
+      html: "<p>\nref <a href=\"http://foo/bar\" title=\"\">my-link</a></p>",
+      content: "ref my-link"
+    },
+    %{
+      input: "ref titled [my-link]\n\n[my-link]: http://foo/bar \"My Title\"",
+      html: "<p>\nref titled <a href=\"http://foo/bar\" title=\"My Title\">my-link</a></p>",
+      content: "ref titled my-link"
+    },
+    %{
+      input: "inline html <a href=\"http://link.com?foo=bar\">full link</a>",
+      html: "<p>\ninline html &lt;a href=\"http://link.com?foo=bar\"&gt;full link&lt;/a&gt;</p>",
+      content: "inline html full link"
+    },
+    %{
+      input: "inline html <a href=\"/link.com?foo=bar\">relative link</a>",
+      html: "<p>\ninline html &lt;a href=\"/link.com?foo=bar\"&gt;relative link&lt;/a&gt;</p>",
+      content: "inline html relative link"
+    },
+    %{
+      input: "plain full http://link.com?foo=bar",
+      html: "<p>\nplain full http://link.com?foo=bar</p>",
+      content: "plain full http://link.com?foo=bar"
+    },
+    %{
+      input: "plain relative /link.com?foo=bar",
+      html: "<p>\nplain relative /link.com?foo=bar</p>",
+      content: "plain relative /link.com?foo=bar"
+    },
+    %{
+      input: "inline `code` block",
+      html: "<p>\ninline <code class=\"inline\">code</code> block</p>",
+      content: "inline code block"
+    },
+    %{
+      input: "```\ncode block\n```",
+      html: "<pre><code>code block</code></pre>",
+      content: "code block"
+    },
+    %{
+      input: """
+      ```html
+      <div>
+        nested
+        <span>html</span>
+      </div>
+      ```
+      """,
+      html: """
+      <pre><code class="html language-html">&lt;div&gt;
+        nested
+        &lt;span&gt;html&lt;/span&gt;
+      &lt;/div&gt;</code></pre>
+      """,
+      content: "nested\n  html"
+    },
+    %{
+      input: """
+      ```elixir
+      defmodule Foo do
+        def bar, do: :baz
+      end
+      ```
+      """,
+      html: """
+      <pre><code class="elixir language-elixir">defmodule Foo do
+        def bar, do: :baz
+      end</code></pre>
+      """,
+      content: "defmodule Foo do\n  def bar, do: :baz\nend"
+    },
+    %{
+      input: """
+      ```elixir
+      iex> IO.inspect("Hello World!")
+      ```
+      """,
+      html:
+        "<pre><code class=\"elixir language-elixir\">iex&gt; IO.inspect(\"Hello World!\")</code></pre>",
+      content: "iex> IO.inspect(\"Hello World!\")"
+    },
+    %{
+      input: "`inline code block full http://link.com?foo=bar`",
+      html:
+        "<p>\n<code class=\"inline\">inline code block full http://link.com?foo=bar</code></p>",
+      content: "inline code block full http://link.com?foo=bar"
+    },
+    %{
+      input: "`inline code block relative /link?foo=bar`",
+      html: "<p>\n<code class=\"inline\">inline code block relative /link?foo=bar</code></p>",
+      content: "inline code block relative /link?foo=bar"
+    },
+    %{
+      input: "```\ncode block full http://link.com?foo=bar\n```",
+      html: "<pre><code>code block full http://link.com?foo=bar</code></pre>",
+      content: "code block full http://link.com?foo=bar"
+    },
+    %{
+      input: "```\ncode block relative /link?foo=bar\n```",
+      html: "<pre><code>code block relative /link?foo=bar</code></pre>",
+      content: "code block relative /link?foo=bar"
+    },
+    %{
+      input: """
+      <button type="button">buttons</button>
+      are sanitized
+      """,
+      html: "buttons\n<p>\nare sanitized</p>",
+      content: "buttons\n\nare sanitized"
+    },
+    %{
+      input: """
+      ```html
+      <button type="button">buttons</button>
+      are sanitized, but not inside a code tag
+      ```
+      """,
+      html:
+        "<pre><code class=\"html language-html\">&lt;button type=\"button\"&gt;buttons&lt;/button&gt;\nare sanitized, but not inside a code tag</code></pre>",
+      content: "buttons\nare sanitized, but not inside a code tag"
+    },
+    %{
+      input: "regular script <script>alert('attack')</script>",
+      html: "<p>\nregular script &lt;script&gt;alert('attack')&lt;/script&gt;</p>",
+      content: "regular script alert('attack')"
     }
   ]
 
-  describe "to_content/1" do
-    for %{input: input, expected: expected} <- @to_content_data do
+  describe "to_html/1" do
+    for %{input: input, html: html} <- @to_html_data do
       @input input
-      @expected expected
+      @html html
 
-      test "converts markdown '#{inspect(@input)}' into html" do
-        assert Markdown.to_content(@input) == @expected
+      test "converts markdown '#{inspect(@input)}' into html live" do
+        assert Markdown.to_html_live(@input) == String.trim(@html)
+      end
+
+      test "live and cached produce same value for '#{inspect(@input)}'" do
+        assert Markdown.to_html_live(@input) == Markdown.to_html(@input)
+      end
+    end
+  end
+
+  describe "to_content/1" do
+    for %{input: input, content: content} <- @to_html_data do
+      @input input
+      @content content
+
+      test "gests content out of markdown '#{inspect(@input)}'" do
+        assert Markdown.to_content(@input) == String.trim(@content)
       end
     end
   end

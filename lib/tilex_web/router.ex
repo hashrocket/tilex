@@ -1,9 +1,10 @@
 defmodule TilexWeb.Router do
   use TilexWeb, :router
-  import Plug.BasicAuth, only: [basic_auth: 2]
 
   @auth_controller Application.compile_env(:tilex, :auth_controller)
   @basic_auth Application.compile_env(:tilex, :basic_auth)
+
+  defdelegate basic_auth(conn, options \\ []), to: Plug.BasicAuth
 
   pipeline :browser do
     plug Tilex.Plug.RequestRejector
