@@ -13,6 +13,7 @@ defmodule Tilex.Blog.Developer do
     field(:twitter_handle, :string)
     field(:admin, :boolean)
     field(:editor, :string)
+    field(:name, :string)
 
     has_many(:posts, Post)
 
@@ -21,7 +22,7 @@ defmodule Tilex.Blog.Developer do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:email, :username, :twitter_handle, :editor])
+    |> cast(params, [:email, :username, :twitter_handle, :editor, :name])
     |> validate_required([:email, :username])
     |> clean_twitter_handle
   end

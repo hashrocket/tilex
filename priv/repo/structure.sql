@@ -64,7 +64,8 @@ CREATE TABLE public.developers (
     updated_at timestamp(0) without time zone NOT NULL,
     twitter_handle character varying(255),
     admin boolean DEFAULT false,
-    editor character varying(255) DEFAULT 'Text Field'::character varying
+    editor character varying(255) DEFAULT 'Text Field'::character varying,
+    name text
 );
 
 
@@ -295,3 +296,4 @@ INSERT INTO public."schema_migrations" (version) VALUES (20190827182708);
 INSERT INTO public."schema_migrations" (version) VALUES (20200518184142);
 INSERT INTO public."schema_migrations" (version) VALUES (20220425135720);
 INSERT INTO public."schema_migrations" (version) VALUES (20220429184256);
+INSERT INTO public."schema_migrations" (version) VALUES (20230127213117);
