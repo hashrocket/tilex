@@ -41,6 +41,9 @@ defmodule Tilex.Blog.Developer do
     end
   end
 
+  def name(%Developer{name: name}) when is_binary(name), do: name
+  def name(developer), do: twitter_handle(developer)
+
   def twitter_handle(%Developer{twitter_handle: twitter_handle}) do
     twitter_handle || Application.get_env(:tilex, :default_twitter_handle)
   end

@@ -1,0 +1,15 @@
+defmodule Test.Notifications.Notifiers.Linkedin do
+  use Tilex.Notifications.Notifier
+
+  def handle_post_created(_post, _developer, _channel, _url) do
+    :ok
+  end
+
+  def handle_post_liked(_post, _developer, _url) do
+    :ok
+  end
+
+  def handle_page_views_report(_report) do
+    :ok
+  end
+end

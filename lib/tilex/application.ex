@@ -15,7 +15,8 @@ defmodule Tilex.Application do
       {Cachex, name: :tilex_cache},
       Tilex.Notifications,
       Tilex.RateLimiter,
-      Tilex.Notifications.NotifiersSupervisor
+      Tilex.Notifications.NotifiersSupervisor,
+      {Finch, name: Tilex.Finch}
     ]
 
     :telemetry.attach(
