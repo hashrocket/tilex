@@ -12,10 +12,12 @@ defmodule Tilex.Notifications.NotifiersSupervisor do
   def children do
     [
       slack_notifier(),
-      twitter_notifier()
+      twitter_notifier(),
+      linkedin_notifier()
     ]
   end
 
   defp slack_notifier, do: Application.get_env(:tilex, :slack_notifier)
   defp twitter_notifier, do: Application.get_env(:tilex, :twitter_notifier)
+  defp linkedin_notifier, do: Application.get_env(:tilex, :linkedin_notifier)
 end
