@@ -82,4 +82,8 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  config :tilex, Tilex.LinkedinApi,
+    access_token: System.get_env("LINKEDIN_ACCESS_TOKEN"),
+    organization_id: System.get_env("LINKEDIN_ORGANIZATION_ID")
 end

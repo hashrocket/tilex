@@ -51,7 +51,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 # Use Finch and Tesla for HTTP client
-config :tesla, adapter: Tilex.Finch
+config :tesla, :adapter, {Tesla.Adapter.Finch, name: Tilex.Finch}
 
 # Provide reasonable default for configuration options
 config :tilex, :page_size, 5
@@ -70,7 +70,6 @@ config :tilex, :slack_endpoint, "https://hooks.slack.com#{System.get_env("slack_
 config :tilex, :banner_image_source, System.get_env("BANNER_IMAGE_SOURCE")
 config :tilex, :banner_image_link, System.get_env("BANNER_IMAGE_LINK")
 config :tilex, :banner_image_alt, System.get_env("BANNER_IMAGE_ALT")
-config :tilex, :linkedin_organization_id, System.get_env("LINKEDIN_ORGANIZATION_ID")
 
 config :tilex,
        :rate_limiter_requests_per_time_period,

@@ -8,8 +8,7 @@ defmodule Tilex.Notifications.Notifiers.Linkedin do
   @impl true
   def handle_post_created(post, developer, channel, url) do
     "#{post.title} #{url} via @#{Developer.name(developer)} #til ##{channel.twitter_hashtag}"
-    |> create_post_body(post.title, url)
-    |> create_post()
+    |> create_post(post.title, url)
   end
 
   @impl true

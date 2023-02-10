@@ -54,3 +54,9 @@ config :wallaby,
 config :tilex, :request_tracking, true
 
 config :appsignal, :config, active: false
+
+config :tilex, Tilex.LinkedinApi,
+  access_token: "my-access-token",
+  organization_id: "my-org-id"
+
+config :tesla, adapter: Tesla.Mock
