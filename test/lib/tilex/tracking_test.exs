@@ -88,41 +88,47 @@ defmodule Tilex.TrackingTest do
       channel = Factory.insert!(:channel, name: "example-channel")
 
       Factory.insert!(:post, title: "The Enderman Returns", slug: "101", channel: channel)
-      |> create_requests_for_post(view_count: 4)
+      |> create_requests_for_post(view_count: 10)
 
       Factory.insert!(:post, title: "Subnautica", slug: "102", channel: channel)
-      |> create_requests_for_post(view_count: 3)
+      |> create_requests_for_post(view_count: 9)
 
       Factory.insert!(:post, title: "Spiderman", slug: "103", channel: channel)
-      |> create_requests_for_post(view_count: 2)
+      |> create_requests_for_post(view_count: 8)
 
       Factory.insert!(:post, title: "Witcher 3", slug: "104", channel: channel)
-      |> create_requests_for_post(view_count: 2)
+      |> create_requests_for_post(view_count: 7)
 
       Factory.insert!(:post, title: "Doom", slug: "105", channel: channel)
-      |> create_requests_for_post(view_count: 2)
+      |> create_requests_for_post(view_count: 6)
 
       Factory.insert!(:post, title: "Doom 2", slug: "106", channel: channel)
-      |> create_requests_for_post(view_count: 2)
+      |> create_requests_for_post(view_count: 5)
 
       Factory.insert!(:post, title: "Doom 3", slug: "107", channel: channel)
-      |> create_requests_for_post(view_count: 2)
+      |> create_requests_for_post(view_count: 4)
 
       Factory.insert!(:post, title: "Castle Wolfenstein", slug: "108", channel: channel)
-      |> create_requests_for_post(view_count: 2)
+      |> create_requests_for_post(view_count: 3)
 
       Factory.insert!(:post, title: "Minecraft", slug: "109", channel: channel)
       |> create_requests_for_post(view_count: 2)
 
       Factory.insert!(:post, title: "Red Dead Redemption", slug: "110", channel: channel)
-      |> create_requests_for_post(view_count: 2)
+      |> create_requests_for_post(view_count: 1)
 
       Factory.insert!(:post, title: "Halo", slug: "111")
 
       Factory.insert!(
         :request,
         page: "/posts/111-halo",
-        request_time: start_date |> DateTime.truncate(:second)
+        request_time: start_date |> DateTime.add(-2) |> DateTime.truncate(:second)
+      )
+
+      Factory.insert!(
+        :request,
+        page: "/posts/111-halo",
+        request_time: start_date |> DateTime.add(-1) |> DateTime.truncate(:second)
       )
 
       expected_stats = [
@@ -130,44 +136,44 @@ defmodule Tilex.TrackingTest do
           channel_name: "example-channel",
           title: "The Enderman Returns",
           url: "/posts/101-the-enderman-returns",
-          view_count: 4
+          view_count: 10
         },
         %{
           channel_name: "example-channel",
           title: "Subnautica",
           url: "/posts/102-subnautica",
-          view_count: 3
+          view_count: 9
         },
         %{
           channel_name: "example-channel",
           title: "Spiderman",
           url: "/posts/103-spiderman",
-          view_count: 2
+          view_count: 8
         },
         %{
           channel_name: "example-channel",
           title: "Witcher 3",
           url: "/posts/104-witcher-3",
-          view_count: 2
+          view_count: 7
         },
-        %{channel_name: "example-channel", title: "Doom", url: "/posts/105-doom", view_count: 2},
+        %{channel_name: "example-channel", title: "Doom", url: "/posts/105-doom", view_count: 6},
         %{
           channel_name: "example-channel",
           title: "Doom 2",
           url: "/posts/106-doom-2",
-          view_count: 2
+          view_count: 5
         },
         %{
           channel_name: "example-channel",
           title: "Doom 3",
           url: "/posts/107-doom-3",
-          view_count: 2
+          view_count: 4
         },
         %{
           channel_name: "example-channel",
           title: "Castle Wolfenstein",
           url: "/posts/108-castle-wolfenstein",
-          view_count: 2
+          view_count: 3
         },
         %{
           channel_name: "example-channel",
@@ -179,7 +185,7 @@ defmodule Tilex.TrackingTest do
           channel_name: "example-channel",
           title: "Red Dead Redemption",
           url: "/posts/110-red-dead-redemption",
-          view_count: 2
+          view_count: 1
         }
       ]
 
