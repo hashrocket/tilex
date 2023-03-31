@@ -200,30 +200,47 @@ defmodule Lib.Tilex.MarkdownTest do
       input: "regular script <script>alert('attack')</script>",
       html: "<p>\nregular script &lt;script&gt;alert('attack')&lt;/script&gt;</p>",
       content: "regular script alert('attack')"
+    },
+    %{
+      snippet_description: "does not allow inputs or forms to be rendered as html",
+      input: "<form><input name='email' required /></form>",
+      html: "",
+      content: ""
+    },
+    %{
+      snippet_description:
+        "allows HTML5 elements (such as fieldset and legend) and forms as part of codeblocks",
+      input:
+        "```html\n<form name='login'>\n<fieldset>\n<legend>Email</legend>\n<input type='email' name='email' required />\n</fieldset>\n<div>\n<input type='submit' value='login' />\n<button type='button' id='validate'>\nvalidate\n</button>\n</div>\n</form>\n```",
+      html:
+        "<pre><code class=\"html language-html\">&lt;form name='login'&gt;\n&lt;fieldset&gt;\n&lt;legend&gt;Email&lt;/legend&gt;\n&lt;input type='email' name='email' required /&gt;\n&lt;/fieldset&gt;\n&lt;div&gt;\n&lt;input type='submit' value='login' /&gt;\n&lt;button type='button' id='validate'&gt;\nvalidate\n&lt;/button&gt;\n&lt;/div&gt;\n&lt;/form&gt;</code></pre>",
+      content: "Email\n\n\n\n\n\nvalidate"
     }
   ]
 
   describe "to_html/1" do
-    for %{input: input, html: html} <- @to_html_data do
-      @input input
-      @html html
+    for case <- @to_html_data do
+      @input Map.get(case, :input)
+      @html Map.get(case, :html)
+      @test_context Map.get(case, :snippet_description, inspect(@input))
 
-      test "converts markdown '#{inspect(@input)}' into html live" do
+      test "converts markdown '#{@test_context}' into html live" do
         assert Markdown.to_html_live(@input) == String.trim(@html)
       end
 
-      test "live and cached produce same value for '#{inspect(@input)}'" do
+      test "live and cached produce same value for '#{@test_context}'" do
         assert Markdown.to_html_live(@input) == Markdown.to_html(@input)
       end
     end
   end
 
   describe "to_content/1" do
-    for %{input: input, content: content} <- @to_html_data do
-      @input input
-      @content content
+    for case <- @to_html_data do
+      @input Map.get(case, :input)
+      @content Map.get(case, :content)
+      @test_context Map.get(case, :snippet_description, inspect(@input))
 
-      test "gests content out of markdown '#{inspect(@input)}'" do
+      test "gests content out of markdown '#{@test_context}'" do
         assert Markdown.to_content(@input) == String.trim(@content)
       end
     end
