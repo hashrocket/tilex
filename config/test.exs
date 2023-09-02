@@ -39,9 +39,11 @@ config :tilex, :hosted_domain, "hashrocket.com"
 config :tilex, :auth_controller, Test.AuthController
 config :tilex, :slack_notifier, Test.Notifications.Notifiers.Slack
 config :tilex, :twitter_notifier, Test.Notifications.Notifiers.Twitter
+config :tilex, :webhook_notifier, Test.Notifications.Notifiers.Webhook
 config :tilex, :date_time_module, Tilex.DateTimeMock
 config :tilex, :date_display_tz, "America/Chicago"
 config :tilex, :slack_endpoint, "https://slack.test.com/abc/123"
+config :tilex, :webhook_url, "https://example.com/webhook"
 
 config :httpoison, timeout: 6000
 

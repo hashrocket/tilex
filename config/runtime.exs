@@ -82,4 +82,6 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  config :tilex, webhook_url: System.get_env("WEBHOOK_URL")
 end

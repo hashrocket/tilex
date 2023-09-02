@@ -50,11 +50,15 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Use Finch and Tesla for HTTP client
+config :tesla, :adapter, {Tesla.Adapter.Finch, name: Tilex.Finch}
+
 # Provide reasonable default for configuration options
 config :tilex, :page_size, 5
 config :tilex, :auth_controller, AuthController
 config :tilex, :slack_notifier, Tilex.Notifications.Notifiers.Slack
 config :tilex, :twitter_notifier, Tilex.Notifications.Notifiers.Twitter
+config :tilex, :webhook_notifier, Tilex.Notifications.Notifiers.Webhook
 config :tilex, :organization_name, System.get_env("ORGANIZATION_NAME")
 config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
 config :tilex, :default_twitter_handle, System.get_env("DEFAULT_TWITTER_HANDLE")
