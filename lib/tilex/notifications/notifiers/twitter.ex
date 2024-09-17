@@ -3,7 +3,6 @@ defmodule Tilex.Notifications.Notifiers.Twitter do
   alias Tilex.Blog.Developer
 
   use Tilex.Notifications.Notifier
-  require Logger
 
   def handle_post_created(post, developer, channel, url) do
     "#{post.title} #{url} via @#{Developer.twitter_handle(developer)} #til ##{channel.twitter_hashtag}"
@@ -18,18 +17,17 @@ defmodule Tilex.Notifications.Notifiers.Twitter do
     :ok
   end
 
-  def send_tweet(message) do
-    url = "https://api.x.com/2/tweets"
+  @tweets_url "https://api.x.com/2/tweets"
 
+  def send_tweet(message) do
     params = %{
       "text" => message
     }
 
     headers =
-      oauth_headers("post", url) ++
-        [{"Content-Type", "application/json"}]
+      oauth_headers("post", @tweets_url)
 
-    Req.post!(url, headers: headers, json: params)
+    Req.post!(@tweets_url, headers: headers, json: params)
   end
 
   defp oauth_headers(method, url) do
