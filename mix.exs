@@ -40,7 +40,6 @@ defmodule Tilex.Mixfile do
       {:earmark, "~> 1.4.4"},
       {:ecto_sql, "~> 3.6"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
-      {:extwitter, "~> 0.13"},
       {:floki, "~>0.34"},
       {:gettext, "~> 0.18"},
       {:guardian, "~> 2.0"},
