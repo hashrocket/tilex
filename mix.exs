@@ -59,6 +59,7 @@ defmodule Tilex.Mixfile do
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
       {:swoosh, "~> 1.3"},
+      {:req, "~> 0.5.6"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:timex, "~> 3.1"},
