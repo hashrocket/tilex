@@ -7,22 +7,22 @@ defmodule Tilex.NotificationsTest do
     %{
       time_zone: "America/Chicago",
       input: ~N[2021-09-20 08:59:59.999],
-      expected: ~N[2021-09-20 09:00:00.000]
+      expected: ~N[2021-09-20 09:00:00.000000]
     },
     %{
       time_zone: "America/Chicago",
       input: ~N[2021-09-20 09:00:00.000],
-      expected: ~N[2021-09-27 09:00:00.000]
+      expected: ~N[2021-09-27 09:00:00.000000]
     },
     %{
       time_zone: "Europe/Paris",
       input: ~N[2021-09-20 08:59:59.999],
-      expected: ~N[2021-09-20 09:00:00.000]
+      expected: ~N[2021-09-20 09:00:00.000000]
     },
     %{
       time_zone: "Europe/Paris",
       input: ~N[2021-09-20 09:00:00.000],
-      expected: ~N[2021-09-27 09:00:00.000]
+      expected: ~N[2021-09-27 09:00:00.000000]
     }
   ]
 
