@@ -45,7 +45,7 @@ defmodule Tilex.Notifications.Notifiers.Slack do
   defp send_slack_message(message, http) do
     message = String.replace(message, "\"", "'")
     endpoint = slack_endpoint() |> String.to_charlist()
-    request = {endpoint, [], 'application/json', "{\"text\": \"#{message}\"}"}
+    request = {endpoint, [], ~c"application/json", "{\"text\": \"#{message}\"}"}
     http.request(:post, request, [], [])
   end
 
