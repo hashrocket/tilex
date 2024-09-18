@@ -9,7 +9,7 @@ defmodule Tilex.Notifications.Notifiers.SlackTest do
   defmodule HTTPMock do
     def request(
           :post,
-          {'https://slack.test.com/abc/123', [], 'application/json', payload},
+          {~c"https://slack.test.com/abc/123", [], ~c"application/json", payload},
           [],
           []
         ) do
