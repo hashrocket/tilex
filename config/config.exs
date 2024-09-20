@@ -108,6 +108,12 @@ config :tilex, Tilex.Auth.Guardian,
     "kty" => "oct"
   }
 
+config :tilex, Tilex.Notifications.Notifiers.Twitter,
+  consumer_key: System.get_env("twitter_consumer_key"),
+  consumer_secret: System.get_env("twitter_consumer_secret"),
+  token: System.get_env("twitter_access_token"),
+  token_secret: System.get_env("twitter_access_token_secret")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

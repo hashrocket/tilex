@@ -4,6 +4,8 @@ defmodule Tilex.Notifications.Notifiers.Twitter do
 
   use Tilex.Notifications.Notifier
 
+  @tweets_url "https://api.x.com/2/tweets"
+
   def handle_post_created(post, developer, channel, url) do
     "#{post.title} #{url} via @#{Developer.twitter_handle(developer)} #til ##{channel.twitter_hashtag}"
     |> send_tweet
@@ -16,8 +18,6 @@ defmodule Tilex.Notifications.Notifiers.Twitter do
   def handle_page_views_report(_report) do
     :ok
   end
-
-  @tweets_url "https://api.x.com/2/tweets"
 
   def send_tweet(message) do
     params = %{
@@ -39,17 +39,8 @@ defmodule Tilex.Notifications.Notifiers.Twitter do
   end
 
   def oauth_creds do
-    consumer_key = System.get_env("twitter_consumer_key")
-    consumer_secret = System.get_env("twitter_consumer_secret")
-    access_token = System.get_env("twitter_access_token")
-    access_token_secret = System.get_env("twitter_access_token_secret")
+    credentials = Application.get_env(:tilex, __MODULE__)
 
-    OAuther.credentials(
-      method: :hmac_sha1,
-      consumer_key: consumer_key,
-      consumer_secret: consumer_secret,
-      token: access_token,
-      token_secret: access_token_secret
-    )
+    OAuther.credentials(credentials ++ [method: :hmac_sha1])
   end
 end
