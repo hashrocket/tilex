@@ -98,9 +98,10 @@ jobs:
       run: MIX_ENV=test mix assets.deploy
     - name: Run tests
       run: mix test --trace
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       if: always()
       with:
+        if-no-files-found: ignore
         name: screenshots
         path: screenshots/
 
