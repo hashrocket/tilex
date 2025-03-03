@@ -1,55 +1,51 @@
-<article class="post">
-  <section>
-    <div class="post__content copy">
-      <h1>
-        <%= link(@post.title, to: Routes.post_path(@conn, :show, @post)) %>
-      </h1>
-      <%= raw Tilex.Markdown.to_html(@post.body) %>
+<article class="post post__content" itemscope itemtype="https://schema.org/BlogPosting">
+  <header itemprop="headline">
+    <h3><%= link(@post.title, to: Routes.post_path(@conn, :show, @post)) %></h3>
+  </header>
 
-      <%= if assigns[:twitter_shareable] && Mix.env != :test do %>
-        <a href='http://twitter.com/share'
-           class='twitter-share-button'
-           data-text= "Today I learned: <%= @post.title %>"
-           data-via= "<%= Tilex.Blog.Developer.twitter_handle(@post.developer) %>"
-           data-hashtags= "<%= @post.channel.twitter_hashtag %>"
-           data-url= "<%= Routes.post_url(@conn, :show, @post) %>">
-          Tweet
-        </a>
-      <% end %>
+  <div class="copy" itemprop="blogPost">
+    <%= raw Tilex.Markdown.to_html(@post.body) %>
+  </div>
 
-      <footer>
-        <p class="byline">
-          <%= link(@post.developer.username, to: Routes.developer_path(@conn, :show, @post.developer)) %>
-          <br/>
-          <time datetime="<%= @post.inserted_at %>">
-            <%= link(display_date(@post), to: Routes.post_path(@conn, :show, @post), class: "post__permalink") %>
-          </time>
-        </p>
-      </footer>
+  <%= if assigns[:twitter_shareable] && Mix.env != :test do %>
+    <a href='http://twitter.com/share'
+       class='twitter-share-button'
+       data-text= "Today I learned: <%= @post.title %>"
+       data-via= "<%= Tilex.Blog.Developer.twitter_handle(@post.developer) %>"
+       data-hashtags= "<%= @post.channel.twitter_hashtag %>"
+       data-url= "<%= Routes.post_url(@conn, :show, @post) %>">
+      Tweet
+    </a>
+  <% end %>
+
+  <footer class="byline">
+    <%= link(@post.developer.username, to: Routes.developer_path(@conn, :show, @post.developer), itemprop: "author") %>
+    <div itemprop="datePublished">
+      <%= link(display_date(@post), to: Routes.post_path(@conn, :show, @post), class: "post__permalink") %>
     </div>
-    <aside>
-      <ul>
+  </footer>
+  <aside>
+    <ul>
+      <li>
+        <%= link("##{@post.channel.name}", to: Routes.channel_path(@conn, :show, @post.channel.name), class: "post__tag-link", itemprop: "keywords") %>
+      </li>
+      <li>
+        <%= link("permalink", to: Routes.post_path(@conn, :show, @post), class: "post__permalink") %>
+      </li>
+      <li>
+        <%= link("raw", to: "#{Routes.post_path(@conn, :show, @post)}.md", class: "post__raw-link") %>
+      </li>
+      <%= if TilexWeb.SharedView.post_creator_or_admin?(@conn, @post) do %>
         <li>
-          <%= link("##{@post.channel.name}", to: Routes.channel_path(@conn, :show, @post.channel.name), class: "post__tag-link") %>
+          <%= link("edit", to: Routes.post_path(@conn, :edit, @post), class: "post__permalink") %>
         </li>
-        <li>
-          <%= link("permalink", to: Routes.post_path(@conn, :show, @post), class: "post__permalink") %>
-        </li>
-        <li>
-          <%= link("raw", to: "#{Routes.post_path(@conn, :show, @post)}.md", class: "post__raw-link") %>
-        </li>
-        <%= if TilexWeb.SharedView.post_creator_or_admin?(@conn, @post) do %>
-          <li>
-            <%= link("edit", to: Routes.post_path(@conn, :edit, @post), class: "post__permalink") %>
-          </li>
+      <% end %>
+      <li>
+        <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>
+          <span class="post__like-heart"><%= icon("heart", :small, "likes") %></span>
+          <span class="post__like-count"><%= @post.likes %></span>
         <% end %>
-        <li>
-          <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>
-            <span class="post__like-heart"><%= icon("heart", :small, "likes") %></span>
-            <span class="post__like-count"><%= @post.likes %></span>
-          <% end %>
-        </li>
-      </ul>
-    </aside>
-  </section>
+      </li>
+    </ul>
+  </aside>
 </article>

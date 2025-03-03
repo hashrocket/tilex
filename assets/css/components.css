@@ -47,9 +47,15 @@ nav.pagination a:hover {
 }
 .post {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  margin: 0 auto;
   margin-bottom: 3vw;
-  justify-content: center;
+  min-width: 35rem;
+  max-width: 60%;
+  background: rgb(251, 253, 254);
+  border: 0.2rem solid rgb(255, 255, 255);
+  box-shadow: 5px 5px 7px var(--navy-light);
+  box-sizing: border-box;
 }
 .post:after {
   content: "";
@@ -62,37 +68,34 @@ nav.pagination a:hover {
 @media screen and (max-width: 480px) {
   .post {
     display: block;
-    padding: 0 1rem;
+    margin: 1rem;
  }
 }
 .post.draft {
   opacity: 0.8;
 }
-.post section {
-  flex: 0 1 auto;
-  box-sizing: border-box;
-  min-width: 35rem;
-  max-width: 60%;
-  background: rgb(251, 253, 254);
-  border: 0.2rem solid rgb(255, 255, 255);
-  box-shadow: 5px 5px 7px var(--navy-light);
-}
 @media screen and (max-width: 480px) {
-  .post section {
+  .post {
     max-width: none;
     min-width: 0;
  }
 }
-.post .post__content {
+.post.post__content {
   overflow: auto;
-  padding: 4vw;
+  padding-top: 4vw;
+
+  header, footer, .copy, a.twitter-share-button {
+    padding: 0 4vw;
+  }
 }
-.post .post__content h1:first-of-type a {
+.post.post__content header:first-of-type a {
+  font-family: var(--primary-typeface);
+  font-weight: bold;
   color: inherit;
   display: block;
   transition: color 0.1s;
 }
-.post .post__content h1:first-of-type a:hover {
+.post.post__content header:first-of-type a:hover {
   color: var(--red);
 }
 .post footer {
@@ -124,6 +127,9 @@ nav.pagination a:hover {
 }
 .post footer a:hover {
   text-decoration: underline;
+}
+.post aside {
+  padding-top: 4vw;
 }
 .post aside ul {
   display: flex;
@@ -341,15 +347,25 @@ form input[type='submit']:active, form button[type='submit']:active, form input[
     font-size: 0.85em;
  }
 }
-.copy h1, .copy h2, .copy h3, .copy p, .copy ul, .copy ol {
-  margin: 0 0 1.2em 0;
+.post.post__content header, .copy {
+  h1, h2, h3, h4, h5, p, ul, ol {
+    margin: 0 0 1.2em 0;
+  }
+  header:first-type-of a {
+    margin: 0 0 1.2em 0;
+  }
 }
 @media screen and (max-width: 480px) {
-  .copy h1, .copy h2, .copy h3, .copy p, .copy ul, .copy ol {
-    margin-bottom: 0.7em;
- }
+  .post.post__content header, .copy {
+    h1, h2, h3, h4, h5, p, ul, ol {
+      margin-bottom: 0.7em;
+    }
+    header:first-type-of a {
+      margin-bottom: 0.7em;
+    }
+  }
 }
-.copy h1 {
+.copy h1, .post.post__content header:first-of-type a {
   font-size: 1.6em;
 }
 .copy h2, .copy h3 {
