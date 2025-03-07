@@ -14,7 +14,8 @@ defmodule TilexWeb.Api.PostView do
       slug: post.slug,
       title: post.title,
       developer_username: post.developer.username,
-      channel_name: post.channel.name
+      channel_name: post.channel.name,
+      inserted_at: post.inserted_at
     }
   end
 
