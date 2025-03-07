@@ -1,0 +1,3416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="OTYzIyBnFkUIcQwAFjJwPh4CGRZvUDk6iExuA1t-O5ibIF1ntPKA-1vI">
+  <title data-suffix=" - Today I Learned">
+    Hashrocket
+    - Today I Learned</title>
+  <link phx-track-static rel="stylesheet" href="/assets/app-9d9a42b1c19e77ffc2c98037fd29e241.css?vsn=d">
+  <script defer phx-track-static type="text/javascript"
+    src="/assets/app-78b32ea0bf7ba2d887aa098672b00eba.js?vsn=d"></script>
+
+  <meta itemprop="name" content="Today I Learned">
+  <meta itemprop="brand" content="Today I Learned">
+  <meta itemprop="description"
+    content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing &amp; accumulation of knowledge as it happens day-to-day.">
+
+  <script type="application/ld+json">
+    {"@context":"http://schema.org","@type":"Organization","address":{"@type":"PostalAddress","addressCountry":"US","addressLocality":"Jacksonville Beach","addressRegion":"FL","postalCode":"32250","streetAddress":"320 1st St. N #714"},"brand":{"@type":"Brand","logo":"https://hashrocket.com/hashrocket_logo.svg","name":"Hashrocket","url":"https://hashrocket.com"},"duns":"015835393","founder":{"@type":"Person","jobTitle":"CEO","name":"Marian Phelan","url":"http://marianphelan.com"},"foundingDate":"2008-01-22","image":"https://hashrocket.com/hashrocket_logo.svg","logo":"https://hashrocket.com/hashrocket_logo.svg","name":"Hashrocket","sameAs":["https://clutch.co/profile/hashrocket","https://coderwall.com/team/hashrocket","https://dribbble.com/hashrocket","https://www.facebook.com/hashrocket","https://github.com/hashrocket","https://plus.google.com/+hashrocket","https://www.linkedin.com/company/hashrocket","https://twitter.com/hashrocket","https://www.youtube.com/hashrocket","https://vimeo.com/hashrocket"],"telephone":"1-904-339-7047","url":"https://hashrocket.com"}
+        </script>
+
+  <meta name="author" content="Hashrocket">
+  <meta name="description"
+    content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing &amp; accumulation of knowledge as it happens day-to-day.">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="image" property="og:image" content="https://d35rvlcayg2nx7.cloudfront.net/images/til_twitter_card.png">
+
+  <meta property="og:description"
+    content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing &amp; accumulation of knowledge as it happens day-to-day.">
+  <meta property="og:title" content="Today I Learned">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://til.hashrocket.com">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@hashrockettil">
+  <meta name="twitter:description" content="TIL is an open-source project by Hashrocket that exists to catalogue the sharing &amp; accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.
+    ">
+  <meta name="twitter:image" content="https://d35rvlcayg2nx7.cloudfront.net/images/til_twitter_card.png">
+  <meta name="twitter:site" content="@hashrockettil">
+  <meta name="twitter:title" content="Today I Learned: a Hashrocket Project">
+
+  <link href='//fonts.googleapis.com/css?family=Raleway:700,900&display=swap' rel='stylesheet' type='text/css'>
+  <link rel="alternate" type="application/rss+xml" title="Today I Learned" href="/rss">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
+
+  <link rel="canonical" href="https://til.hashrocket.com/">
+
+  <link rel="manifest" href="/manifest.json">
+
+  <script async src="/pixel"></script>
+
+</head>
+
+<body>
+
+  <nav class="site_nav">
+    <ul>
+      <li class="site_nav__search">
+        <a class="site_nav__link" href="#">
+          <svg aria-labelledby="title" class="icon icon-search icon-large">
+            <title lang="en">Search</title>
+            <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#search"></use>
+          </svg>
+        </a>
+        <div class="site_nav__toggle">
+          <form action="/" method="get">
+            <input type="search" name="q" id="q" aria-label="Search">
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </li>
+      <li class="site_nav__about">
+        <a aria-label="About TIL" class="site_nav__link" href="#">
+          <svg aria-labelledby="title" class="icon icon-help icon-large">
+            <title lang="en">About TIL</title>
+            <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#help"></use>
+          </svg>
+        </a>
+        <div class="site_nav__toggle">
+          <div class="copy">
+
+            Today I Learned is an open-source project by
+
+            <a href="https://hashrocket.com">
+              Hashrocket
+            </a>
+
+            that exists to catalogue the sharing & accumulation of knowledge
+            as it happens day-to-day. Posts have a 200-word limit, and
+            posting is open to any Rocketeer as well as selected friends of
+            Hashrocket. We hope you enjoy learning along with us.
+
+            <ul class="social">
+              <li>
+                <a class="social_twitter" href="https://twitter.com/hashrockettil">
+                  <svg aria-labelledby="title" class="icon icon-twitter icon-medium">
+                    <title lang="en">twitter</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#twitter"></use>
+                  </svg>
+
+                  /hashrockettil
+                </a>
+              </li>
+              <li>
+                <a class="social_github" href="https://github.com/hashrocket/tilex">
+                  <svg aria-labelledby="title" class="icon icon-github icon-medium">
+                    <title lang="en">github</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#github"></use>
+                  </svg>
+
+                  /hashrocket/tilex
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a class="site_nav__link" href="/statistics">
+          <svg aria-labelledby="title" class="icon icon-stats icon-large">
+            <title lang="en">Statistics</title>
+            <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#stats"></use>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="site_nav__link" href="https://www.getrevue.co/profile/til/">
+          <svg aria-labelledby="title" class="icon icon-newsletter icon-large">
+            <title lang="en">Newsletter</title>
+            <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#newsletter"></use>
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a class="site_nav__link" href="/random" rel="nofollow">
+          <svg aria-labelledby="title" class="icon icon-surprise icon-large">
+            <title lang="en">Surprise Me</title>
+            <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#surprise"></use>
+          </svg>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <header class="site_head">
+
+    <div class="banner_image">
+      <a href="https://hashrocket.com">
+        <img src="https://i.imgur.com/orUJjqp.png" alt="Hashrocket - Your Technology Partner">
+      </a>
+    </div>
+
+    <div>
+      <h1>
+        <a href="/">Today I Learned</a>
+      </h1>
+      <h2>
+        <a href="https://hashrocket.com" class="hr">
+          <svg aria-labelledby="title" class="icon icon-hashrocket icon-small">
+            <title lang="en">hashrocket</title>
+            <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#hashrocket"></use>
+          </svg>
+
+          A Hashrocket project
+
+        </a>
+        <a href="https://twitter.com/hashrockettil" class="twitter">
+          <svg aria-labelledby="title" class="icon icon-twitter icon-small">
+            <title lang="en">twitter</title>
+            <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#twitter"></use>
+          </svg>
+
+          Follow on Twitter
+
+        </a>
+      </h2>
+    </div>
+  </header>
+  <main class="container has-banner">
+    <div id="flash">
+    </div>
+    <p class="alert alert-danger" role="alert"></p>
+    <section id="home">
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/autrnkaue6-i-could-have-been-using-til-as-a-guest-author">I could have been using TIL as a
+              guest author?!?!</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              You mean all these years I could have been using TIL as a guest author?!?! </p>
+            <p>
+              (╯°□°)╯︵ ┻━┻</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/taylormock" itemprop="author">taylormock</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/autrnkaue6-i-could-have-been-using-til-as-a-guest-author">October
+                30, 2023</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink"
+                href="/posts/autrnkaue6-i-could-have-been-using-til-as-a-guest-author">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link"
+                href="/posts/autrnkaue6-i-could-have-been-using-til-as-a-guest-author.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="autrnkaue6">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/l2uf1aqcxw-testestestes">testestestes</a>
+          </header>
+
+          <div itemprop="blogPost">
+            hi
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/andrewvogel" itemprop="author">andrewvogel</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/l2uf1aqcxw-testestestes">April 11, 2023</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/html-css" itemprop="keywords">#html-css</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/l2uf1aqcxw-testestestes">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/l2uf1aqcxw-testestestes.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="l2uf1aqcxw">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">1</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/zfxks4mz8o-check-if-a-form-is-valid">Check if a form is valid</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              You can check if a form passes HTML validations with javascript using the
+              <code class="inline">checkValidity</code>
+              function:
+            </p>
+            <pre>
+              <code class="html language-html">&lt;form name="login"&gt;
+                &lt;fieldset&gt;
+                &lt;legend&gt;Email&lt;/legend&gt;
+                &lt;input type="email" name="email" required /&gt;
+                &lt;/fieldset&gt;
+
+                &lt;fieldset&gt;
+                &lt;legend&gt;Password&lt;/legend&gt;
+                &lt;input type="password" name="password" required /&gt;
+                &lt;/fieldset&gt;
+
+                &lt;div style="margin-top: 1rem"&gt;
+                &lt;input type="submit" value="login" /&gt;
+                &lt;button type="button" id="validate"&gt;
+                validate
+                &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;/form&gt;
+
+                &lt;script&gt;
+                const button = document.querySelector("#validate")
+                if (button) {
+                button.addEventListener("click", function() {
+                alert(document.forms.login.checkValidity() ? "Form is valid" : "INVALID");
+                });
+                }
+                &lt;/script&gt;</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/viniciusnegrisolo" itemprop="author">viniciusnegrisolo</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/zfxks4mz8o-check-if-a-form-is-valid">January 17, 2023</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/javascript" itemprop="keywords">#javascript</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/zfxks4mz8o-check-if-a-form-is-valid">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/zfxks4mz8o-check-if-a-form-is-valid.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="zfxks4mz8o">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">1</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/yoq9sehkpy-test-post">test post</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              kjdaskldjkjdk</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/andrewvogel" itemprop="author">andrewvogel</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/yoq9sehkpy-test-post">December 8, 2022</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/clojure" itemprop="keywords">#clojure</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/yoq9sehkpy-test-post">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/yoq9sehkpy-test-post.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="yoq9sehkpy">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/phnfiuf4u1-qwer">qwer</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              qwer</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/viniciusnegrisolo" itemprop="author">viniciusnegrisolo</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/phnfiuf4u1-qwer">August 6, 2021</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/clojure" itemprop="keywords">#clojure</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/phnfiuf4u1-qwer">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/phnfiuf4u1-qwer.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="phnfiuf4u1">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/3x3gyymxts-asdf">asdf</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              asdf</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/viniciusnegrisolo" itemprop="author">viniciusnegrisolo</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/3x3gyymxts-asdf">August 6, 2021</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/workflow" itemprop="keywords">#workflow</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/3x3gyymxts-asdf">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/3x3gyymxts-asdf.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="3x3gyymxts">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/c6ao4t8yeb-asdfas">asdfas</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              asdfasd</p>
+            <pre>
+              <code class="elixir language-elixir">iex&gt; foo;</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/viniciusnegrisolo" itemprop="author">viniciusnegrisolo</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/c6ao4t8yeb-asdfas">July 2, 2021</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/c6ao4t8yeb-asdfas">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/c6ao4t8yeb-asdfas.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="c6ao4t8yeb">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/gvtgim4x9q-hey-asdf-asdf-asf-dsaf-asdf-asdf-asdfsad-fasd-fa">Hey `asdf` asdf asf dsaf asdf
+              asdf asdfsad fasd fa</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              asdf
+              <em>asdf</em>
+              asdf sadf asdf ads asdkjhfk
+              <strong>ajsdfhkjasdfjkadhsjkfhadsjkfhadsjkfhasd</strong>
+              jkfhjkadsfhjkadshfjksdahfkjadshfkjdsahfkjasdhfjkhsadfjkhasdjkfhsadjkfhjksadhfkjsdahfjksadhf jksahdf
+              jksadhfjkshadf jkhkfhkjadhsfjksadhf.
+            </p>
+            <p>
+              <a href="https://til.hashrocket.com">Til</a>
+            </p>
+            <pre>
+              <code class="elixir language-elixir">:foo
+                |&gt; bar()
+                |&gt; IO.inspect()</code>
+            </pre>
+            <p>
+
+              nice
+              <code class="inline">right</code>
+              ?
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/viniciusnegrisolo" itemprop="author">viniciusnegrisolo</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/gvtgim4x9q-hey-asdf-asdf-asf-dsaf-asdf-asdf-asdfsad-fasd-fa">May
+                14, 2021</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink"
+                href="/posts/gvtgim4x9q-hey-asdf-asdf-asf-dsaf-asdf-asdf-asdfsad-fasd-fa">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link"
+                href="/posts/gvtgim4x9q-hey-asdf-asdf-asf-dsaf-asdf-asdf-asdfsad-fasd-fa.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="gvtgim4x9q">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/87h8fqzdcl-postgres-13">Postgres 13</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Rocking and rolling on Postgres 13. 🤘</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/87h8fqzdcl-postgres-13">February 15, 2021</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/sql" itemprop="keywords">#sql</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/87h8fqzdcl-postgres-13">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/87h8fqzdcl-postgres-13.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="87h8fqzdcl">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/voahfm8zoj-deploying-to-staging">Deploying to Staging</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Deployment complete.</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/voahfm8zoj-deploying-to-staging">July 27, 2020</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/ruby" itemprop="keywords">#ruby</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/voahfm8zoj-deploying-to-staging">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/voahfm8zoj-deploying-to-staging.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="voahfm8zoj">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/1q6zhhhxsa-how-does-this-look-good">How does this look `good`?</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              Looking
+              <code class="inline">good</code>
+              !
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/1q6zhhhxsa-how-does-this-look-good">May 22, 2020</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/reasonml" itemprop="keywords">#reasonml</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/1q6zhhhxsa-how-does-this-look-good">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/1q6zhhhxsa-how-does-this-look-good.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="1q6zhhhxsa">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/vqu6jyctka-first-post-on-gigalixir">First post on Gigalixir</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Testing!</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/vqu6jyctka-first-post-on-gigalixir">May 21, 2020</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/reasonml" itemprop="keywords">#reasonml</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/vqu6jyctka-first-post-on-gigalixir">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/vqu6jyctka-first-post-on-gigalixir.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="vqu6jyctka">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">5</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/u0exhro82d--1000000-likes">🤯 1,000,000 LIKES!!!</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              GOT THOSE LIKES!!!!🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/dillonhafer" itemprop="author">dillonhafer</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/u0exhro82d--1000000-likes">January 31, 2020</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/clojure" itemprop="keywords">#clojure</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/u0exhro82d--1000000-likes">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/u0exhro82d--1000000-likes.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="u0exhro82d">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">9000004</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/i5ybmebxfv-staging-deployment-is-a-go">Staging deployment is a GO</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              I write Ruby and Elixir code for fun.</p>
+            <pre>
+              <code class="ruby language-ruby">def foo
+                1
+                end</code>
+            </pre>
+            <p>
+              😎</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/joehashrocket" itemprop="author">joehashrocket</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/i5ybmebxfv-staging-deployment-is-a-go">January 31, 2020</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/command-line" itemprop="keywords">#command-line</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/i5ybmebxfv-staging-deployment-is-a-go">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/i5ybmebxfv-staging-deployment-is-a-go.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="i5ybmebxfv">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/lenu8zciqm-working-on-tilex">Working on Tilex</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Today we'll be deploying a bunch of library upgrade to production, including bumping to Elixir 1.9.2.</p>
+            <p>
+              Always check your staging environment before deploying! 😬</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/joehashrocket" itemprop="author">joehashrocket</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/lenu8zciqm-working-on-tilex">January 2, 2020</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/workflow" itemprop="keywords">#workflow</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/lenu8zciqm-working-on-tilex">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/lenu8zciqm-working-on-tilex.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="lenu8zciqm">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">1</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/2flr9rrzzk-were-on-elixir-19-">We&#39;re on Elixir 1.9!!! 🎉</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Upgrading was actually pretty easy.</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/2flr9rrzzk-were-on-elixir-19-">November 1, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/2flr9rrzzk-were-on-elixir-19-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/2flr9rrzzk-were-on-elixir-19-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="2flr9rrzzk">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/ybxnc0dw8a-creating-posts-on-staging">Creating posts on Staging</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              I think content marketing is a smart business strategy.</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/joehashrocket" itemprop="author">joehashrocket</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/ybxnc0dw8a-creating-posts-on-staging">November 1, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/command-line" itemprop="keywords">#command-line</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/ybxnc0dw8a-creating-posts-on-staging">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/ybxnc0dw8a-creating-posts-on-staging.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="ybxnc0dw8a">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/diyxseoosd-new-post">New Post</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Testing staging pre-deploy.</p>
+            <pre>
+              <code class="elixir language-elixir">def elixir do
+                {:ok, :elixir}
+                end</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/joehashrocket" itemprop="author">joehashrocket</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/diyxseoosd-new-post">September 30, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/diyxseoosd-new-post">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/diyxseoosd-new-post.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="diyxseoosd">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/ckszm22pyh-staging-should-work-as-production-does-">Staging Should Work as Production Does
+              :)</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Apollo-React hooks can easily refetch queries
+              http://til.hashrocket.com/posts/ssyxhw8kqc-apollo-react-hooks-can-easily-refetch-queries via
+              @hashrockettil
+              #til #react</p>
+            <pre>
+              <code class="ruby language-ruby"> def foo
+                "foo"
+                end</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/ckszm22pyh-staging-should-work-as-production-does-">September 3,
+                2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/go" itemprop="keywords">#go</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/ckszm22pyh-staging-should-work-as-production-does-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/ckszm22pyh-staging-should-work-as-production-does-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="ckszm22pyh">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">1</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/nuwzucdalj-heres-some-code">Here&#39;s some code</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              I want to track when the initial render of my app has finished. Is it safe to assume a useEffect in the
+              root component will run after all descendant useEffect have run a first time?</p>
+            <p>
+              This is just a basic example to make it more clear:</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/nuwzucdalj-heres-some-code">August 23, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/ruby" itemprop="keywords">#ruby</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/nuwzucdalj-heres-some-code">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/nuwzucdalj-heres-some-code.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="nuwzucdalj">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/vtetznipb6-def-one">Def one</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              New post.</p>
+            <pre>
+              <code class="ruby language-ruby">def one
+                1
+                end</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/vtetznipb6-def-one">August 21, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/ruby" itemprop="keywords">#ruby</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/vtetznipb6-def-one">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/vtetznipb6-def-one.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="vtetznipb6">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">1</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/xtbz7n0erk-new-post-">New Post 🕷</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Sorts a list into groups and returns a count for the number of objects in each group. Similar to groupBy,
+              but instead of returning a list of values, returns a count for the number of values in that group.</p>
+            <pre>
+              <code class="js language-js">const foo = 1;</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/xtbz7n0erk-new-post-">August 9, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/command-line" itemprop="keywords">#command-line</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/xtbz7n0erk-new-post-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/xtbz7n0erk-new-post-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="xtbz7n0erk">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">1</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/np93qkt2h1-foobar">foobar</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <pre>
+              <code class="ruby language-ruby">foo1foo2
+                foo3
+                foo4
+                foo5</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/viniciusnegrisolo" itemprop="author">viniciusnegrisolo</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/np93qkt2h1-foobar">July 1, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/np93qkt2h1-foobar">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/np93qkt2h1-foobar.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="np93qkt2h1">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/mvmj6puldl-test-post">Test Post</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <pre>
+              <code class="ruby language-ruby">def foo
+                1
+                end</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/mvmj6puldl-test-post">June 17, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/design" itemprop="keywords">#design</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/mvmj6puldl-test-post">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/mvmj6puldl-test-post.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="mvmj6puldl">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/weccriclyb-hiding-and-revealing-struct-info-with-inspect">Hiding and Revealing Struct Info
+              with `inspect`</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              There are two ways to hide information when printing structs in Elixir.</p>
+            <p>
+              Hiding by implementing the inspect protol.</p>
+            <pre>
+              <code class="elixir language-elixir">defmodule Thing do
+                defstruct color: "blue", tentacles: 7
+                end
+
+                defimpl Inspect, for: Thing do
+                def inspect(thing, opts) do
+                "A #{thing.color} thing!"
+                end
+                end</code>
+            </pre>
+            <p>
+              So now in iex I can't tell how many tentacles the thing has:</p>
+            <pre>
+              <code class="elixir language-elixir">&gt; monster = %Thing{color: "green", tentacles: 17}
+                &gt; IO.inspect(monster, label: "MONSTER")
+                MONSTER: A green thing!
+                A green thing!</code>
+            </pre>
+            <p>
+
+              Note that iex uses
+              <code class="inline">inspect</code>
+              to output data which can get confusing.
+            </p>
+            <p>
+
+              NEW IN ELIXIR 1.8: You can also hide data with
+              <code class="inline">@derive</code>
+            </p>
+            <pre>
+              <code class="elixir language-elixir">defmodule Thing do
+                @derive {Inspect, only: [:color]}
+                defstruct color: "blue", tentacles: 7
+                end</code>
+            </pre>
+            <p>
+              And now you won't see tentacles on inspection </p>
+            <pre>
+              <code class="elixir language-elixir">&gt; monster = %Thing{color: "green", tentacles: 17}
+                &gt; IO.inspect(monster)
+                #Thing&lt;color: "green", ...&gt;</code>
+            </pre>
+            <p>
+
+              In both cases, you can reveal the hidden information with the
+              <code class="inline">structs: false</code>
+              option:
+            </p>
+            <pre>
+              <code class="elixir language-elixir">&gt; monster = %Thing{color: "green", tentacles: 17}
+                &gt; IO.inspect(monster)
+                #Thing&lt;color: "green", ...&gt;
+                &gt; IO.inspect(monster, structs: false)
+                %{__struct__: Thing, color: "green", tentacles: 17}</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/weccriclyb-hiding-and-revealing-struct-info-with-inspect">June 16,
+                2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink"
+                href="/posts/weccriclyb-hiding-and-revealing-struct-info-with-inspect">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link"
+                href="/posts/weccriclyb-hiding-and-revealing-struct-info-with-inspect.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="weccriclyb">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/goeo4ggkwn-custom-validation-in-ecto">Custom Validation in Ecto</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Sometimes the standard validation options aren't enough.</p>
+            <p>
+
+              You can create a custom validator in Ecto using the
+              <code class="inline">validate_change</code>
+              function.
+            </p>
+            <p>
+
+              In this particular case, I want to validate that
+              <code class="inline">thing</code>
+              has an odd number of limbs. I can pass the changeset to
+              <code class="inline">validate_odd_number</code>
+              .
+            </p>
+            <pre>
+              <code class="elixir language-elixir">def changeset(thing, attrs) do
+                thing
+                |&gt; cast(attrs, [
+                :number_of_limbs
+                ])
+                |&gt; validate_odd_number(
+                :number_of_limbs
+                )
+                end</code>
+            </pre>
+            <p>
+
+              And then define
+              <code class="inline">validate_odd_number</code>
+              like this:
+            </p>
+            <pre>
+              <code class="elixir language-elixir">def validate_odd_number(changeset, field) when is_atom(field) do
+                validate_change(changeset, field, fn (current_field, value) -&gt;
+                if rem(value, 2) == 0 do
+                [{f, "This field must be an odd number"}]
+                else
+                []
+                end
+                end)
+                end</code>
+            </pre>
+            <p>
+              We pass a function to validate_change that takes the field atom and the value for that field. In that
+              function we test for oddness and return a keyword list that contains the field name and an error message.
+            </p>
+            <p>
+
+              Remember that when
+              <code class="inline">f</code>
+              is
+              <code class="inline">:number_of_limbs</code>
+              :
+            </p>
+            <pre>
+              <code class="elixir language-elixir"> [{f, "hi"}] == [number_of_limbs: "hi"]
+                # true, these data structures are equal</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/goeo4ggkwn-custom-validation-in-ecto">June 15, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/goeo4ggkwn-custom-validation-in-ecto">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/goeo4ggkwn-custom-validation-in-ecto.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="goeo4ggkwn">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">4</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/s2gfjrcfr8-parallel-xargs-fails-if-any-of-its-children-do">Parallel xargs fails if any of
+              its children do</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              We like to
+              <a href="/?_utf8=%E2%9C%93&amp;q=xargs">
+                write about
+                <code class="inline">xargs</code>
+              </a>
+              . In addition to all that, turns out
+              <code class="inline">xargs</code>
+              is a great tool for easily parallelizing tests, linters or anything where some may pass, and some may
+              fail. If any of the processes that
+              <code class="inline">xargs</code>
+              spawns fail, the
+              <code class="inline">xargs</code>
+              call will also fail.
+            </p>
+            <p>
+              All child processes exit zero:</p>
+            <pre>
+              <code class="sh language-sh">
+                % echo "0\n0\n0" | xargs -Icode -P4 sh -c 'exit code'; echo exit code: $?
+                exit code: 0</code>
+            </pre>
+            <p>
+
+              And so does
+              <code class="inline">xargs</code>
+              ! If any exit non-zero:
+            </p>
+            <pre>
+              <code class="sh language-sh">echo "0\n1\n127" | xargs -Icode -P4 sh -c 'exit code'; echo exit code: $?
+                exit code: 1</code>
+            </pre>
+            <p>
+              <code class="inline">xargs</code>
+              follows suit.
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/briandunn" itemprop="author">briandunn</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/s2gfjrcfr8-parallel-xargs-fails-if-any-of-its-children-do">June
+                14, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/command-line" itemprop="keywords">#command-line</a>
+            </li>
+            <li>
+              <a class="post__permalink"
+                href="/posts/s2gfjrcfr8-parallel-xargs-fails-if-any-of-its-children-do">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link"
+                href="/posts/s2gfjrcfr8-parallel-xargs-fails-if-any-of-its-children-do.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="s2gfjrcfr8">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">8</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/3fe1m9xetm-ecto-query-to-sql">Ecto query to SQL</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              Ecto exposes a
+              <a href="https://hexdocs.pm/ecto_sql/Ecto.Adapters.SQL.html#to_sql/3">to_sql</a>
+              function on your ecto Repo. Check this out:
+            </p>
+            <pre>
+              <code class="elixir language-elixir">query = from u in User,
+                where: u.name == "Foo Bar",
+                select: [:id, :name]
+
+                Repo.to_sql(:all, query)
+
+                # {
+                # "SELECT t0.\"id\", t0.\"name\" FROM \"users\" AS t0 WHERE (t0.\"name\" = 'Foo Bar')",
+                # []
+                # }</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/viniciusnegrisolo" itemprop="author">viniciusnegrisolo</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/3fe1m9xetm-ecto-query-to-sql">June 14, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/3fe1m9xetm-ecto-query-to-sql">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/3fe1m9xetm-ecto-query-to-sql.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="3fe1m9xetm">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">5</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/xdixaawqei-ectos-distinct-adds-an-order-by-clause">Ecto&#39;s `distinct` adds an order by
+              clause</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              When using
+              <code class="inline">distinct on</code>
+              you may encounter this error:
+            </p>
+            <pre>
+              <code class="sql language-sql">select distinct on (color) id, color from fruits order by id;
+                -- ERROR: SELECT DISTINCT ON expressions must match initial ORDER BY expressions</code>
+            </pre>
+            <p>
+
+              This is because
+              <code class="inline">distinct on</code>
+              needs to enounter the rows in a specific order so that it can make the determination about which row to
+              take. The expressions must match the initial ORDER BY expressions!
+            </p>
+            <p>
+              So the above query works when it looks like this:</p>
+            <pre>
+              <code class="sql language-sql">select distinct on (color) id, color from fruits order by color, id;</code>
+            </pre>
+            <p>
+              OK, now it works.</p>
+            <p>
+
+              Ecto's
+              <code class="inline">distinct</code>
+              function helps us avoid this common error by prepending an order by clause ahead of the order by clause
+              you add explicitly.
+            </p>
+            <p>
+              This elixir statement: </p>
+            <pre>
+              <code class="elixir language-elixir">Fruit |&gt; distinct([f], f.color) |&gt; order_by([f], f.id) |&gt;
+                Repo.all</code>
+            </pre>
+            <p>
+              Produces this sql (cleaned up for legibility):</p>
+            <pre>
+              <code class="sql language-sql">select distinct on (color) id, color from fruits order by color, id;</code>
+            </pre>
+            <p>
+
+              Ecto added
+              <code class="inline">color</code>
+              to the order by!
+            </p>
+            <p>
+
+              Without any order by at all,
+              <code class="inline">distinct</code>
+              does not prepend the order by.
+            </p>
+            <p>
+
+              Read the
+              <a href="https://hexdocs.pm/ecto/Ecto.Query.html#distinct/3">docs</a>
+              !
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/xdixaawqei-ectos-distinct-adds-an-order-by-clause">June 14,
+                2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/xdixaawqei-ectos-distinct-adds-an-order-by-clause">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/xdixaawqei-ectos-distinct-adds-an-order-by-clause.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="xdixaawqei">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/cid5m5qe9y-find-file-case-insensitively-">Find File Case-Insensitively 🔎</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              When using the
+              <code class="inline">find</code>
+              command, consider the
+              <code class="inline">-iname</code>
+              flag. It works like
+              <code class="inline">-name</code>
+              :
+            </p>
+            <pre>
+              <code>True if the last component of the pathname being examined matches pattern.</code>
+            </pre>
+            <p>
+              But with case insensitivity:</p>
+            <pre>
+              <code>-iname pattern
+                Like -name, but the match is case insensitive.</code>
+            </pre>
+            <p>
+
+              Here's a sample command, which will match
+              <code class="inline">utils.js</code>
+              and
+              <code class="inline">Utils.js</code>
+              .
+            </p>
+            <pre>
+              <code>$ find . -iname Utils.js</code>
+            </pre>
+            <p>
+
+              See
+              <code class="inline">man find</code>
+              for more information. h/t Raelyn.
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/cid5m5qe9y-find-file-case-insensitively-">June 13, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/command-line" itemprop="keywords">#command-line</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/cid5m5qe9y-find-file-case-insensitively-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/cid5m5qe9y-find-file-case-insensitively-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="cid5m5qe9y">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/ikxu4kbcgs-pluck-jsonb-fields-in-rails">Pluck jsonb fields in Rails</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              If you have a jsonb field and you want to make a query to only return some nested value, you can use
+              <code class="inline">pluck</code>
+              :
+            </p>
+            <pre>
+              <code class="ruby language-ruby">UserActivity.pluck("raw_data-&gt;'activity'-&gt;'type'")
+
+                =&gt; ["rowing", "running"]</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/gabrielreis" itemprop="author">gabrielreis</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/ikxu4kbcgs-pluck-jsonb-fields-in-rails">June 12, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/rails" itemprop="keywords">#rails</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/ikxu4kbcgs-pluck-jsonb-fields-in-rails">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/ikxu4kbcgs-pluck-jsonb-fields-in-rails.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="ikxu4kbcgs">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">7</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/njkxvinm8g-transactions-can-timeout-in-elixir">Transactions can timeout in Elixir</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              In Ecto, transactions can timeout. So this type of code:</p>
+            <pre>
+              <code class="elixir language-elixir"> Repo.transaction fn -&gt;
+                # Many thousands of expensive queries
+                # And inserts
+                end</code>
+            </pre>
+            <p>
+              This type of code might fail after 15 seconds, which is the default timeout.</p>
+            <p>
+
+              In Ecto you can specify what the timeout should be for each operation. All functions that make a request
+              to the database have the same
+              <a href="https://hexdocs.pm/ecto/Ecto.Repo.html#module-shared-options">same shared options</a>
+              of which
+              <code class="inline">:timeout</code>
+              is one.
+            </p>
+            <pre>
+              <code class="elixir language-elixir">Repo.all(massive_query, timeout: 20_000)</code>
+            </pre>
+            <p>
+              The above query now times out after 20 seconds.</p>
+            <p>
+
+              These shared options apply to a transaction as well. If you don't care that a transaction is taking a long
+              time you can set the timeout to
+              <code class="inline">:infinity</code>
+              .
+            </p>
+            <pre>
+              <code class="elixir language-elixir"> Repo.transaction(fn -&gt;
+                # Many thousands of expensive queries
+                # And inserts
+                end, timeout: :infinity)</code>
+            </pre>
+            <p>
+              Now this operation will be allowed to finish, despite the time it takes.</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/njkxvinm8g-transactions-can-timeout-in-elixir">June 12, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/njkxvinm8g-transactions-can-timeout-in-elixir">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/njkxvinm8g-transactions-can-timeout-in-elixir.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="njkxvinm8g">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">7</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/9jxsfxysey-timing-a-function-in-elixir">Timing A Function In Elixir</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              Erlang provides the
+              <code class="inline">:timer</code>
+              module for all things timing. The oddly named function
+              <code class="inline">tc</code>
+              will let you know how long a function takes:
+            </p>
+            <pre>
+              <code class="elixir language-elixir">{uSecs, :ok} = :timer.tc(IO, :puts, ["Hello World"])</code>
+            </pre>
+            <p>
+
+              Note that
+              <code class="inline">uSecs</code>
+              is
+              <em>microseconds</em>
+              not
+              <em>milliseconds</em>
+              so divide by
+              <code class="inline">1_000_000</code>
+              to get seconds.
+            </p>
+            <p>
+              <em>microseconds</em>
+              are helpful though because sometimes functions are just that quick.
+            </p>
+            <pre>
+              <code class="elixir language-elixir">:timer.tc(IO, :puts, ["Hello World"])
+                # {22, :ok}</code>
+            </pre>
+            <p>
+
+              You can also call
+              <code class="inline">:timer.tc</code>
+              with a function and args:
+            </p>
+            <pre>
+              <code class="elixir language-elixir">adding = fn (x, y) -&gt; x + y end
+
+                :timer.tc(adding, [1,3])
+                # {5, 4}</code>
+            </pre>
+            <p>
+              Or just a function:</p>
+            <pre>
+              <code class="elixir language-elixir">:timer.tc(fn -&gt;
+                # something really expensive
+                :ok
+                end)
+                # {1_302_342, :ok}</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/9jxsfxysey-timing-a-function-in-elixir">June 11, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/9jxsfxysey-timing-a-function-in-elixir">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/9jxsfxysey-timing-a-function-in-elixir.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="9jxsfxysey">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">4</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/c3s2f7zk1f-mac-preferences-hotkey-">Mac Preferences Hotkey: ⌘ + ,</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              In a bunch of Mac programs I tested today (Numbers, Keynote, Messages) the hotkey for the Preferences menu
+              is
+              <code class="inline">⌘ + ,</code>
+              . It seems to be a convention, even carried over to App Store apps like Slack.
+            </p>
+            <p>
+              Check it out on your favorite Mac program and enjoy that mouse-free life.</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/c3s2f7zk1f-mac-preferences-hotkey-">June 9, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/workflow" itemprop="keywords">#workflow</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/c3s2f7zk1f-mac-preferences-hotkey-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/c3s2f7zk1f-mac-preferences-hotkey-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="c3s2f7zk1f">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/emt3vdfuko-ack-ignores-nodemodules-by-default">Ack ignores node_modules by default</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              When searching through your JavaScript project it doesn't make sense to search through your
+              <code class="inline">node_modules</code>
+              . But if your are on a spelunking journey into the depths of your dependencies, you may want to search
+              through all your
+              <code class="inline">node_modules</code>
+              !
+            </p>
+            <p>
+              <code class="inline">ack</code>
+              ignores
+              <code class="inline">node_modules</code>
+              by default, and
+              <code class="inline">ack</code>
+              being
+              <code class="inline">ack</code>
+              you can
+              <code class="inline">ack</code>
+              through
+              <code class="inline">ack</code>
+              to check it out:
+            </p>
+            <pre>
+              <code class="sh language-sh">&gt; cat `which ack` | ack node_modules
+                --ignore-directory=is:node_modules</code>
+            </pre>
+            <p>
+
+              This is different behaviour from
+              <code class="inline">ag</code>
+              and
+              <code class="inline">rg</code>
+              which also ignore
+              <code class="inline">node_modules</code>
+              but not explicitly. They both ignore
+              <code class="inline">node_modules</code>
+              by ignoring all entries in the
+              <code class="inline">.gitignore</code>
+              file.
+            </p>
+            <p>
+              <code class="inline">rg</code>
+              claims to implement
+              <a href="https://github.com/BurntSushi/ripgrep/blob/master/README.md#why-should-i-use-ripgrep">full
+                support</a>
+              for the
+              <code class="inline">.gitignore</code>
+              file while also claiming other search tools do not. The
+              <a
+                href="https://github.com/ggreer/the_silver_searcher/issues?utf8=%E2%9C%93&amp;q=is%3Aissue+is%3Aopen+gitignore">open
+                issues</a>
+              list for
+              <code class="inline">ag</code>
+              bears that out.
+            </p>
+            <p>
+              With each of these tools, explicitly stating the directory to search through overrides the ignore.</p>
+            <pre>
+              <code class="sh language-sh">&gt; ack autoprefix node_modules
+                &gt; rg autoprefix node_modules
+                &gt; ag autoprefix node_modules</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/emt3vdfuko-ack-ignores-nodemodules-by-default">June 9, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/command-line" itemprop="keywords">#command-line</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/emt3vdfuko-ack-ignores-nodemodules-by-default">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/emt3vdfuko-ack-ignores-nodemodules-by-default.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="emt3vdfuko">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/vzjdayel2s-user-selectnone-needs-prefixes-for-each-browser">`user-select:none` needs
+              prefixes for each browser</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              The
+              <code class="inline">user-select</code>
+              css property governs if text is selectable for a given element.
+              <code class="inline">user-select: none</code>
+              means that it is not selectable.
+            </p>
+            <p>
+              What's interesting about this property is that while each browser supports it, they each require their own
+              prefix, except Chrome, which does not need a prefix.</p>
+            <p>
+              In create react app, what starts out as:</p>
+            <pre>
+              <code class="css language-css">user-select: none;</code>
+            </pre>
+            <p>
+              Gets expanded to:</p>
+            <pre>
+              <code class="css language-css">-webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;</code>
+            </pre>
+            <p>
+
+              But the default browserList configuration for development in your
+              <code class="inline">package.json</code>
+              file is:
+            </p>
+            <pre>
+              <code class="js language-js">"development": [
+                "last 1 chrome version",
+                "last 1 firefox version",
+                "last 1 safari version"
+                ]</code>
+            </pre>
+            <p>
+              And so in development, it gets expanded to:</p>
+            <pre>
+              <code class="css language-css">-webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;</code>
+            </pre>
+            <p>
+              Sorry Micrsoft.</p>
+            <p>
+
+              How does create react app know which prefixes to render? The
+              <code class="inline">caniuse-lite</code>
+              npm package has up-to-date support data for each property and
+              <code class="inline">user-select:none</code>
+              is defined
+              <a href="https://github.com/ben-eb/caniuse-lite/blob/master/data/features/user-select-none.js">here</a>
+              .
+            </p>
+            <p>
+              That data is compressed. Here's how to uncompress it using the node cli to see what it represents:</p>
+            <pre>
+              <code class="js language-js">const compressedData =
+                require('caniuse-lite/data/features/user-select-none');
+                const caniuse = require('caniuse-lite');
+                const unpackFunction = caniuse.feature;
+                unpackFunction(compressedData);</code>
+            </pre>
+            <p>
+
+              This is accomplished in create react app by the npm package
+              <a href="https://github.com/postcss/autoprefixer/blob/master/data/prefixes.js#L243">autoprefixer</a>
+              ;
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/vzjdayel2s-user-selectnone-needs-prefixes-for-each-browser">June
+                6, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/html-css" itemprop="keywords">#html-css</a>
+            </li>
+            <li>
+              <a class="post__permalink"
+                href="/posts/vzjdayel2s-user-selectnone-needs-prefixes-for-each-browser">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link"
+                href="/posts/vzjdayel2s-user-selectnone-needs-prefixes-for-each-browser.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="vzjdayel2s">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/kmhi4k1ct2-reduce-depth-of-an-existing-git-repo-">Reduce Depth of an Existing Git Repo
+              ⚓️</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              <code class="inline">git pull --depth</code>
+              works on an existing repo to set the depth of references retrieved. To quote the
+              <code class="inline">--depth</code>
+              docs:
+            </p>
+            <blockquote>
+              <p>
+                Limit fetching to the specified number of commits from the tip of each remote branch history. </p>
+            </blockquote>
+            <p>
+              So, what happens when you run this? Here's me experimenting with the Elixir repo:</p>
+            <pre>
+              <code class="shell language-shell">$ git clone https://github.com/elixir-lang/elixir.git
+                $ cd elixir
+                $ git log --oneline | wc -l
+                15670 # 15670 entries!
+                $ git pull --depth=1
+                # ...pulling the shallow repo
+                $ git log --oneline | wc -l
+                1 # 15670 to 1... woah!
+                $ git log
+                # ...output from just one commit</code>
+            </pre>
+            <p>
+
+              Is
+              <code class="inline">.git/</code>
+              a lot smaller now? Not yet, because there are many dangling references. This
+              <a href="https://stackoverflow.com/a/46004595/2112512">Stack Overflow answer</a>
+              shows you how to cleanup that directory. After setting a depth of one and following its instructions, I
+              reduced the Elixir repo's
+              <code class="inline">.git/</code>
+              size by 90%.
+            </p>
+            <p>
+
+              Check out
+              <code class="inline">man git-pull</code>
+              for more information.
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/kmhi4k1ct2-reduce-depth-of-an-existing-git-repo-">June 5, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/git" itemprop="keywords">#git</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/kmhi4k1ct2-reduce-depth-of-an-existing-git-repo-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/kmhi4k1ct2-reduce-depth-of-an-existing-git-repo-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="kmhi4k1ct2">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">4</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/6wppvs3rm3-zoom-hotkeys-to-toggle-audio-and-video-">Zoom Hotkeys to Toggle Audio and Video
+              🎛</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              <a href="https://zoom.us/">Zoom</a>
+              users, two new hotkeys for you on Mac:
+              <code class="inline">CMD-SHIFT-A</code>
+              to toggle audio and
+              <code class="inline">CMD-SHIFT-V</code>
+              to toggle video. The ability to control my A/V presentation in long video calls makes these hotkeys worth
+              the muscle memory investment.
+            </p>
+            <p>
+              Zoom has another handy audio feature in preferences: temporarily unmute by pressing the spacebar. This is
+              perfect for standups, where I mostly want to be muted, but need to be able to unmute quickly for short
+              periods of time.</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/6wppvs3rm3-zoom-hotkeys-to-toggle-audio-and-video-">June 4,
+                2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/workflow" itemprop="keywords">#workflow</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/6wppvs3rm3-zoom-hotkeys-to-toggle-audio-and-video-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/6wppvs3rm3-zoom-hotkeys-to-toggle-audio-and-video-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="6wppvs3rm3">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">3</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/nmgjmusw0d-customize-touch-bar-in-vs-code">Customize Touch Bar in VS Code</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              Ever wanted to add VS Code commands to the macOS touchbar?
+              <a href="https://marketplace.visualstudio.com/items?itemName=felipe.nasc-touchbar#overview">There's an
+                extension for that!</a>
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/mattblack" itemprop="author">mattblack</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/nmgjmusw0d-customize-touch-bar-in-vs-code">June 4, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/workflow" itemprop="keywords">#workflow</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/nmgjmusw0d-customize-touch-bar-in-vs-code">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/nmgjmusw0d-customize-touch-bar-in-vs-code.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="nmgjmusw0d">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">4</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/eogr5cfvqk-how-to-fix-jest-unexpected-token-in-package-code">How to fix Jest
+              &quot;Unexpected token&quot; in package code</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              It's 2019 and we're still figuring out how to share code. Packages are shipping ES6 by default, and
+              denoting commonjs files with a
+              <code class="inline">.cjs.js</code>
+              extension. Since most of us are bundling with Webpack it's cool until we run it through Jest (node). Two
+              ways to solve this are either to explicitly
+              <code class="inline">import thing from 'library/thing.cjs.js'</code>
+              or point to it using
+              <code class="inline">moduleNameMapper</code>
+              in Jest config.
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/mattblack" itemprop="author">mattblack</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/eogr5cfvqk-how-to-fix-jest-unexpected-token-in-package-code">June
+                4, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/javascript" itemprop="keywords">#javascript</a>
+            </li>
+            <li>
+              <a class="post__permalink"
+                href="/posts/eogr5cfvqk-how-to-fix-jest-unexpected-token-in-package-code">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link"
+                href="/posts/eogr5cfvqk-how-to-fix-jest-unexpected-token-in-package-code.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="eogr5cfvqk">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/v5g1mpru5v-dash-docset-keywords-">Dash Docset Keywords 🗝</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              Dash has a customizable keyword for each Docset. Here are the defaults for a random Hashrocket
+              collection*:</p>
+            <p>
+              <img src="https://i.imgur.com/4zfybMe.png" alt="image" />
+            </p>
+            <p>
+              These keywords scope search results to one Docset; use one in the Dash search bar like so:</p>
+            <pre>
+              <code>elixir:String.split</code>
+            </pre>
+            <p>
+              And from Alfred:</p>
+            <pre>
+              <code>dash elixir:String.split</code>
+            </pre>
+            <p>
+
+              This is useful when you have many Docsets, and are sure where you want to look, which should be true
+              almost all the time. It's nice when using two complementary technologies like Elixir and Elm that share a
+              function namespace (such as
+              <code class="inline">String.split</code>
+              ).
+            </p>
+            <p>
+              * Also note: this list order can be changed, as noted in the table header. Move libraries you use often
+              above those you use rarely.</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/v5g1mpru5v-dash-docset-keywords-">June 3, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/workflow" itemprop="keywords">#workflow</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/v5g1mpru5v-dash-docset-keywords-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/v5g1mpru5v-dash-docset-keywords-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="v5g1mpru5v">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/2yhnoqw4to-dash-find-in-page-">Dash Find in Page 🔎</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              To build upon my earlier post,
+              <a href="https://til.hashrocket.com/posts/lpw5je6noh-integrate-alfred-and-dash">Integrate Alfred and
+                Dash</a>
+              : Dash supports find-in-page search via a whitespace. To search on a docs page, add a space after the
+              function or keyword name, and then enter your search query.
+            </p>
+            <p>
+
+              Here's a command you could run to find JavaScript's
+              <code class="inline">Array.prototype.unshift()</code>
+              <em>and</em>
+              search on that docs page for the 'specification' header, where the associated ECMAScript standards for
+              <code class="inline">unshift</code>
+              are found.
+            </p>
+            <pre>
+              <code>unshift specification</code>
+            </pre>
+            <p>
+              This command from Alfred could look like:</p>
+            <pre>
+              <code>dash unshift specification</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/2yhnoqw4to-dash-find-in-page-">June 3, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/workflow" itemprop="keywords">#workflow</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/2yhnoqw4to-dash-find-in-page-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/2yhnoqw4to-dash-find-in-page-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="2yhnoqw4to">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/lpw5je6noh-integrate-alfred-and-dash-">Integrate Alfred and Dash 🤝</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              Today I'm testing an intergration between
+              <a href="https://www.alfredapp.com/">Alfred</a>
+              , the powerful alternative to Finder, and
+              <a href="https://kapeli.com/dash">Dash</a>
+              , the local-documentation tool for Mac. My goal is a single command, run from anywhere on a Mac, that
+              searches one or many sets of docs for a named function.
+            </p>
+            <p>
+              This tutorials showed me how to do it. TL;DR, it's a one-click setup in Dash:</p>
+            <p>
+              https://github.com/Kapeli/Dash-Alfred-Workflow</p>
+            <p>
+
+              Once complete, I can trigger Alfred (with
+              <code class="inline">CMD + SPACE</code>
+              , or any key combo that's not assigned elsewhere), type
+              <code class="inline">dash List.reverse</code>
+              , hit enter, and Alfred loads all the
+              <code class="inline">List.reverse</code>
+              docs I've downloaded in Dash.
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/lpw5je6noh-integrate-alfred-and-dash-">June 3, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/workflow" itemprop="keywords">#workflow</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/lpw5je6noh-integrate-alfred-and-dash-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/lpw5je6noh-integrate-alfred-and-dash-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="lpw5je6noh">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">2</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/wld29vubnu-custom-react-hook-must-use-use">Custom React Hook Must Use `use`</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              You can build your own hooks by composing existing hooks.</p>
+            <p>
+
+              Here, I create a custom hook
+              <code class="inline">useBoolean</code>
+              by wrapping
+              <code class="inline">useState</code>
+              :
+            </p>
+            <pre>
+              <code class="js language-js">const useBoolean = () =&gt; useState(true);</code>
+            </pre>
+            <p>
+              Which I can then use in my component:</p>
+            <pre>
+              <code class="jsx language-jsx">function Value() {
+                const [value, setValue] = useBoolean();
+
+                return &lt;div onClick={() =&gt; setValue(!value)}&gt;Click me {String(value)}&lt;/div&gt;;
+                }</code>
+            </pre>
+            <p>
+
+              The react documentation very politely asks that you start the name of your hook with
+              <code class="inline">use</code>
+              . This is isn't strictly necessary, and it will still work if you call it:
+            </p>
+            <pre>
+              <code class="js language-js">const doBoolean = () =&gt; useState(true);</code>
+            </pre>
+            <p>
+
+              But that violates the
+              <a href="https://reactjs.org/docs/hooks-rules.html">Rules of Hooks</a>
+              .
+            </p>
+            <p>
+
+              You can include an
+              <a href="https://www.npmjs.com/package/eslint-plugin-react-hooks">eslint plugin</a>
+              that will prevent you from breaking the rules. This plugin is installed by default in
+              <code class="inline">create-react-app</code>
+              version 3.
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/wld29vubnu-custom-react-hook-must-use-use">June 2, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/react" itemprop="keywords">#react</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/wld29vubnu-custom-react-hook-must-use-use">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/wld29vubnu-custom-react-hook-must-use-use.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="wld29vubnu">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">6</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/jvrsrdfhmr-inline-rendering-in-phoenix">Inline Rendering in Phoenix</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              Phoenix has a
+              <a href="https://hexdocs.pm/phoenix/Phoenix.Controller.html#html/2">html</a>
+              function that allows you to inline render html without the need of a template:
+            </p>
+            <pre>
+              <code class="elixir language-elixir">def index(conn, _params) do
+                html(conn, """
+                &lt;script&gt;console.log("Hello World!")&lt;/script&gt;
+                """
+                end</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/gabrielreis" itemprop="author">gabrielreis</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/jvrsrdfhmr-inline-rendering-in-phoenix">May 31, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/elixir" itemprop="keywords">#elixir</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/jvrsrdfhmr-inline-rendering-in-phoenix">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/jvrsrdfhmr-inline-rendering-in-phoenix.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="jvrsrdfhmr">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">7</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/fbijs59twe-disable-jest-warnings">Disable Jest Warnings</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              Jest has a
+              <code class="inline">--silent</code>
+              flag that will omit warnings but keep errors:
+            </p>
+            <pre>
+              <code class="bash language-bash">yarn test --silent</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/gabrielreis" itemprop="author">gabrielreis</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/fbijs59twe-disable-jest-warnings">May 31, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/javascript" itemprop="keywords">#javascript</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/fbijs59twe-disable-jest-warnings">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/fbijs59twe-disable-jest-warnings.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="fbijs59twe">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">5</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/f0vaojg4hw-aggregate-arrays-in-postgres">Aggregate Arrays In Postgres</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+              <code class="inline">array_agg</code>
+              is a great aggregate function in Postgres but it gets weird when aggregating other arrays.
+            </p>
+            <p>
+
+              First let's look at what
+              <code class="inline">array_agg</code>
+              does on rows with integer columns:
+            </p>
+            <pre>
+              <code class="sql language-sql">select array_agg(x) from (values (1), (2), (3), (4)) x (x);
+                -- {1,2,3,4}</code>
+            </pre>
+            <p>
+
+              It puts each value into an array. What if are values
+              <em>are</em>
+              arrays?
+            </p>
+            <pre>
+              <code class="sql language-sql">select array_agg(x)
+                from (values (Array[1, 2]), (Array[3, 4])) x (x);
+                -- {{1,2},{3,4}}</code>
+            </pre>
+            <p>
+              Put this doesn't work when the arrays have different numbers of elements:</p>
+            <pre>
+              <code class="sql language-sql">select array_agg(x)
+                from (values (Array[1, 2]), (Array[3, 4, 5])) x (x);
+                -- ERROR: cannot accumulate arrays of different dimensionality</code>
+            </pre>
+            <p>
+
+              If you are trying to accumulate elements to process in your code, you can use
+              <code class="inline">jsonb_agg</code>
+              .
+            </p>
+            <pre>
+              <code class="sql language-sql">select jsonb_agg(x.x)
+                from (values (Array[1, 2]), (Array[3, 4, 5])) x (x);
+                -- [[1, 2], [3, 4, 5]]</code>
+            </pre>
+            <p>
+              The advantage of using Postgres arrays however is being able to unnest those arrays downstream:</p>
+            <pre>
+              <code class="sql language-sql">select unnest(array_agg(x))
+                from (values (Array[1, 2]), (Array[3, 4])) x (x);
+                -- 1
+                -- 2
+                -- 3
+                -- 4</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/chriserin" itemprop="author">chriserin</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/f0vaojg4hw-aggregate-arrays-in-postgres">May 31, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/sql" itemprop="keywords">#sql</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/f0vaojg4hw-aggregate-arrays-in-postgres">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/f0vaojg4hw-aggregate-arrays-in-postgres.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="f0vaojg4hw">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">5</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/zqie7f1y7e-send-a-commands-output-to-vim-part-ii-">Send a Command&#39;s Output to Vim (Part
+              II) ↪️</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              In a Hashrocket blog post,
+              <a href="https://hashrocket.com/blog/posts/10-vim-commands-for-a-better-workflow">10 Vim Commands for a
+                Better Workflow</a>
+              , I wrote about
+              <code class="inline">:.! &lt;command&gt;</code>
+              , which replaces the output of
+              <code class="inline">&lt;command&gt;</code>
+              with your current line.
+            </p>
+            <p>
+
+              Today I learned what this technique is called:
+              <em>filtering</em>
+              . From the docs:
+            </p>
+            <blockquote>
+              <p>
+                filter is a program that accepts text at standard input, changes it in some
+                way, and sends it to standard output. You can use the commands below to send
+                some text through a filter, so that it is replaced by the filter output. </p>
+            </blockquote>
+            <p>
+
+              An even shorter version is just
+              <code class="inline">!!&lt;command&gt;</code>
+              in normal mode. A use case for this would be writing docs, where command-line output (
+              <code class="inline">ls</code>
+              ,
+              <code class="inline">curl</code>
+              , etc.) can help demonstrate an idea.
+            </p>
+            <p>
+
+              Check out
+              <code class="inline">:help !!</code>
+              to see all the permutations of this interesting command.
+            </p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/zqie7f1y7e-send-a-commands-output-to-vim-part-ii-">May 30,
+                2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/vim" itemprop="keywords">#vim</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/zqie7f1y7e-send-a-commands-output-to-vim-part-ii-">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/zqie7f1y7e-send-a-commands-output-to-vim-part-ii-.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="zqie7f1y7e">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">4</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/avdtkzbpij-javascript-toggle-item-in-array">Javascript Toggle item in Array</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              Today I learned that we can toggle an item in an Array by just calling
+              <a href="https://lodash.com/docs/4.17.11#xor">lodash xor function</a>
+              .
+            </p>
+            <pre>
+              <code class="javascript language-javascript">const toggle = (array, item) =&gt; _.xor(array,
+                [item])</code>
+            </pre>
+            <p>
+              This way we can add an element to an array if it's not there yet:</p>
+            <pre>
+              <code class="javascript language-javascript">toggle([1, 2], 3)
+                // =&gt; [1, 2, 3]</code>
+            </pre>
+            <p>
+              Or delete an element if it's already present:</p>
+            <pre>
+              <code class="javascript language-javascript">toggle([1, 2], 2)
+                // =&gt; [1]</code>
+            </pre>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/viniciusnegrisolo" itemprop="author">viniciusnegrisolo</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/avdtkzbpij-javascript-toggle-item-in-array">May 30, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/javascript" itemprop="keywords">#javascript</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/avdtkzbpij-javascript-toggle-item-in-array">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/avdtkzbpij-javascript-toggle-item-in-array.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="avdtkzbpij">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">9</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="post__content copy">
+          <header itemprop="headline">
+            <a href="/posts/aipbiuwabi-all-caps-sql">ALL CAPS SQL</a>
+          </header>
+
+          <div itemprop="blogPost">
+            <p>
+
+              A while ago I read
+              <em>The Mac Is Not a Typewriter</em>
+              by Robin Williams. In it, the author claims:
+            </p>
+            <blockquote>
+              <p>
+
+                Many studies have shown that all caps are much harder to read. We recognize words not only by their
+                letter groups, but also by their shapes, sometimes called the "coastline." --pg. 31,
+                <em>The Mac Is Not a Typewriter</em>
+              </p>
+            </blockquote>
+            <p>
+              I've found this to be true. When we teach SQL, students are often surprised that we don't capitalize
+              PostgreSQL keywords, preferring this:</p>
+            <pre>
+              <code class="sql language-sql">select * from posts limit 5;</code>
+            </pre>
+            <p>
+              To this, which you might see in an SQL textbook:</p>
+            <pre>
+              <code class="sql language-sql">SELECT * FROM posts LIMIT 5;</code>
+            </pre>
+            <p>
+
+              My arguments against the latter syntax: it's practically redundant in PostgreSQL, it's harder to type, and
+              it's unnecessary because any good text editor highlights the keywords. Now I have another: such writing
+              has been, in typesetting, shown to be harder to read.
+              <code class="inline">WHERE</code>
+              and
+              <code class="inline">LIMIT</code>
+              look similar from a distance in all-caps, but they mean and do different things.
+            </p>
+            <p>
+              It's a style opinion each developer gets to refine for themselves. To quote Williams: "Be able to justify
+              the choice."</p>
+          </div>
+
+          <footer class="byline">
+            <a href="/authors/jakeworth" itemprop="author">jakeworth</a>
+            <div itemprop="datePublished">
+              <a class="post__permalink" href="/posts/aipbiuwabi-all-caps-sql">May 29, 2019</a>
+            </div>
+          </footer>
+        </div>
+        <aside>
+          <ul>
+            <li>
+              <a class="post__tag-link" href="/sql" itemprop="keywords">#sql</a>
+            </li>
+            <li>
+              <a class="post__permalink" href="/posts/aipbiuwabi-all-caps-sql">permalink</a>
+            </li>
+            <li>
+              <a class="post__raw-link" href="/posts/aipbiuwabi-all-caps-sql.md">raw</a>
+            </li>
+
+            <li>
+              <a class="js-like-action post__like-link" href="#" id="aipbiuwabi">
+                <span class="post__like-heart">
+                  <svg aria-labelledby="title" class="icon icon-heart icon-small">
+                    <title lang="en">likes</title>
+                    <use href="/images/icons-c2ddae4348712649a16be196876ebe73.svg?vsn=d#heart"></use>
+                  </svg>
+                </span>
+                <span class="post__like-count">12</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+    </section>
+    <nav class="pagination">
+
+      <a rel="next" class="pagination_older" href="/?page=2">older TILs</a>
+
+    </nav>
+
+  </main>
+</body>
+
+</html>
