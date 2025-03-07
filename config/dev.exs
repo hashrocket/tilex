@@ -5,7 +5,7 @@ config :tilex, Tilex.Repo,
   username: System.get_env("POSTGRES_USER", "postgres"),
   password: System.get_env("POSTGRES_PASSWORD", ""),
   hostname: "localhost",
-  database: "tilex_dev",
+  database: "tilex_staging",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
