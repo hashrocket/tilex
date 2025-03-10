@@ -10,7 +10,7 @@ defmodule Tilex.Integration.Pages.PostShowPage do
     |> Browser.find(Query.css("article.post"))
 
     session
-    |> Browser.find(Query.css("h1", text: title))
+    |> Browser.find(Query.css("header a", text: title))
 
     session
   end
@@ -29,7 +29,7 @@ defmodule Tilex.Integration.Pages.PostShowPage do
     expected_likes_count = attrs |> Map.fetch!(:likes_count) |> to_string()
 
     session
-    |> Browser.find(Query.css(".post h1", text: expected_title))
+    |> Browser.find(Query.css(".post header a", text: expected_title))
 
     session
     |> Browser.find(Query.css(".post .copy", text: expected_body))

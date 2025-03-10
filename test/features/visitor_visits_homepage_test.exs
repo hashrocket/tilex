@@ -35,7 +35,7 @@ defmodule VisitorVisitsHomepageTest do
       Element.text(find(session, Query.css(selector)))
     end
 
-    post_header = element_text.(session, "article h1")
+    post_header = element_text.(session, "article header a")
     post_body = element_text.(session, "article")
     post_footer = element_text.(session, ".post aside")
 
