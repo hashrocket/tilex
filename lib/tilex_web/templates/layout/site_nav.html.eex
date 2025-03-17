@@ -48,7 +48,7 @@
       <% end %>
     </li>
     <li>
-      <%= link(to: "https://www.getrevue.co/profile/til/", class: "site_nav__link") do %>
+      <%= link(to: "https://hashrocket.com/#newsletter-subscribe-form", class: "site_nav__link") do %>
         <%= icon("newsletter", :large, "Newsletter") %>
       <% end %>
     </li>
