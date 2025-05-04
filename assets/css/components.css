@@ -84,7 +84,7 @@ nav.pagination a:hover {
   overflow: auto;
   padding-top: 4vw;
 
-  header, footer, .copy, a.twitter-share-button {
+  :is(header, footer), .copy, a.twitter-share-button {
     padding: 0 4vw;
   }
 }
@@ -348,7 +348,7 @@ form input[type='submit']:active, form button[type='submit']:active, form input[
  }
 }
 .post.post__content header, .copy {
-  h1, h2, h3, h4, h5, p, ul, ol {
+  :is(h1, h2, h3, h4, h5, p, ul, ol) {
     margin: 0 0 1.2em 0;
   }
   header:first-type-of a {
@@ -357,7 +357,7 @@ form input[type='submit']:active, form button[type='submit']:active, form input[
 }
 @media screen and (max-width: 480px) {
   .post.post__content header, .copy {
-    h1, h2, h3, h4, h5, p, ul, ol {
+    :is(h1, h2, h3, h4, h5, p, ul, ol) {
       margin-bottom: 0.7em;
     }
     header:first-type-of a {
