@@ -42,10 +42,10 @@ defmodule Features.VisitorViewsChannelTest do
     |> assert_has(Query.css("article.post", count: 5))
     |> assert_has(Query.css("nav.pagination", visible: true))
     |> visit("/smalltalk?page=2")
-    |> assert_has(Query.css("h1", text: "Title1", visible: true))
+    |> assert_has(Query.css("article header a", text: "Title1", visible: true))
     |> assert_has(Query.css("article.post", count: 1))
     |> visit("/smalltalk")
-    |> assert_has(Query.css("h1", text: "Title5", visible: true))
+    |> assert_has(Query.css("article header a", text: "Title5", visible: true))
     |> assert_has(Query.css("article.post", count: 5))
   end
 end

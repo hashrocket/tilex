@@ -71,5 +71,5 @@ $(function(){
     new LikeButton(this);
   });
 
-  $('header').attr('data-likes-loaded', 'true')
+  $('header.site_head').attr('data-likes-loaded', 'true')
 });
