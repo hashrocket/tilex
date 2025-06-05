@@ -55,6 +55,7 @@ config :tilex, :page_size, 5
 config :tilex, :auth_controller, AuthController
 config :tilex, :slack_notifier, Tilex.Notifications.Notifiers.Slack
 config :tilex, :twitter_notifier, Tilex.Notifications.Notifiers.Twitter
+config :tilex, :webhook_notifier, Tilex.Notifications.Notifiers.Webhook
 config :tilex, :organization_name, System.get_env("ORGANIZATION_NAME")
 config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
 config :tilex, :default_twitter_handle, System.get_env("DEFAULT_TWITTER_HANDLE")
@@ -67,6 +68,7 @@ config :tilex, :slack_endpoint, "https://hooks.slack.com#{System.get_env("slack_
 config :tilex, :banner_image_source, System.get_env("BANNER_IMAGE_SOURCE")
 config :tilex, :banner_image_link, System.get_env("BANNER_IMAGE_LINK")
 config :tilex, :banner_image_alt, System.get_env("BANNER_IMAGE_ALT")
+config :tilex, :webhook_url, System.get_env("WEBHOOK_URL")
 
 config :tilex,
        :rate_limiter_requests_per_time_period,
