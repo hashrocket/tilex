@@ -6,9 +6,10 @@ defmodule Tilex.Notifications.Notifiers.Webhook do
   def handle_post_created(post, developer, channel, url) do
     if webhook_url() do
       payload = %{
+        event: "post.created",
         til: %{
           title: post.title,
-          developer_name: Developer.twitter_handle(developer),
+          author_name: developer.username,
           channel: channel.twitter_hashtag,
           post_url: url
         }
