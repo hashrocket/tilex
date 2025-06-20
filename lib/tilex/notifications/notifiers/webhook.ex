@@ -4,7 +4,7 @@ defmodule Tilex.Notifications.Notifiers.Webhook do
   use Tilex.Notifications.Notifier
 
   def handle_post_created(post, developer, channel, url) do
-    if webhook_url() do
+    if webhook_configured?() do
       payload = %{
         event: "post.created",
         til: %{
@@ -15,7 +15,7 @@ defmodule Tilex.Notifications.Notifiers.Webhook do
         }
       }
 
-      Req.post(webhook_url(), json: payload)
+      Req.post(webhook_url(), json: payload, auth: {:basic, webhook_basic_auth()})
     end
   end
 
@@ -27,5 +27,9 @@ defmodule Tilex.Notifications.Notifiers.Webhook do
     :ok
   end
 
+  defp webhook_configured?, do: !!webhook_url() && !!webhook_basic_auth()
+
   defp webhook_url, do: Application.get_env(:tilex, :webhook_url)
+
+  defp webhook_basic_auth, do: Application.get_env(:tilex, :webhook_basic_auth)
 end

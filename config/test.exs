@@ -44,6 +44,7 @@ config :tilex, :date_time_module, Tilex.DateTimeMock
 config :tilex, :date_display_tz, "America/Chicago"
 config :tilex, :slack_endpoint, "https://slack.test.com/abc/123"
 config :tilex, :webhook_url, "https://example.com/webhook"
+config :tilex, :webhook_basic_auth, "user:password"
 
 config :httpoison, timeout: 6000
 

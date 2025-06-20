@@ -69,6 +69,7 @@ config :tilex, :banner_image_source, System.get_env("BANNER_IMAGE_SOURCE")
 config :tilex, :banner_image_link, System.get_env("BANNER_IMAGE_LINK")
 config :tilex, :banner_image_alt, System.get_env("BANNER_IMAGE_ALT")
 config :tilex, :webhook_url, System.get_env("WEBHOOK_URL")
+config :tilex, :webhook_basic_auth, System.get_env("WEBHOOK_BASIC_AUTH")
 
 config :tilex,
        :rate_limiter_requests_per_time_period,
