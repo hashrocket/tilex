@@ -14,6 +14,9 @@ defmodule TilexWeb.PostController do
     when action in ~w(new create edit update)a
   )
 
+  @behaviour Guardian.Plug.ErrorHandler
+
+  @impl Guardian.Plug.ErrorHandler
   def auth_error(conn, {_failure_type, _reason}, _opts) do
     conn
     |> put_status(302)

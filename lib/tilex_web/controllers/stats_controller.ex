@@ -3,14 +3,15 @@ defmodule TilexWeb.StatsController do
 
   alias Tilex.Stats
 
-  alias Guardian.Plug, as: Guardian
-
   plug(
-    Guardian.EnsureAuthenticated,
+    Guardian.Plug.EnsureAuthenticated,
     [error_handler: __MODULE__]
     when action in ~w(developer)a
   )
 
+  @behaviour Guardian.Plug.ErrorHandler
+
+  @impl Guardian.Plug.ErrorHandler
   def auth_error(conn, {_failure_type, _reason}, _opts) do
     conn
     |> put_status(302)
