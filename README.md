@@ -8,9 +8,10 @@
 > is open to any Rocketeer as well as select friends of the team. We hope you
 > enjoy learning along with us.
 
-This site was open-sourced in as a window into our development process, as well as
-to allow people to experiment with the site on their own and contribute to the
-project.
+Today I Learned was open-sourced to:
+- provide a window into our development process
+- allow people to experiment with the site on their own
+- allow folks to contribute back to the project
 
 We originally implemented Tilex as [_hr-til_][hr-til], a Ruby on Rails app.
 
@@ -41,8 +42,10 @@ $ make
 $ make setup server
 ```
 
-To do everything by hand, source your environment variables, install
-dependencies, and start the server:
+#### Option 1 (seeded db)
+
+Source your environment variables, install
+dependencies, seed the db, and start the server:
 
 ```shell
 $ cp .env{.example,}
@@ -53,8 +56,24 @@ $ npm install --prefix assets
 $ mix phx.server
 ```
 
-Want to start with an empty database? Skip the seeds by running `mix ecto.create && mix
-ecto.migrate` in place of `mix ecto.setup`.
+### Option 2 (empty db)
+
+For those who prefer to start with a blank slate:
+
+```shell
+$ cp .env{.example,}
+$ source .env
+$ mix deps.get
+$ mix ecto.create && mix ecto.migrate
+$ npm install --prefix assets
+$ mix phx.server
+```
+
+### Running the application
+
+```shell
+$ mix phx.server
+```
 
 Now you can visit http://localhost:4000 from your browser.
 
@@ -90,7 +109,7 @@ user on subsequent authentications.
 ### Testing
 
 Wallaby relies on [ChromeDriver][chromedriver]; install it via your method of
-choice.  Then, run tests with:
+choice. Then, run tests with:
 
 ```shell
 $ make test
@@ -139,13 +158,12 @@ see [LICENSE](LICENSE.md) for more information.
 
 ---
 
-### About
+<p align="center">
+  <img src="https://hashrocket.com/hashrocket_logo.svg" />
+</p>
 
-[![Hashrocket logo](https://hashrocket.com/hashrocket_logo.svg)][hashrocket]
-
-Tilex is supported by the team at [Hashrocket, a multidisciplinary design and
-development consultancy][hashrocket] If you'd like to [work with us][hire-us]
-or [join our team][join-us], don't hesitate to get in touch.
+Tilex is supported by the team at [Hashrocket][hashrocket], a multidisciplinary design and
+development consultancy. If you'd like to work with us, don't hesitate to [contact us][hire-us] today!
 
 [asdf]: https://github.com/asdf-vm/asdf
 [cc]: http://contributor-covenant.org
