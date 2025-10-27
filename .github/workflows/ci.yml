@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        elixir: [1.17.2]
-        otp: [27.0.1]
+        elixir: [1.19.0]
+        otp: [28.1]
     steps:
     - uses: actions/checkout@v3
     - name: Set up Elixir
@@ -61,8 +61,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        elixir: [1.17.2]
-        otp: [27.0.1]
+        elixir: [1.19.0]
+        otp: [28.1]
     services:
       postgres:
         image: postgres:14
@@ -111,8 +111,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        elixir: [1.17.2]
-        otp: [27.0.1]
+        elixir: [1.19.0]
+        otp: [28.1]
     steps:
     - uses: actions/checkout@v3
     - name: Set up Elixir
