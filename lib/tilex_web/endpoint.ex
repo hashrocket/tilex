@@ -1,6 +1,5 @@
 defmodule TilexWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :tilex
-  use Appsignal.Phoenix
 
   if sandbox = Application.compile_env(:tilex, :sandbox) do
     plug(Phoenix.Ecto.SQL.Sandbox, sandbox: sandbox)

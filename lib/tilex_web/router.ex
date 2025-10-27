@@ -112,4 +112,8 @@ defmodule TilexWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
+
+  forward "/mcp",
+          Hermes.Server.Transport.StreamableHTTP.Plug,
+          server: Tilex.MCP.Server
 end
