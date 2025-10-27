@@ -1,6 +1,4 @@
 defmodule Tilex.Notifications.Notifiers.Webhook do
-  alias Tilex.Blog.Developer
-
   use Tilex.Notifications.Notifier
 
   def handle_post_created(post, developer, channel, url) do
