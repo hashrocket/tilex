@@ -19,6 +19,7 @@ setup: ## Setup the App.
 	mix local.hex --force
 	mix setup
 	mix gettext.extract --merge --no-fuzzy
+	mix usage_rules.sync AGENTS.md --all --inline usage_rules:all --link-to-folder deps
 
 server: ## Start the App server.
 	npm install --prefix assets/

@@ -33,6 +33,7 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:usage_rules, "~> 0.1", only: [:dev]},
       {:appsignal_phoenix, "~> 2.0"},
       {:cachex, "~> 3.1"},
       {:cors_plug, "~> 3.0"},
