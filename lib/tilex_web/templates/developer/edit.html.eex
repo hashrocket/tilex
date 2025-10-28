@@ -30,5 +30,55 @@
       <%= submit "Submit" %>
       <%= link("cancel", to: Routes.post_path(@conn, :index)) %>
     <% end %>
+
+    <%= form_for @conn, Routes.developer_path(@conn, :generate_api_key), [method: :post], fn _f -> %>
+      <dl>
+        <%= if mcp_signed_token = assigns[:mcp_signed_token] do %>
+          <dt>
+            <label>MCP API KEY</label>
+          </dt>
+          <dd class="copy">
+            <pre class="language-shell"><code class="shell language-shell"><%= mcp_signed_token %></code></pre>
+          </dd>
+          <dt>
+            <label>Add into Claude Code</label>
+          </dt>
+          <dd class="copy">
+            <pre class="language-shell"><code class="shell language-shell">claude mcp add --scope user --transport http \
+  til <%= TilexWeb.Endpoint.url()<> "/mcp" %> \
+  --header "X-API-KEY: <%= mcp_signed_token %>";</code></pre>
+          </dd>
+          <dt>
+            <label>Add into Cursor</label>
+          </dt>
+          <dd class="copy">
+            <pre class="language-json"><code class="json language-json">{
+  "mcpServers": {
+    "til": {
+      "url": "<%= TilexWeb.Endpoint.url()<> "/mcp" %>",
+      "headers": {
+        "X-API-KEY": "<%= mcp_signed_token %>"
+      }
+    }
+  }
+}</code></pre>
+          </dd>
+        <% else %>
+          <%= if !!@developer.mcp_api_key do %>
+            <dt>
+              You've already generated a MCP API KEY, but for security reasons we can't retrieve it.
+            </dt>
+            <dd>
+              You must regenerate a new one and setup the MCP server again.
+            </dd>
+          <% else %>
+            <dt>
+              You've never generated a MCP API KEY yet
+            </dt>
+          <% end %>
+        <% end %>
+      </dl>
+      <%= submit "Generate new MCP API Key" %>
+    <% end %>
   </div>
 </main>

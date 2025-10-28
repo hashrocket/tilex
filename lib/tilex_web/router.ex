@@ -76,6 +76,7 @@ defmodule TilexWeb.Router do
     get "/authors/:name", DeveloperController, :show
     get "/profile/edit", DeveloperController, :edit
     put "/profile/edit", DeveloperController, :update
+    post "/profile/api_key/generate", DeveloperController, :generate_api_key
 
     get "/", PostController, :index
     resources "/posts", PostController, param: "titled_slug"

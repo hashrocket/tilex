@@ -7,6 +7,9 @@ defmodule Tilex.Blog.Developer do
   alias Tilex.Blog.Developer
   alias Tilex.Blog.Post
 
+  @mcp_api_key_name "mcp-api-key"
+  @one_year :timer.hours(365 * 24)
+
   schema "developers" do
     field(:email, :string)
     field(:username, :string)
@@ -49,6 +52,26 @@ defmodule Tilex.Blog.Developer do
     name
     |> String.downcase()
     |> String.replace(" ", "")
+  end
+
+  def generate_mcp_api_key(endpoint) do
+    mcp_api_key = Ecto.UUID.generate()
+
+    %{
+      mcp_api_key: mcp_api_key,
+      signed_token: Phoenix.Token.sign(endpoint, @mcp_api_key_name, mcp_api_key)
+    }
+  end
+
+  def verify_mcp_api_key(endpoint, signed_token) do
+    Phoenix.Token.verify(endpoint, @mcp_api_key_name, signed_token, max_age: @one_year)
+  end
+
+  def mcp_api_key_changeset(developer, mcp_api_key) do
+    developer
+    |> cast(%{}, [])
+    |> put_change(:mcp_api_key, mcp_api_key)
+    |> validate_required([:mcp_api_key])
   end
 
   defp clean_twitter_handle(changeset) do

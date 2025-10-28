@@ -12,14 +12,17 @@ defmodule Tilex.MCP.Server do
   def init(_arg, frame) do
     headers = Enum.into(frame.transport.req_headers, %{})
     user = get_current_user(headers["x-api-key"])
-    assigns = Map.put(frame.assigns, :current_user, user)
+    assigns = Map.put(frame.assigns || %{}, :current_user, user)
     frame = Map.put(frame, :assigns, assigns)
     {:ok, frame}
   end
 
-  defp get_current_user("" <> _ = api_key) do
-    Repo.one(from d in Developer, where: d.id == ^api_key)
+  defp get_current_user(signed_token) do
+    with "" <> _ <- signed_token,
+         {:ok, mcp_api_key} <- Developer.verify_mcp_api_key(TilexWeb.Endpoint, signed_token) do
+      Repo.one(from d in Developer, where: d.mcp_api_key == ^mcp_api_key)
+    else
+      _ -> nil
+    end
   end
-
-  defp get_current_user(_api_key), do: nil
 end
