@@ -65,7 +65,7 @@ defmodule Tilex.Blog.Post do
   def changeset(post, params \\ %{}) do
     post
     |> cast(params, @permitted_params)
-    |> add_slug
+    |> add_slug()
     |> validate_required(@required_params)
     |> validate_length(:title, max: title_max_chars())
     |> validate_length_of_body

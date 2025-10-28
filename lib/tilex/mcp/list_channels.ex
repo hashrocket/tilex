@@ -16,7 +16,7 @@ defmodule Tilex.MCP.ListChannels do
   schema do
   end
 
-  def execute(input, frame) do
+  def execute(_input, frame) do
     channels = list_channels()
     resp = Response.tool() |> Response.json(channels)
     {:reply, resp, frame}
