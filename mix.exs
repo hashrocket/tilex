@@ -62,6 +62,7 @@ defmodule Tilex.Mixfile do
       {:req, "~> 0.5.8"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
+      {:tidewave, "~> 0.5", only: :dev},
       {:timex, "~> 3.1"},
       {:tzdata, "~> 1.1.0"},
       {:ueberauth_google, "~> 0.5"},
