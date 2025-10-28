@@ -6,6 +6,7 @@ defmodule Tilex.MCP.Server do
   alias Tilex.Repo
   alias Tilex.Blog.Developer
 
+  component(Tilex.MCP.ListChannels)
   component(Tilex.MCP.NewPost)
 
   def init(_arg, frame) do
