@@ -1,3 +1,4 @@
+.claude/
 .env
 *.ez
 /_build/
