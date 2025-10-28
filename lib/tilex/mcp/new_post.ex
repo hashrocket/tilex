@@ -7,9 +7,14 @@ defmodule Tilex.MCP.NewPost do
 
   use Hermes.Server.Component, type: :tool
 
+  import Ecto.Query, only: [from: 2]
+
+  alias Ecto.Changeset
   alias Hermes.Server.Response
+  alias Tilex.Blog.Channel
   alias Tilex.Blog.Developer
   alias Tilex.Blog.Post
+  alias Tilex.Repo
   alias TilexWeb.Endpoint
   alias TilexWeb.Router.Helpers, as: Routes
 
@@ -20,19 +25,26 @@ defmodule Tilex.MCP.NewPost do
 
     field :body, :string,
       required: true,
-      description:
-        "Max #{Post.body_max_words()} words in a Markdown format."
+      description: "Max #{Post.body_max_words()} words in a Markdown format."
+
+    field :channel, :string,
+      required: true,
+      description: "Channel is given by the list_channels MCP tool from this same server."
   end
 
   def execute(input, frame) do
-    current_user = frame.assigns.current_user
     resp = Response.tool()
 
     resp =
-      case create_til_post(current_user, input) do
-        {:ok, %Post{} = post} ->
-          url = Routes.post_url(Endpoint, :show, post)
-          Response.resource_link(resp, url, "til-post", description: "Link to the TIL post preview")
+      with {:ok, current_user} <- get_current_user(frame),
+           {:ok, channel} <- get_channel(input),
+           {:ok, %Post{} = post} <- create_til_post(current_user, channel, input) do
+        url = Routes.post_url(Endpoint, :show, post)
+
+        Response.resource_link(resp, url, "til-post", description: "Link to the TIL post preview")
+      else
+        {:error, %Changeset{} = cs} ->
+          Response.error(resp, changeset_errors(cs))
 
         {:error, reason} ->
           Response.error(resp, "ERROR => #{reason}")
@@ -41,11 +53,44 @@ defmodule Tilex.MCP.NewPost do
     {:reply, resp, frame}
   end
 
-  defp create_til_post(nil, _input) do
-    {:error, "User is not authenticated to create TILs"}
+  defp get_current_user(frame) do
+    case Map.get(frame.assigns, :current_user) do
+      nil -> {:error, "User is not authenticated to create TILs"}
+      %Developer{} = user -> {:ok, user}
+    end
   end
 
-  defp create_til_post(%Developer{} = current_user, %{title: title, body: body}) do
-    {:ok, %Post{title: title, body: body, slug: "foo-bar"}}
+  defp get_channel(%{channel: channel}) do
+    query = from(c in Channel, where: c.name == ^channel)
+
+    case Repo.one(query) do
+      nil -> {:error, "Channel does not exist: #{channel}"}
+      %Channel{} = channel -> {:ok, channel}
+    end
+  end
+
+  defp create_til_post(%Developer{} = current_user, channel, %{title: title, body: body}) do
+    attrs = %{
+      developer_id: current_user.id,
+      title: title,
+      body: body,
+      channel_id: channel.id
+    }
+
+    %Post{}
+    |> Post.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  defp changeset_errors(changeset) do
+    Ecto.Changeset.traverse_errors(changeset, fn {message, opts} ->
+      Regex.replace(~r"%{(\w+)}", message, fn _, key ->
+        opts |> Keyword.get(String.to_existing_atom(key), key) |> to_string()
+      end)
+    end)
+    |> Enum.flat_map(fn {field, errors} ->
+      Enum.map(errors, &"#{Phoenix.Naming.humanize(field)} #{&1}")
+    end)
+    |> Enum.join("\n")
   end
 end
