@@ -13,6 +13,7 @@ defmodule Tilex.Blog.Developer do
     field(:twitter_handle, :string)
     field(:admin, :boolean)
     field(:editor, :string)
+    field(:mcp_api_key, :string)
 
     has_many(:posts, Post)
 
