@@ -29,8 +29,9 @@ defmodule DeveloperCreatesPostTest do
     |> PostShowPage.expect_post_attributes(%{
       title: "Example Title",
       body: "Example Body",
-      channel: "phoenix",
-      likes_count: 1
+      channel: "#PHOENIX",
+      likes_count: 1,
+      badge: "DRAFT"
     })
 
     post =
@@ -69,7 +70,7 @@ defmodule DeveloperCreatesPostTest do
     |> PostShowPage.expect_post_attributes(%{
       title: "Example Title",
       body: "Example Body",
-      channel: "phoenix",
+      channel: "#PHOENIX",
       likes_count: 1
     })
 

@@ -1,5 +1,8 @@
 <article class="post">
   <section>
+    <%= if !@post.published_at do %>
+      <div class="post__badge">DRAFT</div>
+    <% end %>
     <div class="post__content copy">
       <h1>
         <%= link(@post.title, to: Routes.post_path(@conn, :show, @post)) %>

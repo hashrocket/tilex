@@ -39,9 +39,11 @@ defmodule Tilex.MCP.NewPost do
       with {:ok, current_user} <- get_current_user(frame),
            {:ok, channel} <- get_channel(input),
            {:ok, %Post{} = post} <- create_til_post(current_user, channel, input) do
-        url = Routes.post_url(Endpoint, :show, post)
+        url = Routes.post_url(Endpoint, :edit, post)
 
-        Response.resource_link(resp, url, "til-post", description: "Link to the TIL post preview")
+        Response.resource_link(resp, url, "til-post",
+          description: "Open this link in order to review the TIL and publish it!"
+        )
       else
         {:error, %Changeset{} = cs} ->
           Response.error(resp, changeset_errors(cs))

@@ -69,6 +69,7 @@ nav.pagination a:hover {
   opacity: 0.8;
 }
 .post section {
+  position: relative;
   flex: 0 1 auto;
   box-sizing: border-box;
   min-width: 35rem;
@@ -94,6 +95,21 @@ nav.pagination a:hover {
 }
 .post .post__content h1:first-of-type a:hover {
   color: var(--red);
+}
+.post .post__badge {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: var(--red, #d7263d);
+  color: #fff;
+  padding: 0.5em 1.2em;
+  border-radius: 2em;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  z-index: 2;
 }
 .post footer {
   font-style: italic;

@@ -25,7 +25,7 @@ defmodule VisitorViewsPostTest do
     |> PostShowPage.expect_post_attributes(%{
       title: "A special post",
       body: "This is how to be super awesome!",
-      channel: "#command-line",
+      channel: "#COMMAND-LINE",
       likes_count: 1
     })
 
@@ -226,7 +226,7 @@ defmodule VisitorViewsPostTest do
     |> PostShowPage.expect_post_attributes(%{
       title: post.title,
       body: post.body,
-      channel: post.channel.name,
+      channel: "#" <> String.upcase(post.channel.name),
       likes_count: 1
     })
 
@@ -241,7 +241,7 @@ defmodule VisitorViewsPostTest do
     |> PostShowPage.expect_post_attributes(%{
       title: post.title,
       body: post.body,
-      channel: post.channel.name,
+      channel: "#" <> String.upcase(post.channel.name),
       likes_count: 1
     })
     |> assert_text(Query.css(".post__tag-link"), "##{String.upcase(post.channel.name)}")

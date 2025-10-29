@@ -22,32 +22,47 @@ defmodule Tilex.Integration.Pages.PostShowPage do
     session
   end
 
-  def expect_post_attributes(session, attrs \\ %{}) do
-    expected_title = Map.fetch!(attrs, :title)
-    expected_body = Map.fetch!(attrs, :body)
-    expected_channel = Map.fetch!(attrs, :channel)
-    expected_likes_count = attrs |> Map.fetch!(:likes_count) |> to_string()
-
-    session
-    |> Browser.find(Query.css(".post h1", text: expected_title))
-
-    session
-    |> Browser.find(Query.css(".post .copy", text: expected_body))
-
-    channel_name =
-      session
-      |> Browser.find(Query.css(".post aside .post__tag-link"))
-      |> Element.text()
+  defp assert_contains(session, query, expected_text) do
+    texts = session |> Browser.all(query) |> Enum.map(&Element.text/1)
 
     ExUnit.Assertions.assert(
-      channel_name =~ ~r/#{expected_channel}/i,
-      "Unable to find text channel #{expected_channel}, instead found #{channel_name}"
+      Enum.any?(texts, &String.contains?(&1, expected_text)),
+      "Unable to find contains text: '#{expected_text}', instead found '#{texts}'"
     )
 
     session
-    |> Browser.find(Query.css(".js-like-action", text: expected_likes_count))
+  end
+
+  defp assert_texts(session, query, expected_texts) do
+    texts = session |> Browser.all(query) |> Enum.map(&Element.text/1)
+
+    ExUnit.Assertions.assert(
+      texts == expected_texts,
+      "Unable to find text: '#{expected_texts}', instead found '#{texts}'"
+    )
 
     session
+  end
+
+  def expect_post_attributes(session, attrs \\ %{}) do
+    expected_title = Map.fetch!(attrs, :title)
+    expected_body = Map.fetch!(attrs, :body)
+    expected_channel = attrs.channel
+    expected_likes_count = attrs |> Map.fetch!(:likes_count) |> to_string()
+    badge = attrs[:badge]
+
+    session
+    |> assert_texts(Query.css(".post h1"), [expected_title])
+    |> assert_texts(Query.css(".post aside .post__tag-link"), [expected_channel])
+    |> assert_contains(Query.css(".post .copy"), expected_body)
+    |> assert_texts(Query.css(".post__like-count"), [expected_likes_count])
+    |> then(fn s ->
+      if badge do
+        assert_texts(s, Query.css(".post__badge"), [badge])
+      else
+        s
+      end
+    end)
   end
 
   def click_edit(session) do
