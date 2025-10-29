@@ -39,7 +39,7 @@ defmodule DeveloperEditsPostTest do
     |> PostShowPage.expect_post_attributes(%{
       title: "Even Awesomer Post!",
       body: "This is how to be super awesome!",
-      channel: "#phoenix",
+      channel: "#PHOENIX",
       likes_count: 1
     })
   end

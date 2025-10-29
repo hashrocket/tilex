@@ -34,7 +34,7 @@ defmodule Tilex.MCP.NewPostTest do
                isError: false,
                content: [
                  %{
-                   "description" => "Link to the TIL post preview",
+                   "description" => "Open this link in order to review the TIL and publish it!",
                    "name" => "til-post",
                    "type" => "resource_link",
                    "uri" => "http" <> _
