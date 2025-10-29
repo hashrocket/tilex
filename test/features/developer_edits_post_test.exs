@@ -31,7 +31,7 @@ defmodule DeveloperEditsPostTest do
     |> PostForm.fill_in_title("Even Awesomer Post!")
     |> PostForm.fill_in_body("This is how to be super awesome!")
     |> PostForm.select_channel("phoenix")
-    |> PostForm.click_submit()
+    |> PostForm.click_save()
 
     session
     |> PostShowPage.ensure_page_loaded("Even Awesomer Post!")

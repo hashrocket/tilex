@@ -6,6 +6,7 @@ defmodule TilexWeb.FeedController do
       Repo.all(
         from(
           p in Tilex.Blog.Post,
+          where: not is_nil(p.published_at) and p.published_at <= fragment("now()"),
           order_by: [desc: p.inserted_at],
           preload: [:channel, :developer],
           limit: 25

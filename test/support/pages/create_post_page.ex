@@ -25,9 +25,12 @@ defmodule Tilex.Integration.Pages.CreatePostPage do
         end).()
   end
 
-  def submit_form(session) do
-    session
-    |> click(Query.button("Submit"))
+  def save_form(session) do
+    click(session, Query.button("Save"))
+  end
+
+  def publish_form(session) do
+    click(session, Query.button("Save & Publish"))
   end
 
   def click_cancel(session) do

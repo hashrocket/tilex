@@ -3,7 +3,7 @@
     <header class="page_head">
       <h1>My Profile</h1>
     </header>
-    <%= form_for @changeset, Routes.developer_path(@conn, :update), fn f -> %>
+    <%= form_for @changeset, Routes.developer_path(@conn, :update), [id: "edit-form"], fn f -> %>
       <dl>
         <dt>
           <%= label f, :email %>
@@ -31,7 +31,7 @@
       <%= link("cancel", to: Routes.post_path(@conn, :index)) %>
     <% end %>
 
-    <%= form_for @conn, Routes.developer_path(@conn, :generate_api_key), [method: :post], fn _f -> %>
+    <%= form_for @conn, Routes.developer_path(@conn, :generate_api_key), [method: :post, id: "mcp-api-key-form"], fn _f -> %>
       <dl>
         <%= if mcp_signed_token = assigns[:mcp_signed_token] do %>
           <dt>

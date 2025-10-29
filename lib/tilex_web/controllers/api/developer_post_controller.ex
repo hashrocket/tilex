@@ -11,7 +11,7 @@ defmodule TilexWeb.Api.DeveloperPostController do
   recent posts.
   """
   def index(conn, params) do
-    posts = Posts.by_developer(params["username"], limit: 3)
+    {posts, _count, _developer} = Posts.by_developer(params["username"], limit: 3)
 
     render(conn, "index.json", posts: posts)
   end

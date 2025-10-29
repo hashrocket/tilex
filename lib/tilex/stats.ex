@@ -3,27 +3,30 @@ defmodule Tilex.Stats do
   import Tilex.QueryHelpers, only: [between: 3, greatest: 2, hours_since: 1]
 
   alias Ecto.Adapters.SQL
-  alias Tilex.Repo
   alias Tilex.Blog.Channel
+  alias Tilex.Blog.Post
+  alias Tilex.Repo
 
   def developer(%{start_date: start_date, end_date: end_date}) do
     start_time = Timex.to_datetime(start_date)
     end_time = end_date |> Timex.to_datetime() |> Timex.end_of_day()
 
-    posts_where = fn query ->
-      query
-      |> where([p], between(p.inserted_at, ^start_time, ^end_time))
-    end
+    posts_query =
+      from(p in Post,
+        where:
+          not is_nil(p.published_at) and p.published_at <= fragment("now()") and
+            between(p.inserted_at, ^start_time, ^end_time)
+      )
 
     [
       start_date: format_date(start_date),
       end_date: format_date(end_date),
-      channels: Repo.all(posts_by_channels_count() |> posts_where.()),
-      developers: Repo.all(posts_by_developers_count() |> posts_where.()),
-      developers_count: Repo.one(developers_count() |> posts_where.()),
-      most_liked_posts: Repo.all(most_liked_posts() |> posts_where.()),
-      hottest_posts: Repo.all(hottest_posts() |> posts_where.()),
-      posts_count: Repo.one(posts_count() |> posts_where.()),
+      channels: get_posts_by_channels_count(posts_query),
+      developers: get_posts_by_developers_count(posts_query),
+      developers_count: get_developers_count(posts_query),
+      most_liked_posts: get_most_liked_posts(posts_query),
+      hottest_posts: get_hottest_posts(posts_query),
+      posts_count: Repo.aggregate(posts_query, :count, :id),
       channels_count: Repo.one(channels_count(start_time, end_time)),
       most_viewed_posts: Tilex.Tracking.most_viewed_posts(start_time, end_time),
       total_page_views: Tilex.Tracking.total_page_views(start_time, end_time)
@@ -33,14 +36,19 @@ defmodule Tilex.Stats do
   def all do
     posts_for_days = query_posts_for_days!()
 
+    posts_query =
+      from(p in Post,
+        where: not is_nil(p.published_at) and p.published_at <= fragment("now()")
+      )
+
     [
-      channels: Repo.all(posts_by_channels_count()),
-      developers: Repo.all(posts_by_developers_count()),
-      developers_count: Repo.one(developers_count()),
-      most_liked_posts: Repo.all(most_liked_posts()),
-      hottest_posts: Repo.all(hottest_posts()),
+      channels: get_posts_by_channels_count(posts_query),
+      developers: get_posts_by_developers_count(posts_query),
+      developers_count: get_developers_count(posts_query),
+      most_liked_posts: get_most_liked_posts(posts_query),
+      hottest_posts: get_hottest_posts(posts_query),
       posts_for_days: posts_for_days,
-      posts_count: Repo.one(posts_count()),
+      posts_count: Repo.aggregate(posts_query, :count, :id),
       channels_count: Repo.one(channels_count()),
       max_count:
         ([1] ++ Enum.map(posts_for_days, fn [_, count] -> count end))
@@ -62,7 +70,7 @@ defmodule Tilex.Stats do
       with posts as (
            select date((inserted_at at time zone 'America/New_York')::timestamptz) as post_date
               from posts
-              #{where}
+              #{where} and published_at IS NOT NULL and published_at <= now()
       )
       select dates_table.date, count(posts.post_date) from (
            select (
@@ -85,62 +93,58 @@ defmodule Tilex.Stats do
     Channel
     |> join(:inner, [c], p in assoc(c, :posts))
     |> select([c, p], fragment("count(distinct(c0.id))"))
-    |> where([c, p], between(p.inserted_at, ^start_time, ^end_time))
+    |> where(
+      [c, p],
+      between(p.inserted_at, ^start_time, ^end_time) and not is_nil(p.published_at) and
+        p.published_at <= fragment("now()")
+    )
   end
 
   defp channels_count, do: from(c in "channels", select: fragment("count(*)"))
 
-  defp developers_count, do: from(p in "posts", select: fragment("count(distinct(developer_id))"))
-  defp posts_count, do: from(p in "posts", select: fragment("count(*)"))
-
-  defp posts_and_channels do
-    from(
-      p in "posts",
-      join: c in "channels",
-      on: p.channel_id == c.id
-    )
+  defp get_developers_count(query) do
+    query
+    |> select([p], fragment("count(distinct(developer_id))"))
+    |> Repo.one()
   end
 
-  defp posts_and_developers do
+  defp get_posts_by_channels_count(posts_query) do
     from(
-      p in "posts",
-      join: d in "developers",
-      on: p.developer_id == d.id
-    )
-  end
-
-  defp posts_by_channels_count do
-    from(
-      [p, c] in posts_and_channels(),
+      p in posts_query,
+      join: c in assoc(p, :channel),
       group_by: c.name,
       order_by: [desc: count(p.id)],
       select: {count(p.id), c.name}
     )
+    |> Repo.all()
   end
 
-  defp posts_by_developers_count do
+  defp get_posts_by_developers_count(posts_query) do
     from(
-      [p, d] in posts_and_developers(),
+      p in posts_query,
+      join: d in assoc(p, :developer),
       group_by: d.username,
       order_by: [desc: count(p.id)],
       select: {count(p.id), d.username}
     )
+    |> Repo.all()
   end
 
-  defp most_liked_posts do
+  defp get_most_liked_posts(posts_query) do
     from(
-      [p, c] in posts_and_channels(),
+      p in posts_query,
+      join: c in assoc(p, :channel),
       order_by: [desc: p.likes],
       limit: 10,
       select: {p.title, p.likes, p.slug, c.name}
     )
+    |> Repo.all()
   end
 
-  defp hottest_posts do
+  defp get_hottest_posts(posts_query) do
     posts_with_age_in_hours =
       from(
-        p in "posts",
-        where: not is_nil(p.published_at),
+        p in posts_query,
         select: %{
           inserted_at: p.inserted_at,
           id: p.id,
@@ -165,6 +169,7 @@ defmodule Tilex.Stats do
       },
       limit: 10
     )
+    |> Repo.all()
   end
 
   defp format_date(date) do

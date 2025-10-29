@@ -7,9 +7,13 @@ defmodule Tilex.Posts do
   alias Tilex.Blog.Post
   alias Tilex.Repo
 
+  def published(query \\ Post) do
+    from(p in query, where: not is_nil(p.published_at) and p.published_at <= fragment("now()"))
+  end
+
   def all(page) do
     page
-    |> posts
+    |> posts()
     |> Repo.all()
   end
 
@@ -18,7 +22,7 @@ defmodule Tilex.Posts do
 
     query =
       page
-      |> posts
+      |> posts()
       |> where([p], p.channel_id == ^channel.id)
 
     posts_count =
@@ -28,6 +32,7 @@ defmodule Tilex.Posts do
           where: p.channel_id == ^channel.id,
           select: fragment("count(*)")
         )
+        |> published()
       )
 
     {Repo.all(query), posts_count, channel}
@@ -45,41 +50,42 @@ defmodule Tilex.Posts do
         limit: ^posts_count,
         preload: [:channel, :developer]
       )
+      |> published()
 
     post = Repo.one(query)
 
     {[post], posts_count, post.channel}
   end
 
-  def by_developer(username, limit: limit) do
-    query =
-      from(
-        p in Post,
-        order_by: [desc: p.inserted_at],
-        join: d in assoc(p, :developer),
-        limit: ^limit,
-        where: d.username == ^username
-      )
-
-    Repo.all(query)
-  end
-
-  def by_developer(username, page) do
+  def by_developer(username, opts \\ []) do
+    page = opts[:page] || 1
+    limit = opts[:limit] || limit()
+    include_unpublished = opts[:include_unpublished] || false
     developer = Repo.get_by!(Developer, username: username)
 
     query =
-      page
-      |> posts
-      |> where([p], p.developer_id == ^developer.id)
+      from(
+        p in Post,
+        join: c in assoc(p, :channel),
+        join: d in assoc(p, :developer),
+        preload: [channel: c, developer: d],
+        where: p.developer_id == ^developer.id,
+        order_by: [desc: p.inserted_at],
+        limit: ^limit,
+        offset: ^offset(page)
+      )
+      |> then(fn q ->
+        if include_unpublished do
+          q
+        else
+          published(q)
+        end
+      end)
 
     posts_count =
-      Repo.one(
-        from(
-          p in Post,
-          where: p.developer_id == ^developer.id,
-          select: fragment("count(*)")
-        )
-      )
+      query
+      |> Ecto.Query.exclude([:limit, :offset])
+      |> Repo.aggregate(:count, :id)
 
     {Repo.all(query), posts_count, developer}
   end
@@ -102,7 +108,7 @@ defmodule Tilex.Posts do
             plainto_tsquery('english', $1)
           ) as rank
         ) ranks on true
-        where ranks.rank > 0
+        where ranks.rank > 0 and p.published_at IS NOT NULL and p.published_at <= now()
         order by ranks.rank desc, p.inserted_at desc
     """
 
@@ -127,6 +133,7 @@ defmodule Tilex.Posts do
       limit: ^limit(),
       offset: ^offset(page)
     )
+    |> published()
   end
 
   defp offset(page) do

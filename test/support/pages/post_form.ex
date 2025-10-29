@@ -66,9 +66,12 @@ defmodule Tilex.Integration.Pages.PostForm do
         end).()
   end
 
-  def click_submit(session) do
-    session
-    |> click(Query.button("Submit"))
+  def click_save(session) do
+    click(session, Query.button("Save"))
+  end
+
+  def click_publish(session) do
+    click(session, Query.button("Save & Publish"))
   end
 
   def expect_form_has_error(session, error_text) do

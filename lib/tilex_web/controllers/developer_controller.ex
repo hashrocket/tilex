@@ -7,8 +7,11 @@ defmodule TilexWeb.DeveloperController do
   alias Tilex.Auth
 
   def show(conn, %{"name" => username} = params) do
+    developer = Auth.Guardian.Plug.current_resource(conn)
     page = robust_page(params)
-    {posts, posts_count, developer} = Posts.by_developer(username, page)
+
+    {posts, posts_count, developer} =
+      Posts.by_developer(username, page: page, include_unpublished: !!developer)
 
     conn
     |> assign(:meta_robots, "noindex")
