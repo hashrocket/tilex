@@ -42,7 +42,7 @@ defmodule DeveloperCreatesPostTest do
 
     assert post.body == "Example Body"
     assert post.title == "Example Title"
-    refute is_nil(post.tweeted_at)
+    assert is_nil(post.tweeted_at)
 
     session
     |> Navigation.ensure_heading("TODAY I LEARNED")

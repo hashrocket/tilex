@@ -5,7 +5,44 @@ defmodule Tilex.Posts do
   alias Tilex.Blog.Channel
   alias Tilex.Blog.Developer
   alias Tilex.Blog.Post
+  alias Tilex.Notifications
   alias Tilex.Repo
+
+  def create_post(developer, attrs) do
+    post_changeset = Post.create_changeset(developer.id, attrs)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.insert(:post, post_changeset)
+    |> Ecto.Multi.run(:notification, fn _repo, %{post: post} ->
+      case post.published_at do
+        nil -> {:ok, nil}
+        %DateTime{} -> {:ok, Notifications.post_created(post)}
+      end
+    end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{post: post}} -> {:ok, post}
+      {:error, _operation, reason, _changes} -> {:error, reason}
+    end
+  end
+
+  def update_post(post, attrs) do
+    post_changeset = Post.update_changeset(post, attrs)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:post, post_changeset)
+    |> Ecto.Multi.run(:notification, fn _repo, %{post: updated_post} ->
+      case {post.published_at, updated_post.published_at} do
+        {nil, %DateTime{}} -> {:ok, Notifications.post_created(post)}
+        _ -> {:ok, nil}
+      end
+    end)
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{post: post}} -> {:ok, post}
+      {:error, _operation, reason, _changes} -> {:error, reason}
+    end
+  end
 
   def published(query \\ Post) do
     from(p in query, where: not is_nil(p.published_at) and p.published_at <= fragment("now()"))

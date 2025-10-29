@@ -8,7 +8,6 @@ defmodule TilexWeb.PostController do
   alias Tilex.Blog.Channel
   alias Tilex.Blog.Post
   alias Tilex.Liking
-  alias Tilex.Notifications
   alias Tilex.Posts
 
   plug(:load_channels when action in [:new, :create, :edit, :update])
@@ -130,17 +129,8 @@ defmodule TilexWeb.PostController do
   def create(conn, %{"post" => params}) do
     developer = Guardian.Plug.current_resource(conn)
 
-    sanitized_params =
-      params
-      |> post_params()
-      |> Map.merge(%{"developer_id" => developer.id})
-
-    changeset = Post.changeset(%Post{}, sanitized_params)
-
-    case Repo.insert(changeset) do
-      {:ok, post} ->
-        Notifications.post_created(post)
-
+    case Posts.create_post(developer, params) do
+      {:ok, _post} ->
         conn
         |> put_flash(:info, "Post created")
         |> redirect(to: Routes.developer_path(conn, :show, developer))
@@ -190,20 +180,12 @@ defmodule TilexWeb.PostController do
 
     post =
       case current_user.admin do
-        false ->
-          current_user
-          |> assoc(:posts)
-          |> Repo.get_by!(slug: conn.assigns.slug)
-
-        true ->
-          Repo.get_by!(Post, slug: conn.assigns.slug)
+        false -> assoc(current_user, :posts)
+        true -> Post
       end
+      |> Repo.get_by!(slug: conn.assigns.slug)
 
-    sanitized_params = post_params(params)
-
-    changeset = Post.changeset(post, sanitized_params)
-
-    case Repo.update(changeset) do
+    case Posts.update_post(post, params) do
       {:ok, post} ->
         post = Repo.preload(post, [:developer])
 
@@ -238,8 +220,4 @@ defmodule TilexWeb.PostController do
 
   defp extracted_slug(<<slug::size(10)-binary, _rest::binary>>), do: {:ok, slug}
   defp extracted_slug(_), do: :error
-
-  defp post_params(params) do
-    Map.take(params, ["body", "channel_id", "title", "published_at"])
-  end
 end

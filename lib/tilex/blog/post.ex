@@ -69,20 +69,38 @@ defmodule Tilex.Blog.Post do
     |> add_slug()
     |> validate_required(@required_params)
     |> validate_length(:title, max: title_max_chars())
-    |> validate_length_of_body
+    |> validate_length_of_body()
     |> validate_number(:likes, greater_than: 0)
+    |> foreign_key_constraint(:channel_id)
+    |> foreign_key_constraint(:developer_id)
+  end
+
+  def create_changeset(developer_id, attrs \\ %{}) do
+    %Post{}
+    |> cast(attrs, [:body, :channel_id, :title, :published_at])
+    |> put_change(:developer_id, developer_id)
+    |> add_slug()
+    |> validate_required(@required_params)
+    |> validate_length(:title, max: title_max_chars())
+    |> validate_length_of_body()
+    |> foreign_key_constraint(:channel_id)
+    |> foreign_key_constraint(:developer_id)
+  end
+
+  def update_changeset(post, attrs \\ %{}) do
+    post
+    |> cast(attrs, [:body, :channel_id, :title, :published_at])
+    |> validate_required(@required_params)
+    |> validate_length(:title, max: title_max_chars())
+    |> validate_length_of_body()
     |> foreign_key_constraint(:channel_id)
     |> foreign_key_constraint(:developer_id)
   end
 
   defp add_slug(changeset) do
     case get_field(changeset, :slug) do
-      nil ->
-        generate_slug()
-        |> (&put_change(changeset, :slug, &1)).()
-
-      _ ->
-        changeset
+      nil -> put_change(changeset, :slug, generate_slug())
+      _ -> changeset
     end
   end
 
