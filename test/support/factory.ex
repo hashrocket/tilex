@@ -20,14 +20,15 @@ defmodule Tilex.Factory do
       body: "A body",
       channel: find_first_or_build(:channel),
       developer: find_first_or_build(:developer),
-      slug: Post.generate_slug()
+      slug: Post.generate_slug(),
+      published_at: DateTime.utc_now() |> DateTime.add(-10, :second)
     }
   end
 
   def build(:developer) do
     %Developer{
       email: "developer@hashrocket.com",
-      username: "Ricky Rocketeer"
+      username: "ricky-rocketeer"
     }
   end
 

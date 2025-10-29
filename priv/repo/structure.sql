@@ -102,7 +102,7 @@ CREATE TABLE public.posts (
     slug character varying(255) NOT NULL,
     likes integer DEFAULT 1 NOT NULL,
     max_likes integer DEFAULT 1 NOT NULL,
-    published_at timestamp with time zone DEFAULT now() NOT NULL,
+    published_at timestamp with time zone,
     developer_id bigint,
     tweeted_at timestamp with time zone,
     CONSTRAINT likes_must_be_greater_than_zero CHECK ((likes > 0)),
@@ -304,3 +304,4 @@ INSERT INTO public."schema_migrations" (version) VALUES (20200518184142);
 INSERT INTO public."schema_migrations" (version) VALUES (20220425135720);
 INSERT INTO public."schema_migrations" (version) VALUES (20220429184256);
 INSERT INTO public."schema_migrations" (version) VALUES (20251028182138);
+INSERT INTO public."schema_migrations" (version) VALUES (20251029135003);

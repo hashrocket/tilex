@@ -15,7 +15,7 @@ defmodule Tilex.Blog.Post do
   def title_max_chars, do: @title_max_chars
 
   @required_params ~w(body channel_id developer_id title)a
-  @permitted_params @required_params ++ ~w(developer_id likes max_likes)a
+  @permitted_params @required_params ++ ~w(developer_id likes max_likes published_at)a
 
   schema "posts" do
     field(:title, :string)
@@ -24,6 +24,7 @@ defmodule Tilex.Blog.Post do
     field(:likes, :integer, default: 1)
     field(:max_likes, :integer, default: 1)
     field(:tweeted_at, :utc_datetime)
+    field(:published_at, :utc_datetime_usec)
 
     belongs_to(:channel, Channel)
     belongs_to(:developer, Developer)

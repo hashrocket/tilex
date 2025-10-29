@@ -13,6 +13,12 @@
 #profile_edit .post footer .negative, #post_edit .post footer .negative {
   color: var(--red);
 }
+#post_edit .actions {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-end;
+}
 #statistics {
   margin-bottom: 3rem;
 }

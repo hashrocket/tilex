@@ -30,8 +30,17 @@
       <%= select f, :channel_id, @channels, prompt: "" %>
     </dd>
   </dl>
-  <%= submit "Submit" %>
-  <%= link("cancel", to: "/") %>
+
+  <div class="actions">
+    <%= link("cancel", to: "/") %>
+
+    <input type="submit" name="submit" value="Save" />
+
+    <%= if !input_value(f, :published_at) do %>
+      <input type="submit" name="submit" value="Save & Publish" />
+    <% end %>
+  </div>
+
 <% end %>
 
 <article class="post">

@@ -1,13 +1,14 @@
 defmodule TilexWeb.PostController do
   use TilexWeb, :controller
+
   import Tilex.Pageable
   import Ecto.Query
   import TilexWeb.StructuredDataView, only: [post_ld: 2]
 
   alias Tilex.Blog.Channel
-  alias Tilex.Notifications
-  alias Tilex.Liking
   alias Tilex.Blog.Post
+  alias Tilex.Liking
+  alias Tilex.Notifications
   alias Tilex.Posts
 
   plug(:load_channels when action in [:new, :create, :edit, :update])
@@ -62,8 +63,12 @@ defmodule TilexWeb.PostController do
 
   def show(%{assigns: %{slug: slug}} = conn, _) do
     post =
-      Post
-      |> Repo.get_by!(slug: slug)
+      from(p in Post,
+        where:
+          not is_nil(p.published_at) and p.published_at <= fragment("now()") and
+            p.slug == ^slug
+      )
+      |> Repo.one!(slug: slug)
       |> Repo.preload([:channel])
       |> Repo.preload([:developer])
 
@@ -77,6 +82,7 @@ defmodule TilexWeb.PostController do
     query =
       from(
         post in Post,
+        where: not is_nil(post.published_at) and post.published_at <= fragment("now()"),
         order_by: fragment("random()"),
         limit: 1,
         preload: [:channel, :developer]
@@ -116,6 +122,11 @@ defmodule TilexWeb.PostController do
     |> send_resp(200, Jason.encode!(%{likes: likes}))
   end
 
+  def create(conn, %{"post" => params, "submit" => "Save & Publish"}) do
+    params = Map.put(params, "published_at", DateTime.utc_now() |> DateTime.add(-10, :second))
+    create(conn, %{"post" => params})
+  end
+
   def create(conn, %{"post" => params}) do
     developer = Guardian.Plug.current_resource(conn)
 
@@ -132,7 +143,7 @@ defmodule TilexWeb.PostController do
 
         conn
         |> put_flash(:info, "Post created")
-        |> redirect(to: Routes.post_path(conn, :index))
+        |> redirect(to: Routes.developer_path(conn, :show, developer))
 
       {:error, changeset} ->
         conn
@@ -165,7 +176,16 @@ defmodule TilexWeb.PostController do
     |> render("edit.html")
   end
 
-  def update(conn, %{"post" => params}) do
+  def update(conn, %{"post" => params, "submit" => "Save & Publish"}) do
+    params = Map.put(params, "published_at", DateTime.utc_now() |> DateTime.add(-10, :second))
+    do_update(conn, %{"post" => params})
+  end
+
+  def update(conn, params) do
+    do_update(conn, params)
+  end
+
+  defp do_update(conn, %{"post" => params}) do
     current_user = Guardian.Plug.current_resource(conn)
 
     post =
@@ -185,9 +205,11 @@ defmodule TilexWeb.PostController do
 
     case Repo.update(changeset) do
       {:ok, post} ->
+        post = Repo.preload(post, [:developer])
+
         conn
         |> put_flash(:info, "Post Updated")
-        |> redirect(to: Routes.post_path(conn, :show, post))
+        |> redirect(to: Routes.developer_path(conn, :show, post.developer))
 
       {:error, changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset, current_user: current_user)
@@ -218,6 +240,6 @@ defmodule TilexWeb.PostController do
   defp extracted_slug(_), do: :error
 
   defp post_params(params) do
-    Map.take(params, ["body", "channel_id", "title"])
+    Map.take(params, ["body", "channel_id", "title", "published_at"])
   end
 end

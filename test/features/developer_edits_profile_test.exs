@@ -9,7 +9,7 @@ defmodule DeveloperEditsProfileTest do
     click(session, Query.link("Profile"))
 
     h1_heading = Element.text(find(session, Query.css("#profile_edit header h1")))
-    profile_form = Element.text(find(session, Query.css("#profile_edit form")))
+    profile_form = Element.text(find(session, Query.css("#profile_edit form#edit-form")))
 
     assert h1_heading == "My Profile"
     assert profile_form =~ "fine@sixdollareggs.com"

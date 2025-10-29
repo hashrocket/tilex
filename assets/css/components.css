@@ -286,7 +286,17 @@ form dl dd {
 form fieldset.actions {
   padding-top: 2rem;
 }
-form input[type='text'], form input[type='search'], form textarea {
+form select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--light);
+  font-family: var(--primary-typeface);
+  box-sizing: border-box;
+  border-radius: 0;
+  height: 4rem;
+  line-height: 3rem;
+}
+form input[type='text'], form input[type='search'], form input[type='datetime-local'], form textarea {
   display: inline-block;
   vertical-align: middle;
   width: 100%;
@@ -298,7 +308,7 @@ form input[type='text'], form input[type='search'], form textarea {
   height: 4rem;
   line-height: 3rem;
 }
-form input[type='text']:focus, form input[type='search']:focus, form textarea:focus {
+form input[type='text']:focus, form input[type='search']:focus, form input[type='datetime-local']:focus, form textarea:focus, form select:focus {
   border-color: var(--blue);
   outline: none;
 }
