@@ -5,6 +5,7 @@ defmodule Tilex.Stats do
   alias Ecto.Adapters.SQL
   alias Tilex.Blog.Channel
   alias Tilex.Blog.Post
+  alias Tilex.Posts
   alias Tilex.Repo
 
   def developer(%{start_date: start_date, end_date: end_date}) do
@@ -13,10 +14,9 @@ defmodule Tilex.Stats do
 
     posts_query =
       from(p in Post,
-        where:
-          not is_nil(p.published_at) and p.published_at <= fragment("now()") and
-            between(p.inserted_at, ^start_time, ^end_time)
+        where: between(p.inserted_at, ^start_time, ^end_time)
       )
+      |> Posts.published()
 
     [
       start_date: format_date(start_date),
@@ -35,11 +35,7 @@ defmodule Tilex.Stats do
 
   def all do
     posts_for_days = query_posts_for_days!()
-
-    posts_query =
-      from(p in Post,
-        where: not is_nil(p.published_at) and p.published_at <= fragment("now()")
-      )
+    posts_query = Posts.published()
 
     [
       channels: get_posts_by_channels_count(posts_query),

@@ -63,10 +63,9 @@ defmodule TilexWeb.PostController do
   def show(%{assigns: %{slug: slug}} = conn, _) do
     post =
       from(p in Post,
-        where:
-          not is_nil(p.published_at) and p.published_at <= fragment("now()") and
-            p.slug == ^slug
+        where: p.slug == ^slug
       )
+      |> Posts.published()
       |> Repo.one!(slug: slug)
       |> Repo.preload([:channel])
       |> Repo.preload([:developer])
@@ -78,16 +77,15 @@ defmodule TilexWeb.PostController do
   end
 
   def random(conn, _) do
-    query =
+    post =
       from(
         post in Post,
-        where: not is_nil(post.published_at) and post.published_at <= fragment("now()"),
         order_by: fragment("random()"),
         limit: 1,
         preload: [:channel, :developer]
       )
-
-    post = Repo.one(query)
+      |> Posts.published()
+      |> Repo.one()
 
     conn
     |> assign(:meta_robots, "noindex")
