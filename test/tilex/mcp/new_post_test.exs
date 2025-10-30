@@ -2,14 +2,28 @@ defmodule Tilex.MCP.NewPostTest do
   use Tilex.DataCase, async: false
 
   alias Anubis.Server.Response
+  alias Tilex.Blog.Developer
   alias Tilex.Blog.Post
   alias Tilex.Factory
   alias Tilex.MCP.NewPost
   alias Tilex.Repo
 
   describe "execute/2" do
-    test "creates post successfully with valid data and authenticated user" do
-      developer = Factory.insert!(:developer)
+    setup do
+      %{
+        mcp_api_key: mcp_api_key,
+        signed_token: signed_token
+      } = Developer.generate_mcp_api_key(TilexWeb.Endpoint)
+
+      developer = Factory.insert!(:developer, mcp_api_key: mcp_api_key)
+
+      [developer: developer, signed_token: signed_token]
+    end
+
+    test "creates post successfully with valid data and authenticated user", %{
+      developer: developer,
+      signed_token: signed_token
+    } do
       channel = Factory.insert!(:channel, name: "elixir")
 
       title = "My First TIL"
@@ -23,7 +37,7 @@ defmodule Tilex.MCP.NewPostTest do
         body: body
       }
 
-      frame = %{assigns: %{current_user: developer}}
+      frame = %{transport: %{req_headers: %{"x-api-key" => signed_token}}}
 
       assert {:reply, response, returned_frame} = NewPost.execute(input, frame)
 
@@ -64,7 +78,7 @@ defmodule Tilex.MCP.NewPostTest do
         body: body
       }
 
-      frame = %{assigns: %{}}
+      frame = %{transport: %{req_headers: %{}}}
 
       assert {:reply, response, returned_frame} = NewPost.execute(input, frame)
 
@@ -82,9 +96,7 @@ defmodule Tilex.MCP.NewPostTest do
              } = response
     end
 
-    test "raises error when channel does not exist" do
-      developer = Factory.insert!(:developer)
-
+    test "raises error when channel does not exist", %{signed_token: signed_token} do
       title = "My First TIL"
       body = "Today I learned something amazing about Elixir."
 
@@ -94,7 +106,7 @@ defmodule Tilex.MCP.NewPostTest do
         body: body
       }
 
-      frame = %{assigns: %{current_user: developer}}
+      frame = %{transport: %{req_headers: %{"x-api-key" => signed_token}}}
 
       assert {:reply, response, returned_frame} = NewPost.execute(input, frame)
 
@@ -112,8 +124,7 @@ defmodule Tilex.MCP.NewPostTest do
              } = response
     end
 
-    test "returns validation error" do
-      developer = Factory.insert!(:developer)
+    test "returns validation error", %{signed_token: signed_token} do
       channel = Factory.insert!(:channel, name: "elixir")
 
       title = String.duplicate("a", 51)
@@ -125,7 +136,7 @@ defmodule Tilex.MCP.NewPostTest do
         body: body
       }
 
-      frame = %{assigns: %{current_user: developer}}
+      frame = %{transport: %{req_headers: %{"x-api-key" => signed_token}}}
 
       assert {:reply, response, returned_frame} = NewPost.execute(input, frame)
 
