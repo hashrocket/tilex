@@ -115,6 +115,6 @@ defmodule TilexWeb.Router do
   end
 
   forward "/mcp",
-          Hermes.Server.Transport.StreamableHTTP.Plug,
+          Anubis.Server.Transport.StreamableHTTP.Plug,
           server: Tilex.MCP.Server
 end

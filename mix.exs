@@ -33,7 +33,7 @@ defmodule Tilex.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:usage_rules, "~> 0.1", only: [:dev]},
+      {:anubis_mcp, "~> 0.14.1"},
       {:appsignal_phoenix, "~> 2.0"},
       {:cachex, "~> 3.1"},
       {:cors_plug, "~> 3.0"},
@@ -45,7 +45,6 @@ defmodule Tilex.Mixfile do
       {:gettext, "~> 0.18"},
       {:guardian, "~> 2.0"},
       {:hackney, "~>1.25.0"},
-      {:hermes_mcp, "~> 0.14.1"},
       {:html_sanitize_ex, "~> 1.2"},
       {:jason, "~> 1.2"},
       {:oauther,
@@ -67,6 +66,7 @@ defmodule Tilex.Mixfile do
       {:timex, "~> 3.1"},
       {:tzdata, "~> 1.1.0"},
       {:ueberauth_google, "~> 0.5"},
+      {:usage_rules, "~> 0.1", only: [:dev]},
       {:wallaby, "~>0.30.1", [runtime: false, only: :test]}
     ]
   end

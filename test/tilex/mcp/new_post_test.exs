@@ -1,7 +1,7 @@
 defmodule Tilex.MCP.NewPostTest do
   use Tilex.DataCase, async: false
 
-  alias Hermes.Server.Response
+  alias Anubis.Server.Response
   alias Tilex.Blog.Post
   alias Tilex.Factory
   alias Tilex.MCP.NewPost

@@ -5,20 +5,22 @@ defmodule Tilex.MCP.ListChannels do
   Channel are used to group posts by the same topic.
   """
 
-  use Hermes.Server.Component, type: :tool
+  use Anubis.Server.Component,
+    type: :resource,
+    uri: "til:///channels",
+    name: "list_channels",
+    mime_type: "application/json"
 
   import Ecto.Query, only: [from: 2]
 
-  alias Hermes.Server.Response
+  alias Anubis.Server.Response
   alias Tilex.Blog.Channel
   alias Tilex.Repo
 
-  schema do
-  end
-
-  def execute(_input, frame) do
+  @impl true
+  def read(_input, frame) do
     channels = list_channels()
-    resp = Response.tool() |> Response.json(channels)
+    resp = Response.json(Response.resource(), channels)
     {:reply, resp, frame}
   end
 
