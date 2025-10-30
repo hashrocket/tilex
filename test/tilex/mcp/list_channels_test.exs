@@ -1,7 +1,7 @@
 defmodule Tilex.MCP.ListChannelsTest do
   use Tilex.DataCase, async: false
 
-  alias Hermes.Server.Response
+  alias Anubis.Server.Response
   alias Tilex.Factory
   alias Tilex.MCP.ListChannels
 
@@ -14,37 +14,31 @@ defmodule Tilex.MCP.ListChannelsTest do
       Factory.insert!(:channel, name: "ruby")
       Factory.insert!(:channel, name: "javascript")
 
-      assert {:reply, response, returned_frame} = ListChannels.execute(@input, @frame)
+      assert {:reply, response, returned_frame} = ListChannels.read(@input, @frame)
 
       assert returned_frame == @frame
 
       assert %Response{
-               type: :tool,
+               type: :resource,
                isError: false,
-               content: [content]
+               contents: %{"text" => content}
              } = response
 
-      assert %{
-               "text" => "[\"elixir\",\"ruby\",\"javascript\"]",
-               "type" => "text"
-             } == content
+      assert content == "[\"elixir\",\"ruby\",\"javascript\"]"
     end
 
     test "returns empty list when no channels exist" do
-      assert {:reply, response, returned_frame} = ListChannels.execute(@input, @frame)
+      assert {:reply, response, returned_frame} = ListChannels.read(@input, @frame)
 
       assert returned_frame == @frame
 
       assert %Response{
-               type: :tool,
+               type: :resource,
                isError: false,
-               content: [content]
+               contents: %{"text" => content}
              } = response
 
-      assert %{
-               "text" => "[]",
-               "type" => "text"
-             } == content
+      assert content == "[]"
     end
   end
 end

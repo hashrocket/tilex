@@ -5,12 +5,12 @@ defmodule Tilex.MCP.NewPost do
   TIL is a place for sharing something you've learned today with others.
   """
 
-  use Hermes.Server.Component, type: :tool
+  use Anubis.Server.Component, type: :tool
 
   import Ecto.Query, only: [from: 2]
 
   alias Ecto.Changeset
-  alias Hermes.Server.Response
+  alias Anubis.Server.Response
   alias Tilex.Blog.Channel
   alias Tilex.Blog.Developer
   alias Tilex.Blog.Post
@@ -29,9 +29,10 @@ defmodule Tilex.MCP.NewPost do
 
     field :channel, :string,
       required: true,
-      description: "Channel is given by the list_channels MCP tool from this same server."
+      description: "Channel is given by the list_channels MCP resource from this same server."
   end
 
+  @impl true
   def execute(input, frame) do
     resp = Response.tool()
 

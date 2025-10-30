@@ -15,7 +15,7 @@ defmodule Tilex.Application do
       {Cachex, name: :tilex_cache},
       Tilex.Notifications,
       Tilex.RateLimiter,
-      Hermes.Server.Registry,
+      Anubis.Server.Registry,
       {Tilex.MCP.Server, transport: :streamable_http},
       Tilex.Notifications.NotifiersSupervisor
     ]

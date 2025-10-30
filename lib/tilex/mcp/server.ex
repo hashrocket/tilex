@@ -1,5 +1,5 @@
 defmodule Tilex.MCP.Server do
-  use Hermes.Server, name: "TIL", version: "1.0.0", capabilities: [:tools]
+  use Anubis.Server, name: "TIL", version: "1.0.0", capabilities: [:resources, :tools]
 
   import Ecto.Query, only: [from: 2]
 
@@ -9,6 +9,7 @@ defmodule Tilex.MCP.Server do
   component(Tilex.MCP.ListChannels)
   component(Tilex.MCP.NewPost)
 
+  @impl true
   def init(_arg, frame) do
     headers = Enum.into(frame.transport.req_headers, %{})
     user = get_current_user(headers["x-api-key"])
