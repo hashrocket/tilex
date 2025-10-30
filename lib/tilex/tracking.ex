@@ -25,7 +25,7 @@ defmodule Tilex.Tracking do
         where: matches?(req.page, "/posts/"),
         where: not matches?(req.page, "/posts/.+/edit$"),
         where: between(req.request_time, ^start_date, ^end_date),
-        order_by: [desc: count(req.page)],
+        order_by: [desc: count(req.page), asc: req.page],
         select: %{
           url: req.page,
           view_count: count(req.page),
