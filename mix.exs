@@ -82,12 +82,8 @@ defmodule Tilex.Mixfile do
       setup: ["deps.get", "ecto.setup"],
       "ecto.migrate": ["ecto.migrate", "ecto.dump"],
       "ecto.rollback": ["ecto.rollback", "ecto.dump"],
-      "ecto.setup": [
-        "ecto.create",
-        "ecto.load --skip-if-loaded",
-        "ecto.migrate",
-        "run priv/repo/seeds.exs"
-      ],
+      "ecto.setup": ["ecto.create", "ecto.load --skip-if-loaded", "ecto.migrate"],
+      "ecto.seeds": ["run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.load --skip-if-loaded", "ecto.migrate --quiet", "test"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"]

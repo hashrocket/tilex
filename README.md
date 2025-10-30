@@ -2,11 +2,7 @@
 
 [![CI](https://github.com/hashrocket/tilex/actions/workflows/ci.yml/badge.svg)](https://github.com/hashrocket/tilex/actions/workflows/ci.yml)
 
-> Today I Learned is an open-source project by the team at
-> [Hashrocket][hashrocket] that catalogues the sharing & accumulation of
-> knowledge as it happens day-to-day. Posts have a 200-word limit, and posting
-> is open to any Rocketeer as well as select friends of the team. We hope you
-> enjoy learning along with us.
+> Today I Learned is an open-source project by the team at [Hashrocket][hashrocket] that catalogues the sharing & accumulation of knowledge as it happens day-to-day. Posts have a 200-word limit, and posting is open to any Rocketeer as well as select friends of the team. We hope you enjoy learning along with us.
 
 Today I Learned was open-sourced to:
 - provide a window into our development process
@@ -28,60 +24,86 @@ $ git clone https://github.com/<your_github>/tilex
 $ cd tilex
 ```
 
-Then, install [Erlang][erlang], [Elixir][elixir], Node, and PostgreSQL.
-[asdf][asdf] can do this in a single command:
+Then, install [Erlang][erlang], [Elixir][elixir], Node, and PostgreSQL. [mise][mise] can do this in a single command:
 
 ```shell
-$ asdf install
+$ mise install
 ```
 
-From here, we recommend using `make`:
+The first step in the setup is to clone the `.env` file:
+
+```shell
+$ cp .env.example .env
+```
+
+#### Option 1 - Makefile
+
+From here, we recommend using `make` which will print out the help message with all dev tools we have:
 
 ```shell
 $ make
+
+Makefile  console    ## Opens the App console.
+Makefile  help       ## Shows this help.
+Makefile  outdated   ## Shows outdated packages.
+Makefile  server     ## Start the App server.
+Makefile  setup      ## Setup the App.
+Makefile  test       ## Run the test suite.
+Makefile  update     ## Update dependencies.
+```
+
+To **setup** the project and start the **server** you can:
+
+```shell
 $ make setup server
 ```
 
-#### Option 1 (seeded db)
+Now you can visit http://localhost:4000 from your browser.
+
+#### Option 2 - Manual
+
+All Makefile tasks will **automatically** load the `.env` file, so if you want to run any command manually you may have to load that file first:
+
+```shell
+source .env
+```
 
 Source your environment variables, install
 dependencies, seed the db, and start the server:
 
 ```shell
-$ cp .env{.example,}
-$ source .env
 $ mix deps.get
 $ mix ecto.setup
 $ npm install --prefix assets
 $ mix phx.server
 ```
 
-### Option 2 (empty db)
-
-For those who prefer to start with a blank slate:
-
-```shell
-$ cp .env{.example,}
-$ source .env
-$ mix deps.get
-$ mix ecto.create && mix ecto.migrate
-$ npm install --prefix assets
-$ mix phx.server
-```
-
-### Running the application
-
-```shell
-$ mix phx.server
-```
-
 Now you can visit http://localhost:4000 from your browser.
 
-To serve the application at a different port, include the `PORT` environment
-variable when starting the server:
+#### Seeds the local Database
+
+**Optionally**, And if you want to run a seeds task to populate your local database with some fake data you can run:
 
 ```shell
-$ PORT=4444 mix phx.server
+$ DATE_DISPLAY_TZ=America/Chicago mix ecto.seeds
+```
+
+### AI Tooling
+
+#### Creating TILs: from AI via MCP
+
+If you are an user of TIL and wants to write TIL posts with some help of your AI tooling you can use our MCP servers. Log in into your TIL service, then go to the **profile** page. There's a box there to generate an MCP API Key that's needed to authenticate. We added a few helper code snippets to help you to setup the TIL MCP into your tooling.
+
+<img width="551" height="1065" alt="image" src="https://github.com/user-attachments/assets/3f99129e-0f91-4621-83d1-bae1d250f5f7" />
+
+After the MCP is setup correctly you can start asking your AI to write TILs. The response on each new TIL should be a link where you'd have to review the title, content and channel and publish it.
+
+#### Developing TIL code: Improving AI Context
+
+So in case you want to use your AI tools to improve the TIL code we've added the [usage_rules](https://hexdocs.pm/usage_rules) into the project and we also added [tidewave](https://hexdocs.pm/tidewave) served as a MCP.
+
+```
+http://localhost:4000/tidewave/mcp
 ```
 
 ### Authentication
@@ -158,14 +180,16 @@ see [LICENSE](LICENSE.md) for more information.
 
 ---
 
-<p align="center">
-  <img src="https://hashrocket.com/hashrocket_logo.svg" />
-</p>
+<a href="https://hashrocket.com/">
+  <p align="center">
+    <img src="https://hashrocket.com/hashrocket_logo.svg" />
+  </p>
+</a>
 
 Tilex is supported by the team at [Hashrocket][hashrocket], a multidisciplinary design and
 development consultancy. If you'd like to work with us, don't hesitate to [contact us][hire-us] today!
 
-[asdf]: https://github.com/asdf-vm/asdf
+[mise]: https://github.com/jdx/mise
 [cc]: http://contributor-covenant.org
 [chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/
 [contrib]: https://github.com/hashrocket/tilex/graphs/contributors
