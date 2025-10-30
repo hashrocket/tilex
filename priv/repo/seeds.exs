@@ -33,7 +33,8 @@ developer =
     body: "A Gold Master Test in Practice",
     channel: phoenix_channel,
     developer: developer,
-    slug: Post.generate_slug()
+    slug: Post.generate_slug(),
+    published_at: DateTime.utc_now()
   })
 
   Repo.insert!(%Post{
@@ -41,7 +42,8 @@ developer =
     body: "Slow browser integration tests are a hard problem",
     channel: elixir_channel,
     developer: developer,
-    slug: Post.generate_slug()
+    slug: Post.generate_slug(),
+    published_at: DateTime.utc_now()
   })
 
   Repo.insert!(%Post{
@@ -49,6 +51,7 @@ developer =
     body: "A Rubyist's Journey",
     channel: erlang_channel,
     developer: developer,
-    slug: Post.generate_slug()
+    slug: Post.generate_slug(),
+    published_at: DateTime.utc_now()
   })
 end)
