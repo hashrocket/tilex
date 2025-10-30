@@ -34,6 +34,7 @@ defmodule Tilex.Mixfile do
   defp deps do
     [
       {:appsignal_phoenix, "~> 2.0"},
+      {:bluesky_ex, "~> 0.1.6"},
       {:cachex, "~> 3.1"},
       {:cors_plug, "~> 3.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},

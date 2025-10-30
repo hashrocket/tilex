@@ -59,6 +59,7 @@ config :tilex, :webhook_notifier, Tilex.Notifications.Notifiers.Webhook
 config :tilex, :organization_name, System.get_env("ORGANIZATION_NAME")
 config :tilex, :canonical_domain, System.get_env("CANONICAL_DOMAIN")
 config :tilex, :default_twitter_handle, System.get_env("DEFAULT_TWITTER_HANDLE")
+config :tilex, :default_bluesky_handle, System.get_env("DEFAULT_BLUESKY_HANDLE")
 config :tilex, :cors_origin, System.get_env("CORS_ORIGIN")
 config :tilex, :hosted_domain, System.get_env("HOSTED_DOMAIN")
 config :tilex, :guest_author_allowlist, System.get_env("GUEST_AUTHOR_ALLOWLIST")
@@ -116,6 +117,10 @@ config :tilex, Tilex.Notifications.Notifiers.Twitter,
   consumer_secret: System.get_env("twitter_consumer_secret"),
   token: System.get_env("twitter_access_token"),
   token_secret: System.get_env("twitter_access_token_secret")
+
+config :tilex, Tilex.Notifications.Notifiers.Bluesky,
+  username: System.get_env("bluesky_username"),
+  password: System.get_env("bluesky_password")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -92,6 +92,10 @@
             <%= icon("twitter", :small) %>
             Follow on Twitter
           </a>
+          <a href={"https://bsky.app/profile/#{Application.get_env(:tilex, :default_bluesky_handle)}"} class="bluesky">
+            <%= icon("bluesky", :small) %>
+            Follow on Bluesky
+          </a>
         </h2>
       </div>
     </header>
