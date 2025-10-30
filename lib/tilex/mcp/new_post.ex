@@ -9,11 +9,13 @@ defmodule Tilex.MCP.NewPost do
 
   import Ecto.Query, only: [from: 2]
 
-  alias Ecto.Changeset
   alias Anubis.Server.Response
+  alias Ecto.Changeset
   alias Tilex.Blog.Channel
   alias Tilex.Blog.Developer
+  alias Tilex.Blog.Developer
   alias Tilex.Blog.Post
+  alias Tilex.Repo
   alias Tilex.Repo
   alias TilexWeb.Endpoint
   alias TilexWeb.Router.Helpers, as: Routes
@@ -57,7 +59,16 @@ defmodule Tilex.MCP.NewPost do
   end
 
   defp get_current_user(frame) do
-    case Map.get(frame.assigns, :current_user) do
+    headers = Enum.into(frame.transport.req_headers, %{})
+    signed_token = headers["x-api-key"]
+
+    with "" <> _ <- signed_token,
+         {:ok, mcp_api_key} <- Developer.verify_mcp_api_key(TilexWeb.Endpoint, signed_token) do
+      Repo.one(from d in Developer, where: d.mcp_api_key == ^mcp_api_key)
+    else
+      _ -> nil
+    end
+    |> case do
       nil -> {:error, "User is not authenticated to create TILs"}
       %Developer{} = user -> {:ok, user}
     end
