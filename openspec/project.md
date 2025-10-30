@@ -13,7 +13,7 @@ Key characteristics:
 ## Tech Stack
 
 ### Backend
-- **Language**: Elixir 1.19.0 / Erlang OTP 28.1
+- **Language**: Elixir 1.18.4 / Erlang OTP 28.1
 - **Web Framework**: Phoenix ~> 1.6.14 with LiveView ~> 0.18
 - **Database**: PostgreSQL with Ecto ~> 3.6 ORM
 - **Authentication**: Ueberauth + Google OAuth 2.0, Guardian JWT tokens
