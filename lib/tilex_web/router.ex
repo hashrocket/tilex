@@ -41,6 +41,18 @@ defmodule TilexWeb.Router do
     plug Tilex.Plug.RateLimiter
   end
 
+  pipeline :mcp do
+    plug :accepts, ["json", "stream"]
+  end
+
+  scope "/mcp" do
+    pipe_through [:mcp]
+
+    forward "/",
+            Anubis.Server.Transport.StreamableHTTP.Plug,
+            server: Tilex.MCP.Server
+  end
+
   scope "/api", TilexWeb do
     pipe_through [:api]
 
@@ -113,8 +125,4 @@ defmodule TilexWeb.Router do
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
-
-  forward "/mcp",
-          Anubis.Server.Transport.StreamableHTTP.Plug,
-          server: Tilex.MCP.Server
 end
