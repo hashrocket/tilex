@@ -11,12 +11,12 @@ defmodule TilexWeb.PostController do
   alias Tilex.Posts
 
   plug(:load_channels when action in [:new, :create, :edit, :update])
-  plug(:extract_slug when action in [:show, :edit, :update])
+  plug(:extract_slug when action in [:show, :edit, :update, :delete])
 
   plug(
     Guardian.Plug.EnsureAuthenticated,
     [error_handler: __MODULE__]
-    when action in ~w(new create edit update)a
+    when action in ~w(new create edit update delete)a
   )
 
   @behaviour Guardian.Plug.ErrorHandler
@@ -193,6 +193,30 @@ defmodule TilexWeb.PostController do
 
       {:error, changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset, current_user: current_user)
+    end
+  end
+
+  def delete(conn, _params) do
+    current_user = Guardian.Plug.current_resource(conn)
+
+    post =
+      case current_user.admin do
+        false -> assoc(current_user, :posts)
+        true -> Post
+      end
+      |> Repo.get_by!(slug: conn.assigns.slug)
+      |> Repo.preload([:developer])
+
+    case Posts.delete_post(post) do
+      {:ok, _post} ->
+        conn
+        |> put_flash(:info, "Post deleted successfully")
+        |> redirect(to: Routes.developer_path(conn, :show, post.developer))
+
+      {:error, _changeset} ->
+        conn
+        |> put_flash(:error, "Failed to delete post")
+        |> redirect(to: Routes.post_path(conn, :show, post))
     end
   end
 
