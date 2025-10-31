@@ -1,8 +1,8 @@
 defmodule VisitorViewsErrorPageTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
   describe "pages early rejected by url rule" do
-    test "shows not found error page", %{session: session} do
+    feature "shows not found error page", %{session: session} do
       session = visit(session, "/some-page.php")
       assert page_title(session) == "Not Found - Today I Learned"
 
@@ -13,7 +13,7 @@ defmodule VisitorViewsErrorPageTest do
   end
 
   describe "channel not found" do
-    test "shows not found error page", %{session: session} do
+    feature "shows not found error page", %{session: session} do
       session = visit(session, "/missing-channel")
       assert page_title(session) == "Not Found - Today I Learned"
 

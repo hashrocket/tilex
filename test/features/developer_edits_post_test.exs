@@ -1,10 +1,10 @@
 defmodule DeveloperEditsPostTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
   alias Tilex.Integration.Pages.PostForm
   alias Tilex.Integration.Pages.PostShowPage
 
-  test "fills out form and updates post from post show", %{session: session} do
+  feature "fills out form and updates post from post show", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 

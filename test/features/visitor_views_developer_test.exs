@@ -1,9 +1,9 @@
 defmodule Features.VisitorViewsDeveloper do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
   alias TilexWeb.Endpoint
 
-  test "and sees the developer's posts", %{session: session} do
+  feature "and sees the developer's posts", %{session: session} do
     developer = Factory.insert!(:developer, username: "makinpancakes")
     post = Factory.insert!(:post, developer: developer)
 
@@ -19,7 +19,7 @@ defmodule Features.VisitorViewsDeveloper do
     assert page_title(session) == "makinpancakes - Today I Learned"
   end
 
-  test "and sees a prolific developer's posts", %{session: session} do
+  feature "and sees a prolific developer's posts", %{session: session} do
     developer = Factory.insert!(:developer, username: "banjocardhush")
 
     Factory.insert_list!(:post, 7, developer: developer)
@@ -30,7 +30,7 @@ defmodule Features.VisitorViewsDeveloper do
     assert page_header =~ ~r/7 posts by banjocardhush/
   end
 
-  test "and sees the developer's twitter when set", %{session: session} do
+  feature "and sees the developer's twitter when set", %{session: session} do
     developer = Factory.insert!(:developer, twitter_handle: "makinbaconpancakes")
 
     visit(session, developer_path(Endpoint, :show, developer))

@@ -1,10 +1,10 @@
 defmodule DeveloperSeesNavigationBarTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
   alias Tilex.Integration.Pages.Navigation
 
   describe "when developer is not authenticated" do
-    test "there is no link on admin navbar", %{session: session} do
+    feature "there is no link on admin navbar", %{session: session} do
       link_texts =
         session
         |> visit("/")
@@ -17,7 +17,7 @@ defmodule DeveloperSeesNavigationBarTest do
   describe "when developer is authenticated" do
     setup [:authenticated_developer]
 
-    test "there are links on admin navbar", %{session: session} do
+    feature "there are links on admin navbar", %{session: session} do
       link_texts =
         session
         |> visit("/")

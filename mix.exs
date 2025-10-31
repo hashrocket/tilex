@@ -67,7 +67,7 @@ defmodule Tilex.Mixfile do
       {:tzdata, "~> 1.1.0"},
       {:ueberauth_google, "~> 0.5"},
       {:usage_rules, "~> 0.1", only: [:dev]},
-      {:wallaby, "~>0.30.1", [runtime: false, only: :test]}
+      {:wallaby, "~>0.30.1", runtime: false, only: :test}
     ]
   end
 

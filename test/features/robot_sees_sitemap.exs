@@ -1,7 +1,7 @@
 defmodule RobotSeesSitemap do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
-  test "And sees posts", %{session: session} do
+  feature "And sees posts", %{session: session} do
     post = Factory.insert!(:post, title: "Klaus and Greta")
 
     visit(session, "/sitemap.xml")

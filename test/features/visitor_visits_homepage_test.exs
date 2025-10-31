@@ -1,13 +1,13 @@
 defmodule VisitorVisitsHomepageTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
-  test "the page does not have a Create Post link", %{session: session} do
+  feature "the page does not have a Create Post link", %{session: session} do
     visit(session, "/")
 
     refute has?(session, Query.link("Create Post"))
   end
 
-  test "the page has the appropriate branding", %{session: session} do
+  feature "the page has the appropriate branding", %{session: session} do
     header_text =
       session
       |> visit("/")
@@ -19,7 +19,7 @@ defmodule VisitorVisitsHomepageTest do
     assert page_title(session) == "Hashrocket - Today I Learned"
   end
 
-  test "the page has a list of posts", %{session: session} do
+  feature "the page has a list of posts", %{session: session} do
     channel = Factory.insert!(:channel, name: "smalltalk")
 
     Factory.insert!(
@@ -44,7 +44,7 @@ defmodule VisitorVisitsHomepageTest do
     assert post_footer =~ ~r/#smalltalk/i
   end
 
-  test "the page has a list of paginated posts", %{session: session} do
+  feature "the page has a list of paginated posts", %{session: session} do
     Factory.insert_list!(:post, 5 + 1)
 
     visit(session, "/")

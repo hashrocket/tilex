@@ -7,8 +7,7 @@ defmodule DeveloperCreatesPostTest do
   alias Tilex.Integration.Pages.PostShowPage
   alias Tilex.Integration.Pages.PostForm
 
-  test "fills out form and save", %{session: session} do
-    Ecto.Adapters.SQL.Sandbox.allow(Tilex.Repo, self(), Process.whereis(Tilex.Notifications))
+  feature "fills out form and save", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
@@ -48,8 +47,7 @@ defmodule DeveloperCreatesPostTest do
     |> Navigation.ensure_heading("TODAY I LEARNED")
   end
 
-  test "fills out form and save & publish", %{session: session} do
-    Ecto.Adapters.SQL.Sandbox.allow(Tilex.Repo, self(), Process.whereis(Tilex.Notifications))
+  feature "fills out form and save & publish", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
@@ -88,7 +86,7 @@ defmodule DeveloperCreatesPostTest do
     |> Navigation.ensure_heading("TODAY I LEARNED")
   end
 
-  test "cancels submission", %{session: session} do
+  feature "cancels submission", %{session: session} do
     developer = Factory.insert!(:developer)
 
     session
@@ -99,7 +97,7 @@ defmodule DeveloperCreatesPostTest do
     |> IndexPage.ensure_page_loaded()
   end
 
-  test "fails to enter things", %{session: session} do
+  feature "fails to enter things", %{session: session} do
     developer = Factory.insert!(:developer)
 
     session
@@ -113,7 +111,7 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.expect_form_has_error("Channel can't be blank")
   end
 
-  test "enters a title that is too long", %{session: session} do
+  feature "enters a title that is too long", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
@@ -131,7 +129,7 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.expect_form_has_error("Title should be at most 50 character(s)")
   end
 
-  test "enters a body that is too long", %{session: session} do
+  feature "enters a body that is too long", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
@@ -149,7 +147,7 @@ defmodule DeveloperCreatesPostTest do
     |> CreatePostPage.expect_form_has_error("Body should be at most 200 word(s)")
   end
 
-  test "enters markdown code into the body", %{session: session} do
+  feature "enters markdown code into the body", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 
@@ -166,7 +164,7 @@ defmodule DeveloperCreatesPostTest do
     assert find(session, Query.css("strong", text: "bold powerup"))
   end
 
-  test "views parsed markdown preview", %{session: session} do
+  feature "views parsed markdown preview", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 

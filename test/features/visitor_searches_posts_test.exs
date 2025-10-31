@@ -1,5 +1,5 @@
 defmodule VisiorSearchesPosts do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
   def fill_in_search(session, query) do
     session
@@ -12,7 +12,7 @@ defmodule VisiorSearchesPosts do
     |> click(Query.button("Search"))
   end
 
-  test "with no found posts", %{session: session} do
+  feature "with no found posts", %{session: session} do
     Factory.insert!(:post, title: "elixir is awesome")
     fill_in_search(session, "ruby on rails")
     search_result_header = get_text(session, "#search")
@@ -20,7 +20,7 @@ defmodule VisiorSearchesPosts do
     assert search_result_header == "0 posts about ruby on rails"
   end
 
-  test "with 2 found posts", %{session: session} do
+  feature "with 2 found posts", %{session: session} do
     ["Elixir Rules", "Because JavaScript", "Hashrocket Rules"]
     |> Enum.each(&Factory.insert!(:post, title: &1))
 
@@ -36,7 +36,7 @@ defmodule VisiorSearchesPosts do
     refute body =~ ~r/Because JavaScript/
   end
 
-  test "with paginated query results", %{session: session} do
+  feature "with paginated query results", %{session: session} do
     max_posts_on_page = Application.get_env(:tilex, :page_size)
 
     1..(max_posts_on_page * 2)

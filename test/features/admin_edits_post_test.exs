@@ -1,10 +1,10 @@
 defmodule AdminEditsPostTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
   alias Tilex.Integration.Pages.PostForm
   alias Tilex.Integration.Pages.PostShowPage
 
-  test "fills out form and updates post from post show", %{session: session} do
+  feature "fills out form and updates post from post show", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer, %{username: "luke-skywalker"})
     admin = Factory.insert!(:developer, %{admin: true, username: "darth-vader"})
@@ -29,7 +29,7 @@ defmodule AdminEditsPostTest do
     |> PostShowPage.ensure_page_loaded("Even Awesomer Post!")
   end
 
-  test "enters a title that is too long", %{session: session} do
+  feature "enters a title that is too long", %{session: session} do
     Factory.insert!(:channel, name: "phoenix")
     developer = Factory.insert!(:developer)
 

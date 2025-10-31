@@ -1,7 +1,7 @@
 defmodule DeveloperEditsProfileTest do
   use Tilex.IntegrationCase, async: false
 
-  test "fills out form and updates post from post show", %{session: session} do
+  feature "fills out form and updates post from post show", %{session: session} do
     developer = Factory.insert!(:developer, email: "fine@sixdollareggs.com")
 
     sign_in(session, developer)
