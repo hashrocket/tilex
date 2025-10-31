@@ -44,6 +44,10 @@ defmodule Tilex.Posts do
     end
   end
 
+  def delete_post(post) do
+    Repo.delete(post)
+  end
+
   def published(query \\ Post) do
     from(p in query, where: not is_nil(p.published_at) and p.published_at <= fragment("now()"))
   end

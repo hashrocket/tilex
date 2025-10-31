@@ -45,6 +45,9 @@
           <li>
             <%= link("edit", to: Routes.post_path(@conn, :edit, @post), class: "post__permalink") %>
           </li>
+          <li>
+            <%= link("delete", to: Routes.post_path(@conn, :delete, @post), method: :delete, class: "post__delete-link", data: [confirm: "Are you sure you want to delete this post?"]) %>
+          </li>
         <% end %>
         <li>
           <%= link to: "#", class: "js-like-action post__like-link", id: @post.slug do %>

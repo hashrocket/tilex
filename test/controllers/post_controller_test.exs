@@ -1,7 +1,10 @@
 defmodule Tilex.PostControllerTest do
   use TilexWeb.ConnCase, async: true
-  alias Tilex.Factory
+
   alias Tilex.Auth
+  alias Tilex.Blog.Post
+  alias Tilex.Factory
+  alias Tilex.Repo
 
   test "lists all entries on index", %{conn: conn} do
     conn = get(conn, Routes.post_path(conn, :index))
@@ -55,7 +58,7 @@ defmodule Tilex.PostControllerTest do
       post(conn, Routes.post_path(conn, :create, params))
 
       til =
-        Tilex.Blog.Post
+        Post
         |> Tilex.Repo.all()
         |> List.first()
 
@@ -79,7 +82,7 @@ defmodule Tilex.PostControllerTest do
       post(conn, Routes.post_path(conn, :create, params))
 
       til =
-        Tilex.Blog.Post
+        Post
         |> Tilex.Repo.all()
         |> List.first()
 
@@ -102,7 +105,7 @@ defmodule Tilex.PostControllerTest do
       post(conn, Routes.post_path(conn, :create, params))
 
       til =
-        Tilex.Blog.Post
+        Post
         |> Tilex.Repo.all()
         |> List.first()
 
@@ -133,7 +136,7 @@ defmodule Tilex.PostControllerTest do
       put(conn, Routes.post_path(conn, :update, til.slug, params))
 
       til =
-        Tilex.Blog.Post
+        Post
         |> Tilex.Repo.get(til.id)
 
       assert til.title == "New Title"
@@ -162,7 +165,7 @@ defmodule Tilex.PostControllerTest do
       put(conn, Routes.post_path(conn, :update, til.slug, params))
 
       til =
-        Tilex.Blog.Post
+        Post
         |> Tilex.Repo.get(til.id)
 
       assert til.title == "New Title"
@@ -190,18 +193,82 @@ defmodule Tilex.PostControllerTest do
       put(conn, Routes.post_path(conn, :update, til.slug, params))
 
       til =
-        Tilex.Blog.Post
+        Post
         |> Tilex.Repo.get(til.id)
 
       assert til.title == "New Title"
       assert til.max_likes == 1
     end
+
+    test "author can delete their own post", %{
+      conn: conn,
+      current_user: current_user
+    } do
+      post = Factory.insert!(:post, developer: current_user)
+
+      conn = delete(conn, Routes.post_path(conn, :delete, post.slug))
+
+      assert redirected_to(conn) == Routes.developer_path(conn, :show, current_user)
+      assert get_flash(conn, :info) == "Post deleted successfully"
+      assert Repo.all(Post) == []
+    end
+
+    test "author cannot delete another developer's post", %{
+      conn: conn
+    } do
+      other_user = Factory.insert!(:developer, username: "other-dev")
+      post = Factory.insert!(:post, developer: other_user)
+      post_id = post.id
+
+      assert_raise Ecto.NoResultsError, fn ->
+        delete(conn, Routes.post_path(conn, :delete, post.slug))
+      end
+
+      assert [%Post{id: ^post_id}] = Repo.all(Post)
+    end
   end
 
-  defp authenticated_conn(%{conn: conn}) do
-    current_user = Factory.insert!(:developer, email: "current@example.com", username: "current")
-    channel = Factory.insert!(:channel, name: "git")
+  describe "when authenticated as admin" do
+    setup :authenticated_admin_conn
 
+    test "admin can delete any post", %{
+      conn: conn,
+      current_user: _admin
+    } do
+      other_user = Factory.insert!(:developer, username: "other-dev")
+      post = Factory.insert!(:post, developer: other_user)
+
+      conn = delete(conn, Routes.post_path(conn, :delete, post.slug))
+
+      assert redirected_to(conn) == Routes.developer_path(conn, :show, other_user)
+      assert get_flash(conn, :info) == "Post deleted successfully"
+      assert Repo.all(Post) == []
+    end
+  end
+
+  test "unauthenticated user cannot delete post", %{conn: conn} do
+    post = Factory.insert!(:post)
+    post_id = post.id
+
+    conn = delete(conn, Routes.post_path(conn, :delete, post.slug))
+
+    assert html_response(conn, 302)
+    assert get_flash(conn, :info) == "Authentication required"
+    assert [%Post{id: ^post_id}] = Repo.all(Post)
+  end
+
+  defp authenticated_conn(context) do
+    Factory.insert!(:developer, email: "current@example.com", username: "current")
+    |> do_authenticated_conn(context)
+  end
+
+  defp authenticated_admin_conn(context) do
+    Factory.insert!(:developer, email: "admin@example.com", username: "admin", admin: true)
+    |> do_authenticated_conn(context)
+  end
+
+  defp do_authenticated_conn(current_user, %{conn: conn}) do
+    channel = Factory.insert!(:channel, name: "git")
     conn = Auth.Guardian.Plug.sign_in(conn, current_user)
     {:ok, conn: conn, current_user: current_user, channel: channel}
   end
