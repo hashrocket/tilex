@@ -117,6 +117,10 @@ config :tilex, Tilex.Notifications.Notifiers.Twitter,
   token: System.get_env("twitter_access_token"),
   token_secret: System.get_env("twitter_access_token_secret")
 
+config :mime, :types, %{
+  "text/event-stream" => ["stream"]
+}
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
