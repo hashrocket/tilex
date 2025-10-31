@@ -1,7 +1,7 @@
 defmodule Features.VisitorViewsStatsTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
-  test "sees total number of posts by channel", %{session: session} do
+  feature "sees total number of posts by channel", %{session: session} do
     target_channel = Factory.insert!(:channel, name: "phoenix")
     other_channel = Factory.insert!(:channel, name: "other")
 
@@ -24,7 +24,7 @@ defmodule Features.VisitorViewsStatsTest do
     assert text_without_newlines(phoenix_channel) =~ "#phoenix 1 post"
   end
 
-  test "sees most liked and hottest tils", %{session: session} do
+  feature "sees most liked and hottest tils", %{session: session} do
     posts = [
       "Controllers",
       "Views",
@@ -64,7 +64,7 @@ defmodule Features.VisitorViewsStatsTest do
     assert text_without_newlines(insert_mode) =~ "Controllers #phoenix • 1 like"
   end
 
-  test "sees til activity", %{session: session} do
+  feature "sees til activity", %{session: session} do
     dt = fn {_y, _m, _d} = date ->
       {date, {12, 0, 0}}
       |> NaiveDateTime.from_erl!()
@@ -112,7 +112,7 @@ defmodule Features.VisitorViewsStatsTest do
     )
   end
 
-  test "sees total number of posts by developer", %{session: session} do
+  feature "sees total number of posts by developer", %{session: session} do
     developer = Factory.insert!(:developer, username: "makinpancakes")
     Factory.insert!(:post, developer: developer)
 

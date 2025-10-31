@@ -1,5 +1,5 @@
 defmodule Features.DeveloperViewsStatsTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
   def format_stats_date(%Date{year: year, day: day, month: month}) do
     day_s = String.pad_leading(Integer.to_string(day), 2, "0")
@@ -8,7 +8,7 @@ defmodule Features.DeveloperViewsStatsTest do
     "#{month_s}-#{day_s}-#{year}"
   end
 
-  test "sees total number of posts by channel", %{session: session} do
+  feature "sees total number of posts by channel", %{session: session} do
     developer = Factory.insert!(:developer)
     phoenix_channel = Factory.insert!(:channel, name: "phoenix")
     other_channel = Factory.insert!(:channel, name: "other")
@@ -70,7 +70,7 @@ defmodule Features.DeveloperViewsStatsTest do
     assert text_without_newlines(other_channel) =~ "#other 3 posts"
   end
 
-  test "does not see sees til activity chart", %{session: session} do
+  feature "does not see sees til activity chart", %{session: session} do
     developer = Factory.insert!(:developer)
 
     session

@@ -1,7 +1,7 @@
 defmodule Features.VisitorViewsChannelTest do
-  use Tilex.IntegrationCase, async: true
+  use Tilex.IntegrationCase, async: false
 
-  test "sees associated posts", %{session: session} do
+  feature "sees associated posts", %{session: session} do
     target_channel = Factory.insert!(:channel, name: "phoenix")
     other_channel = Factory.insert!(:channel, name: "other")
 
@@ -22,7 +22,7 @@ defmodule Features.VisitorViewsChannelTest do
     assert page_title(session) == "Phoenix - Today I Learned"
   end
 
-  test "the page has a list of paginated posts", %{session: session} do
+  feature "the page has a list of paginated posts", %{session: session} do
     channel = Factory.insert!(:channel, name: "smalltalk")
 
     {:ok, inserted_at} = DateTime.from_naive(~N[2019-06-28 16:05:47], "Etc/UTC")

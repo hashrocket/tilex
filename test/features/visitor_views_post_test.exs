@@ -4,7 +4,7 @@ defmodule VisitorViewsPostTest do
   alias TilexWeb.Endpoint
   alias Tilex.Integration.Pages.PostShowPage
 
-  test "the page shows a post", %{session: session} do
+  feature "the page shows a post", %{session: session} do
     Application.put_env(:tilex, :date_display_tz, "")
 
     developer = Factory.insert!(:developer)
@@ -45,7 +45,7 @@ defmodule VisitorViewsPostTest do
     assert path =~ post.slug
   end
 
-  test "the page shows a post with the correct timezone if given", %{session: session} do
+  feature "the page shows a post with the correct timezone if given", %{session: session} do
     Application.put_env(:tilex, :date_display_tz, "America/Chicago")
 
     developer = Factory.insert!(:developer)
@@ -66,7 +66,7 @@ defmodule VisitorViewsPostTest do
     assert post_date(session) == "February 1, 2018"
   end
 
-  test "and sees marketing copy, if it exists", %{session: session} do
+  feature "and sees marketing copy, if it exists", %{session: session} do
     marketing_channel = Factory.insert!(:channel, name: "elixir")
     post_in_marketing_channel = Factory.insert!(:post, channel: marketing_channel)
 
@@ -80,7 +80,7 @@ defmodule VisitorViewsPostTest do
     assert copy =~ String.slice(marketing_content, 0, 10)
   end
 
-  test "and sees a special slug", %{session: session} do
+  feature "and sees a special slug", %{session: session} do
     post = Factory.insert!(:post, title: "Super Sluggable Title")
 
     url =
@@ -102,7 +102,7 @@ defmodule VisitorViewsPostTest do
     assert url =~ "#{post.slug}-alternate-also-cool-title"
   end
 
-  test "and sees a channel specific twitter card and a post specific twitter description", %{
+  feature "and sees a channel specific twitter card and a post specific twitter description", %{
     session: session
   } do
     popular_channel = Factory.insert!(:channel, name: "command-line")
@@ -132,7 +132,7 @@ defmodule VisitorViewsPostTest do
     refute twitter_description =~ "Another sentence"
   end
 
-  test "and sees a post specific twitter description WITHOUT markdown", %{
+  feature "and sees a post specific twitter description WITHOUT markdown", %{
     session: session
   } do
     popular_channel = Factory.insert!(:channel, name: "command-line")
@@ -151,7 +151,7 @@ defmodule VisitorViewsPostTest do
     refute twitter_description =~ "Another sentence"
   end
 
-  test "and clicks 'like' for that post", %{session: session} do
+  feature "and clicks 'like' for that post", %{session: session} do
     Tilex.DateTimeMock.start_link([])
     developer = Factory.insert!(:developer)
     post = Factory.insert!(:post, title: "A special post", developer: developer, likes: 1)
@@ -184,7 +184,7 @@ defmodule VisitorViewsPostTest do
     assert post.max_likes == 2
   end
 
-  test "sees raw markdown version", %{session: session} do
+  feature "sees raw markdown version", %{session: session} do
     title = "A special post"
 
     body = """
@@ -218,7 +218,7 @@ defmodule VisitorViewsPostTest do
              """)
   end
 
-  test "via the random url", %{session: session} do
+  feature "via the random url", %{session: session} do
     post = Factory.insert!(:post)
 
     session
@@ -233,7 +233,7 @@ defmodule VisitorViewsPostTest do
     assert page_title(session) == "#{post.title} - Today I Learned"
   end
 
-  test "via the random by channel url", %{session: session} do
+  feature "via the random by channel url", %{session: session} do
     post = Factory.insert!(:post)
 
     session
