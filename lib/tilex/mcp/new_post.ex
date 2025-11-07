@@ -13,9 +13,7 @@ defmodule Tilex.MCP.NewPost do
   alias Ecto.Changeset
   alias Tilex.Blog.Channel
   alias Tilex.Blog.Developer
-  alias Tilex.Blog.Developer
   alias Tilex.Blog.Post
-  alias Tilex.Repo
   alias Tilex.Repo
   alias TilexWeb.Endpoint
   alias TilexWeb.Router.Helpers, as: Routes
